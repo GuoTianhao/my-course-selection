@@ -13,7 +13,7 @@ import com.logic.method.FaucltyDeanRelative.FacultyDeanGetter;
 import com.logic.method.FaucltyDeanRelative.FrameManagement;
 import com.logic.method.courseRelative.CourseGetter;
 import com.logic.method.courseRelative.CoursePublish;
-import com.logic.method.courseRelative.CourseUpdata;
+import com.logic.method.courseRelative.CourseUpdate;
 import com.logic.method.deanRelative.BasicFrameManagement;
 import com.logic.method.userRelative.Login;
 import com.logic.method.userRelative.PasswordChange;
@@ -69,7 +69,7 @@ public class FacultyDeanMethodImpl extends UnicastRemoteObject implements Facult
 	@Override
 	public boolean modifyCourse(Course c) throws RemoteException {
 		// TODO Auto-generated method stub
-		CourseUpdata.updateCourse(c);
+		CourseUpdate.updateCourse(c);
 		return false;
 	}
 

@@ -88,13 +88,13 @@ public class DatabaseSearch {
 					}
 				}
 			}
-			 System.out.println(sql);
+	//		 System.out.println(sql);
 			ResultSet res = st.executeQuery(sql);
 			while (res.next()) {
 				ArrayList<String> innerList = new ArrayList<String>();
 				it = aimName.iterator();
 				while (it.hasNext()) {
-					innerList.add((String) res.getObject(it.next()));
+					innerList.add(res.getString(it.next()));
 				}
 				list.add(innerList);
 			}

@@ -5,6 +5,7 @@ import java.rmi.RemoteException;
 import java.util.List;
 import java.util.Map;
 
+import com.data.po.Course;
 import com.data.po.Student;
 import com.data.po.Teacher;
 
@@ -21,4 +22,6 @@ public interface TeacherMethod extends Remote{
 		public List<Student> getCourseStudent(String cID) throws RemoteException;
 		//老师录入成绩，传入ID（课程ID）、score(学生ID-学生成绩)
 		public boolean recordScore(String cID,Map score) throws RemoteException;
+		//得到自己课程
+		public List<Course> getMyCourseList(String ID)throws RemoteException;
 }

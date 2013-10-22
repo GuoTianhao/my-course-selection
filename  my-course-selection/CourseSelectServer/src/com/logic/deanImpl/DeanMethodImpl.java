@@ -15,7 +15,7 @@ import com.logic.method.FaucltyDeanRelative.FrameManagement;
 import com.logic.method.TeacherRelative.TeacherGetter;
 import com.logic.method.courseRelative.CourseGetter;
 import com.logic.method.courseRelative.CoursePublish;
-import com.logic.method.courseRelative.CourseUpdata;
+import com.logic.method.courseRelative.CourseUpdate;
 import com.logic.method.deanRelative.BasicFrameManagement;
 import com.logic.method.deanRelative.DeanGetter;
 import com.logic.method.userRelative.Login;
@@ -116,7 +116,7 @@ public class DeanMethodImpl extends UnicastRemoteObject implements DeanMethod{
 	@Override
 	public boolean modifyCourse(Course c) throws RemoteException {
 		// TODO Auto-generated method stub
-		return CourseUpdata.updateCourse(c);
+		return CourseUpdate.updateCourse(c);
 	}
 
 }

@@ -11,7 +11,7 @@ import com.dataService.DeanDatabaseMethod;
 import com.dataService.FacultyDeanDatabaseMethod;
 import com.logic.dataController.DeanDataController;
 import com.logic.dataController.FacultyDeanDataController;
-import com.logic.method.courseRelative.CourseUpdata;
+import com.logic.method.courseRelative.CourseUpdate;
 
 public class FrameManagement {
 	private static List<String> getClueName(){

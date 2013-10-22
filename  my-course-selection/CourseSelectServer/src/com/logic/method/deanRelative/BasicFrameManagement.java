@@ -10,7 +10,7 @@ import com.data.po.FrameElement;
 import com.dataService.DeanDatabaseMethod;
 import com.logic.dataController.DeanDataController;
 import com.logic.method.courseRelative.CoursePublish;
-import com.logic.method.courseRelative.CourseUpdata;
+import com.logic.method.courseRelative.CourseUpdate;
 
 public class BasicFrameManagement {
 	private static List<String> getClueName(){

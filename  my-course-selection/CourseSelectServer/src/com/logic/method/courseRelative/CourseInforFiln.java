@@ -8,7 +8,7 @@ public class CourseInforFiln {
 	public static boolean filnCourseInfor(String cID, String text)  {
 		Course c=CourseGetter.getConcreteCourse(cID);
 		c.setScript(text);
-		CourseUpdata.updateCourse(c);
+		CourseUpdate.updateCourse(c);
 		return true;
 	}
 }

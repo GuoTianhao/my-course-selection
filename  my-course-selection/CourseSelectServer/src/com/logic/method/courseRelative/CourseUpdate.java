@@ -6,7 +6,7 @@ import java.util.List;
 import com.data.po.Course;
 import com.logic.dataController.DatabaseController;
 
-public class CourseUpdata {
+public class CourseUpdate {
 	public static boolean updateCourse(Course c) {
 		List<String> list = DatabaseController.getMethod().search("course",
 				"ID", c.getID(), "ID");

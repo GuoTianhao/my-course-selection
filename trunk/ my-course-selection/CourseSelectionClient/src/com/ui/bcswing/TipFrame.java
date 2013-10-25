@@ -29,7 +29,6 @@ public class TipFrame extends MFrame {
 		panel.add(label);
 		this.add(panel);
 		this.setVisible(true);
-		 System.out.println(textSize(tip));
 	}
 
 	private String textFactory(String text) {
@@ -37,11 +36,5 @@ public class TipFrame extends MFrame {
 				+ font.getFontName() + "' size='" + (font.getSize()) + "'>"
 				+ text + "</font></html>";
 		return str;
-	}
-	private int textSize(String t){
-		int num=t.length();
-		int size;
-		size=width/num/3;
-		return size;
 	}
 }

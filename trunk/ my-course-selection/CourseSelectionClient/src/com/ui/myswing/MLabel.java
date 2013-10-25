@@ -28,6 +28,7 @@ public class MLabel extends JLabel {
 	
 	public MLabel(String text) {
 		super(text);
+		setHorizontalAlignment(CENTER);
 	}
 
 	public MLabel(Icon image, int horizontalAlignment) {

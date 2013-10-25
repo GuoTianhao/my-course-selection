@@ -16,6 +16,7 @@ public class MButton extends JButton {
 		setRolloverIcon(rolloverIcon);
 		setRolloverEnabled(true);
 		setContentAreaFilled(false);
+		this.setBorderPainted(false);
 		setLocation(location);
 		setSize(size);
 	}

@@ -18,6 +18,13 @@ import com.ui.myswing.MPanel;
 
 public class MScrollTableTest {
 	public static void main(String[] args){
+		 try {
+	//		org.jb2011.lnf.beautyeye.BeautyEyeLNFHelper.launchBeautyEyeLNF();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
 		MFrame f=new MFrame();
 		MPanel p=new MPanel();
 		p.setLayout(null);

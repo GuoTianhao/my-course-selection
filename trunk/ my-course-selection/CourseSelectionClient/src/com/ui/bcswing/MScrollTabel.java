@@ -3,16 +3,23 @@ package com.ui.bcswing;
 import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Point;
+import java.awt.event.MouseListener;
 import java.util.Vector;
-import javax.swing.JScrollPane;
-import javax.swing.event.TableModelListener;
 
+import javax.swing.JScrollPane;
+import javax.swing.RowFilter;
+import javax.swing.event.TableModelListener;
+import javax.swing.table.TableModel;
+import javax.swing.table.TableRowSorter;
+
+import com.ui.myswing.EditPermission;
 import com.ui.myswing.MDefaultTableModel;
 import com.ui.myswing.MTable;
 
 public class MScrollTabel extends JScrollPane {
 	private static MDefaultTableModel model = new MDefaultTableModel();
 	private static MTable table = new MTable(model);
+	private static TableRowSorter<TableModel> sort=new TableRowSorter<TableModel>();
 
 	public MScrollTabel(Component view, int vsbPolicy, int hsbPolicy) {
 		super(view, vsbPolicy, hsbPolicy);
@@ -20,6 +27,10 @@ public class MScrollTabel extends JScrollPane {
 
 	public MScrollTabel(Component view) {
 		super(view);
+		this.setHorizontalScrollBarPolicy(MScrollTabel.HORIZONTAL_SCROLLBAR_NEVER);
+		this.setVerticalScrollBarPolicy(MScrollTabel.VERTICAL_SCROLLBAR_ALWAYS);
+		sort.setModel(model);
+		table.setRowSorter(sort);
 	}
 
 	public MScrollTabel(int vsbPolicy, int hsbPolicy) {
@@ -27,9 +38,21 @@ public class MScrollTabel extends JScrollPane {
 	}
 
 	public MScrollTabel(Point loc, Dimension size) {
-		super(table);
+		this(table);
 		this.setLocation(loc);
 		this.setSize(size);
+	}
+	
+	public MScrollTabel(){
+		this(table);
+	}
+	
+	public MTable getTable(){
+		return table;
+	}
+	
+	public MDefaultTableModel getModel(){
+		return model;
 	}
 
 	public void setDataVector(Vector dataVector, Vector columnIdentifiers) {
@@ -118,5 +141,16 @@ public class MScrollTabel extends JScrollPane {
 
 	public void addColumn(Object columnName, Object[] columnData) {
 		model.addColumn(columnName);
+	}
+	
+	public void setEditable(EditPermission edit){
+		model.setEditable(edit);
+	}
+	
+	public void addMouseListener(MouseListener l){
+		table.addMouseListener(l);
+	}
+	public void regrexFilter(String text){
+		sort.setRowFilter(RowFilter.regexFilter(text));
 	}
 }

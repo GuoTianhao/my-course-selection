@@ -8,7 +8,7 @@ import java.awt.Point;
 import javax.swing.JFrame;
 
 public class MFrame extends JFrame {
-	private static int clock = 2000;
+	private static int clock = 200;
 	private static float opacityPoint = (float) 0.3;
 
 	public MFrame() throws HeadlessException {

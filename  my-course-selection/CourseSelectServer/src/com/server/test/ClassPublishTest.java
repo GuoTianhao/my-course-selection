@@ -21,8 +21,8 @@ public class ClassPublishTest extends TestCase{
 		clue.clear();
 		clue.add("100000000");
 		teacher.add(TeacherGetter.getTeacher(clueName, clue).get(0));
-		Course c=new Course("0003","c++ Advanced","仙2_304","F",3,"1_17","1250",null,null,teacher);
+	//	Course c=new Course("0003","c++ Advanced","仙2_304","F",3,"1_17","1250",null,null,teacher);
 		System.out.println();
-		System.out.println(CoursePublish.publishCourse(c));
+	//	System.out.println(CoursePublish.publishCourse(c));
 	}
 }

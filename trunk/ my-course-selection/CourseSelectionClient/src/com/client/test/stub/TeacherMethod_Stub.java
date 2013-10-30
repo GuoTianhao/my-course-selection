@@ -9,6 +9,7 @@ import java.util.Map;
 
 
 
+
 import com.data.po.Course;
 import com.data.po.Student;
 import com.data.po.Teacher;
@@ -47,7 +48,7 @@ public class TeacherMethod_Stub implements TeacherMethod {
 		List<String> time=new ArrayList<String>();
 		time.add("2_5_7");
 		time.add("1_1_4");
-		Course c1=new Course("0001","软件工程与计算","仙2_303","F",3,"1_17","1250","打造全院最好软件教育",time, null);
+		Course c1=new Course("0001","软件工程与计算","仙2_303","F",3,"1_17","1250","打造全院最好软件教育",0, time, null);
 		time.clear();
 		 if(cID.equals(c1.getID())) {
 			 c1.setScript(text);
@@ -82,6 +83,12 @@ public class TeacherMethod_Stub implements TeacherMethod {
 	public boolean recordScore(String arg0, Map arg1) throws RemoteException {
 		// TODO Auto-generated method stub
 		return true;
+	}
+
+	@Override
+	public List<Course> getMyCourseList(String arg0) throws RemoteException {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }
 

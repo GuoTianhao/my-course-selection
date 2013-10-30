@@ -55,9 +55,7 @@ public class DeanMethod_Driver {
 	}
 
 	public void driveFomulateFrame() {
-		BasicFrame bf = new BasicFrame("14", "11+5", "3", "19_33", "38_45",
-				"38_45", "8_10", "1_8", "1_6", "1_6", "1_4", "2_4", "3_8",
-				"7_8");
+		BasicFrame bf = new BasicFrame();
 		try {
 			if (method.formulateFrame(bf)) {
 				System.out.println("制定整体框架策略成功");
@@ -70,9 +68,7 @@ public class DeanMethod_Driver {
 	}
 
 	public void driveModifyFrame() {
-		BasicFrame bf = new BasicFrame("14", "11+5", "3", "19_33", "38_45",
-				"38_45", "8_10", "1_8", "1_6", "1_6", "1_4", "2_4", "3_8",
-				"7_8");
+		BasicFrame bf = new BasicFrame();
 		try {
 			if (method.modifyFrame(bf)) {
 				System.out.println("修改整体框架策略成功");
@@ -89,11 +85,11 @@ public class DeanMethod_Driver {
 		try {
 			fr = method.lookUpFrame("1250");
 			if (fr != null) {
-				System.out.println("The credits of the modules are:");
-				System.out.println("A:" + fr.getACredit() + " ;B:"
-						+ fr.getBCredit() + " ;C:" + fr.getCCredit() + " ;D:"
-						+ fr.getDCredit() + " ;E:" + fr.getECredit() + " ;F:"
-						+ fr.getFCredit() + " ;L:" + fr.getLCredit());
+//				System.out.println("The credits of the modules are:");
+//				System.out.println("A:" + fr.getACredit() + " ;B:"
+//						+ fr.getBCredit() + " ;C:" + fr.getCCredit() + " ;D:"
+//						+ fr.getDCredit() + " ;E:" + fr.getECredit() + " ;F:"
+//						+ fr.getFCredit() + " ;L:" + fr.getLCredit());
 			} else
 				System.out.println("院系号不存在或院系尚未制定教学计划");
 		} catch (RemoteException e) {

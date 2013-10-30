@@ -20,6 +20,7 @@ public class CourseGetter {
 		aimName.add("Period");
 		aimName.add("faculty");
 		aimName.add("script");
+		aimName.add("Num");
 		return aimName;
 	}
 
@@ -68,7 +69,7 @@ public class CourseGetter {
 			Iterator<String> inIt = innerList.iterator();
 			Course course = courseFactory(new Course(inIt.next(), inIt.next(),
 					inIt.next(), inIt.next(), Integer.parseInt(inIt.next()),
-					inIt.next(), inIt.next(), inIt.next(), null, null));
+					inIt.next(), inIt.next(), inIt.next(),Integer.parseInt(inIt.next()), null, null));
 			list.add(course);
 
 		}

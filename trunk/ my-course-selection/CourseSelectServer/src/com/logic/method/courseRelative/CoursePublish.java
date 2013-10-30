@@ -1,14 +1,11 @@
 package com.logic.method.courseRelative;
 
-import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-import com.data.dataImpl.DatabaseImpl;
 import com.data.po.Course;
 import com.data.po.Teacher;
-import com.logic.dataController.DatabaseController;
 import com.logic.dataController.FacultyDeanDataController;
 
 public class CoursePublish {
@@ -36,6 +33,7 @@ public class CoursePublish {
 		clueName.add("Period");
 		clueName.add("faculty");
 		clueName.add("script");
+		clueName.add("Num");
 		clue.add(c.getID());
 		clue.add(c.getName());
 		clue.add(c.getLoc());
@@ -44,6 +42,7 @@ public class CoursePublish {
 		clue.add(c.getPeriod());
 		clue.add(c.getFaculty());
 		clue.add(c.getScript());
+		clue.add(""+c.getNum());
 		FacultyDeanDataController.getMethod().insert("course", clueName, clue);
 
 		Iterator it = (c.getTeacher()).iterator();

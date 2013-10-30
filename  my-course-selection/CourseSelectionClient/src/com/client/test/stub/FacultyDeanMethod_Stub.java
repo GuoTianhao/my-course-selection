@@ -4,8 +4,10 @@ import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.data.po.BasicFrame;
 import com.data.po.Course;
 import com.data.po.FacultyDean;
+import com.data.po.Frame;
 import com.logicService.FacultyDeanMethod;
 
 public class FacultyDeanMethod_Stub implements FacultyDeanMethod{
@@ -30,7 +32,7 @@ public class FacultyDeanMethod_Stub implements FacultyDeanMethod{
 		List<String> time=new ArrayList<String>();
 		time.add("2_5_7");
 		time.add("1_1_4");
-		Course c=new Course("0001","软件工程与计算","仙2_303","F",3,"1_17","1250","打造全院最好软件教育",time, null);
+		Course c=new Course("0001","软件工程与计算","仙2_303","F",3,"1_17","1250","打造全院最好软件教育",0, time, null);
 		if(cID.equals(c.getID())){
 			return c;
 		}
@@ -44,12 +46,12 @@ public class FacultyDeanMethod_Stub implements FacultyDeanMethod{
 		List<String> time=new ArrayList<String>();
 		time.add("2_5_7");
 		time.add("1_1_4");
-		Course c1=new Course("0001","软件工程与计算","仙2_303","F",3,"1_17","1250","打造全院最好软件教育",time, null);
+		Course c1=new Course("0001","软件工程与计算","仙2_303","F",3,"1_17","1250","打造全院最好软件教育",0, time, null);
 		time.clear();
 		time.add("1_5_7");
 		time.add("3_1_4");
 		Course c2=new Course("0002","c++程序设计语言","仙2_304","",3,"12_17","1250",
-				"你们应该学会怎么自己实现，而不是去用现成的。",time, null);
+				"你们应该学会怎么自己实现，而不是去用现成的。",0, time, null);
 		list.add(c1);
 		list.add(c2);
 		if(facultyID.equals("1250")){
@@ -87,5 +89,29 @@ public class FacultyDeanMethod_Stub implements FacultyDeanMethod{
 	public FacultyDean getSelf(String arg0) throws RemoteException {
 		// TODO Auto-generated method stub
 		return new FacultyDean(ID,name,faculty);
+	}
+
+	@Override
+	public boolean formulateFrame(Frame arg0) throws RemoteException {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public BasicFrame lookBasicFrame() throws RemoteException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Frame lookFrame(String arg0) throws RemoteException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public boolean modifyFrame(Frame arg0) throws RemoteException {
+		// TODO Auto-generated method stub
+		return false;
 	}
 }

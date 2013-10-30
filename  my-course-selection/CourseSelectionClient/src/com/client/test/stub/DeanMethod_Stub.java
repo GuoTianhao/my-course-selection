@@ -61,14 +61,13 @@ public class DeanMethod_Stub implements DeanMethod {
 	@Override
 	public BasicFrame lookUpBasicFrame() throws RemoteException {
 		// TODO Auto-generated method stub
-		return new BasicFrame("14", "11+5", "3", "19_33", "38_45", "38_45",
-				"8_10", "1_8", "1_6", "1_6", "1_4", "2_4", "3_8", "7_8");
+		return new BasicFrame();
 	}
 
 	@Override
 	public Frame lookUpFrame(String facultyID) throws RemoteException {
 		// TODO Auto-generated method stub
-		return new Frame("14", "11+5", "3", "33", "45", "45", "10");
+		return new Frame("14");
 	}
 
 	@Override
@@ -97,12 +96,12 @@ public class DeanMethod_Stub implements DeanMethod {
 		time.add("2_5_7");
 		time.add("1_1_4");
 		Course c1 = new Course("0001", "软件工程与计算", "仙2_303", "F", 3, "1_17",
-				"1250", "打造全院最好软件教育", time, null);
+				"1250", "打造全院最好软件教育", 0, time, null);
 		time.clear();
 		time.add("1_5_7");
 		time.add("3_1_4");
 		Course c2 = new Course("0002", "c++程序设计语言", "仙2_304", "", 3, "12_17",
-				"1250", "你们应该学会怎么自己实现，而不是去用现成的。", time, null);
+				"1250", "你们应该学会怎么自己实现，而不是去用现成的。", 0, time, null);
 		list.add(c1);
 		list.add(c2);
 		return list;
@@ -117,18 +116,30 @@ public class DeanMethod_Stub implements DeanMethod {
 		time.add("2_5_7");
 		time.add("1_1_4");
 		Course c1 = new Course("0001", "软件工程与计算", "仙2_303", "F", 3, "1_17",
-				"1250", "打造全院最好软件教育", time, null);
+				"1250", "打造全院最好软件教育", 0, time, null);
 		time.clear();
 		time.add("1_5_7");
 		time.add("3_1_4");
 		Course c2 = new Course("0002", "c++程序设计语言", "仙2_304", "", 3, "12_17",
-				"1250", "你们应该学会怎么自己实现，而不是去用现成的。", time, null);
+				"1250", "你们应该学会怎么自己实现，而不是去用现成的。", 0, time, null);
 		list.add(c1);
 		list.add(c2);
 		if (facultyID.equals("1250")) {
 			return list;
 		}
 		return null;
+	}
+
+	@Override
+	public boolean modifyCourse(Course arg0) throws RemoteException {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean publishCourse(Course arg0) throws RemoteException {
+		// TODO Auto-generated method stub
+		return false;
 	}
 
 }

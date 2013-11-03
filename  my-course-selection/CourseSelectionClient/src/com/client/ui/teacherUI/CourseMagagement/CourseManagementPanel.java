@@ -1,4 +1,4 @@
-package com.ui.teacherUI.CourseMagagement;
+package com.client.ui.teacherUI.CourseMagagement;
 
 import com.ui.myswing.MPanel;
 

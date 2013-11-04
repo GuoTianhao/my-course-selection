@@ -7,9 +7,9 @@ import javax.swing.JPanel;
 
 public class MPanel extends JPanel {
 	public MPanel(Dimension size) {
-		super();
+		this();
 		setLayout(null);
-		setPreferredSize(size);
+		setSize(size);
 	}
 
 	public MPanel(LayoutManager layout, boolean isDoubleBuffered) {

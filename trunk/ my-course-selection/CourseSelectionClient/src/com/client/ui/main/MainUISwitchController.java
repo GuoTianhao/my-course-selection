@@ -2,6 +2,7 @@ package com.client.ui.main;
 
 import com.client.ui.deanUI.DeanMainPanel;
 import com.client.ui.facultyUI.FacultyMainPanel;
+import com.client.ui.loginUI.Login;
 import com.client.ui.studentUI.StudentMainPanel;
 import com.client.ui.teacherUI.TeacherMainPanel;
 
@@ -19,6 +20,10 @@ public class MainUISwitchController {
 			frame=new MainFrame();
 		}
 		return controller;
+	}
+	public void switchToLoginPanel(){
+		frame.dispose();
+		new Login();
 	}
 	public void switchToDeanMainPanel(){
 		frame.add(new DeanMainPanel());

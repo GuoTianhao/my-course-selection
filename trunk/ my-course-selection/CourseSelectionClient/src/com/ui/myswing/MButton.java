@@ -15,12 +15,13 @@ public class MButton extends JButton {
 		setPressedIcon(pressedIcon);
 		setRolloverIcon(rolloverIcon);
 		setRolloverEnabled(true);
-		setContentAreaFilled(false);
-		this.setBorderPainted(false);
+		if(!(defaultIcon==null&&pressedIcon==null&&rolloverIcon==null)){
+			setContentAreaFilled(false);
+			this.setBorderPainted(false);
+		}
 		setLocation(location);
 		setSize(size);
 	}
-
 	public MButton() {
 		super(null, null);
 	}

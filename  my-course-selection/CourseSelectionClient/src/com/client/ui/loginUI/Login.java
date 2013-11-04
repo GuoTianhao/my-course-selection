@@ -4,6 +4,8 @@ import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Point;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.ButtonGroup;
 import javax.swing.DefaultComboBoxModel;
@@ -16,11 +18,12 @@ import com.ui.myswing.*;
 ;
 
 public class Login extends JFrame {
-	private static int fHeight = 250;
-	private static int fLength = 200;
+	private static int fHeight = 300;
+	private static int fLength = 270;
 
 	public Login() {
 		super();
+		createAndShowUI();
 	}
 
 	private Component createComponent() {
@@ -67,8 +70,13 @@ public class Login extends JFrame {
 		setLocationRelativeTo(null);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
+	class LoginListener implements ActionListener{
 
-	public static void main(String[] args) {
-		new Login().createAndShowUI();
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			// TODO Auto-generated method stub
+			
+		}
+		
 	}
 }

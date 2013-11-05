@@ -8,7 +8,6 @@ import javax.swing.JPanel;
 public class MPanel extends JPanel {
 	public MPanel(Dimension size) {
 		this();
-		setLayout(null);
 		setSize(size);
 	}
 
@@ -26,6 +25,7 @@ public class MPanel extends JPanel {
 
 	public MPanel() {
 		super();
+		setLayout(null);
 	}
 
 }

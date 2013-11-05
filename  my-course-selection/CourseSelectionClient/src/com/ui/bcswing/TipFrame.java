@@ -10,6 +10,8 @@ import com.ui.myswing.MLabel;
 import com.ui.myswing.MPanel;
 
 public class TipFrame extends MFrame {
+	private static int clock = 200;
+	private static float opacityPoint = (float) 0.3;
 	private static int width = 200;
 	private static int height = 100;
 	private static Color default_bColor = new Color(0xBF3EFF);
@@ -19,7 +21,11 @@ public class TipFrame extends MFrame {
 	private MPanel panel;
 
 	public TipFrame(Point loc,int font_size, String tip) {
-		super(false, loc, new Dimension(width, height));
+		super();
+		this.setUndecorated(true);
+		this.setOpacity(opacityPoint);
+		this.setLocation(loc);
+		this.setSize(new Dimension(width, height));
 		font = new Font("TimesRoman", Font.BOLD,font_size);
 		label = new MLabel(new Point(0, 0), new Dimension(width, height),
 				textFactory(tip));
@@ -36,5 +42,36 @@ public class TipFrame extends MFrame {
 				+ font.getFontName() + "' size='" + (font.getSize()) + "'>"
 				+ text + "</font></html>";
 		return str;
+	}
+	public void startEndClock(){
+		startEndClock(-1);
+	}
+	public void startEndClock(int time) {
+		if(time>=0){
+			clock=time;
+		}
+		new CloseClock().start();
+	}
+
+	private class CloseClock extends Thread {
+		private long startTime;
+		private long instance;
+
+		public CloseClock() {
+			startTime = System.currentTimeMillis();
+		}
+
+		public void run() {
+			while ((instance - startTime) <= clock) {
+				instance = System.currentTimeMillis();
+				try {
+					sleep(500);
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+			TipFrame.this.dispose();
+		}
 	}
 }

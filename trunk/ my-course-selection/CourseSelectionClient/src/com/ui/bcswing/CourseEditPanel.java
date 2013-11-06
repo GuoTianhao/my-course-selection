@@ -34,12 +34,7 @@ public class CourseEditPanel extends MPanel {
 	MTextField gradet;
 	MTextField facultyt;
 	MTextField periodt;
-
-	MComboBox week;
-	MComboBox start;
-	MComboBox end;
-
-	MButton timeB;
+	
 	
 	public CourseEditPanel(Dimension size) {
 		super();
@@ -69,19 +64,7 @@ public class CourseEditPanel extends MPanel {
 		facultyt = new MTextField(new Point(150, 210), new Dimension(100, 20));
 		periodt = new MTextField(new Point(150, 250), new Dimension(100, 20));
 
-		String[] weekModel = { "星期一", "星期二", "星期三", "星期四", "星期五", "星期六", "星期天" };
-		week = new MComboBox(weekModel, new Point(90, 280), new Dimension(80,
-				20));
-
-		String[] timeModel = { "第一节", "第二节", "第三节", "第四节", "第五节", "第六节", "第七节",
-				"第八节", "第九节", "第十节" };
-		start= new MComboBox(timeModel, new Point(180, 280), new Dimension(80,
-				20));
-		end=new MComboBox(timeModel, new Point(270, 280), new Dimension(80,
-				20));
-		
-		timeB=new MButton(null,null,null,new Point(360,280),new Dimension(30,20));
-		timeB.setText("+");
+		CourseTimePanel time=new CourseTimePanel(new Point(40,280));
 
 		this.add(namel);
 		this.add(idl);
@@ -103,16 +86,18 @@ public class CourseEditPanel extends MPanel {
 		this.add(gradet);
 		this.add(facultyt);
 		this.add(periodt);
-		this.add(week);
-		this.add(start);
-		this.add(end);
 		
-		this.add(timeB);
+		this.add(time);
 
 		this.validate();
 		this.repaint();
 	}
-
+	public void setHeight(int height){
+		this.setSize(this.getSize().width,height);
+		this.repaint();
+		this.setVisible(true);
+		this.validate();
+	}
 	public static void main(String[] args) {
 		try {
 			org.jb2011.lnf.beautyeye.BeautyEyeLNFHelper.launchBeautyEyeLNF();

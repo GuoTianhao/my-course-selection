@@ -30,4 +30,8 @@ public class MFrame extends JFrame {
 		this();
 		this.setSize(size);
 	}
+	public void refresh(){
+		this.validate();
+		this.repaint();
+	}
 }

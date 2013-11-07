@@ -2,17 +2,23 @@ package com.ui.bcswing;
 
 import java.awt.Dimension;
 import java.awt.Point;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.Observer;
 
 import javax.swing.UIManager;
 
 import com.ui.myswing.MButton;
-import com.ui.myswing.MComboBox;
 import com.ui.myswing.MFrame;
 import com.ui.myswing.MLabel;
 import com.ui.myswing.MPanel;
 import com.ui.myswing.MTextField;
 
 public class CourseEditPanel extends MPanel {
+	private static int default_height_add = 40;
+	private MObservable observe;
 	MLabel namel;
 	MLabel idl;
 	MLabel locl;
@@ -34,11 +40,18 @@ public class CourseEditPanel extends MPanel {
 	MTextField gradet;
 	MTextField facultyt;
 	MTextField periodt;
-	
-	
-	public CourseEditPanel(Dimension size) {
-		super();
+
+	CourseTimePanel time;
+	ArrayList<CourseTimePanel> timeList;
+
+	ActionListener tbListener;
+	ActionListener tdbListener;
+
+	public CourseEditPanel(Point loc, Dimension size) {
+		super(size);
 		creatComponent();
+		observe = new MObservable();
+		this.setLocation(loc);
 	}
 
 	private void creatComponent() {
@@ -64,7 +77,13 @@ public class CourseEditPanel extends MPanel {
 		facultyt = new MTextField(new Point(150, 210), new Dimension(100, 20));
 		periodt = new MTextField(new Point(150, 250), new Dimension(100, 20));
 
-		CourseTimePanel time=new CourseTimePanel(new Point(40,280));
+		time = new CourseTimePanel(new Point(80, 280));
+		tbListener = new TimeButtonListener();
+		tdbListener = new TimeDeleteButtonListener();
+		time.addActionListener(tbListener);
+		time.addDeleteActionListener(tdbListener);
+		timeList = new ArrayList<CourseTimePanel>();
+		timeList.add(time);
 
 		this.add(namel);
 		this.add(idl);
@@ -86,18 +105,110 @@ public class CourseEditPanel extends MPanel {
 		this.add(gradet);
 		this.add(facultyt);
 		this.add(periodt);
-		
+
 		this.add(time);
 
 		this.validate();
 		this.repaint();
 	}
-	public void setHeight(int height){
-		this.setSize(this.getSize().width,height);
-		this.repaint();
-		this.setVisible(true);
-		this.validate();
+
+	class TimeButtonListener implements ActionListener {
+
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			// TODO Auto-generated method stub
+			Point loc = time.getLocation();
+			time = new CourseTimePanel(new Point(loc.x, loc.y
+					+ default_height_add));
+			time.addActionListener(tbListener);
+			time.addDeleteActionListener(tdbListener);
+			timeList.add(time);
+			CourseEditPanel.this.add(time);
+			CourseEditPanel.this.setHeight(CourseEditPanel.this.getHeight()
+					+ default_height_add);
+
+		}
+
 	}
+
+	class TimeDeleteButtonListener implements ActionListener {
+
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			// TODO Auto-generated method stub
+			if (timeList.size() > 1) {
+				CourseTimePanel p;
+				MButton b = (MButton) e.getSource();
+				Iterator<CourseTimePanel> it = timeList.iterator();
+				while (it.hasNext()) {
+					p = it.next();
+					if (p.timeDB == b) {
+						it.remove();
+						CourseEditPanel.this.remove(p);
+						break;
+					}
+				}
+				while (it.hasNext()) {
+					p = it.next();
+					Point loc = p.getLocation();
+					p.setLocation(new Point(loc.x, loc.y - default_height_add));
+				}
+				it = timeList.iterator();
+				while (it.hasNext()) {
+					time = it.next();
+				}
+
+				CourseEditPanel.this.setHeight(CourseEditPanel.this.getHeight()
+						- default_height_add);
+
+			}
+		}
+
+	}
+
+	public void setHeight(int height) {
+		setChanged();
+		notifyObservers(height-this.getSize().height);
+		this.setSize(this.getSize().width, height);
+		this.refresh();
+	}
+
+	public synchronized void addObserver(Observer o) {
+		observe.addObserver(o);
+	}
+
+	public synchronized void deleteObserver(Observer o) {
+		observe.deleteObserver(o);
+	}
+
+	public void notifyObservers() {
+		observe.notifyObservers();
+	}
+
+	public void notifyObservers(Object arg) {
+		observe.notifyObservers(arg);
+	}
+
+	public synchronized void deleteObservers() {
+		observe.deleteObservers();
+	}
+
+	protected synchronized void setChanged() {
+		observe.setChanged();
+	}
+
+	protected synchronized void clearChanged() {
+		observe.clearChanged();
+	}
+
+	public synchronized boolean hasChanged() {
+		return observe.hasChanged();
+	}
+
+	public synchronized int countObservers() {
+		return observe.countObservers();
+	}
+
 	public static void main(String[] args) {
 		try {
 			org.jb2011.lnf.beautyeye.BeautyEyeLNFHelper.launchBeautyEyeLNF();
@@ -106,7 +217,7 @@ public class CourseEditPanel extends MPanel {
 			e.printStackTrace();
 		}
 		MFrame f = new MFrame(new Dimension(500, 500));
-		f.add(new CourseEditPanel(f.getSize()));
+		f.add(new CourseEditPanel(new Point(0, 0), f.getSize()));
 		f.validate();
 	}
 }

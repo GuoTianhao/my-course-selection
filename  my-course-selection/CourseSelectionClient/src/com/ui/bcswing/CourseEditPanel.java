@@ -19,27 +19,27 @@ import com.ui.myswing.MTextField;
 public class CourseEditPanel extends MPanel {
 	private static int default_height_add = 40;
 	private MObservable observe;
-	MLabel namel;
-	MLabel idl;
-	MLabel locl;
-	MLabel creditl;
-	MLabel numl;
-	MLabel typel;
-	MLabel gradel;
-	MLabel facultyl;
-	MLabel periodl;
+	private MLabel namel;
+	private MLabel idl;
+	private	MLabel locl;
+	private	MLabel creditl;
+	private	MLabel numl;
+	private	MLabel typel;
+	private	MLabel gradel;
+	private	MLabel facultyl;
+	private	MLabel periodl;
 
-	MLabel timel;
+	private	MLabel timel;
 
-	MTextField namet;
-	MTextField idt;
-	MTextField loct;
-	MTextField creditt;
-	MTextField numt;
-	MTextField typet;
-	MTextField gradet;
-	MTextField facultyt;
-	MTextField periodt;
+	private	MTextField namet;
+	private	MTextField idt;
+	private	MTextField loct;
+	private	MTextField creditt;
+	private	MTextField numt;
+	private	MTextField typet;
+	private	MTextField gradet;
+	private	MTextField facultyt;
+	private	MTextField periodt;
 
 	CourseTimePanel time;
 	ArrayList<CourseTimePanel> timeList;

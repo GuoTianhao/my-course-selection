@@ -11,7 +11,6 @@ public class MFrame extends JFrame {
 
 	public MFrame() throws HeadlessException {
 		super();
-		this.setVisible(true);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
 

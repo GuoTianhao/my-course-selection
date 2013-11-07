@@ -2,6 +2,7 @@ package com.ui.myswing;
 
 import java.awt.Dimension;
 import java.awt.LayoutManager;
+import java.awt.Point;
 
 import javax.swing.JPanel;
 
@@ -10,6 +11,11 @@ public class MPanel extends JPanel {
 		this();
 		this.setSize(size);
 		this.setPreferredSize(size);
+	}
+	
+	public MPanel(Point loc,Dimension size){
+		this(size);
+		this.setLocation(loc);
 	}
 
 	public MPanel(LayoutManager layout, boolean isDoubleBuffered) {

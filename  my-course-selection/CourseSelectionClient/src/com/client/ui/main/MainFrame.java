@@ -9,7 +9,7 @@ import com.ui.myswing.MFrame;
 
 
 public class MainFrame extends MFrame{
-	private Dimension default_size=new Dimension(700,600);
+	private Dimension default_size=new Dimension(850,650);
 	public MainFrame(){
 		super();
 		this.setSize(default_size);

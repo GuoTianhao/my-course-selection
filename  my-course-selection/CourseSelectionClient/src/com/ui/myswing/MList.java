@@ -14,7 +14,6 @@ public class MList extends JScrollPane{
 	public MList(Object[] listdata,Point location,Dimension size){
 		JList list=new JList(listdata);
 		
-	//	super(listdata);
 		setOpaque(false);
 		list.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		setViewportView(list);

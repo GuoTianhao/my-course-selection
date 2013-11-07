@@ -5,6 +5,8 @@ import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Point;
 
+import javax.swing.UIManager;
+
 import com.ui.myswing.MFrame;
 import com.ui.myswing.MLabel;
 import com.ui.myswing.MPanel;
@@ -15,7 +17,7 @@ public class TipFrame extends MFrame {
 	private static int width = 200;
 	private static int height = 100;
 	private static Color default_bColor = new Color(0xBF3EFF);
-	private static Color default_tColor = Color.YELLOW;
+	private static Color default_tColor = Color.RED;
 	private static Font font;
 	private MLabel label;
 	private MPanel panel;
@@ -73,5 +75,9 @@ public class TipFrame extends MFrame {
 			}
 			TipFrame.this.dispose();
 		}
+	}
+	public static void main(String[] args){
+		TipFrame t=new TipFrame(new Point(200,200),10,"Welcome!");
+		t.startEndClock();
 	}
 }

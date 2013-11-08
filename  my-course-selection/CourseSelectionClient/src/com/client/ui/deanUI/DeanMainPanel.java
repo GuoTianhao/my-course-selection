@@ -23,11 +23,6 @@ public class DeanMainPanel extends MPanel {
 	private MButton btn5;
 	private MButton btn6;
 	private MLabel lb1;
-	private MLabel lb2;
-	private MLabel lb3;
-	private MLabel lb4;
-	private MLabel lb5;
-	private MLabel lb6;
 
 	public DeanMainPanel(Point loc, Dimension size) {
 		super(loc, size);
@@ -37,18 +32,6 @@ public class DeanMainPanel extends MPanel {
 	private void createComponent() {
 		title = new TitleBar(new Point(0, 0),
 				new Dimension(this.getWidth(), 75));
-//		btn1 = new MButton(new ImageIcon("blank.png"), null, null, new Point(
-//				85, 134), new Dimension(180, 120));
-		btn2 = new MButton(new ImageIcon("blank.png"), null, null, new Point(
-				323, 134), new Dimension(180, 120));
-		btn3 = new MButton(new ImageIcon("blank.png"), null, null, new Point(
-				535, 134), new Dimension(180, 120));
-		btn4 = new MButton(new ImageIcon("blank.png"), null, null, new Point(
-				85, 344), new Dimension(180, 120));
-		btn5 = new MButton(new ImageIcon("blank.png"), null, null, new Point(
-				323, 134), new Dimension(180, 120));
-		btn6 = new MButton(new ImageIcon("blank.png"), null, null, new Point(
-				535, 134), new Dimension(180, 120));
 //		lb1 = new MLabel("整体框架策略", new ImageIcon("blank.png"), SwingConstants.CENTER);
 //		lb1.setHorizontalTextPosition(SwingConstants.CENTER);
 //		lb1.setVerticalTextPosition(SwingConstants.BOTTOM);;
@@ -59,8 +42,38 @@ public class DeanMainPanel extends MPanel {
 		btn1.setHorizontalTextPosition(SwingConstants.CENTER);
 		btn1.setVerticalTextPosition(SwingConstants.BOTTOM);
 		
+		btn2 = new MButton("教学计划", new ImageIcon("blank.png"));
+		btn2.setBounds(323, 134, 180, 150);
+		btn2.setHorizontalTextPosition(SwingConstants.CENTER);
+		btn2.setVerticalTextPosition(SwingConstants.BOTTOM);
+		
+		btn3 = new MButton("课程", new ImageIcon("blank.png"));
+		btn3.setBounds(535, 134, 180, 150);
+		btn3.setHorizontalTextPosition(SwingConstants.CENTER);
+		btn3.setVerticalTextPosition(SwingConstants.BOTTOM);
+		
+		btn4 = new MButton("教师", new ImageIcon("blank.png"));
+		btn4.setBounds(85, 344, 180, 150);
+		btn4.setHorizontalTextPosition(SwingConstants.CENTER);
+		btn4.setVerticalTextPosition(SwingConstants.BOTTOM);
+		
+		btn5 = new MButton("学生", new ImageIcon("blank.png"));
+		btn5.setBounds(323, 344, 180, 150);
+		btn5.setHorizontalTextPosition(SwingConstants.CENTER);
+		btn5.setVerticalTextPosition(SwingConstants.BOTTOM);
+		
+		btn6 = new MButton("专业准入准出", new ImageIcon("blank.png"));
+		btn6.setBounds(535, 344, 180, 150);
+		btn6.setHorizontalTextPosition(SwingConstants.CENTER);
+		btn6.setVerticalTextPosition(SwingConstants.BOTTOM);
+		
 		this.add(title);
 		this.add(btn1);
+		this.add(btn2);
+		this.add(btn3);
+		this.add(btn4);
+		this.add(btn5);
+		this.add(btn6);
 //		this.add(lb1);
 	}
 

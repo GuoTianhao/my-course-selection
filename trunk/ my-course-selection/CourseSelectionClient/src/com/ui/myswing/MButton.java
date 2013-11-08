@@ -9,6 +9,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 
 public class MButton extends JButton {
+	private final Dimension default_size=new Dimension(100,30);
 	public MButton(ImageIcon defaultIcon, ImageIcon pressedIcon,
 			ImageIcon rolloverIcon, Point location, Dimension size) {
 		setIcon(defaultIcon);
@@ -40,5 +41,12 @@ public class MButton extends JButton {
 
 	public MButton(String text, Icon icon) {
 		super(text, icon);
+	}
+	public void setSize(Dimension size){
+		if(size!=null){
+			super.setSize(size);
+		}else{
+			super.setSize(default_size);
+		}
 	}
 }

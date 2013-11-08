@@ -9,7 +9,7 @@ import javax.swing.Icon;
 import javax.swing.JLabel;
 
 public class MLabel extends JLabel {
-	private static Color default_tColor = new Color(0xBF3EFF);
+	private static Color default_Color = new Color(0xBF3EFF);
 
 	public MLabel(Point location, Dimension size) {
 		this(location, size, null);

@@ -12,4 +12,7 @@ public class DatabaseController {
 		}
 		return method;
 	}
+	public void setMethod(DatabaseMethod method){
+		this.method=method;
+	}
 }

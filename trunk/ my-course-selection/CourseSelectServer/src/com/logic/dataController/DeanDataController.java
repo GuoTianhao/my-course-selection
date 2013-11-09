@@ -1,10 +1,8 @@
 package com.logic.dataController;
 
-import java.rmi.Naming;
 
 import com.data.dataImpl.DeanDatabaseImpl;
 import com.dataService.DeanDatabaseMethod;
-import com.logicService.DeanMethod;
 
 public class DeanDataController {
 	private static DeanDatabaseMethod method = null;
@@ -14,5 +12,8 @@ public class DeanDataController {
 			method = new DeanDatabaseImpl();
 		}
 		return method;
+	}
+	public void setMethod(DeanDatabaseMethod method){
+		this.method=method;
 	}
 }

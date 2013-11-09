@@ -1,6 +1,7 @@
 package com.logic.dataController;
 
 import com.data.dataImpl.StudentDatabaseImpl;
+import com.dataService.DatabaseMethod;
 import com.dataService.StudentDatabaseMethod;
 
 public class StudentDataController {
@@ -11,5 +12,8 @@ public class StudentDataController {
 			method = new StudentDatabaseImpl();
 		}
 		return method;
+	}
+	public void setMethod(StudentDatabaseMethod method){
+		this.method=method;
 	}
 }

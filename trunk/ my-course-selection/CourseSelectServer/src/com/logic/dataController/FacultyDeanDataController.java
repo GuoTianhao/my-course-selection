@@ -12,4 +12,7 @@ public class FacultyDeanDataController {
 		}
 		return method;
 	}
+	public void setMethod(FacultyDeanDatabaseMethod method){
+		this.method=method;
+	}
 }

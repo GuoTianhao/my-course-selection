@@ -2,24 +2,34 @@ package com.client.ui.deanUI.coursePanel;
 
 import java.awt.Dimension;
 import java.awt.Point;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
+import javax.swing.ImageIcon;
 import javax.swing.UIManager;
 
 import com.client.ui.main.MainFrame;
+import com.ui.bcswing.CourseDisplayPanel;
+import com.ui.bcswing.MScrollTabel;
 import com.ui.bcswing.TitleBar;
 import com.ui.myswing.MButton;
 import com.ui.myswing.MPanel;
+import com.ui.myswing.MTextField;
 
 public class CoursePanel extends MPanel {
 	private TitleBar title;
 	private MButton courseP;
 	private MButton courseA;
-
 	private CoursePublicOperateBar publishOperateBar;
 	private AllCourseOperateBar allCourseOperateBar;
+	
+	private CourseDisplayPanel courseTable;
+	
+	private int state;
 	public CoursePanel(Dimension size) {
 		super(size);
 		creatComponent();
+		addListener();
 	}
 
 	private void creatComponent() {
@@ -32,10 +42,13 @@ public class CoursePanel extends MPanel {
 
 		courseP.setText("公共课程");
 		courseA.setText("全校课程");
+		
+		courseTable=new CourseDisplayPanel(new Point(10, 180), new Dimension(size.width-70,380));
 
 		this.add(title);
 		this.add(courseP);
 		this.add(courseA);
+		this.add(courseTable);
 
 		publishOperateBar = new CoursePublicOperateBar(new Point(0, 140),
 				new Dimension(size.width, 50));
@@ -44,18 +57,45 @@ public class CoursePanel extends MPanel {
 				new Dimension(size.width, 50));
 		
 		addCoursePublishOperateBar();
-		addAllCourseOperateBar();
 	}
 	
-	public void addCoursePublishOperateBar(){
+	private void addListener(){
+		courseP.addActionListener(new PublicCourseSwitchListener());
+		courseA.addActionListener(new AllCourseSwitchListener());
+	}
+	
+	private void addCoursePublishOperateBar(){
+		this.remove(allCourseOperateBar);
 		this.add(publishOperateBar);
 		this.refresh();
+		state=0;
 	}
 	
 	public void addAllCourseOperateBar(){
 		this.remove(publishOperateBar);
 		this.add(allCourseOperateBar);
 		this.refresh();
+		state=1;
+	}
+	
+	class PublicCourseSwitchListener implements ActionListener{
+
+		public void actionPerformed(ActionEvent e) {
+			if(state==1){
+				addCoursePublishOperateBar();
+			}
+		}
+		
+	}
+	
+	class AllCourseSwitchListener implements ActionListener{
+
+		public void actionPerformed(ActionEvent e) {
+			if(state==0){
+				addAllCourseOperateBar();
+			}
+		}
+		
 	}
 
 	public static void main(String[] args) {

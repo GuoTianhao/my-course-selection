@@ -32,15 +32,16 @@ public class DeanMainPanel extends MPanel {
 	private void createComponent() {
 		title = new TitleBar(new Point(0, 0),
 				new Dimension(this.getWidth(), 75));
-		lb1 = new MLabel("整体框架策略", new ImageIcon("blank.png"), SwingConstants.CENTER);
-		lb1.setHorizontalTextPosition(SwingConstants.CENTER);
-		lb1.setVerticalTextPosition(SwingConstants.BOTTOM);;
-		lb1.setBounds(85, 134, 180, 150);
 		
-//		btn1 = new MButton("整体框架策略", new ImageIcon("blank.png"));
-//		btn1.setBounds(85, 134, 180, 150);
-//		btn1.setHorizontalTextPosition(SwingConstants.CENTER);
-//		btn1.setVerticalTextPosition(SwingConstants.BOTTOM);
+//		lb1 = new MLabel("整体框架策略", new ImageIcon("blank.png"), SwingConstants.CENTER);
+//		lb1.setHorizontalTextPosition(SwingConstants.CENTER);
+//		lb1.setVerticalTextPosition(SwingConstants.BOTTOM);;
+//		lb1.setBounds(85, 134, 180, 150);
+		
+		btn1 = new MButton("整体框架策略", new ImageIcon("blank.png"));
+		btn1.setBounds(85, 134, 180, 150);
+		btn1.setHorizontalTextPosition(SwingConstants.CENTER);
+		btn1.setVerticalTextPosition(SwingConstants.BOTTOM);
 		
 		btn2 = new MButton("教学计划", new ImageIcon("blank.png"));
 		btn2.setBounds(323, 134, 180, 150);
@@ -68,13 +69,13 @@ public class DeanMainPanel extends MPanel {
 		btn6.setVerticalTextPosition(SwingConstants.BOTTOM);
 		
 		this.add(title);
-//		this.add(btn1);
+		this.add(btn1);
 		this.add(btn2);
 		this.add(btn3);
 		this.add(btn4);
 		this.add(btn5);
 		this.add(btn6);
-		this.add(lb1);
+//		this.add(lb1);
 	}
 
 	public static void main(String[] args) {
@@ -85,10 +86,8 @@ public class DeanMainPanel extends MPanel {
 			e.printStackTrace();
 		}
 		MainFrame f = new MainFrame();
-		MPanel p = new MPanel(f.getSize());
-		p.add(new DeanMainPanel(new Point(0, 0), new Dimension(
-				p.getSize().width, p.getSize().height)));
-		f.add(p);
+		f.add(new DeanMainPanel(new Point(0, 0), new Dimension(
+				f.getSize().width, f.getSize().height)));
 		f.refresh();
 	}
 }

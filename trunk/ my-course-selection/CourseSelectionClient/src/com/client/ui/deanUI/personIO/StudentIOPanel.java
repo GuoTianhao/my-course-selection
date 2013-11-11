@@ -58,9 +58,7 @@ public class StudentIOPanel extends MPanel{
 			e.printStackTrace();
 		}
 		MainFrame f=new MainFrame();
-		MPanel p=new MPanel(f.getSize());
-		p.add(new StudentIOPanel(new Point(0,0),new Dimension(p.getSize().width,p.getSize().height)));
-		f.add(p);
+		f.add(new StudentIOPanel(new Point(0,0),new Dimension(f.getSize().width,f.getSize().height)));
 		f.refresh();
 	}
 }

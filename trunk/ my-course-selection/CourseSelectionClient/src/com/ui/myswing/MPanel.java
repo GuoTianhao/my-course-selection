@@ -7,15 +7,15 @@ import java.awt.Point;
 import javax.swing.JPanel;
 
 public class MPanel extends JPanel {
+	public MPanel(Point loc,Dimension size){
+		this(size);
+		this.setLocation(loc);
+	}
+	
 	public MPanel(Dimension size) {
 		this();
 		this.setSize(size);
 		this.setPreferredSize(size);
-	}
-	
-	public MPanel(Point loc,Dimension size){
-		this(size);
-		this.setLocation(loc);
 	}
 
 	public MPanel(LayoutManager layout, boolean isDoubleBuffered) {

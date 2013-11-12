@@ -219,5 +219,6 @@ public class CourseEditPanel extends MPanel {
 		MFrame f = new MFrame(new Dimension(500, 500));
 		f.add(new CourseEditPanel(new Point(0, 0), f.getSize()));
 		f.validate();
+		f.setVisible(true);
 	}
 }

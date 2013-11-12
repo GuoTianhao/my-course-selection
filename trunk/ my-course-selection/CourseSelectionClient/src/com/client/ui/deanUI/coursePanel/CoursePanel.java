@@ -9,7 +9,7 @@ import javax.swing.ImageIcon;
 import javax.swing.UIManager;
 
 import com.client.ui.main.MainFrame;
-import com.ui.bcswing.CourseDisplayPanel;
+import com.ui.bcswing.CourseDisplayTable;
 import com.ui.bcswing.MScrollTabel;
 import com.ui.bcswing.TitleBar;
 import com.ui.myswing.MButton;
@@ -23,7 +23,7 @@ public class CoursePanel extends MPanel {
 	private CoursePublicOperateBar publishOperateBar;
 	private AllCourseOperateBar allCourseOperateBar;
 	
-	private CourseDisplayPanel courseTable;
+	private CourseDisplayTable courseTable;
 	
 	private int state;
 	public CoursePanel(Dimension size) {
@@ -43,7 +43,7 @@ public class CoursePanel extends MPanel {
 		courseP.setText("公共课程");
 		courseA.setText("全校课程");
 		
-		courseTable=new CourseDisplayPanel(new Point(10, 180), new Dimension(size.width-70,380));
+		courseTable=new CourseDisplayTable(new Point(10, 180), new Dimension(size.width-70,380));
 
 		this.add(title);
 		this.add(courseP);

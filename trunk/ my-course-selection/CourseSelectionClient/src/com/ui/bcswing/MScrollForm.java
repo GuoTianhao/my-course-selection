@@ -86,5 +86,6 @@ public class MScrollForm extends MFrame implements Observer {
 		courseEdit.addObserver(this);
 		f.addContent(courseEdit);
 		f.refresh();
+		f.setVisible(true);
 	}
 }

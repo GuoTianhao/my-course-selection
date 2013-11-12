@@ -8,7 +8,9 @@ import javax.swing.UIManager;
 
 import com.basicdata.FacultyKind;
 import com.client.ui.main.MainFrame;
+import com.ui.bcswing.CourseDisplayTable;
 import com.ui.bcswing.MScrollTabel;
+import com.ui.bcswing.StudentDisplayTable;
 import com.ui.bcswing.TitleBar;
 import com.ui.myswing.*;
 
@@ -19,10 +21,8 @@ public class StudentIOPanel extends MPanel{
 	private MButton importFromFile;
 	private MTextField search;
 	private MButton searchBtn;
-	private MScrollTabel table;
+	private StudentDisplayTable table;
 	private String[] departmentItems = FacultyKind.getAllFaculty();
-	private String[] columnNames = {"ID","姓名","院系","年级"};
-	private Object[] data;
 	
 	public StudentIOPanel(Point loc,Dimension size){
 		super(loc,size);
@@ -39,8 +39,7 @@ public class StudentIOPanel extends MPanel{
 		search.setBounds(635, 95, 120, 25);
 		searchBtn = new MButton(new ImageIcon());
 		searchBtn.setBounds(760, 95, 25, 25);
-		table = new MScrollTabel(new Point(10, 130), new Dimension(780,430));
-		table.setColumnIdentifiers(columnNames);
+		table = new StudentDisplayTable(new Point(10, 130), new Dimension(780,430));
 		this.add(title);
 		this.add(choose);
 		this.add(department);

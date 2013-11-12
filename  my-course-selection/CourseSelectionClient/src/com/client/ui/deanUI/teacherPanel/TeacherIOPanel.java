@@ -1,4 +1,4 @@
-package com.client.ui.deanUI.personIO;
+package com.client.ui.deanUI.teacherPanel;
 
 import java.awt.Dimension;
 import java.awt.Point;
@@ -8,23 +8,28 @@ import javax.swing.UIManager;
 
 import com.basicdata.FacultyKind;
 import com.client.ui.main.MainFrame;
-import com.ui.bcswing.CourseDisplayTable;
 import com.ui.bcswing.MScrollTabel;
-import com.ui.bcswing.StudentDisplayTable;
+import com.ui.bcswing.TeacherDisplayTable;
 import com.ui.bcswing.TitleBar;
-import com.ui.myswing.*;
+import com.ui.myswing.MButton;
+import com.ui.myswing.MComboBox;
+import com.ui.myswing.MLabel;
+import com.ui.myswing.MPanel;
+import com.ui.myswing.MTextField;
 
-public class StudentIOPanel extends MPanel{
+public class TeacherIOPanel extends MPanel{
+
 	private TitleBar title;
 	private MLabel choose;
 	private MComboBox<String> department;
 	private MButton importFromFile;
 	private MTextField search;
 	private MButton searchBtn;
-	private StudentDisplayTable table;
+	private TeacherDisplayTable table;
 	private String[] departmentItems = FacultyKind.getAllFaculty();
+	private Object[] data;
 	
-	public StudentIOPanel(Point loc,Dimension size){
+	public TeacherIOPanel(Point loc,Dimension size){
 		super(loc,size);
 		createComponent();
 	}
@@ -39,7 +44,7 @@ public class StudentIOPanel extends MPanel{
 		search.setBounds(635, 95, 120, 25);
 		searchBtn = new MButton(new ImageIcon());
 		searchBtn.setBounds(760, 95, 25, 25);
-		table = new StudentDisplayTable(new Point(10, 130), new Dimension(780,430));
+		table = new TeacherDisplayTable(new Point(10, 130), new Dimension(780,430));
 		this.add(title);
 		this.add(choose);
 		this.add(department);
@@ -57,7 +62,8 @@ public class StudentIOPanel extends MPanel{
 			e.printStackTrace();
 		}
 		MainFrame f=new MainFrame();
-		f.add(new StudentIOPanel(new Point(0,0),new Dimension(f.getSize().width,f.getSize().height)));
+		f.add(new TeacherIOPanel(new Point(0,0),new Dimension(f.getSize().width,f.getSize().height)));
 		f.refresh();
 	}
 }
+

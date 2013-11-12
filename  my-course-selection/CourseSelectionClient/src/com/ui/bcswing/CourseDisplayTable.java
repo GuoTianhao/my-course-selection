@@ -5,8 +5,8 @@ import java.awt.Point;
 import java.util.Vector;
 
 public class CourseDisplayTable extends MScrollTabel {
-	private static final String[] c = { "课程编号", "课程名称", "性质", "学分", "学时", "教师",
-			"上课时间和地点" };
+	private static final String[] c = { "课程模块(学分)", "课程性质", "序列", "课程类别(学分)",
+			"课程名称", "建议学分", "开设学期" };
 
 	public CourseDisplayTable(Point loc, Dimension size) {
 		super(loc, size);

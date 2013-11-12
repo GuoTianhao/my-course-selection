@@ -7,7 +7,7 @@ import javax.swing.ImageIcon;
 import javax.swing.UIManager;
 
 import com.basicdata.FacultyKind;
-import com.client.ui.deanUI.personIO.StudentIOPanel;
+import com.client.ui.deanUI.studentPanel.StudentIOPanel;
 import com.client.ui.main.MainFrame;
 import com.ui.bcswing.FrameDisplayTable;
 import com.ui.bcswing.MScrollTabel;

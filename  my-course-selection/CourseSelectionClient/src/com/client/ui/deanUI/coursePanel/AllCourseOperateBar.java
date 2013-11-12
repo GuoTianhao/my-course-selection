@@ -2,6 +2,8 @@ package com.client.ui.deanUI.coursePanel;
 
 import java.awt.Dimension;
 import java.awt.Point;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.ImageIcon;
 
@@ -39,5 +41,11 @@ public class AllCourseOperateBar extends MPanel{
 		this.add(year);
 		this.add(search);
 		this.add(searchBtn);
+	}
+	public void addCourseInforListener(ActionListener al){
+		courseInfor.addActionListener(al);
+	}
+	public void addSearchListener(ActionListener al){
+		search.addActionListener(al);
 	}
 }

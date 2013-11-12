@@ -26,8 +26,8 @@ public class CoursePanel extends MPanel {
 	private CourseDisplayTable courseTable;
 	
 	private int state;
-	public CoursePanel(Dimension size) {
-		super(size);
+	public CoursePanel(Point loc,Dimension size) {
+		super(loc,size);
 		creatComponent();
 		addListener();
 	}
@@ -107,7 +107,7 @@ public class CoursePanel extends MPanel {
 		}
 
 		MainFrame f = new MainFrame();
-		f.add(new CoursePanel(f.getSize()));
+		f.add(new CoursePanel(new Point(0,0),f.getSize()));
 		f.refresh();
 	}
 }

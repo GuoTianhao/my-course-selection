@@ -2,6 +2,8 @@ package com.client.ui.deanUI;
 
 import java.awt.Dimension;
 import java.awt.Point;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.ImageIcon;
 import javax.swing.SwingConstants;
@@ -23,10 +25,13 @@ public class DeanMainPanel extends MPanel {
 	private MButton btn5;
 	private MButton btn6;
 	private MLabel lb1;
+	
+	DeanUISwitchController controller;
 
 	public DeanMainPanel(Point loc, Dimension size) {
 		super(loc, size);
 		createComponent();
+		addListener();
 	}
 
 	private void createComponent() {
@@ -77,6 +82,40 @@ public class DeanMainPanel extends MPanel {
 		this.add(btn6);
 //		this.add(lb1);
 	}
+	
+	private void addListener(){
+		controller=DeanUISwitchController.getUISwitchController();
+		btn1.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent e) {
+				DeanMainPanel.this.controller.switchToBasicFramePanel();
+			}
+		});
+		btn2.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent e) {
+				DeanMainPanel.this.controller.switchToFacultyPlanPanel();
+			}
+		});
+		btn3.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent e) {
+				DeanMainPanel.this.controller.switchToCoursePanel();
+			}
+		});
+		btn4.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent e) {
+				DeanMainPanel.this.controller.switchToTeacherPanel();
+			}
+		});
+		btn5.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent e) {
+				DeanMainPanel.this.controller.switchToTeacherPanel();
+			}
+		});
+		btn6.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent e) {
+				
+			}
+		});
+	}
 
 	public static void main(String[] args) {
 		try {
@@ -85,9 +124,7 @@ public class DeanMainPanel extends MPanel {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		MainFrame f = new MainFrame();
-		f.add(new DeanMainPanel(new Point(0, 0), new Dimension(
-				f.getSize().width, f.getSize().height)));
-		f.refresh();
+		DeanUISwitchController controller=DeanUISwitchController.getUISwitchController();
+		controller.swicthToMainFrame();
 	}
 }

@@ -34,7 +34,7 @@ public class DeanUISwitchController {
 	}
 	public void switchToBasicFramePanel(){
 		frame.getContentPane().removeAll();
-		frame.add(new BasicFramePanel());
+		frame.add(new BasicFramePanel(new Point(0,0),frame.getSize()));
 		frame.refresh();
 	}
 	public void switchToCoursePanel(){

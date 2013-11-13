@@ -5,8 +5,10 @@ import java.awt.Point;
 
 import javax.swing.UIManager;
 
+import com.client.ui.main.MainFrame;
 import com.ui.myswing.MPanel;
 import com.ui.bcswing.CourseDisplayTable;
+import com.ui.bcswing.TitleBar;
 import com.ui.myswing.MButton;
 
 public class BasicFramePanel extends MPanel{
@@ -24,8 +26,8 @@ public class BasicFramePanel extends MPanel{
 	private void createComponent() {
 		title = new TitleBar(new Point(0, 0), new Dimension(this.getWidth(), 75));
 		table = new CourseDisplayTable(new Point(10, 130), new Dimension(780,430));
-		make = new MButton(new ImageIcon(),new ImageIcon(),new ImageIcon(),new Point(15,95),new Dimension(100,30));
-		change = new MButton(new ImageIcon(),new ImageIcon(),new ImageIcon(),new Point(130,95),new Dimension(100,30));
+		make = new MButton(null,null,null,new Point(15,95),new Dimension(100,30));
+		change = new MButton(null,null,null,new Point(130,95),new Dimension(100,30));
 
 		this.add(title);
 		this.add(bmake);

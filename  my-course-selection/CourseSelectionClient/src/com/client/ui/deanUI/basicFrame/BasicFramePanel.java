@@ -30,8 +30,8 @@ public class BasicFramePanel extends MPanel{
 		change = new MButton(null,null,null,new Point(130,95),new Dimension(100,30));
 
 		this.add(title);
-		this.add(bmake);
-		this.add(bchange);
+//		this.add(bmake);
+//		this.add(bchange);
 		this.add(table);
 	}
 	public static void main(String[] args){

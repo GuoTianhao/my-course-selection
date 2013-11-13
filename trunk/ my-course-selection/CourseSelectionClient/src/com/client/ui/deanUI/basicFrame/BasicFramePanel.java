@@ -12,8 +12,8 @@ import com.ui.myswing.MButton;
 public class BasicFramePanel extends MPanel{
 	private TitleBar title;	
 	private CourseDisplayTable table;
-    private MButton bmake;
-    private MButton bchange;
+    private MButton make;
+    private MButton change;
 	private Object[] data;
 	
 	public BasicFramePanel(Point loc,Dimension size){
@@ -23,9 +23,9 @@ public class BasicFramePanel extends MPanel{
 	
 	private void createComponent() {
 		title = new TitleBar(new Point(0, 0), new Dimension(this.getWidth(), 75));
-		table = new FrameDisplayTable(new Point(10, 130), new Dimension(780,430));
-		bmake = new MButton(new ImageIcon(),new ImageIcon(),new ImageIcon(),new Point(15,95),new Dimension(100,30));
-		bchange = new MButton(new ImageIcon(),new ImageIcon(),new ImageIcon(),new Point(130,95),new Dimension(100,30));
+		table = new CourseDisplayTable(new Point(10, 130), new Dimension(780,430));
+		make = new MButton(new ImageIcon(),new ImageIcon(),new ImageIcon(),new Point(15,95),new Dimension(100,30));
+		change = new MButton(new ImageIcon(),new ImageIcon(),new ImageIcon(),new Point(130,95),new Dimension(100,30));
 
 		this.add(title);
 		this.add(bmake);
@@ -40,7 +40,7 @@ public class BasicFramePanel extends MPanel{
 			e.printStackTrace();
 		}
 		MainFrame f=new MainFrame();
-		f.add(new FacultyPlanPanel(new Point(0,0),new Dimension(f.getSize().width,f.getSize().height)));
+		f.add(new BasicFramePanel(new Point(0,0),new Dimension(f.getSize().width,f.getSize().height)));
 		f.refresh();
 	}
 }

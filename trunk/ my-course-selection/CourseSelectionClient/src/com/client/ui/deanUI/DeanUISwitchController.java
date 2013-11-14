@@ -7,6 +7,7 @@ import com.client.ui.deanUI.coursePanel.CoursePanel;
 import com.client.ui.deanUI.facultyPlan.FacultyPlanPanel;
 import com.client.ui.deanUI.studentPanel.StudentIOPanel;
 import com.client.ui.deanUI.teacherPanel.TeacherIOPanel;
+import com.client.ui.loginUI.Login;
 import com.client.ui.main.MainFrame;
 
 
@@ -56,5 +57,11 @@ public class DeanUISwitchController {
 		frame.getContentPane().removeAll();
 		frame.add(new TeacherIOPanel(new Point(0,0),frame.getSize()));
 		frame.refresh();
+	}
+	public void switchToLoginPanel(){
+		if(frame!=null){
+			frame.dispose();	
+		}
+		new Login(); 
 	}
 }

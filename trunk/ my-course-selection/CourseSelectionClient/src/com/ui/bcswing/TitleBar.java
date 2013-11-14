@@ -2,11 +2,14 @@ package com.ui.bcswing;
 
 import java.awt.Dimension;
 import java.awt.Point;
+import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.UIManager;
 
+import com.client.ui.deanUI.DeanUISwitchController;
 import com.client.ui.main.MainFrame;
+import com.client.ui.main.MainUISwitchController;
 import com.ui.myswing.MButton;
 import com.ui.myswing.MLabel;
 import com.ui.myswing.MPanel;
@@ -20,6 +23,7 @@ public class TitleBar extends MPanel{
 	public TitleBar(Point loc,Dimension size){
 		super(loc,size);
 		creatComponent();
+		addListener();
 	}
 	private void creatComponent(){
 		logout=new MButton(null,null,null,new Point(680,5),new Dimension(100,30));
@@ -35,6 +39,15 @@ public class TitleBar extends MPanel{
 		this.add(logout);
 		this.add(passwordChange);
 		this.add(message);
+	}
+	private void addListener(){
+		logout.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent e) {
+				DeanUISwitchController controller=DeanUISwitchController.getUISwitchController();
+				controller.switchToLoginPanel();
+			}
+			
+		});
 	}
 	
 	public void addReturnMenu(ActionListener al){

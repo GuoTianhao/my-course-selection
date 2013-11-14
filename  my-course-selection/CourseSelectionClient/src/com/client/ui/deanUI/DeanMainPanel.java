@@ -11,6 +11,7 @@ import javax.swing.UIManager;
 import javax.swing.text.StyledEditorKit.ForegroundAction;
 
 import com.client.ui.main.MainFrame;
+import com.client.ui.main.MainUISwitchController;
 import com.ui.bcswing.TitleBar;
 import com.ui.myswing.MButton;
 import com.ui.myswing.MLabel;

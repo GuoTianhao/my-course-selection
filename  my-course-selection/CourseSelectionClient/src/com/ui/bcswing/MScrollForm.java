@@ -22,16 +22,18 @@ import com.ui.myswing.MPanel;
 public class MScrollForm extends MFrame implements Observer {
 	private MPanel panel;
 	private JScrollPane scrollPane;
-	private Dimension size;
 	
 	public MScrollForm(Dimension size) {
 		super(size);
-		this.size = size;
 		creatComponent();
 	}
-
+	
+	public MScrollForm() {
+		creatComponent();
+	}
+	
 	private void creatComponent() {
-		panel = new MPanel(size);
+		panel = new MPanel(this.getSize());
 		panel.setLayout(null);
 		panel.setLocation(0, 0);
 		panel.validate();
@@ -49,7 +51,7 @@ public class MScrollForm extends MFrame implements Observer {
 	}
 
 	public void setHeight(int height) {
-		panel.setPreferredSize(new Dimension(size.width, height));
+		panel.setPreferredSize(new Dimension(this.getSize().width, height));
 		panel.refresh();
 		scrollPane.repaint();
 		scrollPane.validate();
@@ -82,7 +84,7 @@ public class MScrollForm extends MFrame implements Observer {
 	public void go(MScrollForm f) {
 		f.setLocation(400, 200);
 		CourseEditPanel courseEdit;
-		courseEdit = new CourseEditPanel(new Point(0, 0), size);
+		courseEdit = new CourseEditPanel(new Point(0, 0), this.getSize());
 		courseEdit.addObserver(this);
 		f.addContent(courseEdit);
 		f.refresh();

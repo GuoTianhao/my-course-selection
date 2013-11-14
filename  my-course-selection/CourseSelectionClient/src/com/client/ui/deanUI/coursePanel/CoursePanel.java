@@ -11,6 +11,7 @@ import javax.swing.UIManager;
 import com.client.ui.deanUI.DeanUISwitchController;
 import com.client.ui.main.MainFrame;
 import com.ui.bcswing.CourseDisplayTable;
+import com.ui.bcswing.CourseEditPane;
 import com.ui.bcswing.MScrollTabel;
 import com.ui.bcswing.TitleBar;
 import com.ui.myswing.MButton;
@@ -63,6 +64,7 @@ public class CoursePanel extends MPanel {
 	private void addListener(){
 		courseP.addActionListener(new PublicCourseSwitchListener());
 		courseA.addActionListener(new AllCourseSwitchListener());
+		
 		title.addReturnMenu(new ActionListener(){
 			public void actionPerformed(ActionEvent e) {
 				DeanUISwitchController controller=DeanUISwitchController.getUISwitchController();
@@ -70,6 +72,14 @@ public class CoursePanel extends MPanel {
 			}
 			
 		});
+		
+		publishOperateBar.addCoursePListener(new ActionListener(){
+			public void actionPerformed(ActionEvent e) {
+				new CourseEditPane();
+			}
+			
+		});
+		
 	}
 	
 	private void addCoursePublishOperateBar(){

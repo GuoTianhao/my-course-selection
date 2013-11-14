@@ -42,7 +42,7 @@ public class CoursePublicOperateBar extends MPanel {
 		this.add(searchBtn);
 	}
 
-	public void addCourseBListener(ActionListener al) {
+	public void addCoursePListener(ActionListener al) {
 		courseP.addActionListener(al);
 	}
 

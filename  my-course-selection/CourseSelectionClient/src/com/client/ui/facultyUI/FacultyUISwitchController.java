@@ -1,6 +1,9 @@
 package com.client.ui.facultyUI;
 
 
+import java.awt.Point;
+
+import com.client.ui.deanUI.DeanMainPanel;
 import com.client.ui.main.MainFrame;
 
 public class FacultyUISwitchController {
@@ -18,4 +21,10 @@ public class FacultyUISwitchController {
 		}
 		return controller;
 	}
+	public void swicthToMainFrame(){
+		frame.getContentPane().removeAll();
+	//	frame.add(new FacultyMainPanel(new Point(0,0),frame.getSize()));
+		frame.refresh();
+	}
+
 }

@@ -8,6 +8,7 @@ import java.awt.event.ActionListener;
 import javax.swing.ImageIcon;
 import javax.swing.UIManager;
 
+import com.client.ui.deanUI.DeanUISwitchController;
 import com.client.ui.main.MainFrame;
 import com.ui.bcswing.CourseDisplayTable;
 import com.ui.bcswing.MScrollTabel;
@@ -62,6 +63,13 @@ public class CoursePanel extends MPanel {
 	private void addListener(){
 		courseP.addActionListener(new PublicCourseSwitchListener());
 		courseA.addActionListener(new AllCourseSwitchListener());
+		title.addReturnMenu(new ActionListener(){
+			public void actionPerformed(ActionEvent e) {
+				DeanUISwitchController controller=DeanUISwitchController.getUISwitchController();
+				controller.swicthToMainFrame();
+			}
+			
+		});
 	}
 	
 	private void addCoursePublishOperateBar(){

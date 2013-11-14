@@ -2,11 +2,14 @@ package com.client.ui.deanUI.studentPanel;
 
 import java.awt.Dimension;
 import java.awt.Point;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.ImageIcon;
 import javax.swing.UIManager;
 
 import com.basicdata.FacultyKind;
+import com.client.ui.deanUI.DeanUISwitchController;
 import com.client.ui.main.MainFrame;
 import com.ui.bcswing.CourseDisplayTable;
 import com.ui.bcswing.MScrollTabel;
@@ -27,6 +30,7 @@ public class StudentIOPanel extends MPanel{
 	public StudentIOPanel(Point loc,Dimension size){
 		super(loc,size);
 		createComponent();
+		addListener();
 	}
 	
 	private void createComponent() {
@@ -47,6 +51,14 @@ public class StudentIOPanel extends MPanel{
 		this.add(search);
 		this.add(searchBtn);
 		this.add(table);
+	}
+	private void addListener(){
+		title.addReturnMenu(new ActionListener(){
+			public void actionPerformed(ActionEvent e) {
+				DeanUISwitchController controller=DeanUISwitchController.getUISwitchController();
+				controller.swicthToMainFrame();
+			}	
+		});
 	}
 	
 	public static void main(String[] args){

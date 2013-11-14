@@ -15,6 +15,8 @@ public class TitleBar extends MPanel{
 	private MLabel message;
 	private MButton logout;
 	private MButton passwordChange;
+	
+	private MButton menu;
 	public TitleBar(Point loc,Dimension size){
 		super(loc,size);
 		creatComponent();
@@ -24,11 +26,20 @@ public class TitleBar extends MPanel{
 		logout.setText("注销");
 		passwordChange=new MButton(null,null,null,new Point(680,40),new Dimension(100,30));
 		passwordChange.setText("修改密码");
-		message=new MLabel(new Point(0,20),new Dimension(300,50));
+		message=new MLabel(new Point(120,20),new Dimension(300,50));
 		message.setText("Welcome My !");
+		
+		menu=new MButton(null,null,null,new Point(0,40),new Dimension(100,30));
+		menu.setText("主菜单");
+		
 		this.add(logout);
 		this.add(passwordChange);
 		this.add(message);
+	}
+	
+	public void addReturnMenu(ActionListener al){
+		this.add(menu);
+		menu.addActionListener(al);
 	}
 	
 	public void addLogoutListener(ActionListener al){

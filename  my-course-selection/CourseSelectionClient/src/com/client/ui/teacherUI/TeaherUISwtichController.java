@@ -1,5 +1,7 @@
 package com.client.ui.teacherUI;
 
+import java.awt.Point;
+
 import com.client.ui.main.MainFrame;
 
 public class TeaherUISwtichController {
@@ -16,6 +18,12 @@ public class TeaherUISwtichController {
 			frame=new MainFrame();
 		}
 		return controller;
+	}
+	
+	public void switchToMainFrame() {
+		frame.getContentPane().removeAll();
+		frame.add(new TeacherMainPanel(new Point(0,0),frame.getSize()));
+		frame.refresh();
 	}
 
 }

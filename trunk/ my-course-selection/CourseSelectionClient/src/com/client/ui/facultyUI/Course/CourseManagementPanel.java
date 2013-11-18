@@ -2,10 +2,12 @@ package com.client.ui.facultyUI.Course;
 
 import java.awt.Dimension;
 import java.awt.Point;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.UIManager;
 
-
+import com.client.ui.facultyUI.FacultyUISwitchController;
 import com.client.ui.main.MainFrame;
 import com.ui.bcswing.FrameDisplayTable;
 import com.ui.bcswing.TitleBar;
@@ -24,6 +26,7 @@ public class CourseManagementPanel extends MPanel{
 	public CourseManagementPanel(Point loc,Dimension size){
 		super(loc,size);
 		createComponent();
+		addListener();
 	}
 	
 	private void createComponent() {
@@ -41,6 +44,16 @@ public class CourseManagementPanel extends MPanel{
 		this.add(button3);
 
 		this.add(table);
+	}
+	
+	private void addListener(){
+		title.addReturnMenu(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				FacultyUISwitchController controller = FacultyUISwitchController
+						.getUISwitchController();
+				controller.swicthToMainFrame();
+			}
+		});
 	}
 	
 	public static void main(String[] args){

@@ -13,6 +13,7 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 
+import com.client.ui.main.MainUISwitchController;
 import com.ui.myswing.*;
 
 ;
@@ -21,6 +22,10 @@ public class Login extends JFrame {
 	private static int fHeight = 300;
 	private static int fLength = 270;
 
+	MButton bLogin;
+	MTextField tID;
+	MPasswordField tPassword;
+	JComboBox select;
 	public Login() {
 		super();
 		createAndShowUI();
@@ -28,12 +33,13 @@ public class Login extends JFrame {
 
 	private Component createComponent() {
 		// button
-		MButton bLogin = new MButton(null, null, null, new Point(120, 125),
+		bLogin = new MButton(null, null, null, new Point(120, 125),
 				new Dimension(60, 30));
 
 		bLogin.setText("登陆");
+		bLogin.addActionListener(new LoginListener());
 		// textfiled
-		MTextField tID = new MTextField(new Point(70, 19), new Dimension(120,
+		tID = new MTextField(new Point(70, 19), new Dimension(120,
 				38));
 		MPasswordField tPassword = new MPasswordField(new Point(70, 68),
 				new Dimension(120, 38));
@@ -45,7 +51,7 @@ public class Login extends JFrame {
 		lPassword.setText("Password:");
 		// ComboBox
 		DefaultComboBoxModel model = new DefaultComboBoxModel();
-		JComboBox select = new JComboBox(model);
+		select = new JComboBox(model);
 		select.setSize(new Dimension(102, 20));
 		select.setLocation(new Point(10, 130));
 		model.addElement("教务员");
@@ -71,10 +77,21 @@ public class Login extends JFrame {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
 	class LoginListener implements ActionListener{
-
-		@Override
 		public void actionPerformed(ActionEvent e) {
-			// TODO Auto-generated method stub
+			int index=select.getSelectedIndex();
+			MainUISwitchController controller=MainUISwitchController.getUISwitchController();
+			switch(index){
+			case 0:
+				controller.switchToDeanMainPanel();
+				break;
+			case 1:
+				break;
+			case 2:
+				break;
+			case 3:
+				break;
+			}
+			Login.this.dispose();
 			
 		}
 		

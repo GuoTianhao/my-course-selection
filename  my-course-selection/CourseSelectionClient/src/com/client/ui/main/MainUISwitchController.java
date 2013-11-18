@@ -4,6 +4,7 @@ import java.awt.Dimension;
 import java.awt.Point;
 
 import com.client.ui.deanUI.DeanMainPanel;
+import com.client.ui.deanUI.DeanUISwitchController;
 import com.client.ui.facultyUI.FacultyMainPanel;
 import com.client.ui.loginUI.Login;
 import com.client.ui.studentUI.StudentMainPanel;
@@ -28,7 +29,8 @@ public class MainUISwitchController {
 	}
 
 	public void switchToDeanMainPanel() {
-
+		DeanUISwitchController controller=DeanUISwitchController.getUISwitchController();
+		controller.swicthToMainFrame();
 	}
 
 	public void switchToFacultyDeanMainPanel() {

@@ -8,8 +8,11 @@ import java.awt.event.ActionListener;
 import javax.swing.UIManager;
 
 import com.client.ui.deanUI.DeanUISwitchController;
+import com.client.ui.facultyUI.FacultyUISwitchController;
 import com.client.ui.main.MainFrame;
 import com.client.ui.main.MainUISwitchController;
+import com.client.ui.studentUI.StudentUISwitchController;
+import com.client.ui.teacherUI.TeatherUISwtichController;
 import com.ui.myswing.MButton;
 import com.ui.myswing.MLabel;
 import com.ui.myswing.MPanel;
@@ -43,8 +46,11 @@ public class TitleBar extends MPanel{
 	private void addListener(){
 		logout.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e) {
-				DeanUISwitchController controller=DeanUISwitchController.getUISwitchController();
-				controller.switchToLoginPanel();
+				DeanUISwitchController.getUISwitchController().dispose();
+				FacultyUISwitchController.getUISwitchController().dispose();
+				TeatherUISwtichController.getUISwitchController().dispose();
+				StudentUISwitchController.getUISwitchController().dispose();
+				MainUISwitchController.getUISwitchController().switchToLoginPanel();
 			}
 			
 		});

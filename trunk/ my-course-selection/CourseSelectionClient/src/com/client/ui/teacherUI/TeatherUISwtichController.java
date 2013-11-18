@@ -4,15 +4,15 @@ import java.awt.Point;
 
 import com.client.ui.main.MainFrame;
 
-public class TeaherUISwtichController {
-	private static TeaherUISwtichController controller = null;
+public class TeatherUISwtichController {
+	private static TeatherUISwtichController controller = null;
 	private static MainFrame frame=null;
-	private TeaherUISwtichController() {
+	private TeatherUISwtichController() {
 
 	}
-	public static TeaherUISwtichController getUISwitchController(){
+	public static TeatherUISwtichController getUISwitchController(){
 		if(controller==null){
-			controller=new TeaherUISwtichController();
+			controller=new TeatherUISwtichController();
 		}
 		if(frame==null){
 			frame=new MainFrame();
@@ -26,4 +26,10 @@ public class TeaherUISwtichController {
 		frame.refresh();
 	}
 
+	public void dispose(){
+		if (frame != null) {
+			frame.dispose();
+			frame=null;
+		}
+	}
 }

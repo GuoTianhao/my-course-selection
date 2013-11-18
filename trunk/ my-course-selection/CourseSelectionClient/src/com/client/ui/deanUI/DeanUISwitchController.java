@@ -64,11 +64,11 @@ public class DeanUISwitchController {
 		frame.add(new TeacherIOPanel(new Point(0, 0), frame.getSize()));
 		frame.refresh();
 	}
-
-	public void switchToLoginPanel() {
+	
+	public void dispose(){
 		if (frame != null) {
 			frame.dispose();
+			frame=null;
 		}
-		new Login();
 	}
 }

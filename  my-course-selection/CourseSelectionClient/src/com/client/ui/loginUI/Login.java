@@ -85,10 +85,13 @@ public class Login extends JFrame {
 				controller.switchToDeanMainPanel();
 				break;
 			case 1:
+				controller.switchToFacultyDeanMainPanel();
 				break;
 			case 2:
+				controller.switchToTeacherMainPanel();
 				break;
 			case 3:
+				controller.switchToStudentMainPanel();
 				break;
 			}
 			Login.this.dispose();

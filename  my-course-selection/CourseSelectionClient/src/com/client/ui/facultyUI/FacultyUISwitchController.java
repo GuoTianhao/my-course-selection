@@ -42,4 +42,10 @@ public class FacultyUISwitchController {
 		frame.refresh();
 	}
 
+	public void dispose(){
+		if (frame != null) {
+			frame.dispose();
+			frame=null;
+		}
+	}
 }

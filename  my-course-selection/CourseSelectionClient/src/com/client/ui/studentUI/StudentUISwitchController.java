@@ -2,6 +2,7 @@ package com.client.ui.studentUI;
 
 import java.awt.Point;
 
+import com.client.ui.loginUI.Login;
 import com.client.ui.main.MainFrame;
 
 public class StudentUISwitchController {
@@ -25,5 +26,11 @@ public class StudentUISwitchController {
 		frame.add(new StudentMainPanel(new Point(0,0),frame.getSize()));
 		frame.refresh();
 	}
-
+	
+	public void dispose(){
+		if (frame != null) {
+			frame.dispose();
+			frame=null;
+		}
+	}
 }

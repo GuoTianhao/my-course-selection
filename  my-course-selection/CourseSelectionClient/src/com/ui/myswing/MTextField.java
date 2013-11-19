@@ -37,7 +37,8 @@ public class MTextField extends JTextField implements ValidInput{
 	}
 	
 	public boolean isValidInput(){
-		return false;
+		boolean isValid=validInput.isValid();
+		return isValid;
 	}
 	
 	public void setValidInput(ValidInput validInput){

@@ -6,7 +6,10 @@ import java.awt.Point;
 import javax.swing.JTextField;
 import javax.swing.text.Document;
 
-public class MTextField extends JTextField {
+import com.ui.input.ValidInput;
+
+public class MTextField extends JTextField implements ValidInput{
+	private ValidInput validInput;
 	public MTextField() {
 		super(null, null, 0);
 	}
@@ -31,5 +34,13 @@ public class MTextField extends JTextField {
 	public MTextField(Point location, Dimension size) {
 		setLocation(location);
 		setSize(size);
+	}
+	
+	public boolean isValidInput(){
+		return false;
+	}
+	
+	public void setValidInput(ValidInput validInput){
+		this.validInput=validInput;
 	}
 }

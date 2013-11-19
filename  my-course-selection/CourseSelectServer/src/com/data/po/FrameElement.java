@@ -1,6 +1,8 @@
 package com.data.po;
 
-public class FrameElement{
+import java.io.Serializable;
+
+public class FrameElement implements Serializable{
 	private String type=null;
 	private String credit=null;
 	private String period=null;

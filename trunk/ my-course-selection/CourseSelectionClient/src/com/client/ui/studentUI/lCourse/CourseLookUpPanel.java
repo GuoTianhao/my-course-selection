@@ -9,7 +9,8 @@ import com.basicdata.FacultyKind;
 import com.basicdata.YearKind;
 import com.client.ui.main.MainFrame;
 import com.ui.bcswing.FrameDisplayTable;
-import com.ui.bcswing.TitleBar;
+import com.ui.bcswing.titleBar.StudentTitleBar;
+import com.ui.bcswing.titleBar.TitleBar;
 import com.ui.myswing.MComboBox;
 import com.ui.myswing.MLabel;
 import com.ui.myswing.MPanel;
@@ -31,7 +32,7 @@ public class CourseLookUpPanel extends MPanel{
 	}
 	
 	private void createComponent() {
-		title = new TitleBar(new Point(0, 0), new Dimension(this.getWidth(), 75));
+		title = new StudentTitleBar(new Point(0, 0), new Dimension(this.getWidth(), 75));
 		choose1 = new MLabel(new Point(15, 95), new Dimension(75, 22), "选择学期：");
 		year = new MComboBox<>(yearItems, new Point(90, 95), new Dimension(150, 25));
 		choose2 = new MLabel(new Point(260, 95), new Dimension(75, 22), "选择院系：");

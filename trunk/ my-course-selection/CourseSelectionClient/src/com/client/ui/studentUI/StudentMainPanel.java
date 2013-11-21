@@ -9,35 +9,37 @@ import javax.swing.ImageIcon;
 import javax.swing.SwingConstants;
 import javax.swing.UIManager;
 
-import com.ui.bcswing.TitleBar;
+import com.ui.bcswing.titleBar.StudentTitleBar;
+import com.ui.bcswing.titleBar.TitleBar;
 import com.ui.myswing.MButton;
 import com.ui.myswing.MPanel;
 
-public class StudentMainPanel extends MPanel{
+public class StudentMainPanel extends MPanel {
 	private TitleBar title;
 	private MButton btn1;
 	private MButton btn2;
 	private MButton btn3;
 	private MButton btn4;
 	private MButton btn5;
-	
+
 	StudentUISwitchController controller;
-	
-	public StudentMainPanel(Point loc,Dimension size){
-		super(loc,size);
+
+	public StudentMainPanel(Point loc, Dimension size) {
+		super(loc, size);
 		createComponent();
 		addListener();
 	}
-	
+
 	private void createComponent() {
-		title = new TitleBar(new Point(0, 0), new Dimension(this.getWidth(),75));
-		
+		title = new StudentTitleBar(new Point(0, 0), new Dimension(
+				this.getWidth(), 75));
+
 		btn1 = new MButton(new ImageIcon("blank.png"), null, null, new Point(
 				85, 134), new Dimension(180, 150));
 		btn1.setText("我的课程");
 		btn1.setHorizontalTextPosition(SwingConstants.CENTER);
 		btn1.setVerticalTextPosition(SwingConstants.BOTTOM);
-		
+
 		btn2 = new MButton(new ImageIcon("blank.png"), null, null, new Point(
 				323, 134), new Dimension(180, 150));
 		btn2.setText("选课");
@@ -61,7 +63,7 @@ public class StudentMainPanel extends MPanel{
 		btn5.setText("专业准入准出");
 		btn5.setHorizontalTextPosition(SwingConstants.CENTER);
 		btn5.setVerticalTextPosition(SwingConstants.BOTTOM);
-		
+
 		this.add(title);
 		this.add(btn1);
 		this.add(btn2);
@@ -69,41 +71,41 @@ public class StudentMainPanel extends MPanel{
 		this.add(btn4);
 		this.add(btn5);
 	}
-	
-	private void addListener(){
+
+	private void addListener() {
 		controller = StudentUISwitchController.getUISwitchController();
-		
+
 		btn1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
+
 			}
 		});
-		
+
 		btn2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
+
 			}
 		});
-		
+
 		btn3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
+
 			}
 		});
-		
+
 		btn4.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
+
 			}
 		});
-		
+
 		btn5.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
+
 			}
 		});
 	}
-	
+
 	public static void main(String[] args) {
 		try {
 			org.jb2011.lnf.beautyeye.BeautyEyeLNFHelper.launchBeautyEyeLNF();
@@ -111,7 +113,8 @@ public class StudentMainPanel extends MPanel{
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		StudentUISwitchController controller = StudentUISwitchController.getUISwitchController();
+		StudentUISwitchController controller = StudentUISwitchController
+				.getUISwitchController();
 		controller.switchToMainFrame();
 	}
 

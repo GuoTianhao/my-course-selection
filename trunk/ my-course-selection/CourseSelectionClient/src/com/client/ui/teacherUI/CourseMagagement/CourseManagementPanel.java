@@ -7,7 +7,8 @@ import javax.swing.UIManager;
 
 import com.client.ui.main.MainFrame;
 import com.ui.bcswing.CourseDisplayTable;
-import com.ui.bcswing.TitleBar;
+import com.ui.bcswing.TeacherTitleBar;
+import com.ui.bcswing.titleBar.TitleBar;
 import com.ui.myswing.MButton;
 import com.ui.myswing.MPanel;
 
@@ -25,7 +26,7 @@ public class CourseManagementPanel extends MPanel {
 	}
 
 	private void createComponent() {
-		title = new TitleBar(new Point(0, 0),
+		title = new TeacherTitleBar(new Point(0, 0),
 				new Dimension(this.getWidth(), 75));
 		editB = new MButton(null, null, null, new Point(10, 95), new Dimension(
 				100, 30));

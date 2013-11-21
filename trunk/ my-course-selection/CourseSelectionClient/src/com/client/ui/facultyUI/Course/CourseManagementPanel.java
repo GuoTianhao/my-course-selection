@@ -10,7 +10,8 @@ import javax.swing.UIManager;
 import com.client.ui.facultyUI.FacultyUISwitchController;
 import com.client.ui.main.MainFrame;
 import com.ui.bcswing.FrameDisplayTable;
-import com.ui.bcswing.TitleBar;
+import com.ui.bcswing.titleBar.FacultyTitleBar;
+import com.ui.bcswing.titleBar.TitleBar;
 import com.ui.myswing.MButton;
 import com.ui.myswing.MPanel;
 
@@ -30,7 +31,7 @@ public class CourseManagementPanel extends MPanel{
 	}
 	
 	private void createComponent() {
-		title = new TitleBar(new Point(0, 0), new Dimension(this.getWidth(), 75));
+		title = new FacultyTitleBar(new Point(0, 0), new Dimension(this.getWidth(), 75));
 		button1=new MButton(null,null,null,new Point(15, 95),new Dimension(100, 25));
 		button1.setText("添加课程");
 		button2=new MButton(null,null,null,new Point(130, 95),new Dimension(50, 25));

@@ -13,7 +13,8 @@ import com.client.ui.main.MainFrame;
 import com.ui.bcswing.CourseDisplayTable;
 import com.ui.bcswing.CourseEditPane;
 import com.ui.bcswing.MScrollTabel;
-import com.ui.bcswing.TitleBar;
+import com.ui.bcswing.titleBar.DeanTitlebar;
+import com.ui.bcswing.titleBar.TitleBar;
 import com.ui.myswing.MButton;
 import com.ui.myswing.MPanel;
 import com.ui.myswing.MTextField;
@@ -36,7 +37,7 @@ public class CoursePanel extends MPanel {
 
 	private void creatComponent() {
 		Dimension size = this.getSize();
-		title = new TitleBar(new Point(0, 0), new Dimension(size.width, 100));
+		title = new DeanTitlebar(new Point(0, 0), new Dimension(size.width, 100));
 		courseP = new MButton(null, null, null, new Point(0, 100),
 				new Dimension(100, 30));
 		courseA = new MButton(null, null, null, new Point(110, 100),

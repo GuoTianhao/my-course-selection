@@ -7,7 +7,8 @@ import javax.swing.UIManager;
 
 import com.client.ui.main.MainFrame;
 import com.ui.bcswing.CourseScoreTable;
-import com.ui.bcswing.TitleBar;
+import com.ui.bcswing.TeacherTitleBar;
+import com.ui.bcswing.titleBar.TitleBar;
 import com.ui.myswing.MButton;
 import com.ui.myswing.MPanel;
 
@@ -22,7 +23,7 @@ public class CourseScoreRecordPanel extends MPanel{
 		addListener();
 	}
 	private void createComponent(){
-		title = new TitleBar(new Point(0, 0),
+		title = new TeacherTitleBar(new Point(0, 0),
 				new Dimension(this.getWidth(), 75));
 		table=new CourseScoreTable(new Point(10, 130), new Dimension(780,
 				430));

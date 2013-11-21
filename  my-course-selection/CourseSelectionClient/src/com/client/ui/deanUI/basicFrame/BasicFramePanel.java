@@ -11,7 +11,8 @@ import com.client.ui.deanUI.DeanUISwitchController;
 import com.client.ui.main.MainFrame;
 import com.ui.myswing.MPanel;
 import com.ui.bcswing.CourseDisplayTable;
-import com.ui.bcswing.TitleBar;
+import com.ui.bcswing.titleBar.DeanTitlebar;
+import com.ui.bcswing.titleBar.TitleBar;
 import com.ui.myswing.MButton;
 
 public class BasicFramePanel extends MPanel {
@@ -28,7 +29,7 @@ public class BasicFramePanel extends MPanel {
 	}
 
 	private void createComponent() {
-		title = new TitleBar(new Point(0, 0),
+		title = new DeanTitlebar(new Point(0, 0),
 				new Dimension(this.getWidth(), 75));
 		table = new CourseDisplayTable(new Point(10, 130), new Dimension(780,
 				430));

@@ -1,4 +1,4 @@
-package com.ui.bcswing;
+package com.ui.bcswing.titleBar;
 
 import java.awt.Dimension;
 import java.awt.Point;

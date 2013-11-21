@@ -12,7 +12,8 @@ import javax.swing.text.StyledEditorKit.ForegroundAction;
 
 import com.client.ui.main.MainFrame;
 import com.client.ui.main.MainUISwitchController;
-import com.ui.bcswing.TitleBar;
+import com.ui.bcswing.titleBar.DeanTitlebar;
+import com.ui.bcswing.titleBar.TitleBar;
 import com.ui.myswing.MButton;
 import com.ui.myswing.MLabel;
 import com.ui.myswing.MPanel;
@@ -35,7 +36,7 @@ public class DeanMainPanel extends MPanel {
 	}
 
 	private void createComponent() {
-		title = new TitleBar(new Point(0, 0),
+		title = new DeanTitlebar(new Point(0, 0),
 				new Dimension(this.getWidth(), 75));
 
 		btn1 = new MButton(new ImageIcon("blank.png"), null, null, new Point(

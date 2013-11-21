@@ -13,7 +13,8 @@ import com.client.ui.deanUI.DeanUISwitchController;
 import com.client.ui.main.MainFrame;
 import com.ui.bcswing.MScrollTabel;
 import com.ui.bcswing.TeacherDisplayTable;
-import com.ui.bcswing.TitleBar;
+import com.ui.bcswing.titleBar.DeanTitlebar;
+import com.ui.bcswing.titleBar.TitleBar;
 import com.ui.myswing.MButton;
 import com.ui.myswing.MComboBox;
 import com.ui.myswing.MLabel;
@@ -39,7 +40,7 @@ public class TeacherIOPanel extends MPanel{
 	}
 	
 	private void createComponent() {
-		title = new TitleBar(new Point(0, 0), new Dimension(this.getWidth(), 75));
+		title = new DeanTitlebar(new Point(0, 0), new Dimension(this.getWidth(), 75));
 		choose = new MLabel(new Point(15, 95), new Dimension(75, 22), "选择院系：");
 		department = new MComboBox<>(departmentItems, new Point(90, 95), new Dimension(150, 25));
 		importFromFile = new MButton(null,null,null,new Point(255, 95),new Dimension(100, 25));

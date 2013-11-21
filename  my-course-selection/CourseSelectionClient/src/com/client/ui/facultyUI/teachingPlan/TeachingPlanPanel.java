@@ -13,7 +13,8 @@ import com.client.ui.main.MainFrame;
 import com.ui.myswing.MPanel;
 import com.ui.myswing.MButton;
 import com.ui.bcswing.CourseDisplayTable;
-import com.ui.bcswing.TitleBar;
+import com.ui.bcswing.titleBar.FacultyTitleBar;
+import com.ui.bcswing.titleBar.TitleBar;
 
 public class TeachingPlanPanel extends MPanel{
 	private TitleBar title;
@@ -29,7 +30,7 @@ public class TeachingPlanPanel extends MPanel{
 	}
 	
 	private void createComponent() {
-		title = new TitleBar(new Point(0, 0), new Dimension(this.getWidth(), 75));
+		title = new FacultyTitleBar(new Point(0, 0), new Dimension(this.getWidth(), 75));
 		table = new CourseDisplayTable(new Point(10, 130), new Dimension(780,430));
 		add = new MButton(new ImageIcon(),new ImageIcon(),new ImageIcon(),new Point(15,95),new Dimension(100,30));
 		change = new MButton(null,null,null,new Point(100,95),new Dimension(80,30));

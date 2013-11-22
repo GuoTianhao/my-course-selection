@@ -7,7 +7,7 @@ import javax.swing.UIManager;
 
 import com.client.ui.main.MainFrame;
 import com.ui.bcswing.CourseDisplayTable;
-import com.ui.bcswing.TeacherTitleBar;
+import com.ui.bcswing.titleBar.TeacherTitleBar;
 import com.ui.bcswing.titleBar.TitleBar;
 import com.ui.myswing.MButton;
 import com.ui.myswing.MPanel;

@@ -1,9 +1,7 @@
-package com.ui.bcswing;
+package com.ui.bcswing.titleBar;
 
 import java.awt.Dimension;
 import java.awt.Point;
-
-import com.ui.bcswing.titleBar.TitleBar;
 
 public class TeacherTitleBar extends TitleBar{
 

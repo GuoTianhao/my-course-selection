@@ -4,22 +4,24 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Course implements Serializable{
-	private String ID=null;
-	private String name=null;
-	private String loc=null;
-	private String type=null;
+public class Course implements Serializable {
+	private String ID = "";
+	private String name = "";
+	private String loc = "";
+	private String type = "";
 	private int grade;
-	private String period=null;
-	private String faculty=null;
-	private String script=null;
+	private String period = "";
+	private String faculty = "";
+	private String script = "";
 	private int num;
-	private List<String> time=new ArrayList<String>();
-	private List<Teacher> teacher=new ArrayList<Teacher>();
-	public Course(String ID,String name,String loc,String type,int grade,String period,
-			String faculty,String script,int num,List<String> time,List<Teacher> teacher){
-		this.ID=ID;
-		this.name=name;
+	private List<String> time = new ArrayList<String>();
+	private List<Teacher> teacher = new ArrayList<Teacher>();
+
+	public Course(String ID, String name, String loc, String type, int grade,
+			String period, String faculty, String script, int num,
+			List<String> time, List<Teacher> teacher) {
+		this.ID = ID;
+		this.name = name;
 		this.setLoc(loc);
 		this.setType(type);
 		this.setGrade(grade);
@@ -27,74 +29,104 @@ public class Course implements Serializable{
 		this.setFaculty(faculty);
 		this.setScript(script);
 		this.setNum(num);
-		if(time!=null){
-			this.time=time;
+		if (time != null) {
+			this.time = time;
 		}
-		if(teacher!=null){
-			this.teacher=teacher;
-		}
-	}
-	public void setTime(List<String> time){
-		if(time!=null){
-			this.time=time;
+		if (teacher != null) {
+			this.teacher = teacher;
 		}
 	}
-	public List getTime(){
+
+	public void setTime(List<String> time) {
+		if (time != null) {
+			this.time = time;
+		}
+	}
+
+	public List getTime() {
 		return time;
 	}
-	public void setTeacher(List<Teacher> teacher){
-		if(teacher!=null){
-			this.teacher=teacher;
+
+	public void setTeacher(List<Teacher> teacher) {
+		if (teacher != null) {
+			this.teacher = teacher;
 		}
 	}
-	public String getID(){
+
+	public String getID() {
 		return ID;
 	}
-	public String getName(){
+
+	public String getName() {
 		return name;
 	}
-	public List<Teacher> getTeacher(){
+
+	public List<Teacher> getTeacher() {
 		return teacher;
 	}
+
 	public String getLoc() {
 		return loc;
 	}
+
 	public void setLoc(String loc) {
-		this.loc = loc;
+		if (loc != null) {
+			this.loc = loc;
+		}
 	}
+
 	public String getType() {
 		return type;
 	}
+
 	public void setType(String type) {
-		this.type = type;
+		if (type != null) {
+			this.type = type;
+		}
 	}
+
 	public int getGrade() {
 		return grade;
 	}
+
 	public void setGrade(int grade) {
 		this.grade = grade;
 	}
+
 	public String getPeriod() {
 		return period;
 	}
+
 	public void setPeriod(String period) {
-		this.period = period;
+		if (period != null) {
+			this.period = period;
+		}
 	}
+
 	public String getFaculty() {
 		return faculty;
 	}
+
 	public void setFaculty(String faculty) {
-		this.faculty = faculty;
+		if (faculty != null) {
+			this.faculty = faculty;
+		}
 	}
+
 	public String getScript() {
 		return script;
 	}
+
 	public void setScript(String script) {
-		this.script = script;
+		if (script != null) {
+			this.script = script;
+		}
 	}
+
 	public int getNum() {
 		return num;
 	}
+
 	public void setNum(int num) {
 		this.num = num;
 	}

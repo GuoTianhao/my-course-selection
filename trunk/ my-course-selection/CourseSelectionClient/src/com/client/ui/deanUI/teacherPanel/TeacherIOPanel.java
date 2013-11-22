@@ -5,13 +5,14 @@ import java.awt.Point;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+
 import javax.swing.ImageIcon;
 import javax.swing.UIManager;
 
 import com.basicdata.FacultyKind;
+
 import com.client.ui.deanUI.DeanUISwitchController;
 import com.client.ui.main.MainFrame;
-import com.ui.bcswing.MScrollTabel;
 import com.ui.bcswing.TeacherDisplayTable;
 import com.ui.bcswing.titleBar.DeanTitlebar;
 import com.ui.bcswing.titleBar.TitleBar;

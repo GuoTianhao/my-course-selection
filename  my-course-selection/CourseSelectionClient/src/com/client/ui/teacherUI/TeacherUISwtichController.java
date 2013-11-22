@@ -6,15 +6,15 @@ import com.client.ui.main.MainFrame;
 import com.client.ui.teacherUI.CourseMagagement.CourseManagementPanel;
 import com.client.ui.teacherUI.CourseMagagement.CourseScoreRecordPanel;
 
-public class TeatherUISwtichController {
-	private static TeatherUISwtichController controller = null;
+public class TeacherUISwtichController {
+	private static TeacherUISwtichController controller = null;
 	private static MainFrame frame=null;
-	private TeatherUISwtichController() {
+	private TeacherUISwtichController() {
 
 	}
-	public static TeatherUISwtichController getUISwitchController(){
+	public static TeacherUISwtichController getUISwitchController(){
 		if(controller==null){
-			controller=new TeatherUISwtichController();
+			controller=new TeacherUISwtichController();
 		}
 		if(frame==null){
 			frame=new MainFrame();

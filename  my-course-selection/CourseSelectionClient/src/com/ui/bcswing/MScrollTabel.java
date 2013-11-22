@@ -58,6 +58,10 @@ public class MScrollTabel extends JScrollPane {
 	public void setDataVector(Vector dataVector, Vector columnIdentifiers) {
 		model.setDataVector(dataVector, columnIdentifiers);
 	}
+	
+	public void setDataVecot(Vector dataVector){
+		model.setDataVector(dataVector);
+	}
 
 	public int getRowCount() {
 		return model.getRowCount();
@@ -125,6 +129,10 @@ public class MScrollTabel extends JScrollPane {
 
 	public void setColumnIdentifiers(Object[] newIdentifiers) {
 		model.setColumnIdentifiers(newIdentifiers);
+	}
+	
+	public Vector getColumnIdentifiers(){
+		return model.getColumnIdentifiers();
 	}
 
 	public void setColumnCount(int columnCount) {

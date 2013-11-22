@@ -29,6 +29,14 @@ public class MDefaultTableModel extends DefaultTableModel {
 	public MDefaultTableModel(Object[][] data, Object[] columnNames) {
 		super(data, columnNames);
 	}
+	
+	public Vector getColumnIdentifiers(){
+		return columnIdentifiers;
+	}
+	
+	public void setDataVector(Vector dataVector){
+		super.setDataVector(dataVector,columnIdentifiers);
+	}
 
 	public boolean isCellEditable(int row, int column) {
 		if(edit!=null){

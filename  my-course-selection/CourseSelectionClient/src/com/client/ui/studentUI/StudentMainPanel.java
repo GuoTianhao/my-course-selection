@@ -77,25 +77,25 @@ public class StudentMainPanel extends MPanel {
 
 		btn1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-
+				controller.switchToMCourse();
 			}
 		});
 
 		btn2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-
+				controller.switchToSCourse();
 			}
 		});
 
 		btn3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-
+				controller.switchToAllCourse();
 			}
 		});
 
 		btn4.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-
+				controller.switchToScoreCheck();
 			}
 		});
 

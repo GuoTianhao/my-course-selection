@@ -8,6 +8,7 @@ import com.data.po.BasicFrame;
 import com.data.po.Course;
 import com.data.po.FacultyDean;
 import com.data.po.Frame;
+import com.data.po.FrameElement;
 import com.logicService.FacultyDeanMethod;
 
 public class FacultyDeanMethod_Stub implements FacultyDeanMethod{
@@ -100,13 +101,30 @@ public class FacultyDeanMethod_Stub implements FacultyDeanMethod{
 	@Override
 	public BasicFrame lookBasicFrame() throws RemoteException {
 		// TODO Auto-generated method stub
-		return null;
+		BasicFrame f=new BasicFrame();
+		f.addFrameElement(new FrameElement("A","14","1~8"));
+		f.addFrameElement(new FrameElement("B","16","1~8"));
+		f.addFrameElement(new FrameElement("C","3","1~8"));
+		f.addFrameElement(new FrameElement("D","19~33","1~8"));
+		f.addFrameElement(new FrameElement("E","38~45","1~8"));
+		f.addFrameElement(new FrameElement("F","31~52","1~8"));
+		f.addFrameElement(new FrameElement("L","8~10","1~8"));
+		return f;
 	}
 
 	@Override
-	public Frame lookFrame(String arg0) throws RemoteException {
+	public Frame lookFrame(String facultyID) throws RemoteException {
 		// TODO Auto-generated method stub
-		return null;
+		Frame f=new Frame(facultyID);
+		f.addFrameElement(new FrameElement("A","14","1~8"));
+		f.addFrameElement(new FrameElement("B","16","1~8"));
+		f.addFrameElement(new FrameElement("C","3","1~8"));
+		f.addFrameElement(new FrameElement("D","33","1~8"));
+		f.addFrameElement(new FrameElement("E","45","1~8"));
+		f.addFrameElement(new FrameElement("F","52","1~8"));
+		f.addFrameElement(new FrameElement("L","10","1~8"));
+		
+		return f;
 	}
 
 	@Override

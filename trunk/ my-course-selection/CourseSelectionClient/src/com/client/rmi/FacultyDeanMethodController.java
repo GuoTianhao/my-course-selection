@@ -19,4 +19,7 @@ public class FacultyDeanMethodController {
 		}
 		return facultyMethod;
 	}
+	public static void setMethod(FacultyDeanMethod method){
+		facultyMethod=method;
+	}
 }

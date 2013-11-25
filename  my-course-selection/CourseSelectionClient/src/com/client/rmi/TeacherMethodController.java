@@ -19,4 +19,7 @@ public class TeacherMethodController {
 		}
 		return teacherMethod;
 	}
+	public void setMethod(TeacherMethod method){
+		teacherMethod=method;
+	}
 }

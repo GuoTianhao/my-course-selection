@@ -18,4 +18,7 @@ public class DeanMethodController {
 		}
 		return deanMethod;
 	}
+	public static void setMethod(DeanMethod method){
+		deanMethod=method;
+	}
 }

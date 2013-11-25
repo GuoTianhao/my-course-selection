@@ -3,9 +3,9 @@ package com.data.po;
 import java.io.Serializable;
 
 public class FrameElement implements Serializable{
-	private String type=null;
-	private String credit=null;
-	private String period=null;
+	private String type="";
+	private String credit="";
+	private String period="";
 	public FrameElement(String type,String credit,String period){
 		this.setType(type);
 		this.setCredit(credit);
@@ -15,18 +15,24 @@ public class FrameElement implements Serializable{
 		return type;
 	}
 	public void setType(String type) {
-		this.type = type;
+		if(type!=null){
+			this.type = type;	
+		}
 	}
 	public String getCredit() {
 		return credit;
 	}
 	public void setCredit(String credit) {
-		this.credit = credit;
+		if(credit!=null){
+			this.credit = credit;	
+		}
 	}
 	public String getPeriod() {
 		return period;
 	}
 	public void setPeriod(String period) {
-		this.period = period;
+		if(period!=null){
+			this.period = period;	
+		}
 	}
 }

@@ -9,6 +9,7 @@ import javax.swing.UIManager;
 
 import com.client.ui.facultyUI.FacultyUISwitchController;
 import com.client.ui.main.MainFrame;
+import com.ui.bcswing.CourseDisplayTable;
 import com.ui.bcswing.FrameDisplayTable;
 import com.ui.bcswing.titleBar.FacultyTitleBar;
 import com.ui.bcswing.titleBar.TitleBar;
@@ -21,7 +22,7 @@ public class CourseManagementPanel extends MPanel{
 	private MButton button1;
 	private MButton button2;
 	private MButton button3;
-	private FrameDisplayTable table;
+	private CourseDisplayTable table;
 	private Object[] data;
 	
 	public CourseManagementPanel(Point loc,Dimension size){
@@ -38,7 +39,7 @@ public class CourseManagementPanel extends MPanel{
 		button2.setText("编辑");
 		button3=new MButton(null,null,null,new Point(195, 95),new Dimension(50, 25));
 		button3.setText("删除");
-		table = new FrameDisplayTable(new Point(10, 130), new Dimension(780,430));
+		table = new CourseDisplayTable(new Point(10, 130), new Dimension(780,430));
 		this.add(title);
 		this.add(button1);
 		this.add(button2);

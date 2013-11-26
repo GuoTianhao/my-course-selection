@@ -185,4 +185,14 @@ public class DeanMethod_Stub implements DeanMethod {
 		return null;
 	}
 
+	@Override
+	public Course getCourse(String arg0) throws RemoteException {
+		// TODO Auto-generated method stub
+		List<String> time = new ArrayList<String>();
+		time.add("2_5_7");
+		time.add("1_1_4");
+		return new Course("0001", "瞎鸡吧通识", "仙2_303", "A", 3, "1_17",
+				"1250", "打造全院最好软件教育", 0, time, null);
+	}
+
 }

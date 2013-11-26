@@ -10,6 +10,7 @@ import java.util.Map;
 
 
 
+
 import com.data.po.Course;
 import com.data.po.Student;
 import com.data.po.Teacher;
@@ -87,6 +88,12 @@ public class TeacherMethod_Stub implements TeacherMethod {
 
 	@Override
 	public List<Course> getMyCourseList(String arg0) throws RemoteException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Course getCourse(String arg0) throws RemoteException {
 		// TODO Auto-generated method stub
 		return null;
 	}

@@ -24,4 +24,6 @@ public interface TeacherMethod extends Remote{
 		public boolean recordScore(String cID,Map score) throws RemoteException;
 		//得到自己课程
 		public List<Course> getMyCourseList(String ID)throws RemoteException;
+		//得到具体课程
+		public Course getCourse(String courseID) throws RemoteException;
 }

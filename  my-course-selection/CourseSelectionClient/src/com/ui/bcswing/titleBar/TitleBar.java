@@ -36,7 +36,7 @@ public class TitleBar extends MPanel{
 		message=new MLabel(new Point(120,20),new Dimension(300,50));
 		message.setText("Welcome My !");
 		
-		menu=new MButton(null,null,null,new Point(0,40),new Dimension(100,30));
+		menu=new MButton(null,null,null,new Point(15,40),new Dimension(100,30));
 		menu.setText("主菜单");
 		
 		this.add(logout);

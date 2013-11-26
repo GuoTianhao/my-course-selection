@@ -4,12 +4,16 @@ import java.awt.Dimension;
 import java.awt.Point;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.rmi.RemoteException;
 
 import javax.swing.ImageIcon;
 import javax.swing.UIManager;
 
+import com.client.rmi.DeanMethodController;
+import com.client.ui.dataAdapter.CourseListToVectorAdapter;
 import com.client.ui.deanUI.DeanUISwitchController;
 import com.client.ui.main.MainFrame;
+import com.logicService.DeanMethod;
 import com.ui.bcswing.CourseDisplayTable;
 import com.ui.bcswing.CourseEditPane;
 import com.ui.bcswing.MScrollTabel;
@@ -102,7 +106,12 @@ public class CoursePanel extends MPanel {
 			if(state==1){
 				addCoursePublishOperateBar();
 			}
-			
+			DeanMethod method=DeanMethodController.getMethod();
+			try {
+				courseTable.setDataVecot(CourseListToVectorAdapter.adapter(method.getMCourse()));
+			} catch (RemoteException e1) {
+				e1.printStackTrace();
+			}
 		}
 		
 	}

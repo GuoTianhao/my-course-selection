@@ -160,4 +160,16 @@ public class DeanMethod_Stub implements DeanMethod {
 		return false;
 	}
 
+	@Override
+	public List<Course> getMCourse() throws RemoteException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<Course> getTypeCourse(String arg0) throws RemoteException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

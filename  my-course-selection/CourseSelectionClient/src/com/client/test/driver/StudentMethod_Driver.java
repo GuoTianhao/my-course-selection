@@ -112,7 +112,7 @@ public class StudentMethod_Driver {
 	{
 		StudentMethod method=getMethod();
 		try {
-			Course c=method.course("00001");
+			Course c=method.getCourse("00001");
 			if(c!=null){
 				System.out.println("ID: "+c.getID()+" Name: "+c.getName()+" Faculty: "+c.getFaculty());
 			}else{

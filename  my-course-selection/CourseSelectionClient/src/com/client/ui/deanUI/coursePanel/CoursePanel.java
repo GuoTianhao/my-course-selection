@@ -13,6 +13,7 @@ import com.client.rmi.DeanMethodController;
 import com.client.ui.dataAdapter.CourseListToVectorAdapter;
 import com.client.ui.deanUI.DeanUISwitchController;
 import com.client.ui.main.MainFrame;
+import com.data.po.Course;
 import com.logicService.DeanMethod;
 import com.ui.bcswing.CourseDisplayTable;
 import com.ui.bcswing.CourseEditPane;
@@ -136,9 +137,18 @@ public class CoursePanel extends MPanel {
 		public void actionPerformed(ActionEvent e) {
 			DeanMethod method = DeanMethodController.getMethod();
 			int index = courseTable.getSelectedRow();
-			
-		}
+			if(index>=0){
+				String id=(String)courseTable.getValueAt(index,0);
+				try {
+					Course c=method.getCourse("001");
+					CourseEditPane pane=new CourseEditPane();
+					pane.setCourse(c);
+				} catch (RemoteException e1) {
+					e1.printStackTrace();
+				}
 
+			}
+		}
 	}
 
 	public static void main(String[] args) {

@@ -5,6 +5,8 @@ import java.awt.Point;
 
 import javax.swing.JFrame;
 
+import com.data.po.Course;
+
 public class CourseEditPane extends MScrollForm{
 	Dimension default_size=new Dimension(550, 500);
 	public CourseEditPane(){
@@ -26,6 +28,12 @@ public class CourseEditPane extends MScrollForm{
 		this.refresh();
 		this.setVisible(true);
 
+	}
+	public void setCourse(Course c){
+		
+	}
+	public Course getCourse(){
+		return null;
 	}
 
 }

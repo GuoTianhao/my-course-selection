@@ -77,7 +77,7 @@ public class StudentMethod_Stub implements StudentMethod {
 		return null;
 	}
 
-	public Course course(String cID) throws RemoteException {
+	public Course getCourse(String cID) throws RemoteException {
 		List<String> time = new ArrayList<String>();
 		time.add("2_5_7");
 		time.add("1_1_4");

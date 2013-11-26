@@ -10,7 +10,7 @@ import com.logicService.DeanMethod;
 
 public class driver {
 	public static void main(String[] args){
-		DeanMethod controller=DeanMethodController.getDeanMethod();
+		DeanMethod controller=DeanMethodController.getMethod();
 		try {
 			BasicFrame frame=controller.lookUpBasicFrame();
 			Iterator<FrameElement> it=frame.iterator();

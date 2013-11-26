@@ -2,10 +2,13 @@ package com.client.ui.teacherUI.CourseMagagement;
 
 import java.awt.Dimension;
 import java.awt.Point;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.UIManager;
 
 import com.client.ui.main.MainFrame;
+import com.client.ui.teacherUI.TeacherUISwtichController;
 import com.ui.bcswing.CourseDisplayTable;
 import com.ui.bcswing.titleBar.TeacherTitleBar;
 import com.ui.bcswing.titleBar.TitleBar;
@@ -49,7 +52,12 @@ public class CourseManagementPanel extends MPanel {
 	}
 
 	private void addListener() {
-
+		recordB.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent e) {
+				TeacherUISwtichController controller=TeacherUISwtichController.getUISwitchController();
+				controller.switchToRecordScore();
+			}
+		});
 	}
 	public static void main(String[] args) {
 		try {

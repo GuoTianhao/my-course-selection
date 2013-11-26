@@ -98,11 +98,11 @@ public class CoursePanel extends MPanel {
 	}
 	
 	class PublicCourseSwitchListener implements ActionListener{
-
 		public void actionPerformed(ActionEvent e) {
 			if(state==1){
 				addCoursePublishOperateBar();
 			}
+			
 		}
 		
 	}

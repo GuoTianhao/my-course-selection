@@ -20,6 +20,6 @@ public class CourseListToVectorAdapter {
 			row.add(c.getPeriod());
 			res.add(row);
 		}
-		return new Vector();
+		return res;
 	}
 }

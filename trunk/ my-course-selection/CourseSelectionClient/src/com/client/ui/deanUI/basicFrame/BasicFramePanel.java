@@ -66,7 +66,7 @@ public class BasicFramePanel extends MPanel {
 				DeanMethod method = DeanMethodController.getMethod();
 				try {
 					BasicFrame frame = method.lookUpBasicFrame();
-					table.setDataVecot(BasicFrameToVectorAdapter.adapter(frame));
+					table.setDataVector(BasicFrameToVectorAdapter.adapter(frame));
 				} catch (RemoteException e1) {
 					e1.printStackTrace();
 				}
@@ -78,7 +78,7 @@ public class BasicFramePanel extends MPanel {
 				DeanMethod method = DeanMethodController.getMethod();
 				try {
 					BasicFrame frame = method.lookUpBasicFrame();
-					table.setDataVecot(BasicFrameToVectorAdapter.adapter(frame));
+					table.setDataVector(BasicFrameToVectorAdapter.adapter(frame));
 				} catch (RemoteException e1) {
 					e1.printStackTrace();
 				}

@@ -114,7 +114,7 @@ public class CoursePanel extends MPanel {
 			}
 			DeanMethod method = DeanMethodController.getMethod();
 			try {
-				courseTable.setDataVecot(CourseListToVectorAdapter
+				courseTable.setDataVector(CourseListToVectorAdapter
 						.adapter(method.getMCourse()));
 			} catch (RemoteException e1) {
 				e1.printStackTrace();
@@ -140,7 +140,7 @@ public class CoursePanel extends MPanel {
 			if(index>=0){
 				String id=(String)courseTable.getValueAt(index,0);
 				try {
-					Course c=method.getCourse("001");
+					Course c=method.getCourse(id);
 					CourseEditPane pane=new CourseEditPane();
 					pane.setCourse(c);
 				} catch (RemoteException e1) {

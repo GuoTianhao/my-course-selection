@@ -59,7 +59,7 @@ public class MScrollTabel extends JScrollPane {
 		model.setDataVector(dataVector, columnIdentifiers);
 	}
 	
-	public void setDataVecot(Vector dataVector){
+	public void setDataVector(Vector dataVector){
 		model.setDataVector(dataVector);
 	}
 

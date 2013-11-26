@@ -4,7 +4,7 @@ import com.ui.myswing.EditPermission;
 
 public class EditBasicFramePermission implements EditPermission{
 	public boolean isEditable(int row, int column) {
-		if(column==3){
+		if(column==2){
 			return true;
 		}
 		return false;

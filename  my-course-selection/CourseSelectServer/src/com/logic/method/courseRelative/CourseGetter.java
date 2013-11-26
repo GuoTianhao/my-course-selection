@@ -101,4 +101,15 @@ public class CourseGetter {
 		}
 		return c;
 	}
+	
+	//以课程类型，得到与编号对应的课程
+	public static List<Course> getTypeCourse(String type){
+		List<Course> list;
+		List<String> clueName = new ArrayList<String>();
+		clueName.add("Type");
+		List<String> clue = new ArrayList<String>();
+		clue.add(type);
+		list = CourseGetter.getCourse(clueName, clue);
+		return list;
+	}
 }

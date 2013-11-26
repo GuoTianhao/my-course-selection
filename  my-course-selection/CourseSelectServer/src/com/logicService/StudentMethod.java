@@ -23,5 +23,5 @@ public interface StudentMethod extends Remote{
 		//查看自己选课列表，传入ID（学生）,返回该学生选课列表
 		public List<Course> getCourseList(String ID) throws RemoteException;
 		//查看任意课程，传入cID（课程）ID，返回Course.
-		public Course course(String cID) throws RemoteException;
+		public Course getCourse(String cID) throws RemoteException;
 }

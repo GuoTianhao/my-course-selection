@@ -11,6 +11,7 @@ import com.data.po.Teacher;
 import com.logic.method.TeacherRelative.ScoreRecord;
 import com.logic.method.TeacherRelative.TeacherCourseListGetter;
 import com.logic.method.TeacherRelative.TeacherGetter;
+import com.logic.method.courseRelative.CourseGetter;
 import com.logic.method.courseRelative.CourseInforFiln;
 import com.logic.method.courseRelative.CourseStudentGetter;
 import com.logic.method.userRelative.Login;
@@ -72,5 +73,11 @@ public class TeacherMethodImpl extends UnicastRemoteObject implements TeacherMet
 		// TODO Auto-generated method stub
 		List<Course> list=TeacherCourseListGetter.getCourseList(ID);
 		return list;
+	}
+
+	@Override
+	public Course getCourse(String courseID) throws RemoteException {
+		// TODO Auto-generated method stub
+		return CourseGetter.getConcreteCourse(courseID);
 	}
 }

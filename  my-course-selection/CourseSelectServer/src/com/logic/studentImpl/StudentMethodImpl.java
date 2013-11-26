@@ -64,7 +64,7 @@ public class StudentMethodImpl extends UnicastRemoteObject implements StudentMet
 	}
 
 	@Override
-	public Course course(String cID) throws RemoteException {
+	public Course getCourse(String cID) throws RemoteException {
 		// TODO Auto-generated method stub
 		return CourseGetter.getConcreteCourse(cID);
 	}

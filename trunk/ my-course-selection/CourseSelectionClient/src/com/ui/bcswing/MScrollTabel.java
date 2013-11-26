@@ -161,4 +161,7 @@ public class MScrollTabel extends JScrollPane {
 	public void regrexFilter(String text){
 		sort.setRowFilter(RowFilter.regexFilter(text));
 	}
+	public int getSelectedRow(){
+		return table.getSelectedRow();
+	}
 }

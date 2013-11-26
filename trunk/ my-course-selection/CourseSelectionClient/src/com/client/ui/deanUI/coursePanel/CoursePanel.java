@@ -29,19 +29,21 @@ public class CoursePanel extends MPanel {
 	private MButton courseA;
 	private CoursePublicOperateBar publishOperateBar;
 	private AllCourseOperateBar allCourseOperateBar;
-	
+
 	private CourseDisplayTable courseTable;
-	
+
 	private int state;
-	public CoursePanel(Point loc,Dimension size) {
-		super(loc,size);
+
+	public CoursePanel(Point loc, Dimension size) {
+		super(loc, size);
 		creatComponent();
 		addListener();
 	}
 
 	private void creatComponent() {
 		Dimension size = this.getSize();
-		title = new DeanTitlebar(new Point(0, 0), new Dimension(size.width, 100));
+		title = new DeanTitlebar(new Point(0, 0),
+				new Dimension(size.width, 100));
 		courseP = new MButton(null, null, null, new Point(0, 100),
 				new Dimension(100, 30));
 		courseA = new MButton(null, null, null, new Point(110, 100),
@@ -49,8 +51,9 @@ public class CoursePanel extends MPanel {
 
 		courseP.setText("公共课程");
 		courseA.setText("全校课程");
-		
-		courseTable=new CourseDisplayTable(new Point(10, 180), new Dimension(size.width-70,380));
+
+		courseTable = new CourseDisplayTable(new Point(10, 180), new Dimension(
+				size.width - 70, 380));
 
 		this.add(title);
 		this.add(courseP);
@@ -59,71 +62,83 @@ public class CoursePanel extends MPanel {
 
 		publishOperateBar = new CoursePublicOperateBar(new Point(0, 140),
 				new Dimension(size.width, 50));
-		
-		allCourseOperateBar=new AllCourseOperateBar(new Point(0, 140),
+
+		allCourseOperateBar = new AllCourseOperateBar(new Point(0, 140),
 				new Dimension(size.width, 50));
-		
+
 		addCoursePublishOperateBar();
 	}
-	
-	private void addListener(){
+
+	private void addListener() {
 		courseP.addActionListener(new PublicCourseSwitchListener());
 		courseA.addActionListener(new AllCourseSwitchListener());
-		
-		title.addReturnMenu(new ActionListener(){
+
+		title.addReturnMenu(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				DeanUISwitchController controller=DeanUISwitchController.getUISwitchController();
+				DeanUISwitchController controller = DeanUISwitchController
+						.getUISwitchController();
 				controller.swicthToMainFrame();
 			}
-			
+
 		});
-		
-		publishOperateBar.addCoursePListener(new ActionListener(){
+
+		publishOperateBar.addCoursePListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				new CourseEditPane();
 			}
-			
+
 		});
-		
+
+		publishOperateBar.addcourseMListener(new CourseModifyListener());
 	}
-	
-	private void addCoursePublishOperateBar(){
+
+	private void addCoursePublishOperateBar() {
 		this.remove(allCourseOperateBar);
 		this.add(publishOperateBar);
 		this.refresh();
-		state=0;
+		state = 0;
 	}
-	
-	public void addAllCourseOperateBar(){
+
+	public void addAllCourseOperateBar() {
 		this.remove(publishOperateBar);
 		this.add(allCourseOperateBar);
 		this.refresh();
-		state=1;
+		state = 1;
 	}
-	
-	class PublicCourseSwitchListener implements ActionListener{
+
+	class PublicCourseSwitchListener implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
-			if(state==1){
+			if (state == 1) {
 				addCoursePublishOperateBar();
 			}
-			DeanMethod method=DeanMethodController.getMethod();
+			DeanMethod method = DeanMethodController.getMethod();
 			try {
-				courseTable.setDataVecot(CourseListToVectorAdapter.adapter(method.getMCourse()));
+				courseTable.setDataVecot(CourseListToVectorAdapter
+						.adapter(method.getMCourse()));
 			} catch (RemoteException e1) {
 				e1.printStackTrace();
 			}
 		}
-		
+
 	}
-	
-	class AllCourseSwitchListener implements ActionListener{
+
+	class AllCourseSwitchListener implements ActionListener {
 
 		public void actionPerformed(ActionEvent e) {
-			if(state==0){
+			if (state == 0) {
 				addAllCourseOperateBar();
 			}
 		}
-		
+
+	}
+
+	class CourseModifyListener implements ActionListener {
+		public void actionPerformed(ActionEvent e) {
+			DeanMethod method = DeanMethodController.getMethod();
+			int index = courseTable.getSelectedRow();
+			
+		}
+
 	}
 
 	public static void main(String[] args) {
@@ -135,7 +150,7 @@ public class CoursePanel extends MPanel {
 		}
 
 		MainFrame f = new MainFrame();
-		f.add(new CoursePanel(new Point(0,0),f.getSize()));
+		f.add(new CoursePanel(new Point(0, 0), f.getSize()));
 		f.refresh();
 	}
 }

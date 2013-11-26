@@ -4,7 +4,7 @@ import java.awt.Dimension;
 import java.awt.Point;
 
 public class FrameDisplayTable extends MScrollTabel {
-	private static final String[] c = { "课程模块", "课程性质","建议学分",
+	private static final String[] c = { "课程模块","建议学分",
 			"开设学期" };
 
 	public FrameDisplayTable(Point loc, Dimension size) {

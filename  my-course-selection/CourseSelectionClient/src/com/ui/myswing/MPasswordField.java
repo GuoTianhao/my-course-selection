@@ -6,7 +6,11 @@ import java.awt.Point;
 import javax.swing.JPasswordField;
 import javax.swing.text.Document;
 
-public class MPasswordField extends JPasswordField {
+import com.ui.input.ValidInput;
+
+public class MPasswordField extends JPasswordField implements ValidInput {
+	private ValidInput validInput;
+
 	public MPasswordField(Point location, Dimension size) {
 		super();
 		setLocation(location);
@@ -31,6 +35,15 @@ public class MPasswordField extends JPasswordField {
 
 	public MPasswordField(Document doc, String txt, int columns) {
 		super(doc, txt, columns);
+	}
+
+	public boolean isValidInput() {
+		boolean isValid = validInput.isValid();
+		return isValid;
+	}
+
+	public void setValidInput(ValidInput validInput) {
+		this.validInput = validInput;
 	}
 
 }

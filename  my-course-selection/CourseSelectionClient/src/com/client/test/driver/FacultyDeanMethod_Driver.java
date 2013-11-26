@@ -12,7 +12,7 @@ import com.logicService.FacultyDeanMethod;
 
 public class FacultyDeanMethod_Driver {
 	private FacultyDeanMethod getMethod() {
-		return new FacultyDeanMethodController().getFacultyDeanMethod();
+		return new FacultyDeanMethodController().getMethod();
 	}
 
 	public void driveLogin() {

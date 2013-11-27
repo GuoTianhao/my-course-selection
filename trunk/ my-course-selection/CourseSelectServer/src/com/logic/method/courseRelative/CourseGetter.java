@@ -86,6 +86,19 @@ public class CourseGetter {
 		list = CourseGetter.getCourse(clueName, clue);
 		return list;
 	}
+	
+	//得到具体学期的院系课程
+	public static List<Course> getFacultyTypeCourse(String facultyID,String grade) {
+		List<Course> list;
+		List<String> clueName = new ArrayList<String>();
+		clueName.add("faculty");
+		clueName.add("Grade");
+		List<String> clue = new ArrayList<String>();
+		clue.add(facultyID);
+		clue.add(grade);
+		list = CourseGetter.getCourse(clueName, clue);
+		return list;
+	}
 
 	// 以课程编号为参数，得到与编号对应课程
 	public static Course getConcreteCourse(String courseID) {

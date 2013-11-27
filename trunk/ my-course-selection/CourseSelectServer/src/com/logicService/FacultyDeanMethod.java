@@ -33,4 +33,7 @@ public interface FacultyDeanMethod extends Remote{
 		public Frame lookFrame(String facultyID)throws RemoteException;
 		//查看整体框架策略
 		public BasicFrame lookBasicFrame() throws RemoteException;
+		//得到院系具体学期的课程
+		public List<Course> geFacultyTypeCourse(String facultyID,String grade) throws RemoteException;
+
 }

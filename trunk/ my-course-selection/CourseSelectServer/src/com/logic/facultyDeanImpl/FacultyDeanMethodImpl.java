@@ -104,4 +104,11 @@ public class FacultyDeanMethodImpl extends UnicastRemoteObject implements Facult
 		return BasicFrameManagement.getBasicFrame();
 	}
 
+	@Override
+	public List<Course> geFacultyTypeCourse(String facultyID, String grade)
+			throws RemoteException {
+		// TODO Auto-generated method stub
+		return CourseGetter.getFacultyTypeCourse(facultyID, grade);
+	}
+
 }

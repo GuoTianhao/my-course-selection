@@ -46,7 +46,7 @@ public interface DeanMethod extends Remote {
 	// 得到院系老师列表，传入facultyID（院系），return List<Teacher>(一个链表)
 	public List<Teacher> getFacultyTeacher(String facultyID)
 			throws RemoteException;
-
+ 
 	// 得到全校课程列表，return List<Course>
 	public List<Course> getAllCourse() throws RemoteException;
 
@@ -62,4 +62,7 @@ public interface DeanMethod extends Remote {
 
 	// 得到具体课程
 	public Course getCourse(String courseID) throws RemoteException;
+	
+	//得到院系具体学期课程
+	public List<Course> geFacultyTypeCourse(String facultyID,String grade) throws RemoteException;
 }

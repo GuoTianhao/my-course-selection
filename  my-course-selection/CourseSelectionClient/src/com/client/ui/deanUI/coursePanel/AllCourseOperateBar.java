@@ -4,6 +4,7 @@ import java.awt.Dimension;
 import java.awt.Point;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.ItemListener;
 
 import javax.swing.ImageIcon;
 
@@ -33,7 +34,6 @@ public class AllCourseOperateBar extends MPanel{
 	private void creatComponent(){
 		faculty=new MComboBox(FacultyKind.getAllFaculty(),new Point(50,0),new Dimension(100,30));
 		year=new MComboBox(YearKind.getYear(),new Point(200,0),new Dimension(100,30));
-		
 		search = new MTextField(new Point(650, 0), new Dimension(100,30));
 		searchBtn = new MButton(null,null,null,new Point(755,0),new Dimension(30,30));
 		
@@ -42,10 +42,13 @@ public class AllCourseOperateBar extends MPanel{
 		this.add(search);
 		this.add(searchBtn);
 	}
-	public void addCourseInforListener(ActionListener al){
-		courseInfor.addActionListener(al);
-	}
 	public void addSearchListener(ActionListener al){
 		search.addActionListener(al);
+	}
+	public void addYearItemListener(ItemListener il){
+		year.addItemListener(il);
+	}
+	public void addFacultyItemListenr(ItemListener il){
+		faculty.addItemListener(il);
 	}
 }

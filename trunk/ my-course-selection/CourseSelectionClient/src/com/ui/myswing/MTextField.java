@@ -12,26 +12,27 @@ import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.text.Document;
 
+import com.ui.input.InvalidAction;
 import com.ui.input.ValidInput;
 
 public class MTextField extends JTextField implements ValidInput {
 	private ValidInput validInput;
-
+	private InvalidAction action;
 	public MTextField() {
-		super(null, null, 0);
+		this(null, null, 0);
 	}
 
 	public MTextField(String text) {
-		super(null, text, 0);
+		this(null, text, 0);
 
 	}
 
 	public MTextField(int columns) {
-		super(null, null, columns);
+		this(null, null, columns);
 	}
 
 	public MTextField(String text, int columns) {
-		super(null, text, columns);
+		this(null, text, columns);
 	}
 
 	public MTextField(Document doc, String text, int columns) {
@@ -52,6 +53,25 @@ public class MTextField extends JTextField implements ValidInput {
 
 	public void setValidInput(ValidInput validInput) {
 		this.validInput = validInput;
+	}
+	
+	public void setFocusLostInvalidAction(InvalidAction action){
+		if(action!=null){
+			this.action=action;
+			addFocusListener();	
+		}
+	}
+	
+	private void addFocusListener(){
+		this.addFocusListener(new FocusAdapter() {
+			public void focusLost(final FocusEvent arg0) {
+				if(!validInput.isValid()){
+//					JOptionPane.showMessageDialog(null, "过长，请重新输入");
+//					MTextField.this.setText("");
+					action.action();
+				}
+			}
+		});
 	}
 
 	protected void initEvent() {

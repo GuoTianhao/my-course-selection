@@ -17,9 +17,9 @@ import com.ui.myswing.MDefaultTableModel;
 import com.ui.myswing.MTable;
 
 public class MScrollTabel extends JScrollPane {
-	private static MDefaultTableModel model = new MDefaultTableModel();
-	private static MTable table = new MTable(model);
-	private static TableRowSorter<TableModel> sort=new TableRowSorter<TableModel>();
+	private MDefaultTableModel model = new MDefaultTableModel();
+	private MTable table = new MTable(model);
+	private TableRowSorter<TableModel> sort = new TableRowSorter<TableModel>();
 
 	public MScrollTabel(Component view, int vsbPolicy, int hsbPolicy) {
 		super(view, vsbPolicy, hsbPolicy);
@@ -29,6 +29,7 @@ public class MScrollTabel extends JScrollPane {
 		super(view);
 		this.setHorizontalScrollBarPolicy(MScrollTabel.HORIZONTAL_SCROLLBAR_NEVER);
 		this.setVerticalScrollBarPolicy(MScrollTabel.VERTICAL_SCROLLBAR_ALWAYS);
+		this.add(table);
 		sort.setModel(model);
 		table.setRowSorter(sort);
 	}
@@ -38,28 +39,33 @@ public class MScrollTabel extends JScrollPane {
 	}
 
 	public MScrollTabel(Point loc, Dimension size) {
-		this(table);
+		this();
 		this.setLocation(loc);
 		this.setSize(size);
 	}
-	
-	public MScrollTabel(){
-		this(table);
+
+	public MScrollTabel() {
+		super();
+		this.setViewportView(table);
+		this.setHorizontalScrollBarPolicy(MScrollTabel.HORIZONTAL_SCROLLBAR_NEVER);
+		this.setVerticalScrollBarPolicy(MScrollTabel.VERTICAL_SCROLLBAR_ALWAYS);
+		sort.setModel(model);
+		table.setRowSorter(sort);
 	}
-	
-	public MTable getTable(){
+
+	public MTable getTable() {
 		return table;
 	}
-	
-	public MDefaultTableModel getModel(){
+
+	public MDefaultTableModel getModel() {
 		return model;
 	}
 
 	public void setDataVector(Vector dataVector, Vector columnIdentifiers) {
 		model.setDataVector(dataVector, columnIdentifiers);
 	}
-	
-	public void setDataVector(Vector dataVector){
+
+	public void setDataVector(Vector dataVector) {
 		model.setDataVector(dataVector);
 	}
 
@@ -130,8 +136,8 @@ public class MScrollTabel extends JScrollPane {
 	public void setColumnIdentifiers(Object[] newIdentifiers) {
 		model.setColumnIdentifiers(newIdentifiers);
 	}
-	
-	public Vector getColumnIdentifiers(){
+
+	public Vector getColumnIdentifiers() {
 		return model.getColumnIdentifiers();
 	}
 
@@ -150,18 +156,20 @@ public class MScrollTabel extends JScrollPane {
 	public void addColumn(Object columnName, Object[] columnData) {
 		model.addColumn(columnName);
 	}
-	
-	public void setEditable(EditPermission edit){
+
+	public void setEditable(EditPermission edit) {
 		model.setEditable(edit);
 	}
-	
-	public void addMouseListener(MouseListener l){
+
+	public void addMouseListener(MouseListener l) {
 		table.addMouseListener(l);
 	}
-	public void regrexFilter(String text){
+
+	public void regrexFilter(String text) {
 		sort.setRowFilter(RowFilter.regexFilter(text));
 	}
-	public int getSelectedRow(){
+
+	public int getSelectedRow() {
 		return table.getSelectedRow();
 	}
 }

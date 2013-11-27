@@ -14,6 +14,5 @@ public class CoursePublishIDValid implements ValidInput {
 			return true;
 		else
 			return false;
-
 	}
 }

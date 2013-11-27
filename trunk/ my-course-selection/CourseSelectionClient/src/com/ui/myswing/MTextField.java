@@ -42,59 +42,17 @@ public class MTextField extends JTextField implements ValidInput {
 	public MTextField(Point location, Dimension size) {
 		setLocation(location);
 		setSize(size);
-		initEvent();
-		limitInput();
 	}
 
 	public boolean isValidInput() {
-		boolean isValid = validInput.isValid();
+		boolean isValid = true;
+		if(validInput!=null){
+			isValid =validInput.isValid();
+		}
 		return isValid;
 	}
 
 	public void setValidInput(ValidInput validInput) {
 		this.validInput = validInput;
 	}
-	
-	public void setFocusLostInvalidAction(InvalidAction action){
-		if(action!=null){
-			this.action=action;
-			addFocusListener();	
-		}
-	}
-	
-	private void addFocusListener(){
-		this.addFocusListener(new FocusAdapter() {
-			public void focusLost(final FocusEvent arg0) {
-				if(!validInput.isValid()){
-//					JOptionPane.showMessageDialog(null, "过长，请重新输入");
-//					MTextField.this.setText("");
-					action.action();
-				}
-			}
-		});
-	}
-
-	protected void initEvent() {
-		this.addFocusListener(new FocusAdapter() {
-			public void focusLost(final FocusEvent arg0) {
-				if (getText().length() >= 8) {
-					JOptionPane.showMessageDialog(null, "过长，请重新输入");
-					MTextField.this.setText("");
-				}
-			}
-		});
-	}
-	protected void limitInput() {
-		this.addKeyListener(new KeyAdapter(){
-			public void keyTyped(KeyEvent e) {
-				int keyChar=e.getKeyChar();
-				if(keyChar>=KeyEvent.VK_0&&keyChar<=KeyEvent.VK_9){
-				}
-				else {
-					e.consume();
-				}
-			}
-		});
-	}
-
 }

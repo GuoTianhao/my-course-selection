@@ -38,9 +38,11 @@ public class MPasswordField extends JPasswordField implements ValidInput {
 	}
 
 	public boolean isValidInput() {
-		boolean isValid = validInput.isValid();
-		return isValid;
-	}
+		boolean isValid = true;
+		if(validInput!=null){
+			isValid =validInput.isValid();
+		}
+		return isValid;	}
 
 	public void setValidInput(ValidInput validInput) {
 		this.validInput = validInput;

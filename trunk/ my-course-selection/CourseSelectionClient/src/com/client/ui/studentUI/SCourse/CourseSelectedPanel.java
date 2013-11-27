@@ -56,7 +56,7 @@ public class CourseSelectedPanel extends MPanel {
 	}
 
 	private void addListener() {
-		
+
 		title.addReturnMenu(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				StudentUISwitchController controller = StudentUISwitchController

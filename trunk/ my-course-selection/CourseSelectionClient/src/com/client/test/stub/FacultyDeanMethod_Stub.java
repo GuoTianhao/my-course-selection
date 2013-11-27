@@ -67,7 +67,7 @@ public class FacultyDeanMethod_Stub implements FacultyDeanMethod{
 		if(this.ID.equals(ID)&&this.password.equals(password)){
 			return true;
 		}
-		return false;
+		return true;
 	}
 
 	@Override

@@ -5,12 +5,15 @@ import java.awt.Point;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.rmi.RemoteException;
+import java.util.List;
 
 import javax.swing.UIManager;
 
+import com.basicdata.Identity;
 import com.client.rmi.FacultyDeanMethodController;
 import com.client.ui.facultyUI.FacultyUISwitchController;
 import com.data.po.Course;
+import com.data.po.FacultyDean;
 import com.logicService.FacultyDeanMethod;
 import com.ui.bcswing.CourseDisplayTable;
 import com.ui.bcswing.CourseEditPane;
@@ -72,7 +75,13 @@ public class CourseManagementPanel extends MPanel {
 	}
 
 	private void init() {
-
+		FacultyDean self=(FacultyDean)(Identity.getIdentity());
+		FacultyDeanMethod method = FacultyDeanMethodController.getMethod();
+		try {
+			List<Course> list=method.getCourseList(self.getID());
+		} catch (RemoteException e) {
+			e.printStackTrace();
+		}
 	}
 
 	class CourseModifyListener implements ActionListener {

@@ -54,6 +54,11 @@ public class AllCourseOperateBar extends MPanel{
 		faculty.addItemListener(il);
 	}
 	
+	public void changeItemState(){
+		faculty.setSelectedIndex(-1);
+		faculty.setSelectedIndex(0);
+	}
+	
 	public String getTerm(){
 		String selected;
 		selected=(String) termBox.getSelectedItem();

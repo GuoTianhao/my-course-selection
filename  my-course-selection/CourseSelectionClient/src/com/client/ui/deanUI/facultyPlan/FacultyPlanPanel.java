@@ -36,6 +36,7 @@ public class FacultyPlanPanel extends MPanel {
 		super(loc, size);
 		createComponent();
 		addListener();
+		init();
 	}
 
 	private void createComponent() {
@@ -53,6 +54,7 @@ public class FacultyPlanPanel extends MPanel {
 	}
 
 	private void addListener() {
+
 		title.addReturnMenu(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				DeanUISwitchController controller = DeanUISwitchController
@@ -60,21 +62,26 @@ public class FacultyPlanPanel extends MPanel {
 				controller.swicthToMainFrame();
 			}
 		});
-		
+
 		department.addItemListener(new FacultyListener());
-		
+
+	}
+
+	private void init() {
+
 	}
 
 	class FacultyListener implements ItemListener {
-		int time=0;
+		int time = 0;
+
 		public void itemStateChanged(ItemEvent e) {
 			time++;
-			if(time%2==0){
-				String faculty=(String)department.getSelectedItem();
-				faculty=FacultyKind.getType(faculty);
+			if (time % 2 == 0) {
+				String faculty = (String) department.getSelectedItem();
+				faculty = FacultyKind.getType(faculty);
 				DeanMethod method = DeanMethodController.getMethod();
 				try {
-					Frame f=method.lookUpFrame(faculty);
+					Frame f = method.lookUpFrame(faculty);
 					table.setDataVector(FrameToVectorAdapter.adapter(f));
 				} catch (RemoteException e1) {
 					// TODO Auto-generated catch block
@@ -91,9 +98,8 @@ public class FacultyPlanPanel extends MPanel {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		MainFrame f = new MainFrame();
-		f.add(new FacultyPlanPanel(new Point(0, 0), new Dimension(
-				f.getSize().width, f.getSize().height)));
-		f.refresh();
+		DeanUISwitchController controller = DeanUISwitchController
+				.getUISwitchController();
+		controller.switchToFacultyPlanPanel();
 	}
 }

@@ -32,6 +32,7 @@ public class BasicFramePanel extends MPanel {
 		super(loc, size);
 		createComponent();
 		addListener();
+		init();
 	}
 
 	private void createComponent() {
@@ -54,6 +55,7 @@ public class BasicFramePanel extends MPanel {
 	}
 
 	private void addListener() {
+		
 		title.addReturnMenu(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				DeanUISwitchController controller = DeanUISwitchController
@@ -61,30 +63,39 @@ public class BasicFramePanel extends MPanel {
 				controller.swicthToMainFrame();
 			}
 		});
+		
 		make.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				DeanMethod method = DeanMethodController.getMethod();
 				try {
 					BasicFrame frame = method.lookUpBasicFrame();
-					table.setDataVector(BasicFrameToVectorAdapter.adapter(frame));
+					table.setDataVector(BasicFrameToVectorAdapter
+							.adapter(frame));
 				} catch (RemoteException e1) {
 					e1.printStackTrace();
 				}
 				table.setEditable(new EditBasicFramePermission());
 			}
 		});
+		
 		change.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				DeanMethod method = DeanMethodController.getMethod();
 				try {
 					BasicFrame frame = method.lookUpBasicFrame();
-					table.setDataVector(BasicFrameToVectorAdapter.adapter(frame));
+					table.setDataVector(BasicFrameToVectorAdapter
+							.adapter(frame));
 				} catch (RemoteException e1) {
 					e1.printStackTrace();
 				}
 				table.setEditable(new EditBasicFramePermission());
 			}
 		});
+		
+	}
+
+	private void init() {
+
 	}
 
 	public static void main(String[] args) {
@@ -94,9 +105,8 @@ public class BasicFramePanel extends MPanel {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		MainFrame f = new MainFrame();
-		f.add(new BasicFramePanel(new Point(0, 0), new Dimension(
-				f.getSize().width, f.getSize().height)));
-		f.refresh();
+		DeanUISwitchController controller = DeanUISwitchController
+				.getUISwitchController();
+		controller.switchToBasicFramePanel();
 	}
 }

@@ -2,10 +2,13 @@ package com.client.ui.studentUI.SCourse;
 
 import java.awt.Dimension;
 import java.awt.Point;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.UIManager;
 
 import com.client.ui.main.MainFrame;
+import com.client.ui.studentUI.StudentUISwitchController;
 import com.ui.bcswing.CourseDisplayTable;
 import com.ui.bcswing.StudentCourseDisplayTable;
 import com.ui.bcswing.titleBar.StudentTitleBar;
@@ -26,6 +29,7 @@ public class CourseSelectedPanel extends MPanel {
 	public CourseSelectedPanel(Point loc, Dimension size) {
 		super(loc, size);
 		createComponent();
+		addListener();
 	}
 
 	private void createComponent() {
@@ -49,6 +53,16 @@ public class CourseSelectedPanel extends MPanel {
 		this.add(table2);
 		this.add(table1);
 		this.refresh();
+	}
+	
+	private void addListener(){
+		title.addReturnMenu(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				StudentUISwitchController controller = StudentUISwitchController
+						.getUISwitchController();
+				controller.switchToMainFrame();
+			}
+		});
 	}
 
 	public static void main(String[] args) {

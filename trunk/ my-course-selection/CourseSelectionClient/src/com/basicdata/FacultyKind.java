@@ -5,4 +5,11 @@ public class FacultyKind {
 	public static String[] getAllFaculty(){
 		return faculty;
 	}
+	//具体变序列
+	public static String getType(String name){
+		return "";
+	}
+	public static String getName(String type){
+		return "";
+	}
 }

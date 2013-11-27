@@ -69,12 +69,8 @@ public class StudentMethod_Stub implements StudentMethod {
 		list.add(c1);
 
 		list.add(c2);
-		if (ID.equals("1000")) {
 
 			return list;
-		}
-
-		return null;
 	}
 
 	public Course getCourse(String cID) throws RemoteException {
@@ -102,5 +98,12 @@ public class StudentMethod_Stub implements StudentMethod {
 			return true;
 		}
 		return false;
+	}
+
+	@Override
+	public List<Course> geFacultyTypeCourse(String arg0, String arg1)
+			throws RemoteException {
+		// TODO Auto-generated method stub
+		return getCourseList("1000");
 	}
 }

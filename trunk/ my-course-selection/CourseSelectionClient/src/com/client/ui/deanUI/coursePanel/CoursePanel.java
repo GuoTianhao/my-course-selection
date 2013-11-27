@@ -4,11 +4,17 @@ import java.awt.Dimension;
 import java.awt.Point;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
 import java.rmi.RemoteException;
+import java.util.Iterator;
+import java.util.List;
 
 import javax.swing.ImageIcon;
 import javax.swing.UIManager;
 
+import com.basicdata.FacultyKind;
+import com.basicdata.YearKind;
 import com.client.rmi.DeanMethodController;
 import com.client.ui.dataAdapter.CourseListToVectorAdapter;
 import com.client.ui.deanUI.DeanUISwitchController;
@@ -91,6 +97,10 @@ public class CoursePanel extends MPanel {
 		});
 
 		publishOperateBar.addcourseMListener(new CourseModifyListener());
+
+		allCourseOperateBar.addYearItemListener(new Term_FacultyListener());
+
+		allCourseOperateBar.addFacultyItemListenr(new Term_FacultyListener());
 	}
 
 	private void addCoursePublishOperateBar() {
@@ -137,16 +147,36 @@ public class CoursePanel extends MPanel {
 		public void actionPerformed(ActionEvent e) {
 			DeanMethod method = DeanMethodController.getMethod();
 			int index = courseTable.getSelectedRow();
-			if(index>=0){
-				String id=(String)courseTable.getValueAt(index,0);
+			if (index >= 0) {
+				String id = (String) courseTable.getValueAt(index, 0);
 				try {
-					Course c=method.getCourse(id);
-					CourseEditPane pane=new CourseEditPane();
+					Course c = method.getCourse(id);
+					CourseEditPane pane = new CourseEditPane();
 					pane.setCourse(c);
 				} catch (RemoteException e1) {
 					e1.printStackTrace();
 				}
 
+			}
+		}
+	}
+
+	class Term_FacultyListener implements ItemListener {
+		int time=0;
+		public void itemStateChanged(ItemEvent e) {
+			time++;
+			if(time%2==0){
+				String term = allCourseOperateBar.getTerm();
+				String faculty = FacultyKind.getType(allCourseOperateBar.getFaculty());
+				term=YearKind.getTerm(term);
+				faculty=FacultyKind.getType(faculty);
+				DeanMethod method = DeanMethodController.getMethod();
+				try {
+					courseTable.setDataVector(CourseListToVectorAdapter.adapter(method
+							.geFacultyTypeCourse(faculty, term)));
+				} catch (RemoteException e1) {
+					e1.printStackTrace();
+				}	
 			}
 		}
 	}

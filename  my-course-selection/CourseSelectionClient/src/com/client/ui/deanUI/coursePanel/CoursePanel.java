@@ -105,7 +105,7 @@ public class CoursePanel extends MPanel {
 	}
 
 	private void init() {
-
+		courseP.doClick();
 	}
 
 	private void addCoursePublishOperateBar() {
@@ -143,6 +143,7 @@ public class CoursePanel extends MPanel {
 		public void actionPerformed(ActionEvent e) {
 			if (state == 0) {
 				addAllCourseOperateBar();
+				allCourseOperateBar.changeItemState();
 			}
 		}
 
@@ -200,5 +201,5 @@ public class CoursePanel extends MPanel {
 				.getUISwitchController();
 		controller.switchToCoursePanel();
 	}
-	
+
 }

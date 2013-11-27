@@ -78,7 +78,6 @@ public class FacultyPlanPanel extends MPanel {
 
 		public void itemStateChanged(ItemEvent e) {
 			time++;
-			System.out.println(time);
 			if (time % 2 == 0) {
 				String faculty = (String) department.getSelectedItem();
 				faculty = FacultyKind.getType(faculty);

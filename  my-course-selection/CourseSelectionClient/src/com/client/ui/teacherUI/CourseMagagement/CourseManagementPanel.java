@@ -81,11 +81,11 @@ public class CourseManagementPanel extends MPanel {
 		public void actionPerformed(ActionEvent e) {
 			int index = table.getSelectedRow();
 			if (index >= 0) {
-				CourseScriptPane scriptPane = new CourseScriptPane();
 				String id = (String) table.getValueAt(index, 0);
 				TeacherMethod method = TeacherMethodController.getMethod();
 				try {
-					scriptPane.setCourse(method.getCourse(id));
+					CourseScriptPane scriptPane = new CourseScriptPane(
+							method.getCourse(id));
 				} catch (RemoteException e1) {
 					e1.printStackTrace();
 				}
@@ -99,11 +99,11 @@ public class CourseManagementPanel extends MPanel {
 		public void actionPerformed(ActionEvent e) {
 			int index = table.getSelectedRow();
 			if (index >= 0) {
-				CourseInfroPane inforPane = new CourseInfroPane();
 				String id = (String) table.getValueAt(index, 0);
 				TeacherMethod method = TeacherMethodController.getMethod();
 				try {
-					inforPane.setCourse(method.getCourse(id));
+					CourseInfroPane inforPane = new CourseInfroPane(
+							method.getCourse(id));
 				} catch (RemoteException e1) {
 					e1.printStackTrace();
 				}

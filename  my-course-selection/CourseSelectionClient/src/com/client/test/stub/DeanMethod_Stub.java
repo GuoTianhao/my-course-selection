@@ -145,7 +145,7 @@ public class DeanMethod_Stub implements DeanMethod {
 		if (facultyID.equals("1250")) {
 			return list;
 		}
-		return null;
+		return new ArrayList<Course>();
 	}
 
 	@Override
@@ -203,6 +203,13 @@ public class DeanMethod_Stub implements DeanMethod {
 			return c2;
 		}
 
+	}
+
+	@Override
+	public List<Course> geFacultyTypeCourse(String arg0, String arg1)
+			throws RemoteException {
+		// TODO Auto-generated method stub
+		return getFacultyCourse("1250");
 	}
 
 }

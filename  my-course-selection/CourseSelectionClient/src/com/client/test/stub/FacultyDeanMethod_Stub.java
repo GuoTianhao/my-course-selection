@@ -132,4 +132,11 @@ public class FacultyDeanMethod_Stub implements FacultyDeanMethod{
 		// TODO Auto-generated method stub
 		return false;
 	}
+
+	@Override
+	public List<Course> geFacultyTypeCourse(String arg0, String arg1)
+			throws RemoteException {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }

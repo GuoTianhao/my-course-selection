@@ -13,6 +13,7 @@ import com.client.ui.main.MainFrame;
 import com.ui.myswing.MPanel;
 import com.ui.myswing.MButton;
 import com.ui.bcswing.CourseDisplayTable;
+import com.ui.bcswing.FrameDisplayTable;
 import com.ui.bcswing.titleBar.FacultyTitleBar;
 import com.ui.bcswing.titleBar.TitleBar;
 
@@ -20,8 +21,8 @@ public class TeachingPlanPanel extends MPanel{
 	private TitleBar title;
 	private MButton add;
 	private MButton change;
-	private MButton delete;
-	private CourseDisplayTable table;
+	private MButton publish;
+	private FrameDisplayTable table;
 	
 	public TeachingPlanPanel(Point loc,Dimension size){
 		super(loc,size);
@@ -31,18 +32,18 @@ public class TeachingPlanPanel extends MPanel{
 	
 	private void createComponent() {
 		title = new FacultyTitleBar(new Point(0, 0), new Dimension(this.getWidth(), 75));
-		table = new CourseDisplayTable(new Point(10, 130), new Dimension(780,430));
+		table = new FrameDisplayTable(new Point(10, 130), new Dimension(780,430));
 		add = new MButton(new ImageIcon(),new ImageIcon(),new ImageIcon(),new Point(15,95),new Dimension(100,30));
 		change = new MButton(null,null,null,new Point(100,95),new Dimension(80,30));
-		delete = new MButton(null,null,null,new Point(185,95),new Dimension(80,30));
+		publish = new MButton(null,null,null,new Point(185,95),new Dimension(80,30));
 		
 		change.setText("更改");
-		delete.setText("删除");
+		publish.setText("发布");
 		
 		this.add(title);
 		this.add(add);
 		this.add(change);
-		this.add(delete);
+		this.add(publish);
 		this.add(table);
 	}
 	

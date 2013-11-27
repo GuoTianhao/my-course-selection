@@ -2,11 +2,14 @@ package com.client.ui.studentUI.MCourse;
 
 import java.awt.Dimension;
 import java.awt.Point;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.UIManager;
 
 import com.basicdata.YearKind;
 import com.client.ui.main.MainFrame;
+import com.client.ui.studentUI.StudentUISwitchController;
 import com.ui.bcswing.FrameDisplayTable;
 import com.ui.bcswing.titleBar.StudentTitleBar;
 import com.ui.bcswing.titleBar.TitleBar;
@@ -18,28 +21,38 @@ public class MyCoursePanel extends MPanel {
 
 	private TitleBar title;
 	private MLabel choose;
-	private MComboBox<String> year;
+	private MComboBox<String> term;
 	private FrameDisplayTable table;
-	private String[] yearItems = YearKind.getYear();
 	private Object[] data;
 
 	public MyCoursePanel(Point loc, Dimension size) {
 		super(loc, size);
 		createComponent();
+		addListener();
 	}
 
 	private void createComponent() {
 		title = new StudentTitleBar(new Point(0, 0), new Dimension(
 				this.getWidth(), 75));
 		choose = new MLabel(new Point(15, 95), new Dimension(75, 22), "选择学期：");
-		year = new MComboBox<>(yearItems, new Point(90, 95), new Dimension(150,
+		term = new MComboBox<>(YearKind.getAllTerm(), new Point(90, 95), new Dimension(150,
 				25));
 		table = new FrameDisplayTable(new Point(10, 130), new Dimension(780,
 				430));
 		this.add(title);
 		this.add(choose);
-		this.add(year);
+		this.add(term);
 		this.add(table);
+	}
+	
+	private void addListener(){
+		title.addReturnMenu(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				StudentUISwitchController controller = StudentUISwitchController
+						.getUISwitchController();
+				controller.switchToMainFrame();
+			}
+		});
 	}
 
 	public static void main(String[] args) {

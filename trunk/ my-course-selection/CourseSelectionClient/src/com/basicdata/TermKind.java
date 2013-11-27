@@ -1,13 +1,8 @@
 package com.basicdata;
 
-public class YearKind {
-	static String[] year={"2013","2014","2015","2016"};
-	
-	public static String[] getYear(){
-		return year;
-	}
-	public static String getTerm(String year){
-		return "";
+public class TermKind {
+	public static int getTerm(String year){
+		return 3;
 	}
 	public static String getName(String term){
 		return "";

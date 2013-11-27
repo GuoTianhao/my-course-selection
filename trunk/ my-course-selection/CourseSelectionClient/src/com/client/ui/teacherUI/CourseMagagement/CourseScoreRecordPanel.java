@@ -15,41 +15,68 @@ import com.ui.bcswing.titleBar.TitleBar;
 import com.ui.myswing.MButton;
 import com.ui.myswing.MPanel;
 
-public class CourseScoreRecordPanel extends MPanel{
+public class CourseScoreRecordPanel extends MPanel {
 	private TitleBar title;
 	private CourseScoreTable table;
 	private MButton backB;
 	private MButton editB;
-	public CourseScoreRecordPanel(Point loc, Dimension size){
+
+	public CourseScoreRecordPanel(Point loc, Dimension size) {
 		super(loc, size);
 		createComponent();
 		addListener();
+		init();
 	}
-	private void createComponent(){
-		title = new TeacherTitleBar(new Point(0, 0),
-				new Dimension(this.getWidth(), 75));
-		table=new CourseScoreTable(new Point(10, 130), new Dimension(780,
-				430));
-		backB=new MButton(null, null, null, new Point(10, 95), new Dimension(
+
+	private void createComponent() {
+		title = new TeacherTitleBar(new Point(0, 0), new Dimension(
+				this.getWidth(), 75));
+		table = new CourseScoreTable(new Point(10, 130),
+				new Dimension(780, 430));
+		backB = new MButton(null, null, null, new Point(10, 95), new Dimension(
 				100, 30));
-		editB=new MButton(null,null,null,new Point(700,95),new Dimension(100,30));
-		
+		editB = new MButton(null, null, null, new Point(700, 95),
+				new Dimension(100, 30));
+
 		backB.setText("返回");
 		editB.setText("双击以编辑成绩");
-		
+
 		this.add(title);
 		this.add(table);
 		this.add(backB);
 		this.add(editB);
 	}
-	private void addListener(){
-		backB.addActionListener(new ActionListener(){
+
+	private void addListener() {
+
+		backB.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				TeacherUISwtichController controller=TeacherUISwtichController.getUISwitchController();
+				TeacherUISwtichController controller = TeacherUISwtichController
+						.getUISwitchController();
 				controller.switchToCourseManagement();
 			}
 		});
+
+		editB.addActionListener(new EditListener());
+
 	}
+
+	private void init() {
+
+	}
+
+	class EditListener implements ActionListener {
+		int time = 0;
+
+		public void actionPerformed(ActionEvent e) {
+			time++;
+			if (time % 2 == 0) {
+				table.setEditable(new EditScorePermission());
+			}
+		}
+
+	}
+
 	public static void main(String[] args) {
 		try {
 			org.jb2011.lnf.beautyeye.BeautyEyeLNFHelper.launchBeautyEyeLNF();
@@ -57,9 +84,9 @@ public class CourseScoreRecordPanel extends MPanel{
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		MainFrame f = new MainFrame();
-		f.add(new CourseScoreRecordPanel(new Point(0, 0), new Dimension(
-				f.getSize().width, f.getSize().height)));
-		f.refresh();
+		TeacherUISwtichController controller = TeacherUISwtichController
+				.getUISwitchController();
+		controller.switchToRecordScore();
 	}
+
 }

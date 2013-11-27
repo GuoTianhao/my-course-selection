@@ -14,7 +14,7 @@ import javax.swing.ImageIcon;
 import javax.swing.UIManager;
 
 import com.basicdata.FacultyKind;
-import com.basicdata.YearKind;
+import com.basicdata.TermKind;
 import com.client.rmi.DeanMethodController;
 import com.client.ui.dataAdapter.CourseListToVectorAdapter;
 import com.client.ui.deanUI.DeanUISwitchController;
@@ -45,6 +45,7 @@ public class CoursePanel extends MPanel {
 		super(loc, size);
 		creatComponent();
 		addListener();
+		init();
 	}
 
 	private void creatComponent() {
@@ -101,6 +102,10 @@ public class CoursePanel extends MPanel {
 		allCourseOperateBar.addYearItemListener(new Term_FacultyListener());
 
 		allCourseOperateBar.addFacultyItemListenr(new Term_FacultyListener());
+	}
+
+	private void init() {
+
 	}
 
 	private void addCoursePublishOperateBar() {
@@ -162,21 +167,23 @@ public class CoursePanel extends MPanel {
 	}
 
 	class Term_FacultyListener implements ItemListener {
-		int time=0;
+		int time = 0;
+
 		public void itemStateChanged(ItemEvent e) {
 			time++;
-			if(time%2==0){
+			if (time % 2 == 0) {
 				String term = allCourseOperateBar.getTerm();
-				String faculty = FacultyKind.getType(allCourseOperateBar.getFaculty());
-				term=YearKind.getTerm(term);
-				faculty=FacultyKind.getType(faculty);
+				String faculty = FacultyKind.getType(allCourseOperateBar
+						.getFaculty());
+				faculty = FacultyKind.getType(faculty);
 				DeanMethod method = DeanMethodController.getMethod();
 				try {
-					courseTable.setDataVector(CourseListToVectorAdapter.adapter(method
-							.geFacultyTypeCourse(faculty, term)));
+					courseTable.setDataVector(CourseListToVectorAdapter
+							.adapter(method.geFacultyTypeCourse(faculty,
+									TermKind.getTerm(term) + "")));
 				} catch (RemoteException e1) {
 					e1.printStackTrace();
-				}	
+				}
 			}
 		}
 	}
@@ -189,8 +196,9 @@ public class CoursePanel extends MPanel {
 			e.printStackTrace();
 		}
 
-		MainFrame f = new MainFrame();
-		f.add(new CoursePanel(new Point(0, 0), f.getSize()));
-		f.refresh();
+		DeanUISwitchController controller = DeanUISwitchController
+				.getUISwitchController();
+		controller.switchToCoursePanel();
 	}
+	
 }

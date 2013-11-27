@@ -24,12 +24,12 @@ public class CourseSelectedPanel extends MPanel {
 	private MLabel label;
 	private CourseDisplayTable table1;
 	private StudentCourseDisplayTable table2;
-	private Object[] data;
 
 	public CourseSelectedPanel(Point loc, Dimension size) {
 		super(loc, size);
 		createComponent();
 		addListener();
+		init();
 	}
 
 	private void createComponent() {
@@ -54,8 +54,9 @@ public class CourseSelectedPanel extends MPanel {
 		this.add(table1);
 		this.refresh();
 	}
-	
-	private void addListener(){
+
+	private void addListener() {
+		
 		title.addReturnMenu(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				StudentUISwitchController controller = StudentUISwitchController
@@ -65,6 +66,10 @@ public class CourseSelectedPanel extends MPanel {
 		});
 	}
 
+	private void init() {
+
+	}
+
 	public static void main(String[] args) {
 		try {
 			org.jb2011.lnf.beautyeye.BeautyEyeLNFHelper.launchBeautyEyeLNF();
@@ -72,9 +77,8 @@ public class CourseSelectedPanel extends MPanel {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		MainFrame f = new MainFrame();
-		f.add(new CourseSelectedPanel(new Point(0, 0), new Dimension(f
-				.getSize().width, f.getSize().height)));
-		f.refresh();
+		StudentUISwitchController controller = StudentUISwitchController
+				.getUISwitchController();
+		controller.switchToSCourse();
 	}
 }

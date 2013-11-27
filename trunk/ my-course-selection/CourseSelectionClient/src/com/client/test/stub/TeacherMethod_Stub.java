@@ -67,9 +67,6 @@ public class TeacherMethod_Stub implements TeacherMethod {
 		list.add(stu1);
 		list.add(stu2);
 		
-		if(cID=="0001") {
-			return list;
-		}
 		return list;
 		
 	}

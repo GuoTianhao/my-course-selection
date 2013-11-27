@@ -9,7 +9,7 @@ import java.awt.event.ItemListener;
 import javax.swing.ImageIcon;
 
 import com.basicdata.FacultyKind;
-import com.basicdata.YearKind;
+import com.basicdata.TermKind;
 import com.ui.myswing.MButton;
 import com.ui.myswing.MComboBox;
 import com.ui.myswing.MLabel;
@@ -32,7 +32,7 @@ public class AllCourseOperateBar extends MPanel{
 	}
 	private void creatComponent(){
 		faculty=new MComboBox(FacultyKind.getAllFaculty(),new Point(50,0),new Dimension(100,30));
-		termBox=new MComboBox(YearKind.getAllTerm(),new Point(200,0),new Dimension(100,30));
+		termBox=new MComboBox(TermKind.getAllTerm(),new Point(200,0),new Dimension(100,30));
 		search = new MTextField(new Point(650, 0), new Dimension(100,30));
 		searchBtn = new MButton(null,null,null,new Point(755,0),new Dimension(30,30));
 		

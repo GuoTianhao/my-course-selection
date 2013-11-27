@@ -11,7 +11,7 @@ import java.rmi.RemoteException;
 import javax.swing.UIManager;
 
 import com.basicdata.FacultyKind;
-import com.basicdata.YearKind;
+import com.basicdata.TermKind;
 import com.client.rmi.DeanMethodController;
 import com.client.rmi.StudentMethodController;
 import com.client.ui.dataAdapter.CourseListToVectorAdapter;
@@ -26,7 +26,7 @@ import com.ui.myswing.MComboBox;
 import com.ui.myswing.MLabel;
 import com.ui.myswing.MPanel;
 
-public class CourseLookUpPanel extends MPanel{
+public class CourseLookUpPanel extends MPanel {
 	private TitleBar title;
 	private MLabel choose1;
 	private MLabel choose2;
@@ -35,30 +35,35 @@ public class CourseLookUpPanel extends MPanel{
 	private FrameDisplayTable table;
 	private String[] departmentItems = FacultyKind.getAllFaculty();
 	private Object[] data;
-	
-	public CourseLookUpPanel(Point loc,Dimension size){
-		super(loc,size);
+
+	public CourseLookUpPanel(Point loc, Dimension size) {
+		super(loc, size);
 		createComponent();
 		addListener();
 		init();
 	}
-	
+
 	private void createComponent() {
-		title = new StudentTitleBar(new Point(0, 0), new Dimension(this.getWidth(), 75));
+		title = new StudentTitleBar(new Point(0, 0), new Dimension(
+				this.getWidth(), 75));
 		choose1 = new MLabel(new Point(15, 95), new Dimension(75, 22), "选择学期：");
-		term = new MComboBox<>(YearKind.getAllTerm(), new Point(90, 95), new Dimension(150, 25));
+		term = new MComboBox<>(TermKind.getAllTerm(), new Point(90, 95),
+				new Dimension(150, 25));
 		choose2 = new MLabel(new Point(260, 95), new Dimension(75, 22), "选择院系：");
-		department = new MComboBox<>(departmentItems, new Point(350, 95), new Dimension(150, 25));
-		table = new FrameDisplayTable(new Point(10, 130), new Dimension(780,430));
+		department = new MComboBox<>(departmentItems, new Point(350, 95),
+				new Dimension(150, 25));
+		table = new FrameDisplayTable(new Point(10, 130), new Dimension(780,
+				430));
 		this.add(title);
 		this.add(choose1);
 		this.add(choose2);
 		this.add(department);
 		this.add(term);
-		this.add(table);	
+		this.add(table);
 	}
-	
-	private void addListener(){
+
+	private void addListener() {
+
 		title.addReturnMenu(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				StudentUISwitchController controller = StudentUISwitchController
@@ -66,48 +71,53 @@ public class CourseLookUpPanel extends MPanel{
 				controller.switchToMainFrame();
 			}
 		});
-		
+
 		term.addItemListener(new Term_FacultyListener());
+
 		department.addItemListener(new Term_FacultyListener());
-		
-	}
-	
-	private void init(){
-		term.setSelectedIndex(0);
-		term.setSelectedIndex(0);
-	}
-	
-	class Term_FacultyListener implements ItemListener {
-		int time=0;
-		public void itemStateChanged(ItemEvent e) {
-			time++;
-			if(time%2==0){
-				String term = (String) CourseLookUpPanel.this.term.getSelectedItem();
-				String faculty = (String) CourseLookUpPanel.this.department.getSelectedItem();
-				System.out.println(term+" ;"+faculty+" ");
-				term=YearKind.getTerm(term);
-				faculty=FacultyKind.getType(faculty);
-				System.out.println("term:"+term+" faculty:"+faculty);
-				StudentMethod method = StudentMethodController.getMethod();
-				try {
-					table.setDataVector(CourseListToVectorAdapter.adapter(method
-							.geFacultyTypeCourse(faculty, term)));
-				} catch (RemoteException e1) {
-					e1.printStackTrace();
-				}	
-			}
-		}
+
 	}
 
-	public static void main(String[] args){
+	private void init() {
+		term.setSelectedIndex(0);
+		term.setSelectedIndex(0);
+	}
+
+	class Term_FacultyListener implements ItemListener {
+		int time = 0;
+
+		public void itemStateChanged(ItemEvent e) {
+			time++;
+			if (time % 2 == 0) {
+				String term = (String) CourseLookUpPanel.this.term
+						.getSelectedItem();
+				String faculty = (String) CourseLookUpPanel.this.department
+						.getSelectedItem();
+				faculty = FacultyKind.getType(faculty);
+				System.out.println("term:" + term + " faculty:" + faculty);
+				StudentMethod method = StudentMethodController.getMethod();
+				try {
+					table.setDataVector(CourseListToVectorAdapter
+							.adapter(method.geFacultyTypeCourse(faculty,
+									TermKind.getTerm(term) + "")));
+				} catch (RemoteException e1) {
+					e1.printStackTrace();
+				}
+			}
+		}
+
+	}
+
+	public static void main(String[] args) {
 		try {
 			org.jb2011.lnf.beautyeye.BeautyEyeLNFHelper.launchBeautyEyeLNF();
 			UIManager.put("RootPane.setupButtonVisible", false);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		MainFrame f=new MainFrame();
-		f.add(new CourseLookUpPanel(new Point(0,0),new Dimension(f.getSize().width,f.getSize().height)));
-		f.refresh();
+		StudentUISwitchController controller = StudentUISwitchController
+				.getUISwitchController();
+		controller.switchToAllCourse();
 	}
+
 }

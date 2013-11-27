@@ -42,7 +42,7 @@ public class MDefaultTableModel extends DefaultTableModel {
 		if(edit!=null){
 			return edit.isEditable(row, column);
 		}
-		return true;
+		return false;
 	}
 	
 	public void setEditable(EditPermission edit){

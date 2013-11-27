@@ -7,13 +7,10 @@ import java.awt.Point;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.swing.ButtonGroup;
 import javax.swing.DefaultComboBoxModel;
-import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 
-import com.basicdata.Identity;
 import com.client.ui.main.MainUISwitchController;
 import com.ui.myswing.*;
 
@@ -27,9 +24,12 @@ public class Login extends JFrame {
 	private MTextField tID;
 	private MPasswordField tPassword;
 	private JComboBox select;
+
 	public Login() {
 		super();
 		createAndShowUI();
+		addListener();
+		init();
 	}
 
 	private Component createComponent() {
@@ -38,10 +38,9 @@ public class Login extends JFrame {
 				new Dimension(60, 30));
 
 		bLogin.setText("登陆");
-		bLogin.addActionListener(new LoginListener());
+
 		// textfiled
-		tID = new MTextField(new Point(70, 19), new Dimension(120,
-				38));
+		tID = new MTextField(new Point(70, 19), new Dimension(120, 38));
 		tPassword = new MPasswordField(new Point(70, 68),
 				new Dimension(120, 38));
 
@@ -77,13 +76,26 @@ public class Login extends JFrame {
 		setLocationRelativeTo(null);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
-	class LoginListener implements ActionListener{
+
+	private void addListener() {
+		
+		bLogin.addActionListener(new LoginListener());
+		
+	}
+	
+	private void init(){
+
+	}
+
+	class LoginListener implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
-			int index=select.getSelectedIndex();
-		//	if(tID.isValidInput()&&tPassword.isValidInput()){
-				if(LoginHandle.login(tID.getText(),tPassword.getText(),index)){
-					MainUISwitchController controller=MainUISwitchController.getUISwitchController();
-					switch(index){
+			int index = select.getSelectedIndex();
+			if (tID.isValidInput() && tPassword.isValidInput()) {
+				if (LoginHandle
+						.login(tID.getText(), tPassword.getText(), index)) {
+					MainUISwitchController controller = MainUISwitchController
+							.getUISwitchController();
+					switch (index) {
 					case 0:
 						controller.switchToDeanMainPanel();
 						break;
@@ -98,14 +110,14 @@ public class Login extends JFrame {
 						break;
 					}
 					Login.this.dispose();
-				}else{
+				} else {
 					System.out.println("帐号或密码错误");
 				}
-//			}else{
-//				System.out.println("输入错误");
-//			}
-			
+			} else {
+				System.out.println("输入错误");
+			}
+
 		}
-		
+
 	}
 }

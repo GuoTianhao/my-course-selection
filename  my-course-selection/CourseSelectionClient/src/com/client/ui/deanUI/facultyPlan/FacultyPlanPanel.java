@@ -1,5 +1,6 @@
 package com.client.ui.deanUI.facultyPlan;
 
+import java.awt.AWTEvent;
 import java.awt.Dimension;
 import java.awt.Point;
 import java.awt.event.ActionEvent;
@@ -68,7 +69,8 @@ public class FacultyPlanPanel extends MPanel {
 	}
 
 	private void init() {
-
+		department.setSelectedIndex(-1);
+		department.setSelectedIndex(0);
 	}
 
 	class FacultyListener implements ItemListener {
@@ -76,6 +78,7 @@ public class FacultyPlanPanel extends MPanel {
 
 		public void itemStateChanged(ItemEvent e) {
 			time++;
+			System.out.println(time);
 			if (time % 2 == 0) {
 				String faculty = (String) department.getSelectedItem();
 				faculty = FacultyKind.getType(faculty);

@@ -55,10 +55,10 @@ public class CourseScriptPane extends MFrame {
 		refBookArea = new JTextArea();
 		refBookArea.setLocation(150, 240);
 		refBookArea.setSize(250, 60);
-		yesBtn = new MButton("确认");
-		yesBtn.setBounds(120, 330, 80, 25);
-		noBtn = new MButton("取消");
-		noBtn.setBounds(250, 330, 80, 25);
+		yesBtn = new MButton(null, null, null, new Point(120, 330), new Dimension(80, 25));
+		yesBtn.setText("确认");
+		noBtn = new MButton(null, null, null, new Point(250, 330), new Dimension(80, 25));
+		noBtn.setText("取消");
 		scriptPanel.add(outlineLb);
 		scriptPanel.add(outlineArea);
 		scriptPanel.add(bookLb);

@@ -60,7 +60,7 @@ public class FacultyDeanMethod_Driver {
 		time.add("2_5_7");
 		time.add("1_1_4");
 		Course c = new Course("0003", "数据结构与算法", "仙2_304", "F", 3, "1_17",
-				"1250", "尼玛全市算法", 0, time, null);
+				"1250", "尼玛全市算法", 0,3, time, null);
 		FacultyDeanMethod method = getMethod();
 		try {
 			if (method.publishCourse("100000000", c)) {
@@ -117,7 +117,7 @@ public class FacultyDeanMethod_Driver {
 		time.add("2_5_7");
 		time.add("1_1_4");
 		Course c = new Course("0003", "数据结构与算法", "仙2_304", "F", 3, "1_17",
-				"1250", "尼玛全市算法", 0, time, null);
+				"1250", "尼玛全市算法", 0,3, time, null);
 		FacultyDeanMethod method = getMethod();
 		try {
 			if (method.modifyCourse(c)) {

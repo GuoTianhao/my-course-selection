@@ -11,6 +11,7 @@ import javax.swing.UIManager;
 
 import com.basicdata.Identity;
 import com.client.rmi.FacultyDeanMethodController;
+import com.client.ui.dataAdapter.CourseListToVectorAdapter;
 import com.client.ui.facultyUI.FacultyUISwitchController;
 import com.data.po.Course;
 import com.data.po.FacultyDean;
@@ -79,6 +80,7 @@ public class CourseManagementPanel extends MPanel {
 		FacultyDeanMethod method = FacultyDeanMethodController.getMethod();
 		try {
 			List<Course> list=method.getCourseList(self.getID());
+			table.setDataVector(CourseListToVectorAdapter.adapter(list));
 		} catch (RemoteException e) {
 			e.printStackTrace();
 		}
@@ -105,6 +107,13 @@ public class CourseManagementPanel extends MPanel {
 	}
 
 	public static void main(String[] args) {
+		FacultyDeanMethod method = FacultyDeanMethodController.getMethod();
+		try {
+			Identity.setIdentity(method.getSelf(""));
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		try {
 			org.jb2011.lnf.beautyeye.BeautyEyeLNFHelper.launchBeautyEyeLNF();
 			UIManager.put("RootPane.setupButtonVisible", false);

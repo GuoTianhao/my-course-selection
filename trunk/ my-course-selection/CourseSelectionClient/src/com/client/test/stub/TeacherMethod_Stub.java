@@ -49,7 +49,7 @@ public class TeacherMethod_Stub implements TeacherMethod {
 		List<String> time=new ArrayList<String>();
 		time.add("2_5_7");
 		time.add("1_1_4");
-		Course c1=new Course("0001","软件工程与计算","仙2_303","F",3,"1_17","1250","打造全院最好软件教育",0, time, null);
+		Course c1=new Course("0001","软件工程与计算","仙2_303","F",3,"1_17","1250","打造全院最好软件教育",0, 3,time, null);
 		time.clear();
 		 if(cID.equals(c1.getID())) {
 			 c1.setScript(text);

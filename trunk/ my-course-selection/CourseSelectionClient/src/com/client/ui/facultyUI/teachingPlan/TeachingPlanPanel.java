@@ -28,6 +28,7 @@ public class TeachingPlanPanel extends MPanel{
 		super(loc,size);
 		createComponent();
 		addListener();
+		init();
 	}
 	
 	private void createComponent() {
@@ -48,6 +49,7 @@ public class TeachingPlanPanel extends MPanel{
 	}
 	
 	private void addListener(){
+		
 		title.addReturnMenu(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				FacultyUISwitchController controller = FacultyUISwitchController
@@ -55,6 +57,11 @@ public class TeachingPlanPanel extends MPanel{
 				controller.swicthToMainFrame();
 			}
 		});
+		
+	}
+	
+	private void init(){
+		
 	}
 
 	public static void main(String[] args){
@@ -64,8 +71,9 @@ public class TeachingPlanPanel extends MPanel{
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		MainFrame f=new MainFrame();
-		f.add(new TeachingPlanPanel(new Point(0,0),new Dimension(f.getSize().width,f.getSize().height)));
-		f.refresh();
+		
+		FacultyUISwitchController controller = FacultyUISwitchController
+				.getUISwitchController();
+		controller.switchToTeachingPlanPanel();
 	}
 }

@@ -71,7 +71,8 @@ public class MyCoursePanel extends MPanel {
 	}
 
 	private void init() {
-
+		term.setSelectedIndex(-1);
+		term.setSelectedIndex(0);
 	}
 
 	class TermItemListener implements ItemListener {
@@ -99,6 +100,12 @@ public class MyCoursePanel extends MPanel {
 
 	public static void main(String[] args) {
 		try {
+			Identity.setIdentity(StudentMethodController.getMethod().getSelf(
+					"0000"));
+		} catch (RemoteException e) {
+			e.printStackTrace();
+		}
+		try {
 			org.jb2011.lnf.beautyeye.BeautyEyeLNFHelper.launchBeautyEyeLNF();
 			UIManager.put("RootPane.setupButtonVisible", false);
 		} catch (Exception e) {
@@ -107,11 +114,5 @@ public class MyCoursePanel extends MPanel {
 		StudentUISwitchController controller = StudentUISwitchController
 				.getUISwitchController();
 		controller.switchToMCourse();
-		try {
-			Identity.setIdentity(StudentMethodController.getMethod().getSelf(
-					"0000"));
-		} catch (RemoteException e) {
-			e.printStackTrace();
-		}
 	}
 }

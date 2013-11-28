@@ -79,7 +79,7 @@ public class CourseLookUpPanel extends MPanel {
 	}
 
 	private void init() {
-		term.setSelectedIndex(0);
+		term.setSelectedIndex(-1);
 		term.setSelectedIndex(0);
 	}
 

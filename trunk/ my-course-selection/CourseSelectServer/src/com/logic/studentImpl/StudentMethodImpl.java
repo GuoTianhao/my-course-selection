@@ -83,4 +83,10 @@ public class StudentMethodImpl extends UnicastRemoteObject implements StudentMet
 		return CourseGetter.getFacultyTypeCourse(facultyID, grade);
 	}
 
+	@Override
+	public List<Course> getTypeCourse(String type) throws RemoteException {
+		// TODO Auto-generated method stub
+		return CourseGetter.getTypeCourse(type);
+	}
+
 }

@@ -39,4 +39,7 @@ public interface StudentMethod extends Remote {
 	// 得到院系具体学期课程
 	public List<Course> geFacultyTypeCourse(String facultyID, String grade)
 			throws RemoteException;
+	
+	//得到具体类型课程
+	public List<Course> getTypeCourse(String type) throws RemoteException;
 }

@@ -14,9 +14,7 @@ public class CourseListToVectorAdapter {
 			Course c = (Course) it.next();
 			Vector row = new Vector<>();
 			row.add(c.getID());
-			row.add(c.getType());
 			row.add(c.getName());
-			row.add(c.getNum());
 			row.add(c.getPeriod());
 			res.add(row);
 		}

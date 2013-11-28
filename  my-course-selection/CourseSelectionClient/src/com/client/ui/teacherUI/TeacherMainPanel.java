@@ -17,7 +17,7 @@ public class TeacherMainPanel extends MPanel {
 	private TeacherTitleBar title;
 	private MButton btn1;
 
-	TeacherUISwtichController controller;
+	TeacherUISwitchController controller;
 
 	public TeacherMainPanel(Point loc, Dimension size) {
 		super(loc, size);
@@ -39,7 +39,7 @@ public class TeacherMainPanel extends MPanel {
 	}
 
 	private void addListener() {
-		controller = TeacherUISwtichController.getUISwitchController();
+		controller = TeacherUISwitchController.getUISwitchController();
 		btn1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				TeacherMainPanel.this.controller.switchToCourseManagement();
@@ -55,7 +55,7 @@ public class TeacherMainPanel extends MPanel {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		TeacherUISwtichController controller = TeacherUISwtichController.getUISwitchController();
+		TeacherUISwitchController controller = TeacherUISwitchController.getUISwitchController();
 		controller.switchToMainFrame();
 	}
 

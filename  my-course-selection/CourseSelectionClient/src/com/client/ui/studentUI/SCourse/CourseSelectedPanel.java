@@ -14,17 +14,17 @@ import javax.swing.UIManager;
 
 import com.basicdata.Identity;
 import com.basicdata.StudentSelectCourseType;
-import com.basicdata.TermKind;
 import com.client.rmi.StudentMethodController;
-import com.client.ui.dataAdapter.CourseListToFacultyAdapter;
-import com.client.ui.dataAdapter.CourseListToVectorAdapter;
-import com.client.ui.main.MainFrame;
+import com.client.ui.dataAdapter.CourseListToCourseTermListAdapter;
+import com.client.ui.dataAdapter.GradeToTermAdapter;
+import com.client.ui.dataAdapter.StudentSelectedCourseListToVectorAdapter;
+import com.client.ui.dataAdapter.StudentUnselectedCourseListToVectorAdapeter;
 import com.client.ui.studentUI.StudentUISwitchController;
 import com.data.po.Course;
 import com.data.po.Student;
 import com.logicService.StudentMethod;
-import com.ui.bcswing.CourseDisplayTable;
-import com.ui.bcswing.StudentCourseDisplayTable;
+import com.ui.bcswing.StudentSelectedCourseDisplayTable;
+import com.ui.bcswing.StudentUnselectedCourseDisplayTable;
 import com.ui.bcswing.titleBar.StudentTitleBar;
 import com.ui.bcswing.titleBar.TitleBar;
 import com.ui.myswing.MButton;
@@ -34,11 +34,11 @@ import com.ui.myswing.MPanel;
 
 public class CourseSelectedPanel extends MPanel {
 	private TitleBar title;
-	private MButton button1;
-	private MButton button2;
+	private MButton select;
+	private MButton quit;
 	private MLabel label;
-	private CourseDisplayTable table1;
-	private StudentCourseDisplayTable table2;
+	private StudentUnselectedCourseDisplayTable table1;
+	private StudentSelectedCourseDisplayTable table2;
 	private MComboBox<String> courseType;
 
 	public CourseSelectedPanel(Point loc, Dimension size) {
@@ -51,25 +51,25 @@ public class CourseSelectedPanel extends MPanel {
 	private void createComponent() {
 		title = new StudentTitleBar(new Point(0, 0), new Dimension(
 				this.getWidth(), 75));
-		button1 = new MButton(null, null, null, new Point(360, 95),
+		select = new MButton(null, null, null, new Point(360, 95),
 				new Dimension(50, 25));
-		button1.setText("选择");
-		button2 = new MButton(null, null, null, new Point(720, 95),
-				new Dimension(50, 25));
-		button2.setText("推选");
+		select.setText("选择");
+		quit = new MButton(null, null, null, new Point(720, 95), new Dimension(
+				50, 25));
+		quit.setText("推选");
 		label = new MLabel(new Point(430, 95), new Dimension(75, 22), "已选课程");
-		table2 = new StudentCourseDisplayTable(new Point(430, 130),
+		table2 = new StudentSelectedCourseDisplayTable(new Point(430, 130),
 				new Dimension(350, 430));
-		table1 = new CourseDisplayTable(new Point(10, 130), new Dimension(400,
-				430));
+		table1 = new StudentUnselectedCourseDisplayTable(new Point(10, 130),
+				new Dimension(400, 430));
 
 		courseType = new MComboBox<>(
 				StudentSelectCourseType.getAllSelectCourseType(), new Point(90,
 						95), new Dimension(150, 25));
 
 		this.add(title);
-		this.add(button1);
-		this.add(button2);
+		this.add(select);
+		this.add(quit);
 		this.add(label);
 		this.add(table2);
 		this.add(table1);
@@ -88,57 +88,99 @@ public class CourseSelectedPanel extends MPanel {
 		});
 
 		courseType.addItemListener(new CourseTypeListener());
+
+		select.addActionListener(new SelectListener());
+
+		quit.addActionListener(new QuitListener());
 	}
 
 	private void init() {
+
 		courseType.setSelectedIndex(-1);
 		courseType.setSelectedIndex(0);
-		// Student student = (Student) (Identity.getIdentity());
-		// StudentMethod method=StudentMethodController.getMethod();
-		// List<Course> selected=new ArrayList<Course>();
-		// try {
-		// selected=method.getCourseList(student.getID());
-		// } catch (RemoteException e) {
-		// e.printStackTrace();
-		// }
+		
+		refreshSelectedTable();
+
+	}
+	
+	private void refreshSelectedTable(){
+		Student student = (Student) (Identity.getIdentity());
+		StudentMethod method = StudentMethodController.getMethod();
+		List<Course> selected = new ArrayList<Course>();
+		try {
+			selected = method.getCourseList(student.getID());
+			selected = CourseListToCourseTermListAdapter.adapter(selected,
+					GradeToTermAdapter.adapter(student.getGrade()));
+			table2.setDataVector(StudentSelectedCourseListToVectorAdapter
+					.adapter(selected));
+		} catch (RemoteException e) {
+			e.printStackTrace();
+		}
 	}
 
 	class CourseTypeListener implements ItemListener {
 		int time = 0;
-		StudentMethod method = StudentMethodController.getMethod();
-		List<Course> list;
-		Student student;
-
-		public CourseTypeListener() {
-			student = (Student) Identity.getIdentity();
-		}
 
 		public void itemStateChanged(ItemEvent e) {
 			time++;
 			if (time % 2 == 0) {
 				String type = (String) courseType.getSelectedItem();
-				type = StudentSelectCourseType.getType(type);
-				if (!type.equals("G")) {
-					try {
-						list = method.getTypeCourse(type);
-						if (type.equals("F")) {
-							list = CourseListToFacultyAdapter.adapter(list,
-									student.getFaculty());
-						}
-					} catch (RemoteException e1) {
-						e1.printStackTrace();
+				List<Course> list = CourseTypeHandle.handle(type);
+				table1.setDataVector(StudentUnselectedCourseListToVectorAdapeter
+						.adapter(list));
+			}
+		}
+
+	}
+
+	class SelectListener implements ActionListener {
+		
+		Student student = (Student) (Identity.getIdentity());
+		
+		public void actionPerformed(ActionEvent e) {
+			int index = table1.getSelectedRow();
+			if (index >= 0) {
+				String cID = (String) table1.getValueAt(index, 0);
+				StudentMethod method = StudentMethodController.getMethod();
+				try {
+					boolean admit=method.selectCourse(student.getID(),cID);
+					if(admit){
+						System.out.println("选课成功");
+					}else{
+						System.out.println("选课失败");
 					}
-				} else {
-					try {
-						list = method.getTypeCourse("E");
-						list.addAll(method.getTypeCourse("F"));
-						list = CourseListToFacultyAdapter.adapterRverse(list,
-								student.getFaculty());
-					} catch (RemoteException e1) {
-						e1.printStackTrace();
-					}
+				} catch (RemoteException e1) {
+					e1.printStackTrace();
 				}
-				table1.setDataVector(CourseListToVectorAdapter.adapter(list));
+				CourseSelectedPanel.this.refreshSelectedTable();
+			}	
+		}
+		
+	}
+
+	class QuitListener implements ActionListener {
+
+		Student student = (Student) (Identity.getIdentity());
+		
+		public void actionPerformed(ActionEvent e) {
+			int index = table2.getSelectedRow();
+			if(index>=0){
+				String cID = (String) table1.getValueAt(index, 0);
+				StudentMethod method = StudentMethodController.getMethod();
+				
+				try {
+					boolean admit=method.quitCourse(student.getID(),cID);
+					if(admit){
+						System.out.println("退选成功");
+					}else{
+						System.out.println("退选失败");
+					}
+					
+				} catch (RemoteException e1) {
+					e1.printStackTrace();
+				}
+				
+				CourseSelectedPanel.this.refreshSelectedTable();
 			}
 		}
 

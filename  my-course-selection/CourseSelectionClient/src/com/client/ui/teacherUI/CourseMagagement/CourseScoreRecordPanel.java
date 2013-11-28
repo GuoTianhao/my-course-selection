@@ -4,11 +4,17 @@ import java.awt.Dimension;
 import java.awt.Point;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.rmi.RemoteException;
+import java.util.List;
 
 import javax.swing.UIManager;
 
+import com.client.rmi.TeacherMethodController;
+import com.client.ui.dataAdapter.StudentListToVectorAdapter;
 import com.client.ui.main.MainFrame;
-import com.client.ui.teacherUI.TeacherUISwtichController;
+import com.client.ui.teacherUI.TeacherUISwitchController;
+import com.data.po.Student;
+import com.logicService.TeacherMethod;
 import com.ui.bcswing.CourseScoreTable;
 import com.ui.bcswing.titleBar.TeacherTitleBar;
 import com.ui.bcswing.titleBar.TitleBar;
@@ -21,11 +27,11 @@ public class CourseScoreRecordPanel extends MPanel {
 	private MButton backB;
 	private MButton editB;
 
-	public CourseScoreRecordPanel(Point loc, Dimension size) {
+	public CourseScoreRecordPanel(Point loc, Dimension size, String courseID) {
 		super(loc, size);
 		createComponent();
 		addListener();
-		init();
+		init(courseID);
 	}
 
 	private void createComponent() {
@@ -51,7 +57,7 @@ public class CourseScoreRecordPanel extends MPanel {
 
 		backB.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				TeacherUISwtichController controller = TeacherUISwtichController
+				TeacherUISwitchController controller = TeacherUISwitchController
 						.getUISwitchController();
 				controller.switchToCourseManagement();
 			}
@@ -61,8 +67,14 @@ public class CourseScoreRecordPanel extends MPanel {
 
 	}
 
-	private void init() {
-
+	private void init(String courseID) {
+		TeacherMethod method = TeacherMethodController.getMethod();
+		try {
+			List<Student> list = method.getCourseStudent(courseID);
+			table.setDataVector(StudentListToVectorAdapter.adapter(list));
+		} catch (RemoteException e) {
+			e.printStackTrace();
+		}
 	}
 
 	class EditListener implements ActionListener {
@@ -84,9 +96,9 @@ public class CourseScoreRecordPanel extends MPanel {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		TeacherUISwtichController controller = TeacherUISwtichController
+		TeacherUISwitchController controller = TeacherUISwitchController
 				.getUISwitchController();
-		controller.switchToRecordScore();
+		controller.switchToRecordScore("0001");
 	}
 
 }

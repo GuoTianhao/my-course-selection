@@ -11,7 +11,7 @@ import com.client.ui.loginUI.Login;
 import com.client.ui.studentUI.StudentMainPanel;
 import com.client.ui.studentUI.StudentUISwitchController;
 import com.client.ui.teacherUI.TeacherMainPanel;
-import com.client.ui.teacherUI.TeacherUISwtichController;
+import com.client.ui.teacherUI.TeacherUISwitchController;
 
 public class MainUISwitchController {
 	private static MainUISwitchController controller = null;
@@ -42,7 +42,7 @@ public class MainUISwitchController {
 	}
 
 	public void switchToTeacherMainPanel() {
-		TeacherUISwtichController controller=TeacherUISwtichController.getUISwitchController();
+		TeacherUISwitchController controller=TeacherUISwitchController.getUISwitchController();
 		controller.switchToMainFrame();
 	}
 

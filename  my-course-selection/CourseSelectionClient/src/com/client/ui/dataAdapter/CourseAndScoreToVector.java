@@ -1,5 +1,6 @@
 package com.client.ui.dataAdapter;
 
+import java.util.Iterator;
 import java.util.Map;
 import java.util.Vector;
 
@@ -7,6 +8,18 @@ import com.data.po.Course;
 
 public class CourseAndScoreToVector {
 	public static Vector adapter(Map<Course,Integer> map){
-		return new Vector();
+		Vector<Vector> res = new Vector<>();
+		Iterator<Course> it = map.keySet().iterator();
+		while (it.hasNext()) {
+			Course c = (Course) it.next();
+			Vector row = new Vector<>();
+			row.add(c.getID());
+			row.add(c.getName());
+			row.add(c.getType());
+			row.add(c.getCredit());
+			row.add(map.get(c));
+			res.add(row);
+		}
+		return res;
 	}
 }

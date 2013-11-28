@@ -1,6 +1,7 @@
 package com.ui.bcswing.titleBar;
 
 import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.Point;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -29,11 +30,11 @@ public class TitleBar extends MPanel{
 		addListener();
 	}
 	private void creatComponent(){
-		logout=new MButton(null,null,null,new Point(680,5),new Dimension(100,30));
+		logout=new MButton(null,null,null,new Point(680,5),new Dimension(100,25));
 		logout.setText("注销");
-		passwordChange=new MButton(null,null,null,new Point(680,40),new Dimension(100,30));
+		passwordChange=new MButton(null,null,null,new Point(680,40),new Dimension(100,25));
 		passwordChange.setText("修改密码");
-		message=new MLabel(new Point(120,20),new Dimension(300,50));
+		message=new MLabel(new Point(20,20),new Dimension(300,50));
 		message.setText("Welcome My !");
 		
 		menu=new MButton(null,null,null,new Point(15,40),new Dimension(100,30));

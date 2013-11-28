@@ -106,4 +106,10 @@ public class StudentMethod_Stub implements StudentMethod {
 		// TODO Auto-generated method stub
 		return getCourseList("1000");
 	}
+
+	@Override
+	public List<Course> getTypeCourse(String arg0) throws RemoteException {
+		// TODO Auto-generated method stub
+		return getCourseList(ID);
+	}
 }

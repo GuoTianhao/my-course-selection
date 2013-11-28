@@ -14,11 +14,12 @@ public class Course implements Serializable {
 	private String faculty = "";
 	private String script = "";
 	private int num;
+	private int credit;
 	private List<String> time = new ArrayList<String>();
 	private List<Teacher> teacher = new ArrayList<Teacher>();
 
 	public Course(String ID, String name, String loc, String type, int grade,
-			String period, String faculty, String script, int num,
+			String period, String faculty, String script, int num,int credit,
 			List<String> time, List<Teacher> teacher) {
 		this.ID = ID;
 		this.name = name;
@@ -29,6 +30,7 @@ public class Course implements Serializable {
 		this.setFaculty(faculty);
 		this.setScript(script);
 		this.setNum(num);
+		this.setCredit(credit);
 		if (time != null) {
 			this.time = time;
 		}
@@ -129,5 +131,13 @@ public class Course implements Serializable {
 
 	public void setNum(int num) {
 		this.num = num;
+	}
+
+	public int getCredit() {
+		return credit;
+	}
+
+	public void setCredit(int credit) {
+		this.credit = credit;
 	}
 }

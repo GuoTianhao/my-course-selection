@@ -21,6 +21,7 @@ public class CourseGetter {
 		aimName.add("faculty");
 		aimName.add("script");
 		aimName.add("Num");
+		aimName.add("credit");
 		return aimName;
 	}
 
@@ -34,8 +35,8 @@ public class CourseGetter {
 		clueName.add("ID");
 		clue.add(c.getID());
 
-		List<ArrayList<String>> res = DatabaseController.getMethod()
-				.search("courseTeacher", clueName, clue, aimName);
+		List<ArrayList<String>> res = DatabaseController.getMethod().search(
+				"courseTeacher", clueName, clue, aimName);
 		clueName.clear();
 		clue.clear();
 
@@ -61,15 +62,17 @@ public class CourseGetter {
 			List<String> clue) {
 		List<Course> list = new ArrayList<Course>();
 		List<String> aimName = getAimName();
-		List<ArrayList<String>> res = DatabaseController.getMethod()
-				.search("course", clueName, clue, aimName);
+		List<ArrayList<String>> res = DatabaseController.getMethod().search(
+				"course", clueName, clue, aimName);
 		Iterator<ArrayList<String>> it = res.iterator();
 		while (it.hasNext()) {
 			ArrayList<String> innerList = it.next();
 			Iterator<String> inIt = innerList.iterator();
 			Course course = courseFactory(new Course(inIt.next(), inIt.next(),
 					inIt.next(), inIt.next(), Integer.parseInt(inIt.next()),
-					inIt.next(), inIt.next(), inIt.next(),Integer.parseInt(inIt.next()), null, null));
+					inIt.next(), inIt.next(), inIt.next(),
+					Integer.parseInt(inIt.next()),
+					Integer.parseInt(inIt.next()), null, null));
 			list.add(course);
 
 		}
@@ -86,9 +89,10 @@ public class CourseGetter {
 		list = CourseGetter.getCourse(clueName, clue);
 		return list;
 	}
-	
-	//得到具体学期的院系课程
-	public static List<Course> getFacultyTypeCourse(String facultyID,String grade) {
+
+	// 得到具体学期的院系课程
+	public static List<Course> getFacultyTypeCourse(String facultyID,
+			String grade) {
 		List<Course> list;
 		List<String> clueName = new ArrayList<String>();
 		clueName.add("faculty");
@@ -114,9 +118,9 @@ public class CourseGetter {
 		}
 		return c;
 	}
-	
-	//以课程类型，得到与编号对应的课程
-	public static List<Course> getTypeCourse(String type){
+
+	// 以课程类型，得到与编号对应的课程
+	public static List<Course> getTypeCourse(String type) {
 		List<Course> list;
 		List<String> clueName = new ArrayList<String>();
 		clueName.add("Type");

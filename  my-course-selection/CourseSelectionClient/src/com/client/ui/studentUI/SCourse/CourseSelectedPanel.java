@@ -4,6 +4,8 @@ import java.awt.Dimension;
 import java.awt.Point;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.List;
@@ -36,6 +38,7 @@ public class CourseSelectedPanel extends MPanel {
 	private CourseDisplayTable table1;
 	private StudentCourseDisplayTable table2;
 	private MComboBox<String> courseType;
+
 	public CourseSelectedPanel(Point loc, Dimension size) {
 		super(loc, size);
 		createComponent();
@@ -57,10 +60,11 @@ public class CourseSelectedPanel extends MPanel {
 				new Dimension(350, 430));
 		table1 = new CourseDisplayTable(new Point(10, 130), new Dimension(400,
 				430));
-		
-		courseType=new MComboBox<>(StudentSelectCourseType.getAllSelectCourseType(), new Point(90, 95),
-				new Dimension(150, 25));
-		
+
+		courseType = new MComboBox<>(
+				StudentSelectCourseType.getAllSelectCourseType(), new Point(90,
+						95), new Dimension(150, 25));
+
 		this.add(title);
 		this.add(button1);
 		this.add(button2);
@@ -80,19 +84,34 @@ public class CourseSelectedPanel extends MPanel {
 				controller.switchToMainFrame();
 			}
 		});
+
+		courseType.addItemListener(new CourseTypeListener());
 	}
 
 	private void init() {
 		courseType.setSelectedIndex(-1);
-		
-//		Student student = (Student) (Identity.getIdentity());
-//		StudentMethod method=StudentMethodController.getMethod();
-//		List<Course> selected=new ArrayList<Course>();
-//		try {
-//			selected=method.getCourseList(student.getID());
-//		} catch (RemoteException e) {
-//			e.printStackTrace();
-//		}
+		courseType.setSelectedIndex(0);
+		// Student student = (Student) (Identity.getIdentity());
+		// StudentMethod method=StudentMethodController.getMethod();
+		// List<Course> selected=new ArrayList<Course>();
+		// try {
+		// selected=method.getCourseList(student.getID());
+		// } catch (RemoteException e) {
+		// e.printStackTrace();
+		// }
+	}
+
+	class CourseTypeListener implements ItemListener {
+		int time = 0;
+
+		public void itemStateChanged(ItemEvent e) {
+			time++;
+			if (time % 2 == 0) {
+				String type = (String) courseType.getSelectedItem();
+				type=StudentSelectCourseType.getType(type);
+			}
+		}
+
 	}
 
 	public static void main(String[] args) {

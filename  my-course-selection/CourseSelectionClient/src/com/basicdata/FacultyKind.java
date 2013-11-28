@@ -1,5 +1,6 @@
 package com.basicdata;
 
+import java.util.HashMap;
 import java.util.Map;
 
 public class FacultyKind {
@@ -9,19 +10,31 @@ public class FacultyKind {
 			"电子科学与工程学院", "现代工程与应用科学学院", "环境学院", "天文与空间科学学院", "计算机科学与技术系",
 			"医学院", "匡亚明学院", "软件学院", "工程管理学院", "海外教育学院", "建筑与城市规划学院" };
 
-	private Map<Integer, String> facultyMap;
-	
+	private static Map<String, String> idToName;
+	private static Map<String, String> nameToID;
+	private static void init() {
+		idToName = new HashMap<>();
+		nameToID = new HashMap<>();
+		int id = 1001;
+		for (int i = 0; i < faculty.length; i++) {
+			idToName.put(id+"", faculty[i]);
+			nameToID.put(faculty[i], id+"");
+			id++;
+		}
+	}
 	
 	public static String[] getAllFaculty() {
 		return faculty;
 	}
 
-	// 具体变序列
 	public static String getID(String name) {
-		return "";
+		init();
+		return nameToID.get(name);
 	}
 
-	public static String getName(String type) {
-		return "";
+	public static String getName(String ID) {
+		init();
+		return idToName.get(ID);
 	}
+	
 }

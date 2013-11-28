@@ -14,14 +14,14 @@ public class DatabaseSearch {
 			String clue, String aimName) {
 		Connection conn = DatabaseConnection.getConnection();
 		Statement st;
-		List list = new ArrayList<Object>();
+		List<String> list = new ArrayList<String>();
 		try {
 			String sql = "SELECT " + aimName + " FROM " + tableName + " WHERE "
 					+ clueName + "='" + clue + "'";
 			st = (Statement) conn.createStatement();
 			ResultSet res = st.executeQuery(sql);
 			while (res.next()) {
-				list.add(res.getObject(aimName));
+				list.add(res.getString(aimName));
 			}
 			conn.close();
 		} catch (Exception ex) {

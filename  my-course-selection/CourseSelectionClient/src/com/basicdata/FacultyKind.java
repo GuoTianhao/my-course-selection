@@ -17,7 +17,7 @@ public class FacultyKind {
 	}
 
 	// 具体变序列
-	public static String getType(String name) {
+	public static String getID(String name) {
 		return "";
 	}
 

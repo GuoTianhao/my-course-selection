@@ -93,7 +93,7 @@ public class CourseLookUpPanel extends MPanel {
 						.getSelectedItem();
 				String faculty = (String) CourseLookUpPanel.this.department
 						.getSelectedItem();
-				faculty = FacultyKind.getType(faculty);
+				faculty = FacultyKind.getID(faculty);
 				System.out.println("term:" + term + " faculty:" + faculty);
 				StudentMethod method = StudentMethodController.getMethod();
 				try {

@@ -174,9 +174,9 @@ public class CoursePanel extends MPanel {
 			time++;
 			if (time % 2 == 0) {
 				String term = allCourseOperateBar.getTerm();
-				String faculty = FacultyKind.getType(allCourseOperateBar
+				String faculty = FacultyKind.getID(allCourseOperateBar
 						.getFaculty());
-				faculty = FacultyKind.getType(faculty);
+				faculty = FacultyKind.getID(faculty);
 				DeanMethod method = DeanMethodController.getMethod();
 				try {
 					courseTable.setDataVector(CourseListToVectorAdapter

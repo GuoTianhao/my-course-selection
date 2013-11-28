@@ -80,7 +80,7 @@ public class FacultyPlanPanel extends MPanel {
 			time++;
 			if (time % 2 == 0) {
 				String faculty = (String) department.getSelectedItem();
-				faculty = FacultyKind.getType(faculty);
+				faculty = FacultyKind.getID(faculty);
 				DeanMethod method = DeanMethodController.getMethod();
 				try {
 					Frame f = method.lookUpFrame(faculty);

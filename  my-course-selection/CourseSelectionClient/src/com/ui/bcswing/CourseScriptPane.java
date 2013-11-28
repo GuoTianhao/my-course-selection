@@ -88,7 +88,7 @@ public class CourseScriptPane extends MFrame {
 			e.printStackTrace();
 		}
 		CourseScriptPane pane = new CourseScriptPane(new Course(null, null,
-				null, null, 0, null, null, null, 0, null, null));
+				null, null, 0, null, null, null, 0,3, null, null));
 		
 	}
 }

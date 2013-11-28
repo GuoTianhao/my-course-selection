@@ -55,7 +55,7 @@ public interface DeanMethod extends Remote {
 			throws RemoteException;
 
 	// 分种类得到课程
-	public List<Course> getTypeCourse(String typr) throws RemoteException;
+	public List<Course> getTypeCourse(String type) throws RemoteException;
 
 	// 得到自己发布的课程
 	public List<Course> getMCourse() throws RemoteException;

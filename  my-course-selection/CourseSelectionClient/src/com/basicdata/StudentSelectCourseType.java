@@ -6,6 +6,14 @@ public class StudentSelectCourseType {
 		return type;
 	}
 	public static String getType(String name){
-		return "A";
+		switch(name){
+		case "选修课程":
+			return "F";
+		case "通识课程":
+			return "A";
+		case "跨院系课程":
+			return "G";
+		}
+		return null;
 	}
 }

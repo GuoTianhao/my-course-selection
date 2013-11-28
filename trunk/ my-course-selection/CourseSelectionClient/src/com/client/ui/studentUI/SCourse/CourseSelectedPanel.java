@@ -16,6 +16,8 @@ import com.basicdata.Identity;
 import com.basicdata.StudentSelectCourseType;
 import com.basicdata.TermKind;
 import com.client.rmi.StudentMethodController;
+import com.client.ui.dataAdapter.CourseListToFacultyAdapter;
+import com.client.ui.dataAdapter.CourseListToVectorAdapter;
 import com.client.ui.main.MainFrame;
 import com.client.ui.studentUI.StudentUISwitchController;
 import com.data.po.Course;
@@ -103,12 +105,40 @@ public class CourseSelectedPanel extends MPanel {
 
 	class CourseTypeListener implements ItemListener {
 		int time = 0;
+		StudentMethod method = StudentMethodController.getMethod();
+		List<Course> list;
+		Student student;
+
+		public CourseTypeListener() {
+			student = (Student) Identity.getIdentity();
+		}
 
 		public void itemStateChanged(ItemEvent e) {
 			time++;
 			if (time % 2 == 0) {
 				String type = (String) courseType.getSelectedItem();
-				type=StudentSelectCourseType.getType(type);
+				type = StudentSelectCourseType.getType(type);
+				if (!type.equals("G")) {
+					try {
+						list = method.getTypeCourse(type);
+						if (type.equals("F")) {
+							list = CourseListToFacultyAdapter.adapter(list,
+									student.getFaculty());
+						}
+					} catch (RemoteException e1) {
+						e1.printStackTrace();
+					}
+				} else {
+					try {
+						list = method.getTypeCourse("E");
+						list.addAll(method.getTypeCourse("F"));
+						list = CourseListToFacultyAdapter.adapterRverse(list,
+								student.getFaculty());
+					} catch (RemoteException e1) {
+						e1.printStackTrace();
+					}
+				}
+				table1.setDataVector(CourseListToVectorAdapter.adapter(list));
 			}
 		}
 

@@ -9,7 +9,8 @@ import java.rmi.RemoteException;
 import javax.swing.UIManager;
 
 import com.client.rmi.TeacherMethodController;
-import com.client.ui.teacherUI.TeacherUISwtichController;
+import com.client.ui.studentUI.StudentUISwitchController;
+import com.client.ui.teacherUI.TeacherUISwitchController;
 import com.logicService.TeacherMethod;
 import com.ui.bcswing.CourseDisplayTable;
 import com.ui.bcswing.CourseInfroPane;
@@ -58,13 +59,15 @@ public class CourseManagementPanel extends MPanel {
 
 	private void addListener() {
 
-		recordB.addActionListener(new ActionListener() {
+		title.addReturnMenu(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				TeacherUISwtichController controller = TeacherUISwtichController
+				TeacherUISwitchController controller = TeacherUISwitchController
 						.getUISwitchController();
-				controller.switchToRecordScore();
+				controller.switchToMainFrame();
 			}
 		});
+		
+		recordB.addActionListener(new RecordListener());
 
 		editB.addActionListener(new EditListener());
 
@@ -74,6 +77,20 @@ public class CourseManagementPanel extends MPanel {
 
 	private void init() {
 
+	}
+	
+	class RecordListener implements ActionListener{
+
+		public void actionPerformed(ActionEvent e) {
+			int index = table.getSelectedRow();
+			if (index >= 0) {
+				String id = (String) table.getValueAt(index, 0);
+				TeacherUISwitchController controller = TeacherUISwitchController
+						.getUISwitchController();
+				controller.switchToRecordScore(id);	
+			}
+		}
+		
 	}
 
 	class EditListener implements ActionListener {
@@ -119,7 +136,7 @@ public class CourseManagementPanel extends MPanel {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		TeacherUISwtichController controller = TeacherUISwtichController
+		TeacherUISwitchController controller = TeacherUISwitchController
 				.getUISwitchController();
 		controller.switchToCourseManagement();
 	}

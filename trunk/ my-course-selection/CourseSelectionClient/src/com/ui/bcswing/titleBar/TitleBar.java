@@ -13,7 +13,7 @@ import com.client.ui.facultyUI.FacultyUISwitchController;
 import com.client.ui.main.MainFrame;
 import com.client.ui.main.MainUISwitchController;
 import com.client.ui.studentUI.StudentUISwitchController;
-import com.client.ui.teacherUI.TeacherUISwtichController;
+import com.client.ui.teacherUI.TeacherUISwitchController;
 import com.ui.myswing.MButton;
 import com.ui.myswing.MLabel;
 import com.ui.myswing.MPanel;
@@ -49,7 +49,7 @@ public class TitleBar extends MPanel{
 			public void actionPerformed(ActionEvent e) {
 				DeanUISwitchController.getUISwitchController().dispose();
 				FacultyUISwitchController.getUISwitchController().dispose();
-				TeacherUISwtichController.getUISwitchController().dispose();
+				TeacherUISwitchController.getUISwitchController().dispose();
 				StudentUISwitchController.getUISwitchController().dispose();
 				MainUISwitchController.getUISwitchController().switchToLoginPanel();
 			}

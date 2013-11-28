@@ -78,7 +78,9 @@ public class CoursePanel extends MPanel {
 	}
 
 	private void addListener() {
+		
 		courseP.addActionListener(new PublicCourseSwitchListener());
+		
 		courseA.addActionListener(new AllCourseSwitchListener());
 
 		title.addReturnMenu(new ActionListener() {
@@ -123,6 +125,7 @@ public class CoursePanel extends MPanel {
 	}
 
 	class PublicCourseSwitchListener implements ActionListener {
+		
 		public void actionPerformed(ActionEvent e) {
 			if (state == 1) {
 				addCoursePublishOperateBar();
@@ -150,6 +153,7 @@ public class CoursePanel extends MPanel {
 	}
 
 	class CourseModifyListener implements ActionListener {
+		
 		public void actionPerformed(ActionEvent e) {
 			DeanMethod method = DeanMethodController.getMethod();
 			int index = courseTable.getSelectedRow();
@@ -165,6 +169,7 @@ public class CoursePanel extends MPanel {
 
 			}
 		}
+		
 	}
 
 	class Term_FacultyListener implements ItemListener {

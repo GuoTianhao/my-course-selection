@@ -12,29 +12,36 @@ public class FacultyKind {
 
 	private static Map<String, String> idToName;
 	private static Map<String, String> nameToID;
+	private static boolean state = false;
+
 	private static void init() {
 		idToName = new HashMap<>();
 		nameToID = new HashMap<>();
 		int id = 1001;
 		for (int i = 0; i < faculty.length; i++) {
-			idToName.put(id+"", faculty[i]);
-			nameToID.put(faculty[i], id+"");
+			idToName.put(String.valueOf(id), faculty[i]);
+			nameToID.put(faculty[i], String.valueOf(id));
 			id++;
 		}
+		state = true;
 	}
-	
+
 	public static String[] getAllFaculty() {
 		return faculty;
 	}
 
 	public static String getID(String name) {
-		init();
+		if (!state) {
+			init();
+		}
 		return nameToID.get(name);
 	}
 
 	public static String getName(String ID) {
-		init();
+		if (!state) {
+			init();
+		}
 		return idToName.get(ID);
 	}
-	
+
 }

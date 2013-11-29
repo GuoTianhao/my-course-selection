@@ -15,6 +15,7 @@ import java.util.Observer;
 import javax.swing.JScrollPane;
 import javax.swing.UIManager;
 
+import com.ui.bcswing.courseEditPane.CourseEditPanel;
 import com.ui.myswing.MButton;
 import com.ui.myswing.MFrame;
 import com.ui.myswing.MPanel;

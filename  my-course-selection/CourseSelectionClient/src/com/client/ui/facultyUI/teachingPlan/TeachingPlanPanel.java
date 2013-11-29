@@ -4,16 +4,22 @@ import java.awt.Dimension;
 import java.awt.Point;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.rmi.RemoteException;
 
 import javax.swing.ImageIcon;
 import javax.swing.UIManager;
 
+import com.basicdata.Identity;
+import com.client.rmi.FacultyDeanMethodController;
 import com.client.ui.facultyUI.FacultyUISwitchController;
 import com.client.ui.main.MainFrame;
+import com.data.po.FacultyDean;
+import com.logicService.FacultyDeanMethod;
 import com.ui.myswing.MPanel;
 import com.ui.myswing.MButton;
 import com.ui.bcswing.CourseDisplayTable;
 import com.ui.bcswing.FrameDisplayTable;
+import com.ui.bcswing.frameEditPane.FrameEditPane;
 import com.ui.bcswing.titleBar.FacultyTitleBar;
 import com.ui.bcswing.titleBar.TitleBar;
 
@@ -56,6 +62,30 @@ public class TeachingPlanPanel extends MPanel{
 						.getUISwitchController();
 				controller.swicthToMainFrame();
 			}
+		});
+		
+		publish.addActionListener(new ActionListener(){
+
+			public void actionPerformed(ActionEvent e) {
+				new FrameEditPane();				
+			}
+			
+		});
+		
+		change.addActionListener(new ActionListener(){
+
+			public void actionPerformed(ActionEvent e) {
+				FacultyDean self=(FacultyDean) Identity.getIdentity();
+				String id=self.getID();
+				FacultyDeanMethod method=FacultyDeanMethodController.getMethod();
+				FrameEditPane pane=new FrameEditPane();
+				try {
+					pane.setFrame(method.lookFrame(id));
+				} catch (RemoteException e1) {
+					e1.printStackTrace();
+				}
+			}
+			
 		});
 		
 	}

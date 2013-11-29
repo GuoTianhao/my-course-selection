@@ -46,7 +46,7 @@ public class StudentMethod_Stub implements StudentMethod {
 		if (this.ID.equals(ID) && this.cID.equals(cID)) {
 			return 93;
 		}
-		return -1;
+		return 99;
 
 	}
 
@@ -64,7 +64,7 @@ public class StudentMethod_Stub implements StudentMethod {
 		time.clear();
 		time.add("1_5_7");
 		time.add("3_1_4");
-		Course c2 = new Course("0002", "c++程序设计语言", "仙2_304", "", 3, "12_17",
+		Course c2 = new Course("0002", "c++程序设计语言", "仙2_304", "E", 3, "12_17",
 				"1250", "你们应该学会怎么自己实现，而不是去用现成的。", 0, 3,time, null);
 		list.add(c1);
 
@@ -79,10 +79,8 @@ public class StudentMethod_Stub implements StudentMethod {
 		time.add("1_1_4");
 		Course c = new Course("0001", "软件工程与计算", "仙2_303", "F", 3, "1_17",
 				"1250", "打造全院最好软件教育", 0, 3,time, null);
-		if (cID.equals(c.getID())) {
-			return c;
-		}
-		return null;
+		return c;
+		
 	}
 
 	@Override

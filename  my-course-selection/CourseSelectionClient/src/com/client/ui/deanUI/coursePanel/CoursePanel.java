@@ -6,6 +6,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import java.rmi.RemoteException;
 import java.util.Iterator;
 import java.util.List;
@@ -22,8 +24,10 @@ import com.client.ui.main.MainFrame;
 import com.data.po.Course;
 import com.logicService.DeanMethod;
 import com.ui.bcswing.CourseDisplayTable;
-import com.ui.bcswing.CourseEditPane;
+import com.ui.bcswing.CourseInforPane;
 import com.ui.bcswing.MScrollTabel;
+import com.ui.bcswing.courseEditPane.CourseEditPane;
+import com.ui.bcswing.courseEditPane.DeanCoursePane;
 import com.ui.bcswing.titleBar.DeanTitlebar;
 import com.ui.bcswing.titleBar.TitleBar;
 import com.ui.myswing.MButton;
@@ -94,12 +98,26 @@ public class CoursePanel extends MPanel {
 
 		publishOperateBar.addCoursePListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				new CourseEditPane();
+				new DeanCoursePane();
 			}
 
 		});
 
 		publishOperateBar.addcourseMListener(new CourseModifyListener());
+		
+		publishOperateBar.addcourseInforListener(new CourseInfroListener());
+		
+		publishOperateBar.addSearchKeyListener(new KeyAdapter(){
+			public void keyReleased(KeyEvent e) {
+				publishOperateBarSearch();
+			}
+		});
+		
+		allCourseOperateBar.addSearchKeyListener(new KeyAdapter(){
+			public void keyReleased(KeyEvent e) {
+				allCourseOperateBarSearch();
+			}
+		});
 
 		allCourseOperateBar.addYearItemListener(new Term_FacultyListener());
 
@@ -117,13 +135,23 @@ public class CoursePanel extends MPanel {
 		state = 0;
 	}
 
-	public void addAllCourseOperateBar() {
+	private void addAllCourseOperateBar() {
 		this.remove(publishOperateBar);
 		this.add(allCourseOperateBar);
 		this.refresh();
 		state = 1;
 	}
 
+	private void publishOperateBarSearch(){
+		String content=publishOperateBar.getSearchContent();
+		courseTable.regrexFilter(content);
+	}
+	
+	private void allCourseOperateBarSearch(){
+		String content=allCourseOperateBar.getSearchContent();
+		courseTable.regrexFilter(content);
+	}
+	
 	class PublicCourseSwitchListener implements ActionListener {
 		
 		public void actionPerformed(ActionEvent e) {
@@ -137,6 +165,7 @@ public class CoursePanel extends MPanel {
 			} catch (RemoteException e1) {
 				e1.printStackTrace();
 			}
+			publishOperateBarSearch();
 		}
 
 	}
@@ -148,6 +177,7 @@ public class CoursePanel extends MPanel {
 				addAllCourseOperateBar();
 				allCourseOperateBar.changeItemState();
 			}
+			allCourseOperateBarSearch();
 		}
 
 	}
@@ -161,7 +191,7 @@ public class CoursePanel extends MPanel {
 				String id = (String) courseTable.getValueAt(index, 0);
 				try {
 					Course c = method.getCourse(id);
-					CourseEditPane pane = new CourseEditPane();
+					DeanCoursePane pane = new DeanCoursePane();
 					pane.setCourse(c);
 				} catch (RemoteException e1) {
 					e1.printStackTrace();
@@ -172,6 +202,25 @@ public class CoursePanel extends MPanel {
 		
 	}
 
+	class CourseInfroListener implements ActionListener{
+
+		public void actionPerformed(ActionEvent e) {
+			DeanMethod method = DeanMethodController.getMethod();
+			int index = courseTable.getSelectedRow();
+			if (index >= 0) {
+				String id = (String) courseTable.getValueAt(index, 0);
+				try {
+					Course c = method.getCourse(id);
+					CourseInforPane pane = new CourseInforPane(c);
+				} catch (RemoteException e1) {
+					e1.printStackTrace();
+				}
+
+			}
+		}
+		
+	}
+	
 	class Term_FacultyListener implements ItemListener {
 		int time = 0;
 

@@ -110,6 +110,13 @@ public class ScoreCheckPanel extends MPanel {
 	}
 
 	public static void main(String[] args) {
+		StudentMethod method = StudentMethodController.getMethod();
+		try {
+			Identity.setIdentity(method.getSelf("0001"));
+		} catch (RemoteException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
 		try {
 			org.jb2011.lnf.beautyeye.BeautyEyeLNFHelper.launchBeautyEyeLNF();
 			UIManager.put("RootPane.setupButtonVisible", false);

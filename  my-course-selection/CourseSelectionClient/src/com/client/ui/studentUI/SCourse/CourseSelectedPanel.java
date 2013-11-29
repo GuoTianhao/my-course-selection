@@ -13,7 +13,6 @@ import java.util.List;
 import javax.swing.UIManager;
 
 import com.basicdata.Identity;
-import com.basicdata.StudentSelectCourseType;
 import com.client.rmi.StudentMethodController;
 import com.client.ui.dataAdapter.CourseListToCourseTermListAdapter;
 import com.client.ui.dataAdapter.GradeToTermAdapter;
@@ -41,6 +40,8 @@ public class CourseSelectedPanel extends MPanel {
 	private StudentSelectedCourseDisplayTable table2;
 	private MComboBox<String> courseType;
 
+	private String[] type = { "选修课程", "通识课程", "跨院系课程" };
+
 	public CourseSelectedPanel(Point loc, Dimension size) {
 		super(loc, size);
 		createComponent();
@@ -63,9 +64,8 @@ public class CourseSelectedPanel extends MPanel {
 		table1 = new StudentUnselectedCourseDisplayTable(new Point(10, 130),
 				new Dimension(400, 430));
 
-		courseType = new MComboBox<>(
-				StudentSelectCourseType.getAllSelectCourseType(), new Point(90,
-						95), new Dimension(150, 25));
+		courseType = new MComboBox<>(type, new Point(90, 95), new Dimension(
+				150, 25));
 
 		this.add(title);
 		this.add(select);
@@ -98,12 +98,12 @@ public class CourseSelectedPanel extends MPanel {
 
 		courseType.setSelectedIndex(-1);
 		courseType.setSelectedIndex(0);
-		
+
 		refreshSelectedTable();
 
 	}
-	
-	private void refreshSelectedTable(){
+
+	private void refreshSelectedTable() {
 		Student student = (Student) (Identity.getIdentity());
 		StudentMethod method = StudentMethodController.getMethod();
 		List<Course> selected = new ArrayList<Course>();
@@ -134,52 +134,52 @@ public class CourseSelectedPanel extends MPanel {
 	}
 
 	class SelectListener implements ActionListener {
-		
+
 		Student student = (Student) (Identity.getIdentity());
-		
+
 		public void actionPerformed(ActionEvent e) {
 			int index = table1.getSelectedRow();
 			if (index >= 0) {
 				String cID = (String) table1.getValueAt(index, 0);
 				StudentMethod method = StudentMethodController.getMethod();
 				try {
-					boolean admit=method.selectCourse(student.getID(),cID);
-					if(admit){
+					boolean admit = method.selectCourse(student.getID(), cID);
+					if (admit) {
 						System.out.println("选课成功");
-					}else{
+					} else {
 						System.out.println("选课失败");
 					}
 				} catch (RemoteException e1) {
 					e1.printStackTrace();
 				}
 				CourseSelectedPanel.this.refreshSelectedTable();
-			}	
+			}
 		}
-		
+
 	}
 
 	class QuitListener implements ActionListener {
 
 		Student student = (Student) (Identity.getIdentity());
-		
+
 		public void actionPerformed(ActionEvent e) {
 			int index = table2.getSelectedRow();
-			if(index>=0){
+			if (index >= 0) {
 				String cID = (String) table1.getValueAt(index, 0);
 				StudentMethod method = StudentMethodController.getMethod();
-				
+
 				try {
-					boolean admit=method.quitCourse(student.getID(),cID);
-					if(admit){
+					boolean admit = method.quitCourse(student.getID(), cID);
+					if (admit) {
 						System.out.println("退选成功");
-					}else{
+					} else {
 						System.out.println("退选失败");
 					}
-					
+
 				} catch (RemoteException e1) {
 					e1.printStackTrace();
 				}
-				
+
 				CourseSelectedPanel.this.refreshSelectedTable();
 			}
 		}

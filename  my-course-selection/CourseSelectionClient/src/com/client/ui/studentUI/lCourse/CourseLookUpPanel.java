@@ -94,7 +94,6 @@ public class CourseLookUpPanel extends MPanel {
 				String faculty = (String) CourseLookUpPanel.this.department
 						.getSelectedItem();
 				faculty = FacultyKind.getID(faculty);
-				System.out.println("term:" + term + " faculty:" + faculty);
 				StudentMethod method = StudentMethodController.getMethod();
 				try {
 					table.setDataVector(CourseListToVectorAdapter

@@ -141,6 +141,7 @@ public class FrameEditPane extends MFrame {
 		button_1.setText("取消");
 		button_1.setBounds(273, 367, 80, 25);
 		panel.add(button_1);
+		
 		this.setVisible(true);
 		this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 	}

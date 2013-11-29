@@ -8,6 +8,7 @@ import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 import java.rmi.RemoteException;
 
+import javax.swing.JOptionPane;
 import javax.swing.JTextArea;
 import javax.swing.UIManager;
 
@@ -23,6 +24,7 @@ import com.ui.myswing.MPanel;
 public class CourseScriptPane extends MFrame {
 	private static Dimension default_size = new Dimension(550, 500);
 	private Course course;
+	private TeacherMethod method = TeacherMethodController.getMethod();
 
 	private MPanel scriptPanel;
 	private MLabel outlineLb;
@@ -87,77 +89,92 @@ public class CourseScriptPane extends MFrame {
 		return outlineArea.getText() + ";" + bookArea.getText() + ";"
 				+ refBookArea.getText();
 	}
-	
+
 	private void addListener() {
 		yesBtn.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
 				try {
-					TeacherMethodController.getMethod().filnCourseInfor(course.getID(), getScript());
+					method.filnCourseInfor(course.getID(), getScript());
 				} catch (RemoteException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
 			}
 		});
-		
+
 		noBtn.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-				
+
 			}
 		});
-		
+
 		addWindowListener(new WindowListener() {
-	
+
 			@Override
 			public void windowClosing(WindowEvent e) {
 				// TODO Auto-generated method stub
-				
+				int val = JOptionPane.showConfirmDialog(rootPane, "是否保存当前更改？",
+						"提醒", JOptionPane.YES_NO_OPTION);
+				switch (val) {
+				case JOptionPane.YES_OPTION:
+					try {
+						method.filnCourseInfor(course.getID(), getScript());
+					} catch (RemoteException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+					
+					break;
+				case JOptionPane.NO_OPTION:
+					break;
+				default:
+					break;
+				}
 			}
 
 			@Override
 			public void windowOpened(WindowEvent e) {
 				// TODO Auto-generated method stub
-				
+
 			}
 
 			@Override
 			public void windowClosed(WindowEvent e) {
 				// TODO Auto-generated method stub
-				
+
 			}
 
 			@Override
 			public void windowIconified(WindowEvent e) {
 				// TODO Auto-generated method stub
-				
+
 			}
 
 			@Override
 			public void windowDeiconified(WindowEvent e) {
 				// TODO Auto-generated method stub
-				
+
 			}
 
 			@Override
 			public void windowActivated(WindowEvent e) {
 				// TODO Auto-generated method stub
-				
+
 			}
 
 			@Override
 			public void windowDeactivated(WindowEvent e) {
 				// TODO Auto-generated method stub
-				
+
 			}
-		
+
 		});
 	}
 
-	
 	public static void main(String[] args) {
 		try {
 			org.jb2011.lnf.beautyeye.BeautyEyeLNFHelper.launchBeautyEyeLNF();

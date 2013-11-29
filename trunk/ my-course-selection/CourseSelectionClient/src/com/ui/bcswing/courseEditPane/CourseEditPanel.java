@@ -1,4 +1,4 @@
-package com.ui.bcswing;
+package com.ui.bcswing.courseEditPane;
 
 import java.awt.Dimension;
 import java.awt.Point;
@@ -10,8 +10,12 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Observer;
 
+import javax.swing.ComboBoxModel;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.UIManager;
 
+import com.data.po.Course;
+import com.ui.bcswing.MObservable;
 import com.ui.myswing.MButton;
 import com.ui.myswing.MComboBox;
 import com.ui.myswing.MFrame;
@@ -29,7 +33,6 @@ public class CourseEditPanel extends MPanel {
 	private MLabel numl;
 	private MLabel typel;
 	private MLabel gradel;
-//	private MLabel facultyl;
 	private MLabel periodl;
 
 	private MLabel timel;
@@ -41,10 +44,11 @@ public class CourseEditPanel extends MPanel {
 	private MTextField numt;
 	private MComboBox typeSelect;
 	private MTextField gradet;
-//	private MTextField facultyt;
 	private MTextField periodt;
 
-	private String[] typeModel = { "通识教育课程", "思想政治理论课程" ,"军事课程","通修课程"};
+	private MButton confirm;
+	
+	private String[] typeModel = {"NONE"};
 
 	CourseTimePanel time;
 	ArrayList<CourseTimePanel> timeList;
@@ -67,8 +71,6 @@ public class CourseEditPanel extends MPanel {
 		numl = new MLabel(new Point(0, 120), new Dimension(100, 20), "上课人数:");
 		typel = new MLabel(new Point(0, 150), new Dimension(100, 20), "课程类型:");
 		gradel = new MLabel(new Point(0, 180), new Dimension(100, 20), "年级:");
-//		facultyl = new MLabel(new Point(0, 210), new Dimension(100, 20),
-//				"课程院系:");
 		periodl = new MLabel(new Point(0, 250), new Dimension(100, 20), "上课周数:");
 		timel = new MLabel(new Point(0, 280), new Dimension(100, 20), "上课时间:");
 
@@ -81,8 +83,10 @@ public class CourseEditPanel extends MPanel {
 				new Dimension(100, 20));
 
 		gradet = new MTextField(new Point(150, 180), new Dimension(100, 20));
-//		facultyt = new MTextField(new Point(150, 210), new Dimension(100, 20));
 		periodt = new MTextField(new Point(150, 250), new Dimension(100, 20));
+		
+		confirm=new MButton(null,null,null,new Point(80, 310), new Dimension(100, 20));
+		confirm.setText("确定");
 
 		time = new CourseTimePanel(new Point(80, 280));
 		timeList = new ArrayList<CourseTimePanel>();
@@ -92,10 +96,8 @@ public class CourseEditPanel extends MPanel {
 		this.add(idl);
 		this.add(locl);
 		this.add(creditl);
-//		this.add(numl);
 		this.add(typel);
-		this.add(gradel);
-//		this.add(facultyl);
+
 		this.add(periodl);
 		this.add(timel);
 
@@ -103,12 +105,11 @@ public class CourseEditPanel extends MPanel {
 		this.add(idt);
 		this.add(loct);
 		this.add(creditt);
-//		this.add(numt);
 		this.add(typeSelect);
-		this.add(gradet);
-//		this.add(facultyt);
 		this.add(periodt);
-
+		
+		this.add(confirm);
+		
 		this.add(time);
 
 		this.validate();
@@ -133,77 +134,15 @@ public class CourseEditPanel extends MPanel {
 	
 	public void setTypeModel(String[] typeModel){
 		this.typeModel=typeModel;
+		typeSelect.setModel(new DefaultComboBoxModel<String>(typeModel));
 	}
 
-	class TimeButtonListener implements ActionListener {
-
-		public void actionPerformed(ActionEvent e) {
-			// TODO Auto-generated method stub
-			Point loc = time.getLocation();
-			time = new CourseTimePanel(new Point(loc.x, loc.y
-					+ default_height_add));
-			time.addActionListener(tbListener);
-			time.addDeleteActionListener(tdbListener);
-			timeList.add(time);
-			CourseEditPanel.this.add(time);
-			CourseEditPanel.this.setHeight(CourseEditPanel.this.getHeight()
-					+ default_height_add);
-
-		}
-
-	}
-
-	class TimeDeleteButtonListener implements ActionListener {
-
-		public void actionPerformed(ActionEvent e) {
-			// TODO Auto-generated method stub
-			if (timeList.size() > 1) {
-				CourseTimePanel p;
-				MButton b = (MButton) e.getSource();
-				Iterator<CourseTimePanel> it = timeList.iterator();
-				while (it.hasNext()) {
-					p = it.next();
-					if (p.timeDB == b) {
-						it.remove();
-						CourseEditPanel.this.remove(p);
-						break;
-					}
-				}
-				while (it.hasNext()) {
-					p = it.next();
-					Point loc = p.getLocation();
-					p.setLocation(new Point(loc.x, loc.y - default_height_add));
-				}
-				it = timeList.iterator();
-				while (it.hasNext()) {
-					time = it.next();
-				}
-
-				CourseEditPanel.this.setHeight(CourseEditPanel.this.getHeight()
-						- default_height_add);
-
-			}
-		}
-
-	}
-
-	class TypeItemListener implements ItemListener{
-		int time=0;
-		public void itemStateChanged(ItemEvent e) {
-			time++;
-			if(time%2==0){
-				String selected=(String) typeSelect.getSelectedItem();
-				if(selected.equals("通识教育课程")){
-					CourseEditPanel.this.add(numl);
-					CourseEditPanel.this.add(numt);
-				}else{
-					CourseEditPanel.this.remove(numl);
-					CourseEditPanel.this.remove(numt);
-				}
-				CourseEditPanel.this.refresh();
-			}
-		}
+	public void setCourse(Course c){
 		
+	}
+	
+	public Course getCourse(){
+		return null;
 	}
 	
 	public void setHeight(int height) {
@@ -213,6 +152,10 @@ public class CourseEditPanel extends MPanel {
 		this.refresh();
 	}
 
+	public void addConfirmListener(ActionListener al){
+		confirm.addActionListener(al);
+	}
+	
 	public synchronized void addObserver(Observer o) {
 		observe.addObserver(o);
 	}
@@ -249,6 +192,89 @@ public class CourseEditPanel extends MPanel {
 		return observe.countObservers();
 	}
 
+	class TimeButtonListener implements ActionListener {
+
+		public void actionPerformed(ActionEvent e) {
+			// TODO Auto-generated method stub
+			Point loc = time.getLocation();
+			time = new CourseTimePanel(new Point(loc.x, loc.y
+					+ default_height_add));
+			time.addActionListener(tbListener);
+			time.addDeleteActionListener(tdbListener);
+			timeList.add(time);
+			CourseEditPanel.this.add(time);
+			CourseEditPanel.this.setHeight(CourseEditPanel.this.getHeight()
+					+ default_height_add);
+			
+			loc=confirm.getLocation();
+			confirm.setLocation(loc.x,loc.y+default_height_add);
+
+		}
+
+	}
+
+	class TimeDeleteButtonListener implements ActionListener {
+
+		public void actionPerformed(ActionEvent e) {
+			// TODO Auto-generated method stub
+			if (timeList.size() > 1) {
+				CourseTimePanel p;
+				MButton b = (MButton) e.getSource();
+				Iterator<CourseTimePanel> it = timeList.iterator();
+				while (it.hasNext()) {
+					p = it.next();
+					if (p.timeDB == b) {
+						it.remove();
+						CourseEditPanel.this.remove(p);
+						break;
+					}
+				}
+				while (it.hasNext()) {
+					p = it.next();
+					Point loc = p.getLocation();
+					p.setLocation(new Point(loc.x, loc.y - default_height_add));
+				}
+				it = timeList.iterator();
+				while (it.hasNext()) {
+					time = it.next();
+				}
+
+				CourseEditPanel.this.setHeight(CourseEditPanel.this.getHeight()
+						- default_height_add);
+
+				Point loc=confirm.getLocation();
+				confirm.setLocation(loc.x,loc.y-default_height_add);
+			}
+		}
+
+	}
+
+	class TypeItemListener implements ItemListener{
+		int time=0;
+		public void itemStateChanged(ItemEvent e) {
+			time++;
+			if(time%2==0){
+				String selected=(String) typeSelect.getSelectedItem();
+				switch(selected){
+				case "通识教育课程":
+					CourseEditPanel.this.add(numl);
+					CourseEditPanel.this.add(numt);
+					CourseEditPanel.this.remove(gradel);
+					CourseEditPanel.this.remove(gradet);
+					break;
+				default:
+						CourseEditPanel.this.remove(numl);
+						CourseEditPanel.this.remove(numt);
+						CourseEditPanel.this.add(gradel);
+						CourseEditPanel.this.add(gradet);
+				}
+				CourseEditPanel.this.refresh();
+			}
+		}
+		
+	}
+	
+	
 	public static void main(String[] args) {
 		try {
 			org.jb2011.lnf.beautyeye.BeautyEyeLNFHelper.launchBeautyEyeLNF();

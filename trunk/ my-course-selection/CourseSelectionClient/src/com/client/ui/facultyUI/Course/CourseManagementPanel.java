@@ -17,7 +17,7 @@ import com.data.po.Course;
 import com.data.po.FacultyDean;
 import com.logicService.FacultyDeanMethod;
 import com.ui.bcswing.CourseDisplayTable;
-import com.ui.bcswing.CourseEditPane;
+import com.ui.bcswing.courseEditPane.FacultyCoursePane;
 import com.ui.bcswing.titleBar.FacultyTitleBar;
 import com.ui.bcswing.titleBar.TitleBar;
 import com.ui.myswing.MButton;
@@ -67,7 +67,7 @@ public class CourseManagementPanel extends MPanel {
 
 		button1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				new CourseEditPane();
+				new FacultyCoursePane();
 			}
 
 		});
@@ -95,7 +95,7 @@ public class CourseManagementPanel extends MPanel {
 				String id = (String) table.getValueAt(index, 0);
 				try {
 					Course c = method.getCourse(id);
-					CourseEditPane pane = new CourseEditPane();
+					FacultyCoursePane pane = new FacultyCoursePane();
 					pane.setCourse(c);
 				} catch (RemoteException e1) {
 					e1.printStackTrace();

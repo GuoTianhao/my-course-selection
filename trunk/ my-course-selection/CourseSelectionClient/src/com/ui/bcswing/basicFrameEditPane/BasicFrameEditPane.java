@@ -1,5 +1,6 @@
 package com.ui.bcswing.basicFrameEditPane;
 
+import com.data.po.BasicFrame;
 import java.awt.Dimension;
 import java.awt.Point;
 
@@ -16,7 +17,6 @@ public class BasicFrameEditPane extends MFrame {
 	private MPanel editPanel;
 	private FrameElement element;
 	private static Dimension default_size = new Dimension(450, 400);
-
 	private MLabel moduleLb;
 	private MLabel creditLb;
 	private MLabel periodLb;
@@ -30,19 +30,10 @@ public class BasicFrameEditPane extends MFrame {
 	private MButton yesBtn;
 	private MButton noBtn;
 
-	public BasicFrameEditPane(Dimension size) {
-		super(size);
+	public BasicFrameEditPane() {
+		super(default_size);
 		createComponent();
 		addListener();
-	}
-
-	public BasicFrameEditPane(FrameElement e) {
-		this(default_size);
-		setElement(e);
-	}
-
-	private void setElement(FrameElement e) {
-		element = e;
 	}
 
 	private void createComponent() {
@@ -50,7 +41,7 @@ public class BasicFrameEditPane extends MFrame {
 		moduleLb = new MLabel("课程模块");
 		moduleLb.setBounds(20, 20, 80, 25);
 		moduleField = new MTextField(new Point(150, 20), new Dimension(150, 30));
-		
+
 		creditLb = new MLabel("建议学分");
 		creditLb.setBounds(20, 100, 80, 25);
 		creditField1 = new MTextField();
@@ -59,7 +50,7 @@ public class BasicFrameEditPane extends MFrame {
 		lb1.setBounds(180, 100, 25, 25);
 		creditField2 = new MTextField();
 		creditField2.setBounds(210, 100, 25, 25);
-		
+
 		periodLb = new MLabel("开设学期");
 		periodLb.setBounds(20, 175, 80, 25);
 		periodField1 = new MTextField();
@@ -68,12 +59,14 @@ public class BasicFrameEditPane extends MFrame {
 		lb2.setBounds(180, 175, 25, 25);
 		periodField2 = new MTextField();
 		periodField2.setBounds(210, 175, 25, 25);
-		
-		yesBtn = new MButton(null, null, null, new Point(100, 220), new Dimension(80, 25));
+
+		yesBtn = new MButton(null, null, null, new Point(100, 220),
+				new Dimension(80, 25));
 		yesBtn.setText("确定");
-		noBtn = new MButton(null, null, null, new Point(220, 220), new Dimension(80, 25));
+		noBtn = new MButton(null, null, null, new Point(220, 220),
+				new Dimension(80, 25));
 		noBtn.setText("取消");
-		
+
 		editPanel.add(moduleLb);
 		editPanel.add(moduleField);
 		editPanel.add(creditLb);
@@ -95,13 +88,22 @@ public class BasicFrameEditPane extends MFrame {
 
 	}
 
+	public void setBasicFrame(BasicFrame frame) {
+
+	}
+
+	public BasicFrame getBasicFrame() {
+		return null;
+	}
+
 	public static void main(String[] args) {
-//		try {
-//			org.jb2011.lnf.beautyeye.BeautyEyeLNFHelper.launchBeautyEyeLNF();
-//			UIManager.put("RootPane.setupButtonVisible", false);
-//		} catch (Exception e) {
-//			e.printStackTrace();
-//		}
-		BasicFrameEditPane pane = new BasicFrameEditPane(new FrameElement(null, null, null));
+		// try {
+		// org.jb2011.lnf.beautyeye.BeautyEyeLNFHelper.launchBeautyEyeLNF();
+		// UIManager.put("RootPane.setupButtonVisible", false);
+		// } catch (Exception e) {
+		// e.printStackTrace();
+		// }
+//		BasicFrameEditPane pane = new BasicFrameEditPane(new FrameElement(null,
+//				null, null));
 	}
 }

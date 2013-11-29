@@ -13,7 +13,7 @@ import com.client.ui.studentUI.StudentUISwitchController;
 import com.client.ui.teacherUI.TeacherUISwitchController;
 import com.logicService.TeacherMethod;
 import com.ui.bcswing.CourseDisplayTable;
-import com.ui.bcswing.CourseInfroPane;
+import com.ui.bcswing.CourseInforPane;
 import com.ui.bcswing.CourseScriptPane;
 import com.ui.bcswing.titleBar.TeacherTitleBar;
 import com.ui.bcswing.titleBar.TitleBar;
@@ -119,7 +119,7 @@ public class CourseManagementPanel extends MPanel {
 				String id = (String) table.getValueAt(index, 0);
 				TeacherMethod method = TeacherMethodController.getMethod();
 				try {
-					CourseInfroPane inforPane = new CourseInfroPane(
+					CourseInforPane inforPane = new CourseInforPane(
 							method.getCourse(id));
 				} catch (RemoteException e1) {
 					e1.printStackTrace();

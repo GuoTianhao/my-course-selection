@@ -19,6 +19,7 @@ import com.logicService.DeanMethod;
 import com.ui.myswing.MPanel;
 import com.ui.bcswing.CourseDisplayTable;
 import com.ui.bcswing.FrameDisplayTable;
+import com.ui.bcswing.basicFrameEditPane.BasicFrameEditPane;
 import com.ui.bcswing.titleBar.DeanTitlebar;
 import com.ui.bcswing.titleBar.TitleBar;
 import com.ui.myswing.MButton;
@@ -68,29 +69,20 @@ public class BasicFramePanel extends MPanel {
 		
 		make.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-//				DeanMethod method = DeanMethodController.getMethod();
-//				try {
-//					BasicFrame frame = method.lookUpBasicFrame();
-//					table.setDataVector(BasicFrameToVectorAdapter
-//							.adapter(frame));
-//				} catch (RemoteException e1) {
-//					e1.printStackTrace();
-//				}
-//				table.setEditable(new EditBasicFramePermission());
+				new BasicFrameEditPane();
 			}
 		});
 		
 		change.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-//				DeanMethod method = DeanMethodController.getMethod();
-//				try {
-//					BasicFrame frame = method.lookUpBasicFrame();
-//					table.setDataVector(BasicFrameToVectorAdapter
-//							.adapter(frame));
-//				} catch (RemoteException e1) {
-//					e1.printStackTrace();
-//				}
-//				table.setEditable(new EditBasicFramePermission());
+				DeanMethod method = DeanMethodController.getMethod();
+				try {
+					BasicFrame frame = method.lookUpBasicFrame();
+					BasicFrameEditPane pane=new BasicFrameEditPane();
+					pane.setBasicFrame(frame);
+				} catch (RemoteException e1) {
+					e1.printStackTrace();
+				}
 			}
 		});
 		
@@ -101,9 +93,7 @@ public class BasicFramePanel extends MPanel {
 		try {
 			BasicFrame frame =method.lookUpBasicFrame();
 			Iterator<FrameElement> it=frame.iterator();
-			FrameElement element=it.next();
-			String credit=element.getCredit();
-			if(credit.equals("")){
+			if(!it.hasNext()){
 				change.setEnabled(false);
 			}else{
 				make.setEnabled(false);

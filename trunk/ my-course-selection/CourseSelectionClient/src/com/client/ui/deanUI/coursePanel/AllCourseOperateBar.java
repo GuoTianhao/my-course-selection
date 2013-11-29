@@ -2,11 +2,10 @@ package com.client.ui.deanUI.coursePanel;
 
 import java.awt.Dimension;
 import java.awt.Point;
-import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemListener;
+import java.awt.event.KeyListener;
 
-import javax.swing.ImageIcon;
 
 import com.basicdata.FacultyKind;
 import com.basicdata.TermKind;
@@ -23,7 +22,6 @@ public class AllCourseOperateBar extends MPanel{
 	private MLabel facultyl;
 	private MLabel yearl;
 	private MTextField search;
-	private MButton searchBtn;
 
 	
 	public AllCourseOperateBar(Point location, Dimension size){
@@ -34,12 +32,10 @@ public class AllCourseOperateBar extends MPanel{
 		faculty=new MComboBox(FacultyKind.getAllFaculty(),new Point(50,0),new Dimension(100,30));
 		termBox=new MComboBox(TermKind.getAllTerm(),new Point(200,0),new Dimension(100,30));
 		search = new MTextField(new Point(650, 0), new Dimension(100,30));
-		searchBtn = new MButton(null,null,null,new Point(755,0),new Dimension(30,30));
 		
 		this.add(faculty);
 		this.add(termBox);
 		this.add(search);
-		this.add(searchBtn);
 	}
 	
 	public void addSearchListener(ActionListener al){
@@ -52,6 +48,15 @@ public class AllCourseOperateBar extends MPanel{
 	
 	public void addFacultyItemListenr(ItemListener il){
 		faculty.addItemListener(il);
+	}
+	
+	public void addSearchKeyListener(KeyListener kl){
+		search.addKeyListener(kl);
+		System.out.println("yes");
+	}
+	
+	public String getSearchContent(){
+		return search.getText();
 	}
 	
 	public void changeItemState(){

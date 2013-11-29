@@ -13,7 +13,7 @@ import com.ui.myswing.MLabel;
 import com.ui.myswing.MTextField;
 
 //显示具体的课程信息
-public class CourseInfroPane extends MFrame {
+public class CourseInforPane extends MFrame {
 	private static Dimension default_size = new Dimension(550, 500);
 	private Course course;
 
@@ -42,11 +42,11 @@ public class CourseInfroPane extends MFrame {
 	private MLabel timet2;
 	private MLabel timet3;
 
-	public CourseInfroPane(Dimension size) {
+	public CourseInforPane(Dimension size) {
 		super(size);
 	}
 
-	public CourseInfroPane(Course c) {
+	public CourseInforPane(Course c) {
 		this(default_size);
 		setCourse(c);
 		createComponent();
@@ -135,6 +135,6 @@ public class CourseInfroPane extends MFrame {
 		List<String> time=new ArrayList<String>();
 		time.add("2_5_7");
 		time.add("1_1_4");
-		new CourseInfroPane(new Course("0001","软件工程与计算","仙2_303","F",3,"1_17","1250","打造全院最好软件教育",0,3, time, null));
+		new CourseInforPane(new Course("0001","软件工程与计算","仙2_303","F",3,"1_17","1250","打造全院最好软件教育",0,3, time, null));
 	}
 }

@@ -1,4 +1,4 @@
-package com.ui.bcswing;
+package com.ui.bcswing.courseEditPane;
 
 import java.awt.Dimension;
 import java.awt.Point;

@@ -5,6 +5,7 @@ import java.awt.Point;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.rmi.RemoteException;
+import java.util.Iterator;
 
 import javax.swing.UIManager;
 
@@ -13,6 +14,7 @@ import com.client.ui.dataAdapter.BasicFrameToVectorAdapter;
 import com.client.ui.deanUI.DeanUISwitchController;
 import com.client.ui.main.MainFrame;
 import com.data.po.BasicFrame;
+import com.data.po.FrameElement;
 import com.logicService.DeanMethod;
 import com.ui.myswing.MPanel;
 import com.ui.bcswing.CourseDisplayTable;
@@ -66,36 +68,51 @@ public class BasicFramePanel extends MPanel {
 		
 		make.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				DeanMethod method = DeanMethodController.getMethod();
-				try {
-					BasicFrame frame = method.lookUpBasicFrame();
-					table.setDataVector(BasicFrameToVectorAdapter
-							.adapter(frame));
-				} catch (RemoteException e1) {
-					e1.printStackTrace();
-				}
-				table.setEditable(new EditBasicFramePermission());
+//				DeanMethod method = DeanMethodController.getMethod();
+//				try {
+//					BasicFrame frame = method.lookUpBasicFrame();
+//					table.setDataVector(BasicFrameToVectorAdapter
+//							.adapter(frame));
+//				} catch (RemoteException e1) {
+//					e1.printStackTrace();
+//				}
+//				table.setEditable(new EditBasicFramePermission());
 			}
 		});
 		
 		change.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				DeanMethod method = DeanMethodController.getMethod();
-				try {
-					BasicFrame frame = method.lookUpBasicFrame();
-					table.setDataVector(BasicFrameToVectorAdapter
-							.adapter(frame));
-				} catch (RemoteException e1) {
-					e1.printStackTrace();
-				}
-				table.setEditable(new EditBasicFramePermission());
+//				DeanMethod method = DeanMethodController.getMethod();
+//				try {
+//					BasicFrame frame = method.lookUpBasicFrame();
+//					table.setDataVector(BasicFrameToVectorAdapter
+//							.adapter(frame));
+//				} catch (RemoteException e1) {
+//					e1.printStackTrace();
+//				}
+//				table.setEditable(new EditBasicFramePermission());
 			}
 		});
 		
 	}
 
 	private void init() {
-
+		DeanMethod method = DeanMethodController.getMethod();
+		try {
+			BasicFrame frame =method.lookUpBasicFrame();
+			Iterator<FrameElement> it=frame.iterator();
+			FrameElement element=it.next();
+			String credit=element.getCredit();
+			if(credit.equals("")){
+				change.setEnabled(false);
+			}else{
+				make.setEnabled(false);
+			}
+			table.setDataVector(BasicFrameToVectorAdapter
+					.adapter(frame));
+		} catch (RemoteException e) {
+			e.printStackTrace();
+		}
 	}
 
 	public static void main(String[] args) {

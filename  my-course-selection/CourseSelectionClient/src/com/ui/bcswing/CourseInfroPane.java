@@ -2,6 +2,10 @@ package com.ui.bcswing;
 
 import java.awt.Dimension;
 import java.awt.Point;
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.swing.UIManager;
 
 import com.data.po.Course;
 import com.ui.myswing.MFrame;
@@ -40,13 +44,13 @@ public class CourseInfroPane extends MFrame {
 
 	public CourseInfroPane(Dimension size) {
 		super(size);
-		createComponent();
-		init();
 	}
 
 	public CourseInfroPane(Course c) {
 		this(default_size);
 		setCourse(c);
+		createComponent();
+		init();
 	}
 
 	private void createComponent() {
@@ -110,8 +114,7 @@ public class CourseInfroPane extends MFrame {
 		
 		this.setVisible(true);
 		this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-		this.validate();
-		this.repaint();
+		this.refresh();
 	}
 
 	private void init() {
@@ -122,4 +125,16 @@ public class CourseInfroPane extends MFrame {
 		course = c;
 	}
 
+	public static void main(String[] args){
+//		try {
+//			org.jb2011.lnf.beautyeye.BeautyEyeLNFHelper.launchBeautyEyeLNF();
+//			UIManager.put("RootPane.setupButtonVisible", false);
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		}
+		List<String> time=new ArrayList<String>();
+		time.add("2_5_7");
+		time.add("1_1_4");
+		new CourseInfroPane(new Course("0001","软件工程与计算","仙2_303","F",3,"1_17","1250","打造全院最好软件教育",0,3, time, null));
+	}
 }

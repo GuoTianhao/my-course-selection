@@ -4,6 +4,8 @@ import java.awt.Dimension;
 import java.awt.Point;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Observer;
@@ -11,6 +13,7 @@ import java.util.Observer;
 import javax.swing.UIManager;
 
 import com.ui.myswing.MButton;
+import com.ui.myswing.MComboBox;
 import com.ui.myswing.MFrame;
 import com.ui.myswing.MLabel;
 import com.ui.myswing.MPanel;
@@ -21,25 +24,27 @@ public class CourseEditPanel extends MPanel {
 	private MObservable observe;
 	private MLabel namel;
 	private MLabel idl;
-	private	MLabel locl;
-	private	MLabel creditl;
-	private	MLabel numl;
-	private	MLabel typel;
-	private	MLabel gradel;
-	private	MLabel facultyl;
-	private	MLabel periodl;
+	private MLabel locl;
+	private MLabel creditl;
+	private MLabel numl;
+	private MLabel typel;
+	private MLabel gradel;
+//	private MLabel facultyl;
+	private MLabel periodl;
 
-	private	MLabel timel;
+	private MLabel timel;
 
-	private	MTextField namet;
-	private	MTextField idt;
-	private	MTextField loct;
-	private	MTextField creditt;
-	private	MTextField numt;
-	private	MTextField typet;
-	private	MTextField gradet;
-	private	MTextField facultyt;
-	private	MTextField periodt;
+	private MTextField namet;
+	private MTextField idt;
+	private MTextField loct;
+	private MTextField creditt;
+	private MTextField numt;
+	private MComboBox typeSelect;
+	private MTextField gradet;
+//	private MTextField facultyt;
+	private MTextField periodt;
+
+	private String[] typeModel = { "通识教育课程", "思想政治理论课程" ,"军事课程","通修课程"};
 
 	CourseTimePanel time;
 	ArrayList<CourseTimePanel> timeList;
@@ -48,10 +53,10 @@ public class CourseEditPanel extends MPanel {
 	ActionListener tdbListener;
 
 	public CourseEditPanel(Point loc, Dimension size) {
-		super(size);
+		super(loc,size);
 		creatComponent();
-		observe = new MObservable();
-		this.setLocation(loc);
+		addListener();
+		init();
 	}
 
 	private void creatComponent() {
@@ -62,8 +67,8 @@ public class CourseEditPanel extends MPanel {
 		numl = new MLabel(new Point(0, 120), new Dimension(100, 20), "上课人数:");
 		typel = new MLabel(new Point(0, 150), new Dimension(100, 20), "课程类型:");
 		gradel = new MLabel(new Point(0, 180), new Dimension(100, 20), "年级:");
-		facultyl = new MLabel(new Point(0, 210), new Dimension(100, 20),
-				"课程院系:");
+//		facultyl = new MLabel(new Point(0, 210), new Dimension(100, 20),
+//				"课程院系:");
 		periodl = new MLabel(new Point(0, 250), new Dimension(100, 20), "上课周数:");
 		timel = new MLabel(new Point(0, 280), new Dimension(100, 20), "上课时间:");
 
@@ -72,16 +77,14 @@ public class CourseEditPanel extends MPanel {
 		loct = new MTextField(new Point(150, 60), new Dimension(100, 20));
 		creditt = new MTextField(new Point(150, 90), new Dimension(100, 20));
 		numt = new MTextField(new Point(150, 120), new Dimension(100, 20));
-		typet = new MTextField(new Point(150, 150), new Dimension(100, 20));
+		typeSelect = new MComboBox(typeModel, new Point(150, 150),
+				new Dimension(100, 20));
+
 		gradet = new MTextField(new Point(150, 180), new Dimension(100, 20));
-		facultyt = new MTextField(new Point(150, 210), new Dimension(100, 20));
+//		facultyt = new MTextField(new Point(150, 210), new Dimension(100, 20));
 		periodt = new MTextField(new Point(150, 250), new Dimension(100, 20));
 
 		time = new CourseTimePanel(new Point(80, 280));
-		tbListener = new TimeButtonListener();
-		tdbListener = new TimeDeleteButtonListener();
-		time.addActionListener(tbListener);
-		time.addDeleteActionListener(tdbListener);
 		timeList = new ArrayList<CourseTimePanel>();
 		timeList.add(time);
 
@@ -89,10 +92,10 @@ public class CourseEditPanel extends MPanel {
 		this.add(idl);
 		this.add(locl);
 		this.add(creditl);
-		this.add(numl);
+//		this.add(numl);
 		this.add(typel);
 		this.add(gradel);
-		this.add(facultyl);
+//		this.add(facultyl);
 		this.add(periodl);
 		this.add(timel);
 
@@ -100,10 +103,10 @@ public class CourseEditPanel extends MPanel {
 		this.add(idt);
 		this.add(loct);
 		this.add(creditt);
-		this.add(numt);
-		this.add(typet);
+//		this.add(numt);
+		this.add(typeSelect);
 		this.add(gradet);
-		this.add(facultyt);
+//		this.add(facultyt);
 		this.add(periodt);
 
 		this.add(time);
@@ -111,10 +114,29 @@ public class CourseEditPanel extends MPanel {
 		this.validate();
 		this.repaint();
 	}
+	
+	private void addListener(){
+		tbListener = new TimeButtonListener();
+		tdbListener = new TimeDeleteButtonListener();
+		
+		time.addActionListener(tbListener);
+		time.addDeleteActionListener(tdbListener);
+
+		typeSelect.addItemListener(new TypeItemListener());
+	}
+	
+	private void init(){
+		observe = new MObservable();
+		typeSelect.setSelectedIndex(-1);
+		typeSelect.setSelectedIndex(0);
+	}
+	
+	public void setTypeModel(String[] typeModel){
+		this.typeModel=typeModel;
+	}
 
 	class TimeButtonListener implements ActionListener {
 
-		@Override
 		public void actionPerformed(ActionEvent e) {
 			// TODO Auto-generated method stub
 			Point loc = time.getLocation();
@@ -133,7 +155,6 @@ public class CourseEditPanel extends MPanel {
 
 	class TimeDeleteButtonListener implements ActionListener {
 
-		@Override
 		public void actionPerformed(ActionEvent e) {
 			// TODO Auto-generated method stub
 			if (timeList.size() > 1) {
@@ -166,9 +187,28 @@ public class CourseEditPanel extends MPanel {
 
 	}
 
+	class TypeItemListener implements ItemListener{
+		int time=0;
+		public void itemStateChanged(ItemEvent e) {
+			time++;
+			if(time%2==0){
+				String selected=(String) typeSelect.getSelectedItem();
+				if(selected.equals("通识教育课程")){
+					CourseEditPanel.this.add(numl);
+					CourseEditPanel.this.add(numt);
+				}else{
+					CourseEditPanel.this.remove(numl);
+					CourseEditPanel.this.remove(numt);
+				}
+				CourseEditPanel.this.refresh();
+			}
+		}
+		
+	}
+	
 	public void setHeight(int height) {
 		setChanged();
-		notifyObservers(height-this.getSize().height);
+		notifyObservers(height - this.getSize().height);
 		this.setSize(this.getSize().width, height);
 		this.refresh();
 	}

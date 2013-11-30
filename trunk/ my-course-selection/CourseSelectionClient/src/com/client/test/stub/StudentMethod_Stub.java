@@ -65,7 +65,7 @@ public class StudentMethod_Stub implements StudentMethod {
 		time.add("1_5_7");
 		time.add("3_1_4");
 		Course c2 = new Course("0002", "c++程序设计语言", "仙2_304", "E", 3, "12_17",
-				"1250", "你们应该学会怎么自己实现，而不是去用现成的。", 0, 3,time, null);
+				"1251", "你们应该学会怎么自己实现，而不是去用现成的。", 0, 3,time, null);
 		list.add(c1);
 
 		list.add(c2);
@@ -86,7 +86,7 @@ public class StudentMethod_Stub implements StudentMethod {
 	@Override
 	public Student getSelf(String arg0) throws RemoteException {
 		// TODO Auto-generated method stub
-		return new Student(ID, name, faculty, 3);
+		return new Student(ID, name, faculty, 2012);
 	}
 
 	@Override

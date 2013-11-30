@@ -8,12 +8,15 @@ import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Observer;
 
 import javax.swing.ComboBoxModel;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.UIManager;
 
+import com.basicdata.CourseTimeKind;
+import com.basicdata.CouseTypeKind;
 import com.data.po.Course;
 import com.ui.bcswing.MObservable;
 import com.ui.myswing.MButton;
@@ -53,8 +56,6 @@ public class CourseEditPanel extends MPanel {
 	CourseTimePanel time;
 	ArrayList<CourseTimePanel> timeList;
 
-	ActionListener tbListener;
-	ActionListener tdbListener;
 
 	public CourseEditPanel(Point loc, Dimension size) {
 		super(loc,size);
@@ -90,7 +91,7 @@ public class CourseEditPanel extends MPanel {
 
 		time = new CourseTimePanel(new Point(80, 280));
 		timeList = new ArrayList<CourseTimePanel>();
-		timeList.add(time);
+//		timeList.add(time);
 
 		this.add(namel);
 		this.add(idl);
@@ -110,24 +111,27 @@ public class CourseEditPanel extends MPanel {
 		
 		this.add(confirm);
 		
-		this.add(time);
+//		this.add(time);
 
 		this.validate();
 		this.repaint();
 	}
 	
 	private void addListener(){
-		tbListener = new TimeButtonListener();
-		tdbListener = new TimeDeleteButtonListener();
 		
-		time.addActionListener(tbListener);
-		time.addDeleteActionListener(tdbListener);
+		observe = new MObservable();
 
 		typeSelect.addItemListener(new TypeItemListener());
+		
+		new TimeButtonListener().actionPerformed(null);
+
 	}
 	
 	private void init(){
-		observe = new MObservable();
+
+	}
+	
+	public void initType(){
 		typeSelect.setSelectedIndex(-1);
 		typeSelect.setSelectedIndex(0);
 	}
@@ -138,7 +142,28 @@ public class CourseEditPanel extends MPanel {
 	}
 
 	public void setCourse(Course c){
+		namet.setText(c.getName());
+		idt.setText(c.getID());
+		loct.setText(c.getLoc());
+		creditt.setText(c.getCredit()+"");
+		numt.setText(c.getNum()+"");
+		gradet.setText(c.getGrade()+"");
+		periodt.setText(c.getPeriod());
+		typeSelect.setSelectedItem(CouseTypeKind.getName(c.getType()));
 		
+		
+		List<String> courseTime=c.getTime();
+		Iterator<String> it=courseTime.iterator();
+		Iterator<String> timeIt;
+		while(it.hasNext()){
+			timeIt=CourseTimeKind.getSeperateTime(it.next());
+			time.setWeek(timeIt.next());
+			time.setStart(timeIt.next());
+			time.setEnd(timeIt.next());
+			if(it.hasNext()){
+				new TimeButtonListener().actionPerformed(null);
+			}
+		}
 	}
 	
 	public Course getCourse(){
@@ -199,13 +224,12 @@ public class CourseEditPanel extends MPanel {
 			Point loc = time.getLocation();
 			time = new CourseTimePanel(new Point(loc.x, loc.y
 					+ default_height_add));
-			time.addActionListener(tbListener);
-			time.addDeleteActionListener(tdbListener);
+			time.addActionListener(new TimeButtonListener());
+			time.addDeleteActionListener(new TimeDeleteButtonListener());
 			timeList.add(time);
 			CourseEditPanel.this.add(time);
 			CourseEditPanel.this.setHeight(CourseEditPanel.this.getHeight()
 					+ default_height_add);
-			
 			loc=confirm.getLocation();
 			confirm.setLocation(loc.x,loc.y+default_height_add);
 
@@ -253,6 +277,7 @@ public class CourseEditPanel extends MPanel {
 		int time=0;
 		public void itemStateChanged(ItemEvent e) {
 			time++;
+			System.out.println(time);
 			if(time%2==0){
 				String selected=(String) typeSelect.getSelectedItem();
 				switch(selected){
@@ -268,23 +293,11 @@ public class CourseEditPanel extends MPanel {
 						CourseEditPanel.this.add(gradel);
 						CourseEditPanel.this.add(gradet);
 				}
+				System.out.println(selected);
 				CourseEditPanel.this.refresh();
 			}
 		}
 		
 	}
 	
-	
-	public static void main(String[] args) {
-		try {
-			org.jb2011.lnf.beautyeye.BeautyEyeLNFHelper.launchBeautyEyeLNF();
-			UIManager.put("RootPane.setupButtonVisible", false);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		MFrame f = new MFrame(new Dimension(500, 500));
-		f.add(new CourseEditPanel(new Point(0, 0), f.getSize()));
-		f.validate();
-		f.setVisible(true);
-	}
 }

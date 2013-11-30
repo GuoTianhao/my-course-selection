@@ -29,7 +29,6 @@ public class CourseEditPane extends MScrollForm {
 	private void addComponent() {
 		courseEdit = new CourseEditPanel(new Point(0, 0), this.getSize());
 		courseEdit.addObserver(this);
-
 		this.addContent(courseEdit);
 		this.refresh();
 		this.setVisible(true);

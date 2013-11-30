@@ -5,12 +5,17 @@ import java.awt.Point;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.rmi.RemoteException;
+import java.util.List;
 
 import javax.swing.UIManager;
 
+import com.basicdata.Identity;
 import com.client.rmi.TeacherMethodController;
+import com.client.ui.dataAdapter.CourseListToVectorAdapter;
 import com.client.ui.studentUI.StudentUISwitchController;
 import com.client.ui.teacherUI.TeacherUISwitchController;
+import com.data.po.Course;
+import com.data.po.Teacher;
 import com.logicService.TeacherMethod;
 import com.ui.bcswing.CourseDisplayTable;
 import com.ui.bcswing.CourseInforPane;
@@ -76,7 +81,15 @@ public class CourseManagementPanel extends MPanel {
 	}
 
 	private void init() {
-
+		TeacherMethod method = TeacherMethodController.getMethod();
+		Teacher teacher=(Teacher) Identity.getIdentity();
+		String id=teacher.getID();
+		try {
+			List<Course> list=method.getMyCourseList(id);
+			table.setDataVector(CourseListToVectorAdapter.adapter(list));
+		} catch (RemoteException e) {
+			e.printStackTrace();
+		}
 	}
 	
 	class RecordListener implements ActionListener{
@@ -130,6 +143,14 @@ public class CourseManagementPanel extends MPanel {
 	}
 
 	public static void main(String[] args) {
+		TeacherMethod method = TeacherMethodController.getMethod();
+		try {
+			Identity.setIdentity(method.getSelf(""));
+		} catch (RemoteException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		
 		try {
 			org.jb2011.lnf.beautyeye.BeautyEyeLNFHelper.launchBeautyEyeLNF();
 			UIManager.put("RootPane.setupButtonVisible", false);

@@ -11,6 +11,8 @@ import java.util.Map;
 
 
 
+
+
 import com.data.po.Course;
 import com.data.po.Student;
 import com.data.po.Teacher;
@@ -86,13 +88,37 @@ public class TeacherMethod_Stub implements TeacherMethod {
 	@Override
 	public List<Course> getMyCourseList(String arg0) throws RemoteException {
 		// TODO Auto-generated method stub
-		return null;
+		List<Course> list = new ArrayList<Course>();
+
+		List<String> time = new ArrayList<String>();
+
+		time.add("2_5_7");
+
+		time.add("1_1_4");
+
+		Course c1 = new Course("0001", "软件工程与计算", "仙2_303", "F", 3, "1_17",
+				"1250", "打造全院最好软件教育", 0,3, time, null);
+		time.clear();
+		time.add("1_5_7");
+		time.add("3_1_4");
+		Course c2 = new Course("0002", "c++程序设计语言", "仙2_304", "E", 3, "12_17",
+				"1251", "你们应该学会怎么自己实现，而不是去用现成的。", 0, 3,time, null);
+		list.add(c1);
+
+		list.add(c2);
+
+			return list;
 	}
 
 	@Override
 	public Course getCourse(String arg0) throws RemoteException {
 		// TODO Auto-generated method stub
-		return null;
+		List<String> time = new ArrayList<String>();
+		time.add("2_5_7");
+		time.add("1_1_4");
+		Course c = new Course("0001", "软件工程与计算", "仙2_303", "F", 3, "1_17",
+				"1250", "打造全院最好软件教育", 0, 3,time, null);
+		return c;
 	}
 }
 

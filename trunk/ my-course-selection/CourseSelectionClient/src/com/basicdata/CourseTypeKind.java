@@ -5,6 +5,6 @@ public class CourseTypeKind {
 		return "A";
 	}
 	public static String getName(String type){
-		return "思想政治理论课程";
+		return "通识教育课程";
 	}
 }

@@ -114,7 +114,7 @@ public class CourseScriptPane extends MFrame {
 			}
 		});
 
-		CourseScriptPane.this.addWindowListener(new WindowAdapter() {
+		addWindowListener(new WindowAdapter() {
 			public void windowClosing(WindowEvent e) {
 				int val = JOptionPane.showConfirmDialog(rootPane, "是否保存当前更改？",
 						"提醒", JOptionPane.YES_NO_OPTION);

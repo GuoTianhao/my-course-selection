@@ -80,4 +80,16 @@ public class CourseTimePanel extends MPanel {
 	public String getEnd() {
 		return (String) end.getSelectedItem();
 	}
+	
+	public void setEnabled(boolean able){
+		week.setEnabled(able);
+		start.setEnabled(able);
+		end.setEnabled(able);
+
+		timeB.setEnabled(able);
+		timeB.setEnabled(able);
+		timeDB.setEnabled(able);
+	}
+	
+	
 }

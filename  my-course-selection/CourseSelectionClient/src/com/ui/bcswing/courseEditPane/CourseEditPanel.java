@@ -68,41 +68,42 @@ public class CourseEditPanel extends MPanel {
 	private void creatComponent() {
 		namel = new MLabel(new Point(0, 0), new Dimension(100, 20), "课程名称:");
 		idl = new MLabel(new Point(0, 30), new Dimension(100, 20), "课程编号:");
-		locl = new MLabel(new Point(0, 60), new Dimension(100, 20), "上课地点:");
+		locl = new MLabel(new Point(0, 210), new Dimension(100, 20), "上课地点:");
 		creditl = new MLabel(new Point(0, 90), new Dimension(100, 20), "学分:");
-		numl = new MLabel(new Point(0, 120), new Dimension(100, 20), "上课人数:");
-		typel = new MLabel(new Point(0, 150), new Dimension(100, 20), "课程类型:");
-		gradel = new MLabel(new Point(0, 180), new Dimension(100, 20), "年级:");
-		periodl = new MLabel(new Point(0, 250), new Dimension(100, 20), "上课周数:");
-		timel = new MLabel(new Point(0, 280), new Dimension(100, 20), "上课时间:");
+		numl = new MLabel(new Point(0, 150), new Dimension(100, 20), "上课人数:");
+		typel = new MLabel(new Point(0, 60), new Dimension(100, 20), "课程类型:");
+		gradel = new MLabel(new Point(0, 120), new Dimension(100, 20), "年级:");
+		periodl = new MLabel(new Point(0, 180), new Dimension(100, 20), "上课周数:");
+		timel = new MLabel(new Point(0, 240), new Dimension(100, 20), "上课时间:");
 
 		namet = new MTextField(new Point(150, 0), new Dimension(100, 20));
 		idt = new MTextField(new Point(150, 30), new Dimension(100, 20));
-		loct = new MTextField(new Point(150, 60), new Dimension(100, 20));
+		loct = new MTextField(new Point(150, 210), new Dimension(100, 20));
 		creditt = new MTextField(new Point(150, 90), new Dimension(100, 20));
-		numt = new MTextField(new Point(150, 120), new Dimension(100, 20));
-		typeSelect = new MComboBox(typeModel, new Point(150, 150),
+		numt = new MTextField(new Point(150, 150), new Dimension(100, 20));
+		typeSelect = new MComboBox(typeModel, new Point(150, 60),
 				new Dimension(100, 20));
 
-		gradet = new MTextField(new Point(150, 180), new Dimension(100, 20));
-		periodt = new MTextField(new Point(150, 250), new Dimension(100, 20));
+		gradet = new MTextField(new Point(150, 120), new Dimension(100, 20));
+		periodt = new MTextField(new Point(150, 180), new Dimension(100, 20));
 
-		confirm = new MButton(null, null, null, new Point(80, 310),
+		confirm = new MButton(null, null, null, new Point(80, 240),
 				new Dimension(100, 20));
 		confirm.setText("确定");
 
-		time = new CourseTimePanel(new Point(80, 280));
+		time = new CourseTimePanel(new Point(80, 210));
 		timeList = new ArrayList<CourseTimePanel>();
-		// timeList.add(time);
+		
 
 		this.add(namel);
 		this.add(idl);
 		this.add(locl);
 		this.add(creditl);
 		this.add(typel);
-
+		this.add(numl);
 		this.add(periodl);
 		this.add(timel);
+		this.add(gradel);
 
 		this.add(namet);
 		this.add(idt);
@@ -110,35 +111,34 @@ public class CourseEditPanel extends MPanel {
 		this.add(creditt);
 		this.add(typeSelect);
 		this.add(periodt);
-
+		this.add(numt);
 		this.add(confirm);
+		this.add(gradet);
 
-		// this.add(time);
 
 		this.validate();
 		this.repaint();
 	}
 
-	private void addListener() {
+	protected void addListener() {
 
 		observe = new MObservable();
 
 		typeSelect.addItemListener(new TypeItemListener());
 
 		new TimeButtonListener().actionPerformed(null);
+	}
+
+	protected void init() {
 
 	}
 
-	private void init() {
-
-	}
-
-	public void initType() {
+	protected void initType() {
 		typeSelect.setSelectedIndex(-1);
 		typeSelect.setSelectedIndex(0);
 	}
 
-	public void setTypeModel(String[] typeModel) {
+	protected void setTypeModel(String[] typeModel) {
 		this.typeModel = typeModel;
 		typeSelect.setModel(new DefaultComboBoxModel<String>(typeModel));
 	}
@@ -308,16 +308,36 @@ public class CourseEditPanel extends MPanel {
 				String selected = (String) typeSelect.getSelectedItem();
 				switch (selected) {
 				case "通识教育课程":
-					CourseEditPanel.this.add(numl);
-					CourseEditPanel.this.add(numt);
-					CourseEditPanel.this.remove(gradel);
-					CourseEditPanel.this.remove(gradet);
+					gradet.setText("");
+					gradet.disable();
+					numt.enable();
+					loct.enable();
+					CourseEditPanel.this.time.setEnabled(true);
 					break;
 				default:
-					CourseEditPanel.this.remove(numl);
-					CourseEditPanel.this.remove(numt);
-					CourseEditPanel.this.add(gradel);
-					CourseEditPanel.this.add(gradet);
+					numt.setText("");
+					loct.setText("");
+					numt.disable();
+					loct.disable();
+					gradet.enable();
+					
+					Iterator<CourseTimePanel> it = timeList.iterator();
+					while (it.hasNext()) {
+						CourseEditPanel.this.remove(it.next());
+						it.remove();
+					}
+					
+					CourseEditPanel.this.time = new CourseTimePanel(new Point(
+							80, 240));
+					CourseEditPanel.this.time
+							.addActionListener(new TimeButtonListener());
+					CourseEditPanel.this.time
+							.addDeleteActionListener(new TimeDeleteButtonListener());
+					timeList.add(CourseEditPanel.this.time);
+					CourseEditPanel.this.add(CourseEditPanel.this.time);
+					CourseEditPanel.this.time.setEnabled(false);
+					
+					confirm.setLocation(new Point(80, 270));
 				}
 				System.out.println(selected);
 				CourseEditPanel.this.refresh();

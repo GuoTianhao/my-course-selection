@@ -4,6 +4,7 @@ import java.awt.Dimension;
 import java.awt.Point;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 import java.rmi.RemoteException;
@@ -97,6 +98,7 @@ public class CourseScriptPane extends MFrame {
 				// TODO Auto-generated method stub
 				try {
 					method.filnCourseInfor(course.getID(), getScript());
+					CourseScriptPane.this.dispose();
 				} catch (RemoteException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
@@ -108,15 +110,12 @@ public class CourseScriptPane extends MFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-
+				CourseScriptPane.this.dispose();
 			}
 		});
 
-		addWindowListener(new WindowListener() {
-
-			@Override
+		CourseScriptPane.this.addWindowListener(new WindowAdapter() {
 			public void windowClosing(WindowEvent e) {
-				// TODO Auto-generated method stub
 				int val = JOptionPane.showConfirmDialog(rootPane, "是否保存当前更改？",
 						"提醒", JOptionPane.YES_NO_OPTION);
 				switch (val) {
@@ -127,7 +126,6 @@ public class CourseScriptPane extends MFrame {
 						// TODO Auto-generated catch block
 						e1.printStackTrace();
 					}
-					
 					break;
 				case JOptionPane.NO_OPTION:
 					break;
@@ -135,43 +133,6 @@ public class CourseScriptPane extends MFrame {
 					break;
 				}
 			}
-
-			@Override
-			public void windowOpened(WindowEvent e) {
-				// TODO Auto-generated method stub
-
-			}
-
-			@Override
-			public void windowClosed(WindowEvent e) {
-				// TODO Auto-generated method stub
-
-			}
-
-			@Override
-			public void windowIconified(WindowEvent e) {
-				// TODO Auto-generated method stub
-
-			}
-
-			@Override
-			public void windowDeiconified(WindowEvent e) {
-				// TODO Auto-generated method stub
-
-			}
-
-			@Override
-			public void windowActivated(WindowEvent e) {
-				// TODO Auto-generated method stub
-
-			}
-
-			@Override
-			public void windowDeactivated(WindowEvent e) {
-				// TODO Auto-generated method stub
-
-			}
-
 		});
 	}
 

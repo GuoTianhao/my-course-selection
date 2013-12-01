@@ -56,16 +56,28 @@ public class CourseTimePanel extends MPanel {
 	public void addDeleteActionListener(ActionListener al) {
 		timeDB.addActionListener(al);
 	}
-	
-	public void setWeek(String week){
+
+	public void setWeek(String week) {
 		this.week.setSelectedItem(week);
 	}
-	
-	public void setStart(String start){
+
+	public void setStart(String start) {
 		this.start.setSelectedItem(start);
 	}
-	
-	public void setEnd(String end){
+
+	public void setEnd(String end) {
 		this.end.setSelectedItem(end);
+	}
+
+	public String getWeek() {
+		return (String) week.getSelectedItem();
+	}
+
+	public String getStart() {
+		return (String) start.getSelectedItem();
+	}
+
+	public String getEnd() {
+		return (String) end.getSelectedItem();
 	}
 }

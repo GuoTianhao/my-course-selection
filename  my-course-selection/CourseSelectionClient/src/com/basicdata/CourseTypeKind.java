@@ -1,8 +1,8 @@
 package com.basicdata;
 
-public class CouseTypeKind {
+public class CourseTypeKind {
 	public static String getType(String name){
-		return "";
+		return "A";
 	}
 	public static String getName(String type){
 		return "思想政治理论课程";

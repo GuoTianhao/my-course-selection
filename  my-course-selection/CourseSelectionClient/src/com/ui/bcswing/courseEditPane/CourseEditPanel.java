@@ -8,6 +8,7 @@ import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Observer;
 
@@ -16,8 +17,9 @@ import javax.swing.DefaultComboBoxModel;
 import javax.swing.UIManager;
 
 import com.basicdata.CourseTimeKind;
-import com.basicdata.CouseTypeKind;
+import com.basicdata.CourseTypeKind;
 import com.data.po.Course;
+import com.data.po.Teacher;
 import com.ui.bcswing.MObservable;
 import com.ui.myswing.MButton;
 import com.ui.myswing.MComboBox;
@@ -50,15 +52,14 @@ public class CourseEditPanel extends MPanel {
 	private MTextField periodt;
 
 	private MButton confirm;
-	
-	private String[] typeModel = {"NONE"};
+
+	private String[] typeModel = { "NONE" };
 
 	CourseTimePanel time;
 	ArrayList<CourseTimePanel> timeList;
 
-
 	public CourseEditPanel(Point loc, Dimension size) {
-		super(loc,size);
+		super(loc, size);
 		creatComponent();
 		addListener();
 		init();
@@ -85,13 +86,14 @@ public class CourseEditPanel extends MPanel {
 
 		gradet = new MTextField(new Point(150, 180), new Dimension(100, 20));
 		periodt = new MTextField(new Point(150, 250), new Dimension(100, 20));
-		
-		confirm=new MButton(null,null,null,new Point(80, 310), new Dimension(100, 20));
+
+		confirm = new MButton(null, null, null, new Point(80, 310),
+				new Dimension(100, 20));
 		confirm.setText("确定");
 
 		time = new CourseTimePanel(new Point(80, 280));
 		timeList = new ArrayList<CourseTimePanel>();
-//		timeList.add(time);
+		// timeList.add(time);
 
 		this.add(namel);
 		this.add(idl);
@@ -108,68 +110,91 @@ public class CourseEditPanel extends MPanel {
 		this.add(creditt);
 		this.add(typeSelect);
 		this.add(periodt);
-		
+
 		this.add(confirm);
-		
-//		this.add(time);
+
+		// this.add(time);
 
 		this.validate();
 		this.repaint();
 	}
-	
-	private void addListener(){
-		
+
+	private void addListener() {
+
 		observe = new MObservable();
 
 		typeSelect.addItemListener(new TypeItemListener());
-		
+
 		new TimeButtonListener().actionPerformed(null);
 
 	}
-	
-	private void init(){
+
+	private void init() {
 
 	}
-	
-	public void initType(){
+
+	public void initType() {
 		typeSelect.setSelectedIndex(-1);
 		typeSelect.setSelectedIndex(0);
 	}
-	
-	public void setTypeModel(String[] typeModel){
-		this.typeModel=typeModel;
+
+	public void setTypeModel(String[] typeModel) {
+		this.typeModel = typeModel;
 		typeSelect.setModel(new DefaultComboBoxModel<String>(typeModel));
 	}
 
-	public void setCourse(Course c){
+	public void setCourse(Course c) {
 		namet.setText(c.getName());
 		idt.setText(c.getID());
 		loct.setText(c.getLoc());
-		creditt.setText(c.getCredit()+"");
-		numt.setText(c.getNum()+"");
-		gradet.setText(c.getGrade()+"");
+		creditt.setText(c.getCredit() + "");
+		numt.setText(c.getNum() + "");
+		gradet.setText(c.getGrade() + "");
 		periodt.setText(c.getPeriod());
-		typeSelect.setSelectedItem(CouseTypeKind.getName(c.getType()));
-		
-		
-		List<String> courseTime=c.getTime();
-		Iterator<String> it=courseTime.iterator();
+		typeSelect.setSelectedItem(CourseTypeKind.getName(c.getType()));
+
+		List<String> courseTime = c.getTime();
+		Iterator<String> it = courseTime.iterator();
 		Iterator<String> timeIt;
-		while(it.hasNext()){
-			timeIt=CourseTimeKind.getSeperateTime(it.next());
+		while (it.hasNext()) {
+			timeIt = CourseTimeKind.getSeperateTime(it.next());
 			time.setWeek(timeIt.next());
 			time.setStart(timeIt.next());
 			time.setEnd(timeIt.next());
-			if(it.hasNext()){
+			if (it.hasNext()) {
 				new TimeButtonListener().actionPerformed(null);
 			}
 		}
 	}
-	
-	public Course getCourse(){
-		return null;
+
+	public Course getCourse() {
+		Course c;
+		String name = namet.getText();
+		String id = idt.getText();
+		String loc = loct.getText();
+		int credit = Integer.parseInt(creditt.getText());
+		int num = Integer.parseInt(numt.getText());
+		int grade = Integer.parseInt(gradet.getText());
+		String period = periodt.getText();
+		String type = CourseTypeKind.getType((String) typeSelect
+				.getSelectedItem());
+
+		List<String> time = new LinkedList<String>();
+		Iterator<CourseTimePanel> it = timeList.iterator();
+		CourseTimePanel timePanel;
+		while (it.hasNext()) {
+			timePanel = it.next();
+			List<String> seperateTime = new LinkedList<String>();
+			seperateTime.add(timePanel.getWeek());
+			seperateTime.add(timePanel.getStart());
+			seperateTime.add(timePanel.getEnd());
+			time.add(CourseTimeKind.getTime(seperateTime.iterator()));
+		}
+		c = new Course(id, name, loc, type, grade, period, null, null, num,
+				credit, time, null);
+		return c;
 	}
-	
+
 	public void setHeight(int height) {
 		setChanged();
 		notifyObservers(height - this.getSize().height);
@@ -177,10 +202,10 @@ public class CourseEditPanel extends MPanel {
 		this.refresh();
 	}
 
-	public void addConfirmListener(ActionListener al){
+	public void addConfirmListener(ActionListener al) {
 		confirm.addActionListener(al);
 	}
-	
+
 	public synchronized void addObserver(Observer o) {
 		observe.addObserver(o);
 	}
@@ -230,8 +255,8 @@ public class CourseEditPanel extends MPanel {
 			CourseEditPanel.this.add(time);
 			CourseEditPanel.this.setHeight(CourseEditPanel.this.getHeight()
 					+ default_height_add);
-			loc=confirm.getLocation();
-			confirm.setLocation(loc.x,loc.y+default_height_add);
+			loc = confirm.getLocation();
+			confirm.setLocation(loc.x, loc.y + default_height_add);
 
 		}
 
@@ -266,21 +291,22 @@ public class CourseEditPanel extends MPanel {
 				CourseEditPanel.this.setHeight(CourseEditPanel.this.getHeight()
 						- default_height_add);
 
-				Point loc=confirm.getLocation();
-				confirm.setLocation(loc.x,loc.y-default_height_add);
+				Point loc = confirm.getLocation();
+				confirm.setLocation(loc.x, loc.y - default_height_add);
 			}
 		}
 
 	}
 
-	class TypeItemListener implements ItemListener{
-		int time=0;
+	class TypeItemListener implements ItemListener {
+		int time = 0;
+
 		public void itemStateChanged(ItemEvent e) {
 			time++;
 			System.out.println(time);
-			if(time%2==0){
-				String selected=(String) typeSelect.getSelectedItem();
-				switch(selected){
+			if (time % 2 == 0) {
+				String selected = (String) typeSelect.getSelectedItem();
+				switch (selected) {
 				case "通识教育课程":
 					CourseEditPanel.this.add(numl);
 					CourseEditPanel.this.add(numt);
@@ -288,16 +314,16 @@ public class CourseEditPanel extends MPanel {
 					CourseEditPanel.this.remove(gradet);
 					break;
 				default:
-						CourseEditPanel.this.remove(numl);
-						CourseEditPanel.this.remove(numt);
-						CourseEditPanel.this.add(gradel);
-						CourseEditPanel.this.add(gradet);
+					CourseEditPanel.this.remove(numl);
+					CourseEditPanel.this.remove(numt);
+					CourseEditPanel.this.add(gradel);
+					CourseEditPanel.this.add(gradet);
 				}
 				System.out.println(selected);
 				CourseEditPanel.this.refresh();
 			}
 		}
-		
+
 	}
-	
+
 }

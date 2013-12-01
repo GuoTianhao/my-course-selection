@@ -1,6 +1,7 @@
 package com.basicdata;
 
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.Map;
 
 public class FacultyKind {
@@ -43,5 +44,10 @@ public class FacultyKind {
 		}
 		return idToName.get(ID);
 	}
+	
+//	public static Iterator<String> getAllID() {
+//		Iterator<String> res = idToName.keySet().iterator();
+//		return res;
+//	}
 
 }

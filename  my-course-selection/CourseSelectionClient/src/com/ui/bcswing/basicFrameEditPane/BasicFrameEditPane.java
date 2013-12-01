@@ -39,6 +39,36 @@ public class BasicFrameEditPane extends MFrame {
 	private MButton noBtn;
 	private DeanMethod method = DeanMethodController.getMethod();
 	private String[][] elementStr = new String[7][3];
+	private MTextField textField;
+	private MTextField textField_1;
+	private MTextField textField_2;
+	private MTextField textField_3;
+	private MTextField textField_4;
+	private MTextField textField_5;
+	private MTextField textField_6;
+	private MTextField textField_7;
+	private MTextField textField_8;
+	private MTextField textField_9;
+	private MTextField textField_10;
+	private MTextField textField_11;
+	private MTextField textField_12;
+	private MTextField textField_13;
+	private MTextField textField_14;
+	private MTextField textField_15;
+	private MTextField textField_16;
+	private MTextField textField_17;
+	private MTextField textField_18;
+	private MTextField textField_19;
+	private MTextField textField_20;
+	private MTextField textField_21;
+	private MTextField textField_22;
+	private MTextField textField_23;
+	private MTextField textField_24;
+	private MTextField textField_25;
+	private MTextField textField_26;
+	private MTextField textField_27;
+	private MTextField textField_28;
+	private MTextField textField_29;
 
 	public BasicFrameEditPane() {
 		super(default_size);
@@ -95,37 +125,37 @@ public class BasicFrameEditPane extends MFrame {
 		editPanel.add(yesBtn);
 		editPanel.add(noBtn);
 
-		MTextField textField = new MTextField();
+		textField = new MTextField();
 		textField.setEditable(false);
 		textField.setBounds(30, 90, 150, 25);
 		editPanel.add(textField);
 
-		MTextField textField_1 = new MTextField();
+		textField_1 = new MTextField();
 		textField_1.setEditable(false);
 		textField_1.setBounds(30, 135, 150, 25);
 		editPanel.add(textField_1);
 
-		MTextField textField_2 = new MTextField();
+		textField_2 = new MTextField();
 		textField_2.setEditable(false);
 		textField_2.setBounds(30, 180, 150, 25);
 		editPanel.add(textField_2);
 
-		MTextField textField_3 = new MTextField();
+		textField_3 = new MTextField();
 		textField_3.setEditable(false);
 		textField_3.setBounds(30, 225, 150, 25);
 		editPanel.add(textField_3);
 
-		MTextField textField_4 = new MTextField();
+		textField_4 = new MTextField();
 		textField_4.setEditable(false);
 		textField_4.setBounds(30, 270, 150, 25);
 		editPanel.add(textField_4);
 
-		MTextField textField_5 = new MTextField();
+		textField_5 = new MTextField();
 		textField_5.setEditable(false);
 		textField_5.setBounds(30, 315, 150, 25);
 		editPanel.add(textField_5);
 
-		MTextField textField_6 = new MTextField();
+		textField_6 = new MTextField();
 		textField_6.setBounds(220, 90, 25, 25);
 		editPanel.add(textField_6);
 
@@ -133,15 +163,15 @@ public class BasicFrameEditPane extends MFrame {
 		label.setBounds(245, 90, 25, 25);
 		editPanel.add(label);
 
-		MTextField textField_7 = new MTextField();
+		textField_7 = new MTextField();
 		textField_7.setBounds(270, 90, 25, 25);
 		editPanel.add(textField_7);
 
-		MTextField textField_8 = new MTextField();
+		textField_8 = new MTextField();
 		textField_8.setBounds(270, 135, 25, 25);
 		editPanel.add(textField_8);
 
-		MTextField textField_9 = new MTextField();
+		textField_9 = new MTextField();
 		textField_9.setBounds(220, 135, 25, 25);
 		editPanel.add(textField_9);
 
@@ -149,11 +179,11 @@ public class BasicFrameEditPane extends MFrame {
 		label_1.setBounds(245, 135, 25, 25);
 		editPanel.add(label_1);
 
-		MTextField textField_10 = new MTextField();
+		textField_10 = new MTextField();
 		textField_10.setBounds(270, 180, 25, 25);
 		editPanel.add(textField_10);
 
-		MTextField textField_11 = new MTextField();
+		textField_11 = new MTextField();
 		textField_11.setBounds(220, 180, 25, 25);
 		editPanel.add(textField_11);
 
@@ -161,11 +191,11 @@ public class BasicFrameEditPane extends MFrame {
 		label_2.setBounds(245, 180, 25, 25);
 		editPanel.add(label_2);
 
-		MTextField textField_12 = new MTextField();
+		textField_12 = new MTextField();
 		textField_12.setBounds(270, 225, 25, 25);
 		editPanel.add(textField_12);
 
-		MTextField textField_13 = new MTextField();
+		textField_13 = new MTextField();
 		textField_13.setBounds(220, 225, 25, 25);
 		editPanel.add(textField_13);
 
@@ -173,11 +203,11 @@ public class BasicFrameEditPane extends MFrame {
 		label_3.setBounds(245, 225, 25, 25);
 		editPanel.add(label_3);
 
-		MTextField textField_14 = new MTextField();
+		textField_14 = new MTextField();
 		textField_14.setBounds(270, 270, 25, 25);
 		editPanel.add(textField_14);
 
-		MTextField textField_15 = new MTextField();
+		textField_15 = new MTextField();
 		textField_15.setBounds(220, 270, 25, 25);
 		editPanel.add(textField_15);
 
@@ -185,11 +215,11 @@ public class BasicFrameEditPane extends MFrame {
 		label_4.setBounds(245, 270, 25, 25);
 		editPanel.add(label_4);
 
-		MTextField textField_16 = new MTextField();
+		textField_16 = new MTextField();
 		textField_16.setBounds(270, 315, 25, 25);
 		editPanel.add(textField_16);
 
-		MTextField textField_17 = new MTextField();
+		textField_17 = new MTextField();
 		textField_17.setBounds(220, 315, 25, 25);
 		editPanel.add(textField_17);
 
@@ -197,7 +227,7 @@ public class BasicFrameEditPane extends MFrame {
 		label_5.setBounds(245, 315, 25, 25);
 		editPanel.add(label_5);
 
-		MTextField textField_18 = new MTextField();
+		textField_18 = new MTextField();
 		textField_18.setBounds(350, 90, 25, 25);
 		editPanel.add(textField_18);
 
@@ -205,11 +235,11 @@ public class BasicFrameEditPane extends MFrame {
 		label_6.setBounds(375, 90, 25, 25);
 		editPanel.add(label_6);
 
-		MTextField textField_19 = new MTextField();
+		textField_19 = new MTextField();
 		textField_19.setBounds(400, 90, 25, 25);
 		editPanel.add(textField_19);
 
-		MTextField textField_20 = new MTextField();
+		textField_20 = new MTextField();
 		textField_20.setBounds(350, 135, 25, 25);
 		editPanel.add(textField_20);
 
@@ -217,11 +247,11 @@ public class BasicFrameEditPane extends MFrame {
 		label_7.setBounds(375, 135, 25, 25);
 		editPanel.add(label_7);
 
-		MTextField textField_21 = new MTextField();
+		textField_21 = new MTextField();
 		textField_21.setBounds(400, 135, 25, 25);
 		editPanel.add(textField_21);
 
-		MTextField textField_22 = new MTextField();
+		textField_22 = new MTextField();
 		textField_22.setBounds(350, 180, 25, 25);
 		editPanel.add(textField_22);
 
@@ -229,11 +259,11 @@ public class BasicFrameEditPane extends MFrame {
 		label_8.setBounds(375, 180, 25, 25);
 		editPanel.add(label_8);
 
-		MTextField textField_23 = new MTextField();
+		textField_23 = new MTextField();
 		textField_23.setBounds(400, 180, 25, 25);
 		editPanel.add(textField_23);
 
-		MTextField textField_24 = new MTextField();
+		textField_24 = new MTextField();
 		textField_24.setBounds(350, 225, 25, 25);
 		editPanel.add(textField_24);
 
@@ -241,11 +271,11 @@ public class BasicFrameEditPane extends MFrame {
 		label_9.setBounds(375, 225, 25, 25);
 		editPanel.add(label_9);
 
-		MTextField textField_25 = new MTextField();
+		textField_25 = new MTextField();
 		textField_25.setBounds(400, 225, 25, 25);
 		editPanel.add(textField_25);
 
-		MTextField textField_26 = new MTextField();
+		textField_26 = new MTextField();
 		textField_26.setBounds(350, 270, 25, 25);
 		editPanel.add(textField_26);
 
@@ -253,11 +283,11 @@ public class BasicFrameEditPane extends MFrame {
 		label_10.setBounds(375, 270, 25, 25);
 		editPanel.add(label_10);
 
-		MTextField textField_27 = new MTextField();
+		textField_27 = new MTextField();
 		textField_27.setBounds(400, 270, 25, 25);
 		editPanel.add(textField_27);
 
-		MTextField textField_28 = new MTextField();
+		textField_28 = new MTextField();
 		textField_28.setBounds(350, 315, 25, 25);
 		editPanel.add(textField_28);
 
@@ -265,43 +295,9 @@ public class BasicFrameEditPane extends MFrame {
 		label_11.setBounds(375, 315, 25, 25);
 		editPanel.add(label_11);
 
-		MTextField textField_29 = new MTextField();
+		textField_29 = new MTextField();
 		textField_29.setBounds(400, 315, 25, 25);
 		editPanel.add(textField_29);
-
-		elementStr[0][0] = moduleField.getText();
-		elementStr[0][1] = creditField1.getText() + "_"
-				+ creditField2.getText();
-		elementStr[0][2] = periodField1.getText() + "_"
-				+ periodField2.getText();
-		elementStr[1][0] = textField.getText();
-		elementStr[1][1] = textField_6.getText() + "_" + textField_7.getText();
-		elementStr[1][2] = textField_18.getText() + "_"
-				+ textField_19.getText();
-		elementStr[2][0] = textField_1.getText();
-		elementStr[2][1] = textField_9.getText() + "_" + textField_8.getText();
-		elementStr[2][2] = textField_20.getText() + "_"
-				+ textField_21.getText();
-		elementStr[3][0] = textField_2.getText();
-		elementStr[3][1] = textField_11.getText() + "_"
-				+ textField_10.getText();
-		elementStr[3][2] = textField_22.getText() + "_"
-				+ textField_23.getText();
-		elementStr[4][0] = textField_3.getText();
-		elementStr[4][1] = textField_13.getText() + "_"
-				+ textField_12.getText();
-		elementStr[4][2] = textField_24.getText() + "_"
-				+ textField_25.getText();
-		elementStr[5][0] = textField_4.getText();
-		elementStr[5][1] = textField_15.getText() + "_"
-				+ textField_14.getText();
-		elementStr[5][2] = textField_26.getText() + "_"
-				+ textField_27.getText();
-		elementStr[6][0] = textField_5.getText();
-		elementStr[6][1] = textField_17.getText() + "_"
-				+ textField_16.getText();
-		elementStr[6][2] = textField_28.getText() + "_"
-				+ textField_29.getText();
 
 		getContentPane().add(editPanel);
 		this.setVisible(true);
@@ -363,6 +359,39 @@ public class BasicFrameEditPane extends MFrame {
 
 	public BasicFrame getBasicFrame() {
 		BasicFrame frame = new BasicFrame();
+		elementStr[0][0] = moduleField.getText();
+		elementStr[0][1] = creditField1.getText() + "_"
+				+ creditField2.getText();
+		elementStr[0][2] = periodField1.getText() + "_"
+				+ periodField2.getText();
+		elementStr[1][0] = textField.getText();
+		elementStr[1][1] = textField_6.getText() + "_" + textField_7.getText();
+		elementStr[1][2] = textField_18.getText() + "_"
+				+ textField_19.getText();
+		elementStr[2][0] = textField_1.getText();
+		elementStr[2][1] = textField_9.getText() + "_" + textField_8.getText();
+		elementStr[2][2] = textField_20.getText() + "_"
+				+ textField_21.getText();
+		elementStr[3][0] = textField_2.getText();
+		elementStr[3][1] = textField_11.getText() + "_"
+				+ textField_10.getText();
+		elementStr[3][2] = textField_22.getText() + "_"
+				+ textField_23.getText();
+		elementStr[4][0] = textField_3.getText();
+		elementStr[4][1] = textField_13.getText() + "_"
+				+ textField_12.getText();
+		elementStr[4][2] = textField_24.getText() + "_"
+				+ textField_25.getText();
+		elementStr[5][0] = textField_4.getText();
+		elementStr[5][1] = textField_15.getText() + "_"
+				+ textField_14.getText();
+		elementStr[5][2] = textField_26.getText() + "_"
+				+ textField_27.getText();
+		elementStr[6][0] = textField_5.getText();
+		elementStr[6][1] = textField_17.getText() + "_"
+				+ textField_16.getText();
+		elementStr[6][2] = textField_28.getText() + "_"
+				+ textField_29.getText();
 		for (int i = 0; i < elementStr.length; i++) {
 			frame.addFrameElement(new FrameElement(elementStr[i][0],
 					elementStr[i][1], elementStr[i][2]));

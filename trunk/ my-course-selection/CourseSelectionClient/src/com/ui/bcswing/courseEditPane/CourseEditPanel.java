@@ -32,7 +32,6 @@ public class CourseEditPanel extends MPanel {
 	private static int default_height_add = 40;
 	private MObservable observe;
 	private MLabel namel;
-	private MLabel idl;
 	private MLabel locl;
 	private MLabel creditl;
 	private MLabel numl;
@@ -43,7 +42,6 @@ public class CourseEditPanel extends MPanel {
 	private MLabel timel;
 
 	private MTextField namet;
-	private MTextField idt;
 	private MTextField loct;
 	private MTextField creditt;
 	private MTextField numt;
@@ -67,36 +65,33 @@ public class CourseEditPanel extends MPanel {
 
 	private void creatComponent() {
 		namel = new MLabel(new Point(0, 0), new Dimension(100, 20), "课程名称:");
-		idl = new MLabel(new Point(0, 30), new Dimension(100, 20), "课程编号:");
-		locl = new MLabel(new Point(0, 210), new Dimension(100, 20), "上课地点:");
-		creditl = new MLabel(new Point(0, 90), new Dimension(100, 20), "学分:");
-		numl = new MLabel(new Point(0, 150), new Dimension(100, 20), "上课人数:");
-		typel = new MLabel(new Point(0, 60), new Dimension(100, 20), "课程类型:");
-		gradel = new MLabel(new Point(0, 120), new Dimension(100, 20), "年级:");
-		periodl = new MLabel(new Point(0, 180), new Dimension(100, 20), "上课周数:");
-		timel = new MLabel(new Point(0, 240), new Dimension(100, 20), "上课时间:");
+		locl = new MLabel(new Point(0, 180), new Dimension(100, 20), "上课地点:");
+		creditl = new MLabel(new Point(0, 60), new Dimension(100, 20), "学分:");
+		numl = new MLabel(new Point(0, 120), new Dimension(100, 20), "上课人数:");
+		typel = new MLabel(new Point(0, 30), new Dimension(100, 20), "课程类型:");
+		gradel = new MLabel(new Point(0, 90), new Dimension(100, 20), "年级:");
+		periodl = new MLabel(new Point(0, 150), new Dimension(100, 20), "上课周数:");
+		timel = new MLabel(new Point(0, 210), new Dimension(100, 20), "上课时间:");
 
 		namet = new MTextField(new Point(150, 0), new Dimension(100, 20));
-		idt = new MTextField(new Point(150, 30), new Dimension(100, 20));
-		loct = new MTextField(new Point(150, 210), new Dimension(100, 20));
-		creditt = new MTextField(new Point(150, 90), new Dimension(100, 20));
-		numt = new MTextField(new Point(150, 150), new Dimension(100, 20));
-		typeSelect = new MComboBox(typeModel, new Point(150, 60),
+		loct = new MTextField(new Point(150, 180), new Dimension(100, 20));
+		creditt = new MTextField(new Point(150, 60), new Dimension(100, 20));
+		numt = new MTextField(new Point(150, 120), new Dimension(100, 20));
+		typeSelect = new MComboBox(typeModel, new Point(150,30),
 				new Dimension(100, 20));
 
-		gradet = new MTextField(new Point(150, 120), new Dimension(100, 20));
-		periodt = new MTextField(new Point(150, 180), new Dimension(100, 20));
+		gradet = new MTextField(new Point(150, 90), new Dimension(100, 20));
+		periodt = new MTextField(new Point(150, 150), new Dimension(100, 20));
 
-		confirm = new MButton(null, null, null, new Point(80, 240),
+		confirm = new MButton(null, null, null, new Point(80, 210),
 				new Dimension(100, 20));
 		confirm.setText("确定");
 
-		time = new CourseTimePanel(new Point(80, 210));
+		time = new CourseTimePanel(new Point(80, 180));
 		timeList = new ArrayList<CourseTimePanel>();
 		
 
 		this.add(namel);
-		this.add(idl);
 		this.add(locl);
 		this.add(creditl);
 		this.add(typel);
@@ -106,7 +101,6 @@ public class CourseEditPanel extends MPanel {
 		this.add(gradel);
 
 		this.add(namet);
-		this.add(idt);
 		this.add(loct);
 		this.add(creditt);
 		this.add(typeSelect);
@@ -145,7 +139,6 @@ public class CourseEditPanel extends MPanel {
 
 	public void setCourse(Course c) {
 		namet.setText(c.getName());
-		idt.setText(c.getID());
 		loct.setText(c.getLoc());
 		creditt.setText(c.getCredit() + "");
 		numt.setText(c.getNum() + "");
@@ -170,7 +163,6 @@ public class CourseEditPanel extends MPanel {
 	public Course getCourse() {
 		Course c;
 		String name = namet.getText();
-		String id = idt.getText();
 		String loc = loct.getText();
 		int credit = Integer.parseInt(creditt.getText());
 		int num = Integer.parseInt(numt.getText());
@@ -190,7 +182,7 @@ public class CourseEditPanel extends MPanel {
 			seperateTime.add(timePanel.getEnd());
 			time.add(CourseTimeKind.getTime(seperateTime.iterator()));
 		}
-		c = new Course(id, name, loc, type, grade, period, null, null, num,
+		c = new Course(null, name, loc, type, grade, period, null, null, num,
 				credit, time, null);
 		return c;
 	}
@@ -314,6 +306,8 @@ public class CourseEditPanel extends MPanel {
 					loct.enable();
 					CourseEditPanel.this.time.setEnabled(true);
 					break;
+				case "专业选修课":case "专业必修课":
+					break;
 				default:
 					numt.setText("");
 					loct.setText("");
@@ -328,7 +322,7 @@ public class CourseEditPanel extends MPanel {
 					}
 					
 					CourseEditPanel.this.time = new CourseTimePanel(new Point(
-							80, 240));
+							80, 210));
 					CourseEditPanel.this.time
 							.addActionListener(new TimeButtonListener());
 					CourseEditPanel.this.time
@@ -337,7 +331,7 @@ public class CourseEditPanel extends MPanel {
 					CourseEditPanel.this.add(CourseEditPanel.this.time);
 					CourseEditPanel.this.time.setEnabled(false);
 					
-					confirm.setLocation(new Point(80, 270));
+					confirm.setLocation(new Point(80, 240));
 				}
 				System.out.println(selected);
 				CourseEditPanel.this.refresh();

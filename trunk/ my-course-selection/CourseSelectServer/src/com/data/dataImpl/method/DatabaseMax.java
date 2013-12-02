@@ -1,21 +1,13 @@
-package com.data.dataImpl;
+package com.data.dataImpl.method;
 
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.data.dataImpl.method.DatabaseConnection;
-import com.data.dataImpl.method.dean.*;
-import com.dataService.DeanDatabaseMethod;
-
-
-
-public class DeanDatabaseImpl extends DatabaseImpl implements DeanDatabaseMethod{
-
-	public String max(String tableName, String clueName) {
+public class DatabaseMax {
+	public static String getMax(String tableName, String clueName) {
 		Connection conn = DatabaseConnection.getConnection();
 		Statement st;
 		List<String> list = new ArrayList<String>();
@@ -33,8 +25,4 @@ public class DeanDatabaseImpl extends DatabaseImpl implements DeanDatabaseMethod
 		}
 		return result;
 	}
-	public static void main(String[] args){
-		new DeanDatabaseImpl().max("course", "ID");
-	}
-	
 }

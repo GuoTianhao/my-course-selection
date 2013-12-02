@@ -18,6 +18,8 @@ import com.logic.method.courseRelative.CoursePublish;
 import com.logic.method.courseRelative.CourseUpdate;
 import com.logic.method.deanRelative.BasicFrameManagement;
 import com.logic.method.deanRelative.DeanGetter;
+import com.logic.method.deanRelative.DeanPublishCourse;
+import com.logic.method.deanRelative.MCourseGetter;
 import com.logic.method.userRelative.Login;
 import com.logic.method.userRelative.PasswordChange;
 import com.logicService.DeanMethod;
@@ -110,7 +112,7 @@ public class DeanMethodImpl extends UnicastRemoteObject implements DeanMethod{
 	@Override
 	public boolean publishCourse(Course c) throws RemoteException {
 		// TODO Auto-generated method stub
-		return CoursePublish.publishCourse(c);
+		return DeanPublishCourse.publishCourse(c);
 	}
 
 	@Override
@@ -128,7 +130,7 @@ public class DeanMethodImpl extends UnicastRemoteObject implements DeanMethod{
 	@Override
 	public List<Course> getMCourse() throws RemoteException {
 		// TODO Auto-generated method stub
-		return null;
+		return MCourseGetter.getMCourse();
 	}
 
 	@Override

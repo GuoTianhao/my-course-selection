@@ -55,6 +55,12 @@ public class Course implements Serializable {
 		}
 	}
 
+	public void setID(String id){
+		if (id != null) {
+			this.ID = id;
+		}
+	}
+	
 	public String getID() {
 		return ID;
 	}

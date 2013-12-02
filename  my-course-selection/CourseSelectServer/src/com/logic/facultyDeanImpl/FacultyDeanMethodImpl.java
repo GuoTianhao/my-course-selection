@@ -9,6 +9,7 @@ import com.data.po.BasicFrame;
 import com.data.po.Course;
 import com.data.po.FacultyDean;
 import com.data.po.Frame;
+import com.logic.method.FaucltyDeanRelative.FacultyCoursePublish;
 import com.logic.method.FaucltyDeanRelative.FacultyDeanGetter;
 import com.logic.method.FaucltyDeanRelative.FrameManagement;
 import com.logic.method.courseRelative.CourseGetter;
@@ -47,7 +48,7 @@ public class FacultyDeanMethodImpl extends UnicastRemoteObject implements Facult
 	public boolean publishCourse(String ID, Course c) throws RemoteException {
 		// TODO Auto-generated method stub
 		boolean admit;
-		admit=CoursePublish.publishCourse(c);
+		admit=FacultyCoursePublish.publishCourse(c);
 		return admit;
 	}
 

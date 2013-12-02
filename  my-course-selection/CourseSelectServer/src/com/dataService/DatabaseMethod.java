@@ -18,4 +18,6 @@ public interface DatabaseMethod {
 	public boolean delete(String tableName,String clueName,String clue);
 	
 	public boolean delete(String tableName,List<String> clueName,List<String> clue);
+	
+	public String getMax(String tableName,String cluName);
 }

@@ -16,8 +16,11 @@ public class DatabaseSearch {
 		Statement st;
 		List<String> list = new ArrayList<String>();
 		try {
-			String sql = "SELECT " + aimName + " FROM " + tableName + " WHERE "
-					+ clueName + "='" + clue + "'";
+			String sql = "SELECT " + aimName + " FROM " + tableName;
+			if(clueName!=null){
+				sql+= " WHERE "
+						+ clueName + "='" + clue + "'";
+			}
 			st = (Statement) conn.createStatement();
 			ResultSet res = st.executeQuery(sql);
 			while (res.next()) {

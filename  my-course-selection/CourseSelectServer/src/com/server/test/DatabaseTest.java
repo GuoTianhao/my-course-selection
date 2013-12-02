@@ -30,7 +30,7 @@ public class DatabaseTest extends TestCase{
 //		System.out.println(Database.insert("courseTime",ID,time));
 //	}
 	public void testDelete(){
-		System.out.println(DatabaseController.getMethod().delete("courseTime","ID","0001"));
+		System.out.println(DatabaseController.getMethod().delete("course","Name","软件工程与计算"));
 	}
 //	public void testDivide(){
 //		List list=new ArrayList<String>();

@@ -165,8 +165,14 @@ public class CourseEditPanel extends MPanel {
 		String name = namet.getText();
 		String loc = loct.getText();
 		int credit = Integer.parseInt(creditt.getText());
-		int num = Integer.parseInt(numt.getText());
-		int grade = Integer.parseInt(gradet.getText());
+		int num=-1;
+		if(!numt.getText().equals("")){
+			num = Integer.parseInt(numt.getText());	
+		}
+		int grade=-1;
+		if(!gradet.getText().equals("")){
+			grade = Integer.parseInt(gradet.getText());
+		}
 		String period = periodt.getText();
 		String type = CourseTypeKind.getType((String) typeSelect
 				.getSelectedItem());

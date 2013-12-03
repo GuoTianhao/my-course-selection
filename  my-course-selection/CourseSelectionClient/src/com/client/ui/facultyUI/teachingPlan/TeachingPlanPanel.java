@@ -5,19 +5,21 @@ import java.awt.Point;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.rmi.RemoteException;
+import java.util.Iterator;
 
 import javax.swing.ImageIcon;
 import javax.swing.UIManager;
 
 import com.basicdata.Identity;
 import com.client.rmi.FacultyDeanMethodController;
+import com.client.ui.dataAdapter.FrameToVectorAdapter;
 import com.client.ui.facultyUI.FacultyUISwitchController;
-import com.client.ui.main.MainFrame;
 import com.data.po.FacultyDean;
+import com.data.po.Frame;
+import com.data.po.FrameElement;
 import com.logicService.FacultyDeanMethod;
 import com.ui.myswing.MPanel;
 import com.ui.myswing.MButton;
-import com.ui.bcswing.CourseDisplayTable;
 import com.ui.bcswing.FrameDisplayTable;
 import com.ui.bcswing.frameEditPane.FrameEditPane;
 import com.ui.bcswing.titleBar.FacultyTitleBar;
@@ -91,7 +93,21 @@ public class TeachingPlanPanel extends MPanel{
 	}
 	
 	private void init(){
-		
+		FacultyDeanMethod method = FacultyDeanMethodController.getMethod();
+		FacultyDean facultyDean=(FacultyDean) Identity.getIdentity();
+		try {
+			Frame frame =method.lookFrame(facultyDean.getFaculty());
+			Iterator<FrameElement> it=frame.iterator();
+			if(!it.hasNext()){
+				change.setEnabled(false);
+			}else{
+				publish.setEnabled(false);
+			}
+			table.setDataVector(FrameToVectorAdapter
+					.adapter(frame));
+		} catch (RemoteException e) {
+			e.printStackTrace();
+		}
 	}
 
 	public static void main(String[] args){

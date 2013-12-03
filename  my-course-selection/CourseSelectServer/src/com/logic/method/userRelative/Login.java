@@ -7,18 +7,17 @@ import com.logic.dataController.DatabaseController;
 public class Login {
 	public static boolean login(String ID, String password, String type) {
 		String pas;
-		List<String> list = DatabaseController.getMethod().search(type,
-				"ID", ID, "Password");
-		pas = (String) list.get(0);
-		if (password != null) {
-			if (pas.equals(password)) {
-				return true;
-			} else {
-				return false;
+		List<String> list = DatabaseController.getMethod().search(type, "ID",
+				ID, "Password");
+		if (list.size() != 0) {
+			pas = (String) list.get(0);
+			if (password != null) {
+				if (pas.equals(password)) {
+					return true;
+				}
 			}
-		} else {
-			return false;
 		}
+		return false;
 
 	}
 

@@ -1,9 +1,12 @@
 package com.server.test;
 
+import java.sql.Connection;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
 import com.data.dataImpl.DatabaseImpl;
+import com.data.dataImpl.method.DatabaseConnection;
 import com.data.dataImpl.method.DatabaseDivide;
 import com.logic.dataController.DatabaseController;
 
@@ -30,7 +33,21 @@ public class DatabaseTest extends TestCase{
 //		System.out.println(Database.insert("courseTime",ID,time));
 //	}
 	public void testDelete(){
-		System.out.println(DatabaseController.getMethod().delete("course","Name","软件工程与计算"));
+	//	System.out.println(DatabaseController.getMethod().delete("course","type","A"));
+		Connection conn;
+		Statement st;
+		try{
+			conn=DatabaseConnection.getConnection();
+			st=conn.createStatement();
+			String sql;
+			sql="DELETE FROM courseTime";
+			st.execute(sql);
+			conn.close();
+		
+		}catch(Exception ex){
+			System.out.println("删除失败:"+ex.getMessage());
+			
+		}
 	}
 //	public void testDivide(){
 //		List list=new ArrayList<String>();

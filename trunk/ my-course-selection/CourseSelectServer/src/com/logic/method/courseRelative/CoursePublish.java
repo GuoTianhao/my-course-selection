@@ -34,6 +34,7 @@ public class CoursePublish {
 		clueName.add("faculty");
 		clueName.add("script");
 		clueName.add("Num");
+		clueName.add("Credit");
 		clue.add(c.getID());
 		clue.add(c.getName());
 		clue.add(c.getLoc());
@@ -43,6 +44,7 @@ public class CoursePublish {
 		clue.add(c.getFaculty());
 		clue.add(c.getScript());
 		clue.add(""+c.getNum());
+		clue.add(""+c.getCredit());
 		FacultyDeanDataController.getMethod().insert("course", clueName, clue);
 
 		Iterator it = (c.getTeacher()).iterator();

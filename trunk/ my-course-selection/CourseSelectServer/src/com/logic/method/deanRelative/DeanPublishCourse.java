@@ -13,32 +13,33 @@ import com.logic.method.courseRelative.CoursePublish;
 
 public class DeanPublishCourse {
 	public static boolean publishCourse(Course c) {
-		DeanDatabaseMethod method=DeanDataController.getMethod();
-		String ID= method.getMax("course","ID");
-		int max=Integer.parseInt(ID);
-		if(c.getType()!="A"){
-			ID=IntegerToStringAdapter.convert((++max));
+		DeanDatabaseMethod method = DeanDataController.getMethod();
+		String ID = method.getMax("course", "ID");
+		int max;
+		max = Integer.parseInt(ID);
+		if (!c.getType().equals("A")) {
+			ID = IntegerToStringAdapter.convert((++max));
 			c.setID(ID);
 			c.setFaculty("0000");
-			if(!CoursePublish.publishCourse(c)){
+			if (!CoursePublish.publishCourse(c)) {
 				return false;
 			}
-			List<String> list=method.search("faculty",null,null,"ID");
-			Iterator<String> it=list.iterator();
-			while(it.hasNext()){
-				ID=IntegerToStringAdapter.convert((++max));
+			List<String> list = method.search("faculty", null, null, "ID");
+			Iterator<String> it = list.iterator();
+			while (it.hasNext()) {
+				ID = IntegerToStringAdapter.convert((++max));
 				c.setID(ID);
 				c.setFaculty(it.next());
-				if(!CoursePublish.publishCourse(c)){
+				if (!CoursePublish.publishCourse(c)) {
 					return false;
 				}
 				System.out.println("true");
-			}	
-		}else{
-			ID=IntegerToStringAdapter.convert((++max));
+			}
+		} else {
+			ID = IntegerToStringAdapter.convert((++max));
 			c.setID(ID);
 			c.setFaculty("0000");
-			if(!CoursePublish.publishCourse(c)){
+			if (!CoursePublish.publishCourse(c)) {
 				return false;
 			}
 		}

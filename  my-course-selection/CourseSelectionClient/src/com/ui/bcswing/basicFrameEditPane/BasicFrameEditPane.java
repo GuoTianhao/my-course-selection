@@ -1,5 +1,6 @@
 package com.ui.bcswing.basicFrameEditPane;
 
+import com.basicdata.CourseTypeKind;
 import com.client.rmi.DeanMethodController;
 import com.data.po.BasicFrame;
 
@@ -81,6 +82,7 @@ public class BasicFrameEditPane extends MFrame {
 		moduleLb = new MLabel("课程模块");
 		moduleLb.setBounds(65, 10, 80, 25);
 		moduleField = new MTextField(new Point(150, 20), new Dimension(150, 30));
+		moduleField.setText(CourseTypeKind.getAllCourseName()[0]);
 		moduleField.setEditable(false);
 		moduleField.setSize(150, 25);
 		moduleField.setLocation(30, 45);
@@ -126,31 +128,37 @@ public class BasicFrameEditPane extends MFrame {
 		editPanel.add(noBtn);
 
 		textField = new MTextField();
+		textField.setText(CourseTypeKind.getAllCourseName()[1]);
 		textField.setEditable(false);
 		textField.setBounds(30, 90, 150, 25);
 		editPanel.add(textField);
 
 		textField_1 = new MTextField();
+		textField_1.setText(CourseTypeKind.getAllCourseName()[2]);
 		textField_1.setEditable(false);
 		textField_1.setBounds(30, 135, 150, 25);
 		editPanel.add(textField_1);
 
 		textField_2 = new MTextField();
+		textField_2.setText(CourseTypeKind.getAllCourseName()[3]);
 		textField_2.setEditable(false);
 		textField_2.setBounds(30, 180, 150, 25);
 		editPanel.add(textField_2);
 
 		textField_3 = new MTextField();
+		textField_3.setText(CourseTypeKind.getAllCourseName()[4]);
 		textField_3.setEditable(false);
 		textField_3.setBounds(30, 225, 150, 25);
 		editPanel.add(textField_3);
 
 		textField_4 = new MTextField();
+		textField_4.setText(CourseTypeKind.getAllCourseName()[5]);
 		textField_4.setEditable(false);
 		textField_4.setBounds(30, 270, 150, 25);
 		editPanel.add(textField_4);
 
 		textField_5 = new MTextField();
+		textField_5.setText(CourseTypeKind.getAllCourseName()[6]);
 		textField_5.setEditable(false);
 		textField_5.setBounds(30, 315, 150, 25);
 		editPanel.add(textField_5);
@@ -359,35 +367,35 @@ public class BasicFrameEditPane extends MFrame {
 
 	public BasicFrame getBasicFrame() {
 		BasicFrame frame = new BasicFrame();
-		elementStr[0][0] = moduleField.getText();
+		elementStr[0][0] = CourseTypeKind.getType(moduleField.getText());
 		elementStr[0][1] = creditField1.getText() + "_"
 				+ creditField2.getText();
 		elementStr[0][2] = periodField1.getText() + "_"
 				+ periodField2.getText();
-		elementStr[1][0] = textField.getText();
+		elementStr[1][0] = CourseTypeKind.getType(textField.getText());
 		elementStr[1][1] = textField_6.getText() + "_" + textField_7.getText();
 		elementStr[1][2] = textField_18.getText() + "_"
 				+ textField_19.getText();
-		elementStr[2][0] = textField_1.getText();
+		elementStr[2][0] = CourseTypeKind.getType(textField_1.getText());
 		elementStr[2][1] = textField_9.getText() + "_" + textField_8.getText();
 		elementStr[2][2] = textField_20.getText() + "_"
 				+ textField_21.getText();
-		elementStr[3][0] = textField_2.getText();
+		elementStr[3][0] = CourseTypeKind.getType(textField_2.getText());
 		elementStr[3][1] = textField_11.getText() + "_"
 				+ textField_10.getText();
 		elementStr[3][2] = textField_22.getText() + "_"
 				+ textField_23.getText();
-		elementStr[4][0] = textField_3.getText();
+		elementStr[4][0] = CourseTypeKind.getType(textField_3.getText());
 		elementStr[4][1] = textField_13.getText() + "_"
 				+ textField_12.getText();
 		elementStr[4][2] = textField_24.getText() + "_"
 				+ textField_25.getText();
-		elementStr[5][0] = textField_4.getText();
+		elementStr[5][0] = CourseTypeKind.getType(textField_4.getText());
 		elementStr[5][1] = textField_15.getText() + "_"
 				+ textField_14.getText();
 		elementStr[5][2] = textField_26.getText() + "_"
 				+ textField_27.getText();
-		elementStr[6][0] = textField_5.getText();
+		elementStr[6][0] = CourseTypeKind.getType(textField_5.getText());
 		elementStr[6][1] = textField_17.getText() + "_"
 				+ textField_16.getText();
 		elementStr[6][2] = textField_28.getText() + "_"

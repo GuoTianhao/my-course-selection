@@ -11,6 +11,7 @@ import java.rmi.RemoteException;
 import javax.swing.JOptionPane;
 import javax.swing.UIManager;
 
+import com.basicdata.CourseTypeKind;
 import com.basicdata.Identity;
 import com.client.rmi.FacultyDeanMethodController;
 import com.data.po.FacultyDean;
@@ -79,36 +80,43 @@ public class FrameEditPane extends MFrame {
 		panel.add(label_2);
 
 		textField = new MTextField(new Point(150, 20), new Dimension(150, 30));
+		textField.setText(CourseTypeKind.getAllCourseName()[0]);
 		textField.setEditable(false);
 		textField.setBounds(38, 47, 150, 25);
 		panel.add(textField);
 
 		textField_1 = new MTextField();
+		textField_1.setText(CourseTypeKind.getAllCourseName()[1]);
 		textField_1.setEditable(false);
 		textField_1.setBounds(38, 92, 150, 25);
 		panel.add(textField_1);
 
 		textField_2 = new MTextField();
+		textField_2.setText(CourseTypeKind.getAllCourseName()[2]);
 		textField_2.setEditable(false);
 		textField_2.setBounds(38, 137, 150, 25);
 		panel.add(textField_2);
 
 		textField_3 = new MTextField();
+		textField_3.setText(CourseTypeKind.getAllCourseName()[3]);
 		textField_3.setEditable(false);
 		textField_3.setBounds(38, 182, 150, 25);
 		panel.add(textField_3);
 
 		textField_4 = new MTextField();
+		textField_4.setText(CourseTypeKind.getAllCourseName()[4]);
 		textField_4.setEditable(false);
 		textField_4.setBounds(38, 227, 150, 25);
 		panel.add(textField_4);
 
 		textField_5 = new MTextField();
+		textField_5.setText(CourseTypeKind.getAllCourseName()[5]);
 		textField_5.setEditable(false);
 		textField_5.setBounds(38, 272, 150, 25);
 		panel.add(textField_5);
 
 		textField_6 = new MTextField();
+		textField_6.setText(CourseTypeKind.getAllCourseName()[6]);
 		textField_6.setEditable(false);
 		textField_6.setBounds(38, 317, 150, 25);
 		panel.add(textField_6);
@@ -238,25 +246,25 @@ public class FrameEditPane extends MFrame {
 	public Frame getFrame() {
 		FacultyDean fDean = (FacultyDean) Identity.getIdentity();
 		Frame frame = new Frame(fDean.getFaculty());
-		elementsStr[0][0] = textField.getText();
+		elementsStr[0][0] = CourseTypeKind.getType(textField.getText());
 		elementsStr[0][1] = textField_7.getText();
 		elementsStr[0][2] = textField_20.getText();
-		elementsStr[1][0] = textField_1.getText();
+		elementsStr[1][0] = CourseTypeKind.getType(textField_1.getText());
 		elementsStr[1][1] = textField_8.getText();
 		elementsStr[1][2] = textField_19.getText();
-		elementsStr[2][0] = textField_2.getText();
+		elementsStr[2][0] = CourseTypeKind.getType(textField_2.getText());
 		elementsStr[2][1] = textField_9.getText();
 		elementsStr[2][2] = textField_18.getText();
-		elementsStr[3][0] = textField_3.getText();
+		elementsStr[3][0] = CourseTypeKind.getType(textField_3.getText());
 		elementsStr[3][1] = textField_10.getText();
 		elementsStr[3][2] = textField_17.getText();
-		elementsStr[4][0] = textField_4.getText();
+		elementsStr[4][0] = CourseTypeKind.getType(textField_4.getText());
 		elementsStr[4][1] = textField_11.getText();
 		elementsStr[4][2] = textField_16.getText();
-		elementsStr[5][0] = textField_5.getText();
+		elementsStr[5][0] = CourseTypeKind.getType(textField_5.getText());
 		elementsStr[5][1] = textField_12.getText();
 		elementsStr[5][2] = textField_15.getText();
-		elementsStr[6][0] = textField_6.getText();
+		elementsStr[6][0] = CourseTypeKind.getType(textField_6.getText());
 		elementsStr[6][1] = textField_13.getText();
 		elementsStr[6][2] = textField_14.getText();
 		for (int i = 0; i < elementsStr.length; i++) {

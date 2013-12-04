@@ -36,4 +36,8 @@ public class CourseTypeKind {
 		}
 		return typeToName.get(type);
 	}
+	
+	public static String[] getAllCourseName() {
+		return CourseTypeName;
+	}
 }

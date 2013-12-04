@@ -51,6 +51,7 @@ public class CourseEditPanel extends MPanel {
 
 	private MButton confirm;
 
+	private String courseID="";
 	private String[] typeModel = { "NONE" };
 
 	CourseTimePanel time;
@@ -145,7 +146,7 @@ public class CourseEditPanel extends MPanel {
 		gradet.setText(c.getGrade() + "");
 		periodt.setText(c.getPeriod());
 		typeSelect.setSelectedItem(CourseTypeKind.getName(c.getType()));
-
+		courseID=c.getID();
 		List<String> courseTime = c.getTime();
 		Iterator<String> it = courseTime.iterator();
 		Iterator<String> timeIt;
@@ -188,7 +189,7 @@ public class CourseEditPanel extends MPanel {
 			seperateTime.add(timePanel.getEnd());
 			time.add(CourseTimeKind.getTime(seperateTime.iterator()));
 		}
-		c = new Course(null, name, loc, type, grade, period, null, null, num,
+		c = new Course(courseID, name, loc, type, grade, period, null, null, num,
 				credit, time, null);
 		return c;
 	}

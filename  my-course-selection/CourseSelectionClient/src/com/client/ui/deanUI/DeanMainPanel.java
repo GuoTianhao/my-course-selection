@@ -103,7 +103,7 @@ public class DeanMainPanel extends MPanel {
 		});
 		btn4.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				DeanMainPanel.this.controller.switchToTeacherPanel();
+				DeanMainPanel.this.controller.switchToStudentPanel();
 			}
 		});
 		btn5.addActionListener(new ActionListener() {

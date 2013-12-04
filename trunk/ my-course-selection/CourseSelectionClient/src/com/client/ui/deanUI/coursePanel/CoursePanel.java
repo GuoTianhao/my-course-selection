@@ -16,6 +16,7 @@ import javax.swing.ImageIcon;
 import javax.swing.UIManager;
 
 import com.basicdata.FacultyKind;
+import com.basicdata.Identity;
 import com.basicdata.TermKind;
 import com.client.rmi.DeanMethodController;
 import com.client.ui.dataAdapter.CourseListToVectorAdapter;
@@ -244,6 +245,12 @@ public class CoursePanel extends MPanel {
 	}
 
 	public static void main(String[] args) {
+		try {
+			Identity.setIdentity(DeanMethodController.getMethod().getSelf("121250041"));
+		} catch (RemoteException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
 		try {
 			org.jb2011.lnf.beautyeye.BeautyEyeLNFHelper.launchBeautyEyeLNF();
 			UIManager.put("RootPane.setupButtonVisible", false);

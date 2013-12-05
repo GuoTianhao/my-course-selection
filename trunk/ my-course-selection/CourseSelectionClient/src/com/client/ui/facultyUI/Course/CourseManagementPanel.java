@@ -4,6 +4,10 @@ import java.awt.Dimension;
 import java.awt.Point;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.InputEvent;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.rmi.RemoteException;
 import java.util.List;
 
@@ -29,6 +33,7 @@ public class CourseManagementPanel extends MPanel {
 	private MButton button1;
 	private MButton button2;
 	private CourseDisplayTable table;
+	private MPopupMenu popupMenu;
 
 	public CourseManagementPanel(Point loc, Dimension size) {
 		super(loc, size);
@@ -48,10 +53,11 @@ public class CourseManagementPanel extends MPanel {
 		button2.setText("编辑");
 		table = new CourseDisplayTable(new Point(10, 130), new Dimension(780,
 				430));
+		popupMenu = new MPopupMenu();
+		table.add(popupMenu);
 		this.add(title);
 		this.add(button1);
 		this.add(button2);
-
 		this.add(table);
 	}
 
@@ -73,13 +79,17 @@ public class CourseManagementPanel extends MPanel {
 		});
 
 		button2.addActionListener(new CourseModifyListener());
+
+		table.addMouseListener(new TableClickListener());
+
+		popupMenu.addTeacherAssignmentListener(new TeacherAssignmentListener());
 	}
 
 	private void init() {
-		FacultyDean self=(FacultyDean)(Identity.getIdentity());
+		FacultyDean self = (FacultyDean) (Identity.getIdentity());
 		FacultyDeanMethod method = FacultyDeanMethodController.getMethod();
 		try {
-			List<Course> list=method.getCourseList(self.getID());
+			List<Course> list = method.getCourseList(self.getFaculty());
 			table.setDataVector(CourseListToVectorAdapter.adapter(list));
 		} catch (RemoteException e) {
 			e.printStackTrace();
@@ -106,10 +116,29 @@ public class CourseManagementPanel extends MPanel {
 
 	}
 
+	class TableClickListener extends MouseAdapter {
+		public void mouseClicked(MouseEvent e) {
+			int mods = e.getModifiers();
+			if (mods == InputEvent.BUTTON3_MASK
+					|| e.getModifiers() == InputEvent.BUTTON2_MASK) {
+				popupMenu.show(table, e.getX(), e.getY());
+			}
+		}
+	}
+
+	class TeacherAssignmentListener implements ActionListener {
+
+		public void actionPerformed(ActionEvent e) {
+			// TODO Auto-generated method stub
+			System.out.println("老师列表展开");
+		}
+
+	}
+
 	public static void main(String[] args) {
 		FacultyDeanMethod method = FacultyDeanMethodController.getMethod();
 		try {
-			Identity.setIdentity(method.getSelf(""));
+			Identity.setIdentity(method.getSelf("100000000"));
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

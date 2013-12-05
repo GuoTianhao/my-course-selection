@@ -33,11 +33,16 @@ public class FacultyCoursePane extends CourseEditPane {
 				try {
 					Course oCourse = method.getCourse(nCourse.getID());
 					if (oCourse == null) {
-						method.publishCourse(facultyDean.getFaculty(),nCourse);
+						if(method.publishCourse(facultyDean.getFaculty(),nCourse)){
+							System.out.println("发布课程成功");
+						}
 					} else {
 						nCourse.setScript(oCourse.getScript());
 						nCourse.setTeacher(oCourse.getTeacher());
-						method.publishCourse(facultyDean.getFaculty(),nCourse);
+						nCourse.setFaculty(oCourse.getFaculty());
+						if(method.modifyCourse(nCourse)){
+							System.out.println("更改课程成功");
+						}
 					}
 				} catch (RemoteException e1) {
 					e1.printStackTrace();

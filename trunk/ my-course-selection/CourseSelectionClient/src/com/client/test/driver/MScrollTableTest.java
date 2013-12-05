@@ -11,7 +11,7 @@ import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
 
-import com.ui.bcswing.MScrollTabel;
+import com.ui.bcswing.MScrollTable;
 import com.ui.myswing.EditPermission;
 import com.ui.myswing.MFrame;
 import com.ui.myswing.MPanel;
@@ -31,7 +31,7 @@ public class MScrollTableTest {
 		f.setVisible(true);
 		f.setSize(400, 400);
 		f.setDefaultCloseOperation(MFrame.EXIT_ON_CLOSE);
-		MScrollTabel t=new MScrollTabel();
+		MScrollTable t=new MScrollTable();
 		t.setSize(300,200);
 		t.setLocation(0, 0);
 		t.setEditable(new Edit());

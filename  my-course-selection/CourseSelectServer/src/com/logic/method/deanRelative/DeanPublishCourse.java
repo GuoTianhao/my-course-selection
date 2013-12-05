@@ -17,28 +17,42 @@ public class DeanPublishCourse {
 		String ID = method.getMax("course", "ID");
 		int max;
 		max = Integer.parseInt(ID);
-		if (!c.getType().equals("A")) {
+		switch(c.getType()){
+		case "A":case "G":
+			return publishAllShareCourse(c);
+		default:
+			return publishAllUniqueCourse(c);
+		}
+	}
+	
+	public static boolean publishAllShareCourse(Course c){
+		DeanDatabaseMethod method = DeanDataController.getMethod();
+		String ID = method.getMax("course", "ID");
+		int max;
+		max = Integer.parseInt(ID);
+		ID = IntegerToStringAdapter.convert((++max));
+		c.setID(ID);
+		c.setFaculty("0000");
+		return CoursePublish.publishCourse(c);
+	}
+	
+	public static boolean publishAllUniqueCourse(Course c){
+		DeanDatabaseMethod method = DeanDataController.getMethod();
+		String ID = method.getMax("course", "ID");
+		int max;
+		max = Integer.parseInt(ID);
+		ID = IntegerToStringAdapter.convert((++max));
+		c.setID(ID);
+		c.setFaculty("0000");
+		if (!CoursePublish.publishCourse(c)) {
+			return false;
+		}
+		List<String> list = method.search("faculty", null, null, "ID");
+		Iterator<String> it = list.iterator();
+		while (it.hasNext()) {
 			ID = IntegerToStringAdapter.convert((++max));
 			c.setID(ID);
-			c.setFaculty("0000");
-			if (!CoursePublish.publishCourse(c)) {
-				return false;
-			}
-			List<String> list = method.search("faculty", null, null, "ID");
-			Iterator<String> it = list.iterator();
-			while (it.hasNext()) {
-				ID = IntegerToStringAdapter.convert((++max));
-				c.setID(ID);
-				c.setFaculty(it.next());
-				if (!CoursePublish.publishCourse(c)) {
-					return false;
-				}
-				System.out.println("true");
-			}
-		} else {
-			ID = IntegerToStringAdapter.convert((++max));
-			c.setID(ID);
-			c.setFaculty("0000");
+			c.setFaculty(it.next());
 			if (!CoursePublish.publishCourse(c)) {
 				return false;
 			}

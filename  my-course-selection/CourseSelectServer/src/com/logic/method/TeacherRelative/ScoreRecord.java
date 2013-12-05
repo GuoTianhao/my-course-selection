@@ -19,7 +19,7 @@ public class ScoreRecord {
 		TeacherDataController.getMethod().delete("courseScore", "cID", cID);
 		for (String sID : sIDList) {
 			clue.add(sID);
-			clue.add((String) score.get(sID));
+			clue.add(String.valueOf(score.get(sID)));
 			TeacherDataController.getMethod().insert("courseScore", clueName,
 					clue);
 			clue.remove(2);

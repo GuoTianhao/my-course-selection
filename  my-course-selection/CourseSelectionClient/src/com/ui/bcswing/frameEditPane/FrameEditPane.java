@@ -76,8 +76,6 @@ public class FrameEditPane extends MFrame {
 	private void createComponent() {
 		panel = new MPanel(new Point(0, 0), default_size);
 
-		getContentPane().add(panel);
-
 		MLabel label = new MLabel("课程模块");
 		label.setBounds(73, 12, 80, 25);
 		panel.add(label);
@@ -278,6 +276,7 @@ public class FrameEditPane extends MFrame {
 		textField_31.setBounds(400, 362, 25, 25);
 		panel.add(textField_31);
 
+		getContentPane().add(panel);
 		this.setVisible(true);
 		this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 	}
@@ -340,25 +339,25 @@ public class FrameEditPane extends MFrame {
 		elementsStr[0][2] = textField_20.getText()+"_"+textField_21.getText();
 		elementsStr[1][0] = CourseTypeKind.getType(textField_1.getText());
 		elementsStr[1][1] = textField_8.getText();
-		elementsStr[1][2] = textField_19.getText();
+		elementsStr[1][2] = textField_19.getText()+"_"+textField_22.getText();
 		elementsStr[2][0] = CourseTypeKind.getType(textField_2.getText());
 		elementsStr[2][1] = textField_9.getText();
-		elementsStr[2][2] = textField_18.getText();
+		elementsStr[2][2] = textField_18.getText()+"_"+textField_23.getText();
 		elementsStr[3][0] = CourseTypeKind.getType(textField_3.getText());
 		elementsStr[3][1] = textField_10.getText();
-		elementsStr[3][2] = textField_17.getText();
+		elementsStr[3][2] = textField_17.getText()+"_"+textField_24.getText();
 		elementsStr[4][0] = CourseTypeKind.getType(textField_4.getText());
 		elementsStr[4][1] = textField_11.getText();
-		elementsStr[4][2] = textField_16.getText();
+		elementsStr[4][2] = textField_16.getText()+"_"+textField_25.getText();
 		elementsStr[5][0] = CourseTypeKind.getType(textField_5.getText());
 		elementsStr[5][1] = textField_12.getText();
-		elementsStr[5][2] = textField_15.getText();
+		elementsStr[5][2] = textField_15.getText()+"_"+textField_26.getText();
 		elementsStr[6][0] = CourseTypeKind.getType(textField_6.getText());
 		elementsStr[6][1] = textField_13.getText();
-		elementsStr[6][2] = textField_14.getText();
+		elementsStr[6][2] = textField_14.getText()+"_"+textField_27.getText();
 		elementsStr[7][0] = CourseTypeKind.getType(textField_28.getText());
 		elementsStr[7][1] = textField_29.getText();
-		elementsStr[7][2] = textField_30.getText();
+		elementsStr[7][2] = textField_30.getText()+"_"+textField_31.getText();
 		for (int i = 0; i < elementsStr.length; i++) {
 			frame.addFrameElement(new FrameElement(elementsStr[i][0],
 					elementsStr[i][1], elementsStr[i][2]));

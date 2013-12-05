@@ -19,7 +19,7 @@ public class StudentScoreGetter {
 		aimName.add("score");
 		List<ArrayList<String>> list = StudentDataController.getMethod()
 				.search("courseScore", clueName, clue, aimName);
-		int score = -1;
+		int score = 0;
 		if (list.size() != 0) {
 			List<String> l = list.get(0);
 			score = Integer.parseInt(l.get(0));

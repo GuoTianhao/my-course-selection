@@ -10,6 +10,7 @@ import com.logic.method.courseRelative.CourseGetter;
 import com.logic.method.courseRelative.CourseSelect;
 import com.logic.method.studentRelative.StudentCourseListGetter;
 import com.logic.method.studentRelative.StudentGetter;
+import com.logic.method.studentRelative.StudentScoreGetter;
 import com.logic.method.userRelative.Login;
 import com.logic.method.userRelative.PasswordChange;
 import com.logicService.StudentMethod;
@@ -54,7 +55,7 @@ public class StudentMethodImpl extends UnicastRemoteObject implements StudentMet
 	public int getScore(String ID, String cID) throws RemoteException {
 		// TODO Auto-generated method stub
 		
-		return 0;
+		return StudentScoreGetter.getScore(ID, cID);
 	}
 
 	@Override

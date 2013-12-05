@@ -40,7 +40,7 @@ public class DatabaseTest extends TestCase{
 			conn=DatabaseConnection.getConnection();
 			st=conn.createStatement();
 			String sql;
-			sql="DELETE from courseStudent";
+			sql="DELETE from courseScore WHERE cID='0002' ";
 		//	sql="DELETE FROM course WHERE ID='0003'";
 	//		sql="INSERT INTO courseTeacher  (ID,Teacher) VALUES('0001','100000003')";
 			st.execute(sql);

@@ -5,13 +5,14 @@ import java.awt.Point;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.rmi.RemoteException;
-import java.util.List;
+import java.util.Map;
 
 import javax.swing.UIManager;
 
+import com.basicdata.Identity;
 import com.client.rmi.TeacherMethodController;
-import com.client.ui.dataAdapter.StudentListToVectorAdapter;
-import com.client.ui.main.MainFrame;
+import com.client.ui.dataAdapter.StudentAndScoreToVectorAdapter;
+import com.client.ui.dataAdapter.VectorToScoreAdapter;
 import com.client.ui.teacherUI.TeacherUISwitchController;
 import com.data.po.Student;
 import com.logicService.TeacherMethod;
@@ -26,7 +27,8 @@ public class CourseScoreRecordPanel extends MPanel {
 	private CourseScoreTable table;
 	private MButton backB;
 	private MButton editB;
-
+	private String courseID;
+	
 	public CourseScoreRecordPanel(Point loc, Dimension size, String courseID) {
 		super(loc, size);
 		createComponent();
@@ -55,26 +57,34 @@ public class CourseScoreRecordPanel extends MPanel {
 
 	private void addListener() {
 
-		backB.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				TeacherUISwitchController controller = TeacherUISwitchController
-						.getUISwitchController();
-				controller.switchToCourseManagement();
-			}
-		});
+		backB.addActionListener(new BackButtonListener());
 
 		editB.addActionListener(new EditListener());
 
 	}
 
 	private void init(String courseID) {
-		TeacherMethod method = TeacherMethodController.getMethod();
+		this.courseID=courseID;
+		
+		Map<Student,Integer> map;	
+		TeacherMethod method = TeacherMethodController.getMethod();	
 		try {
-			List<Student> list = method.getCourseStudent(courseID);
-			table.setDataVector(StudentListToVectorAdapter.adapter(list));
+			map = method.getScore(courseID);
+			table.setDataVector(StudentAndScoreToVectorAdapter.adapter(map));
 		} catch (RemoteException e) {
 			e.printStackTrace();
 		}
+	}
+	
+	private boolean recordScore(){
+		TeacherMethod method = TeacherMethodController.getMethod();
+		Map map=VectorToScoreAdapter.adapter(table.getDataVector());
+		try {
+			return method.recordScore(courseID, map);
+		} catch (RemoteException e) {
+			e.printStackTrace();
+		}
+		return false;
 	}
 
 	class EditListener implements ActionListener {
@@ -88,8 +98,38 @@ public class CourseScoreRecordPanel extends MPanel {
 		}
 
 	}
+	
+	class BackButtonListener implements ActionListener{
+
+		public void actionPerformed(ActionEvent e) {
+			if(recordScore()){
+				backAction();
+				System.out.println("成绩登记成功");
+			}else{
+				System.out.println("成绩登记失败");
+			}
+		}
+		
+		public void backAction(){
+			TeacherUISwitchController controller = TeacherUISwitchController
+					.getUISwitchController();
+			controller.switchToCourseManagement();
+		}
+		
+		public boolean recordScoreAction(){
+			return recordScore();
+		}
+	}
 
 	public static void main(String[] args) {
+		TeacherMethod method = TeacherMethodController.getMethod();
+
+		try {
+			Identity.setIdentity(method.getSelf("100000000"));
+		} catch (RemoteException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
 		try {
 			org.jb2011.lnf.beautyeye.BeautyEyeLNFHelper.launchBeautyEyeLNF();
 			UIManager.put("RootPane.setupButtonVisible", false);
@@ -98,7 +138,7 @@ public class CourseScoreRecordPanel extends MPanel {
 		}
 		TeacherUISwitchController controller = TeacherUISwitchController
 				.getUISwitchController();
-		controller.switchToRecordScore("0001");
+		controller.switchToRecordScore("0002");
 	}
 
 }

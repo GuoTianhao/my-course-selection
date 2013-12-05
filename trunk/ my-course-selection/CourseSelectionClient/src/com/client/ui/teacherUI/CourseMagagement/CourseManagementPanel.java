@@ -145,7 +145,7 @@ public class CourseManagementPanel extends MPanel {
 	public static void main(String[] args) {
 		TeacherMethod method = TeacherMethodController.getMethod();
 		try {
-			Identity.setIdentity(method.getSelf(""));
+			Identity.setIdentity(method.getSelf("100000000"));
 		} catch (RemoteException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();

@@ -4,9 +4,11 @@ import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Point;
 import java.awt.event.MouseListener;
+import java.util.List;
 import java.util.Vector;
 
 import javax.swing.JScrollPane;
+import javax.swing.ListSelectionModel;
 import javax.swing.RowFilter;
 import javax.swing.event.TableModelListener;
 import javax.swing.table.TableModel;
@@ -17,9 +19,9 @@ import com.ui.myswing.MDefaultTableModel;
 import com.ui.myswing.MTable;
 
 public class MScrollTable extends JScrollPane {
-	private MDefaultTableModel model = new MDefaultTableModel();
-	private MTable table = new MTable(model);
-	private TableRowSorter<TableModel> sort = new TableRowSorter<TableModel>();
+	protected MDefaultTableModel model = new MDefaultTableModel();
+	protected MTable table = new MTable(model);
+	protected TableRowSorter<TableModel> sort = new TableRowSorter<TableModel>();
 
 	public MScrollTable(Component view, int vsbPolicy, int hsbPolicy) {
 		super(view, vsbPolicy, hsbPolicy);
@@ -161,6 +163,18 @@ public class MScrollTable extends JScrollPane {
 		model.setEditable(edit);
 	}
 
+	public void setSelectionMode(int newModel) {
+		table.setSelectionMode(newModel);
+	}
+
+	public void setRowSelectionInterval(int index0, int index1) {
+		table.setRowSelectionInterval(index0, index1);
+	}
+
+	public void removeRowSelectionInterval(int index0, int index1) {
+		table.removeRowSelectionInterval(index0, index1);
+	}
+
 	public void addMouseListener(MouseListener l) {
 		table.addMouseListener(l);
 	}
@@ -171,5 +185,23 @@ public class MScrollTable extends JScrollPane {
 
 	public int getSelectedRow() {
 		return table.getSelectedRow();
+	}
+
+	public int[] getSelectedRows() {
+		return table.getSelectedRows();
+	}
+
+	public int rowAtPoint(Point point) {
+		return table.rowAtPoint(point);
+	}
+
+	public void setSelectIntervalRow(List<Integer> list) {
+		table.selectAll();
+		int count = table.getRowCount();
+		for (int i = 0; i < count; i++) {
+			if (!list.contains(i)) {
+				table.removeRowSelectionInterval(i, i);
+			}
+		}
 	}
 }

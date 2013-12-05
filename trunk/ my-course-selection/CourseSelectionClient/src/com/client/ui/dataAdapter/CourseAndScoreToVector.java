@@ -11,7 +11,7 @@ public class CourseAndScoreToVector {
 		Vector<Vector> res = new Vector<>();
 		Iterator<Course> it = map.keySet().iterator();
 		while (it.hasNext()) {
-			Course c = (Course) it.next();
+			Course c = it.next();
 			Vector row = new Vector<>();
 			row.add(c.getID());
 			row.add(c.getName());

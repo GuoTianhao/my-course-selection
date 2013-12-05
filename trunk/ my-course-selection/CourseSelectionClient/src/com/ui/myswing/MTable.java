@@ -32,6 +32,7 @@ public class MTable extends JTable {
 		super(dm, cm, sm);
 		this.setSelectionBackground(default_selectionBackground);
 		this.setSelectionForeground(default_selectionForeground);
+		this.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 	}
 
 	public MTable(int numRows, int numColumns) {

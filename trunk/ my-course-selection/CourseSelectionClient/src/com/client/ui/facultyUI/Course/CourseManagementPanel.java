@@ -21,6 +21,7 @@ import com.data.po.Course;
 import com.data.po.FacultyDean;
 import com.logicService.FacultyDeanMethod;
 import com.ui.bcswing.CourseDisplayTable;
+import com.ui.bcswing.MPopupMenu;
 import com.ui.bcswing.courseEditPane.FacultyCoursePane;
 import com.ui.bcswing.titleBar.FacultyTitleBar;
 import com.ui.bcswing.titleBar.TitleBar;
@@ -130,7 +131,17 @@ public class CourseManagementPanel extends MPanel {
 
 		public void actionPerformed(ActionEvent e) {
 			// TODO Auto-generated method stub
-			System.out.println("老师列表展开");
+			String facultyID;
+			String courseID;
+
+			FacultyDean facultyDean = (FacultyDean) Identity.getIdentity();
+			facultyID = facultyDean.getFaculty();
+
+			int index = table.rowAtPoint(popupMenu.getLocation());
+			courseID = (String) table.getValueAt(index, 0);
+
+			new FacultyDeanCourseTeacherAssignmentDislayPane(courseID,
+					facultyID);
 		}
 
 	}

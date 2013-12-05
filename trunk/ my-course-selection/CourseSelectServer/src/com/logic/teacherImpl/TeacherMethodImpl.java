@@ -8,6 +8,7 @@ import java.util.Map;
 import com.data.po.Course;
 import com.data.po.Student;
 import com.data.po.Teacher;
+import com.logic.method.TeacherRelative.CourseStudentScoreGetter;
 import com.logic.method.TeacherRelative.ScoreRecord;
 import com.logic.method.TeacherRelative.TeacherCourseListGetter;
 import com.logic.method.TeacherRelative.TeacherGetter;
@@ -79,5 +80,11 @@ public class TeacherMethodImpl extends UnicastRemoteObject implements TeacherMet
 	public Course getCourse(String courseID) throws RemoteException {
 		// TODO Auto-generated method stub
 		return CourseGetter.getConcreteCourse(courseID);
+	}
+
+	@Override
+	public Map<Student, String> getScore(String cID) throws RemoteException {
+		// TODO Auto-generated method stub
+		return CourseStudentScoreGetter.ScoreGetter(cID);
 	}
 }

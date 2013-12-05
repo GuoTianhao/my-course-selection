@@ -10,15 +10,15 @@ import com.logic.method.courseRelative.CourseStudentGetter;
 import com.logic.method.studentRelative.StudentScoreGetter;
 
 public class CourseStudentScoreGetter {
-	public static Map<Student, String> ScoreGetter(String cID) {
-		Map<Student, String> map = new HashMap<Student, String>();
+	public static Map<Student,Integer> ScoreGetter(String cID) {
+		Map<Student, Integer> map = new HashMap<Student, Integer>();
 		List<Student> list = CourseStudentGetter.getCourseStudent(cID);
 		Iterator<Student> it = list.iterator();
 		Student student;
-		String score;
+		int score;
 		while (it.hasNext()) {
 			student=it.next();
-			score=String.valueOf(StudentScoreGetter.getScore(student.getID(), cID));
+			score=StudentScoreGetter.getScore(student.getID(), cID);
 			map.put(student, score);
 		}
 		return map;

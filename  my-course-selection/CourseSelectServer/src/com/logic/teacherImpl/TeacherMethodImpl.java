@@ -83,7 +83,7 @@ public class TeacherMethodImpl extends UnicastRemoteObject implements TeacherMet
 	}
 
 	@Override
-	public Map<Student, String> getScore(String cID) throws RemoteException {
+	public Map<Student, Integer> getScore(String cID) throws RemoteException {
 		// TODO Auto-generated method stub
 		return CourseStudentScoreGetter.ScoreGetter(cID);
 	}

@@ -4,15 +4,15 @@ import java.awt.Dimension;
 import java.awt.Point;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.InputEvent;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.rmi.RemoteException;
-import java.util.Iterator;
-import java.util.List;
 
-import javax.swing.ImageIcon;
 import javax.swing.UIManager;
 
 import com.basicdata.FacultyKind;
@@ -21,13 +21,13 @@ import com.basicdata.TermKind;
 import com.client.rmi.DeanMethodController;
 import com.client.ui.dataAdapter.CourseListToVectorAdapter;
 import com.client.ui.deanUI.DeanUISwitchController;
-import com.client.ui.main.MainFrame;
+import com.client.ui.facultyUI.Course.FacultyDeanCourseTeacherAssignmentDislayPane;
 import com.data.po.Course;
+import com.data.po.FacultyDean;
 import com.logicService.DeanMethod;
 import com.ui.bcswing.CourseDisplayTable;
 import com.ui.bcswing.CourseInforPane;
-import com.ui.bcswing.MScrollTable;
-import com.ui.bcswing.courseEditPane.CourseEditPane;
+import com.ui.bcswing.MPopupMenu;
 import com.ui.bcswing.courseEditPane.DeanCoursePane;
 import com.ui.bcswing.titleBar.DeanTitlebar;
 import com.ui.bcswing.titleBar.TitleBar;
@@ -42,9 +42,11 @@ public class CoursePanel extends MPanel {
 	private CoursePublicOperateBar publishOperateBar;
 	private AllCourseOperateBar allCourseOperateBar;
 
-	private CourseDisplayTable courseTable;
+	private CourseDisplayTable table;
 
 	private int state;
+
+	private MPopupMenu popupMenu;
 
 	public CoursePanel(Point loc, Dimension size) {
 		super(loc, size);
@@ -65,13 +67,15 @@ public class CoursePanel extends MPanel {
 		courseP.setText("公共课程");
 		courseA.setText("全校课程");
 
-		courseTable = new CourseDisplayTable(new Point(10, 180), new Dimension(
+		table = new CourseDisplayTable(new Point(10, 180), new Dimension(
 				size.width - 70, 380));
+		popupMenu = new MPopupMenu();
+		table.add(popupMenu);
 
 		this.add(title);
 		this.add(courseP);
 		this.add(courseA);
-		this.add(courseTable);
+		this.add(table);
 
 		publishOperateBar = new CoursePublicOperateBar(new Point(0, 140),
 				new Dimension(size.width, 50));
@@ -83,9 +87,9 @@ public class CoursePanel extends MPanel {
 	}
 
 	private void addListener() {
-		
+
 		courseP.addActionListener(new PublicCourseSwitchListener());
-		
+
 		courseA.addActionListener(new AllCourseSwitchListener());
 
 		title.addReturnMenu(new ActionListener() {
@@ -105,16 +109,16 @@ public class CoursePanel extends MPanel {
 		});
 
 		publishOperateBar.addcourseMListener(new CourseModifyListener());
-		
+
 		publishOperateBar.addcourseInforListener(new CourseInfroListener());
-		
-		publishOperateBar.addSearchKeyListener(new KeyAdapter(){
+
+		publishOperateBar.addSearchKeyListener(new KeyAdapter() {
 			public void keyReleased(KeyEvent e) {
 				publishOperateBarSearch();
 			}
 		});
-		
-		allCourseOperateBar.addSearchKeyListener(new KeyAdapter(){
+
+		allCourseOperateBar.addSearchKeyListener(new KeyAdapter() {
 			public void keyReleased(KeyEvent e) {
 				allCourseOperateBarSearch();
 			}
@@ -123,6 +127,11 @@ public class CoursePanel extends MPanel {
 		allCourseOperateBar.addYearItemListener(new Term_FacultyListener());
 
 		allCourseOperateBar.addFacultyItemListenr(new Term_FacultyListener());
+
+		table.addMouseListener(new TableClickListener());
+
+		popupMenu.addTeacherAssignmentListener(new TeacherAssignmentListener());
+
 	}
 
 	private void init() {
@@ -143,26 +152,26 @@ public class CoursePanel extends MPanel {
 		state = 1;
 	}
 
-	private void publishOperateBarSearch(){
-		String content=publishOperateBar.getSearchContent();
-		courseTable.regrexFilter(content);
+	private void publishOperateBarSearch() {
+		String content = publishOperateBar.getSearchContent();
+		table.regrexFilter(content);
 	}
-	
-	private void allCourseOperateBarSearch(){
-		String content=allCourseOperateBar.getSearchContent();
-		courseTable.regrexFilter(content);
+
+	private void allCourseOperateBarSearch() {
+		String content = allCourseOperateBar.getSearchContent();
+		table.regrexFilter(content);
 	}
-	
+
 	class PublicCourseSwitchListener implements ActionListener {
-		
+
 		public void actionPerformed(ActionEvent e) {
 			if (state == 1) {
 				addCoursePublishOperateBar();
 			}
 			DeanMethod method = DeanMethodController.getMethod();
 			try {
-				courseTable.setDataVector(CourseListToVectorAdapter
-						.adapter(method.getMCourse()));
+				table.setDataVector(CourseListToVectorAdapter.adapter(method
+						.getMCourse()));
 			} catch (RemoteException e1) {
 				e1.printStackTrace();
 			}
@@ -184,12 +193,12 @@ public class CoursePanel extends MPanel {
 	}
 
 	class CourseModifyListener implements ActionListener {
-		
+
 		public void actionPerformed(ActionEvent e) {
 			DeanMethod method = DeanMethodController.getMethod();
-			int index = courseTable.getSelectedRow();
+			int index = table.getSelectedRow();
 			if (index >= 0) {
-				String id = (String) courseTable.getValueAt(index, 0);
+				String id = (String) table.getValueAt(index, 0);
 				try {
 					Course c = method.getCourse(id);
 					DeanCoursePane pane = new DeanCoursePane();
@@ -200,16 +209,16 @@ public class CoursePanel extends MPanel {
 
 			}
 		}
-		
+
 	}
 
-	class CourseInfroListener implements ActionListener{
+	class CourseInfroListener implements ActionListener {
 
 		public void actionPerformed(ActionEvent e) {
 			DeanMethod method = DeanMethodController.getMethod();
-			int index = courseTable.getSelectedRow();
+			int index = table.getSelectedRow();
 			if (index >= 0) {
-				String id = (String) courseTable.getValueAt(index, 0);
+				String id = (String) table.getValueAt(index, 0);
 				try {
 					Course c = method.getCourse(id);
 					CourseInforPane pane = new CourseInforPane(c);
@@ -219,9 +228,9 @@ public class CoursePanel extends MPanel {
 
 			}
 		}
-		
+
 	}
-	
+
 	class Term_FacultyListener implements ItemListener {
 		int time = 0;
 
@@ -234,7 +243,7 @@ public class CoursePanel extends MPanel {
 				faculty = FacultyKind.getID(faculty);
 				DeanMethod method = DeanMethodController.getMethod();
 				try {
-					courseTable.setDataVector(CourseListToVectorAdapter
+					table.setDataVector(CourseListToVectorAdapter
 							.adapter(method.geFacultyTypeCourse(faculty,
 									TermKind.getTerm(term) + "")));
 				} catch (RemoteException e1) {
@@ -244,9 +253,34 @@ public class CoursePanel extends MPanel {
 		}
 	}
 
+	class TableClickListener extends MouseAdapter {
+		public void mouseClicked(MouseEvent e) {
+			int mods = e.getModifiers();
+			if (mods == InputEvent.BUTTON3_MASK
+					|| e.getModifiers() == InputEvent.BUTTON2_MASK) {
+				popupMenu.show(table, e.getX(), e.getY());
+			}
+		}
+	}
+
+	class TeacherAssignmentListener implements ActionListener {
+
+		public void actionPerformed(ActionEvent e) {
+			// TODO Auto-generated method stub
+			String courseID;
+
+			int index = table.rowAtPoint(popupMenu.getLocation());
+			courseID = (String) table.getValueAt(index, 0);
+
+			new DeanCourseTeacherAssignmentDisplayPane(courseID);
+		}
+
+	}
+
 	public static void main(String[] args) {
 		try {
-			Identity.setIdentity(DeanMethodController.getMethod().getSelf("121250041"));
+			Identity.setIdentity(DeanMethodController.getMethod().getSelf(
+					"121250041"));
 		} catch (RemoteException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();

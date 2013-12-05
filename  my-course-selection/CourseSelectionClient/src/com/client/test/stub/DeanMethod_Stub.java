@@ -212,4 +212,10 @@ public class DeanMethod_Stub implements DeanMethod {
 		return getFacultyCourse("1250");
 	}
 
+	@Override
+	public Teacher getTeacher(String arg0) throws RemoteException {
+		// TODO Auto-generated method stub
+		return new Teacher(arg0,"bb","0000");
+	}
+
 }

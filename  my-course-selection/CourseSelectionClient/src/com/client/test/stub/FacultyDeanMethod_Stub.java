@@ -9,6 +9,7 @@ import com.data.po.Course;
 import com.data.po.FacultyDean;
 import com.data.po.Frame;
 import com.data.po.FrameElement;
+import com.data.po.Teacher;
 import com.logicService.FacultyDeanMethod;
 
 public class FacultyDeanMethod_Stub implements FacultyDeanMethod{
@@ -135,5 +136,19 @@ public class FacultyDeanMethod_Stub implements FacultyDeanMethod{
 			throws RemoteException {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	@Override
+	public List<Teacher> getFacultyTeacher(String arg0) throws RemoteException {
+		// TODO Auto-generated method stub
+		List<Teacher> list=new ArrayList<Teacher>();
+		list.add(new Teacher("100000000","bb",arg0));
+		return null;
+	}
+
+	@Override
+	public Teacher getTeacher(String arg0) throws RemoteException {
+		// TODO Auto-generated method stub
+		return new Teacher(arg0,"bb","0000");
 	}
 }

@@ -9,7 +9,7 @@ import javax.swing.ImageIcon;
 import javax.swing.UIManager;
 
 import com.basicdata.FacultyKind;
-
+import com.basicdata.Identity;
 import com.client.ui.deanUI.DeanUISwitchController;
 import com.ui.bcswing.TeacherDisplayTable;
 import com.ui.bcswing.titleBar.DeanTitlebar;
@@ -80,6 +80,7 @@ public class TeacherIOPanel extends MPanel {
 	}
 
 	public static void main(String[] args) {
+		
 		try {
 			org.jb2011.lnf.beautyeye.BeautyEyeLNFHelper.launchBeautyEyeLNF();
 			UIManager.put("RootPane.setupButtonVisible", false);

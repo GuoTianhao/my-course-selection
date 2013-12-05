@@ -1,11 +1,14 @@
-package com.client.ui.facultyUI.Course;
+package com.ui.bcswing;
 
+import java.awt.Component;
 import java.awt.MenuItem;
+import java.awt.Point;
 import java.awt.PopupMenu;
 import java.awt.event.ActionListener;
 
 public class MPopupMenu extends PopupMenu{
-	MenuItem teacher;
+	private MenuItem teacher;
+	protected Point point;
 	public MPopupMenu(){
 		createComponent();
 	}
@@ -16,5 +19,13 @@ public class MPopupMenu extends PopupMenu{
 	}
 	public void addTeacherAssignmentListener(ActionListener al){
 		teacher.addActionListener(al);
+	}
+	public void show(Component origin, int x, int y){
+		super.show(origin, x, y);
+		point=new Point(x,y);
+	}
+	
+	public Point getLocation(){
+		return point;
 	}
 }

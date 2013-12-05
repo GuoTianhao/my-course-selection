@@ -2,8 +2,11 @@ package com.client.test.stub;
 
 import java.rmi.RemoteException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+
 
 
 
@@ -119,6 +122,12 @@ public class TeacherMethod_Stub implements TeacherMethod {
 		Course c = new Course("0001", "软件工程与计算", "仙2_303", "F", 3, "1_17",
 				"1250", "打造全院最好软件教育", 0, 3,time, null);
 		return c;
+	}
+
+	@Override
+	public Map<Student, Integer> getScore(String arg0) throws RemoteException {
+		// TODO Auto-generated method stub
+		return new HashMap<Student, Integer>();
 	}
 }
 

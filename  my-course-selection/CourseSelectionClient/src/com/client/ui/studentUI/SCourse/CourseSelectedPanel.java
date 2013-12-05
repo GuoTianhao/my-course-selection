@@ -165,7 +165,7 @@ public class CourseSelectedPanel extends MPanel {
 		public void actionPerformed(ActionEvent e) {
 			int index = table2.getSelectedRow();
 			if (index >= 0) {
-				String cID = (String) table1.getValueAt(index, 0);
+				String cID = (String) table2.getValueAt(index, 0);
 				StudentMethod method = StudentMethodController.getMethod();
 
 				try {
@@ -189,7 +189,7 @@ public class CourseSelectedPanel extends MPanel {
 	public static void main(String[] args) {
 		try {
 			Identity.setIdentity(StudentMethodController.getMethod().getSelf(
-					"0000"));
+					"121250011"));
 		} catch (RemoteException e) {
 			e.printStackTrace();
 		}

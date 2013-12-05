@@ -5,8 +5,8 @@ import java.util.Map;
 
 public class CourseTypeKind {
 	private static String[] CourseTypeName = { "通识教育课程", "思想政治理论课程", "军事课程",
-			"分层次同修课程", "专业必修课", "专业选修课", "毕业论文/设计" };
-	private static String[] CourseType = {"A","B","C","D","E","F","L"};
+			"分层次同修课程", "专业必修课", "专业选修课", "体育课","毕业论文/设计" };
+	private static String[] CourseType = {"A","B","C","D","E","F","G","L"};
 	
 	private static Map<String, String> nameToType;
 	private static Map<String, String> typeToName;

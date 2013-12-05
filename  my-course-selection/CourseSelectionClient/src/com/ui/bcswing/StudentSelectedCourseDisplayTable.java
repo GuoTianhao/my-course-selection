@@ -3,7 +3,7 @@ package com.ui.bcswing;
 import java.awt.Dimension;
 import java.awt.Point;
 
-public class StudentSelectedCourseDisplayTable extends MScrollTabel {
+public class StudentSelectedCourseDisplayTable extends MScrollTable {
 	private static final String[] c = { "课程编号", "名称", "学分", "上课时间", "上课周数" };
 
 	public StudentSelectedCourseDisplayTable(Point loc, Dimension size) {

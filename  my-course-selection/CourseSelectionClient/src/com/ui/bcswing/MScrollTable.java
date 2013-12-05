@@ -16,39 +16,39 @@ import com.ui.myswing.EditPermission;
 import com.ui.myswing.MDefaultTableModel;
 import com.ui.myswing.MTable;
 
-public class MScrollTabel extends JScrollPane {
+public class MScrollTable extends JScrollPane {
 	private MDefaultTableModel model = new MDefaultTableModel();
 	private MTable table = new MTable(model);
 	private TableRowSorter<TableModel> sort = new TableRowSorter<TableModel>();
 
-	public MScrollTabel(Component view, int vsbPolicy, int hsbPolicy) {
+	public MScrollTable(Component view, int vsbPolicy, int hsbPolicy) {
 		super(view, vsbPolicy, hsbPolicy);
 	}
 
-	public MScrollTabel(Component view) {
+	public MScrollTable(Component view) {
 		super(view);
-		this.setHorizontalScrollBarPolicy(MScrollTabel.HORIZONTAL_SCROLLBAR_NEVER);
-		this.setVerticalScrollBarPolicy(MScrollTabel.VERTICAL_SCROLLBAR_ALWAYS);
+		this.setHorizontalScrollBarPolicy(MScrollTable.HORIZONTAL_SCROLLBAR_NEVER);
+		this.setVerticalScrollBarPolicy(MScrollTable.VERTICAL_SCROLLBAR_ALWAYS);
 		this.add(table);
 		sort.setModel(model);
 		table.setRowSorter(sort);
 	}
 
-	public MScrollTabel(int vsbPolicy, int hsbPolicy) {
+	public MScrollTable(int vsbPolicy, int hsbPolicy) {
 		super(vsbPolicy, hsbPolicy);
 	}
 
-	public MScrollTabel(Point loc, Dimension size) {
+	public MScrollTable(Point loc, Dimension size) {
 		this();
 		this.setLocation(loc);
 		this.setSize(size);
 	}
 
-	public MScrollTabel() {
+	public MScrollTable() {
 		super();
 		this.setViewportView(table);
-		this.setHorizontalScrollBarPolicy(MScrollTabel.HORIZONTAL_SCROLLBAR_NEVER);
-		this.setVerticalScrollBarPolicy(MScrollTabel.VERTICAL_SCROLLBAR_ALWAYS);
+		this.setHorizontalScrollBarPolicy(MScrollTable.HORIZONTAL_SCROLLBAR_NEVER);
+		this.setVerticalScrollBarPolicy(MScrollTable.VERTICAL_SCROLLBAR_ALWAYS);
 		sort.setModel(model);
 		table.setRowSorter(sort);
 	}

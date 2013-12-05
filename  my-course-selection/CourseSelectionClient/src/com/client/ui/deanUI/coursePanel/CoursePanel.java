@@ -26,7 +26,7 @@ import com.data.po.Course;
 import com.logicService.DeanMethod;
 import com.ui.bcswing.CourseDisplayTable;
 import com.ui.bcswing.CourseInforPane;
-import com.ui.bcswing.MScrollTabel;
+import com.ui.bcswing.MScrollTable;
 import com.ui.bcswing.courseEditPane.CourseEditPane;
 import com.ui.bcswing.courseEditPane.DeanCoursePane;
 import com.ui.bcswing.titleBar.DeanTitlebar;

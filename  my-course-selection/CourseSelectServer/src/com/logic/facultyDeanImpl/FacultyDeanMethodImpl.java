@@ -9,9 +9,11 @@ import com.data.po.BasicFrame;
 import com.data.po.Course;
 import com.data.po.FacultyDean;
 import com.data.po.Frame;
+import com.data.po.Teacher;
 import com.logic.method.FaucltyDeanRelative.FacultyCoursePublish;
 import com.logic.method.FaucltyDeanRelative.FacultyDeanGetter;
 import com.logic.method.FaucltyDeanRelative.FrameManagement;
+import com.logic.method.TeacherRelative.TeacherGetter;
 import com.logic.method.courseRelative.CourseGetter;
 import com.logic.method.courseRelative.CoursePublish;
 import com.logic.method.courseRelative.CourseUpdate;
@@ -48,7 +50,7 @@ public class FacultyDeanMethodImpl extends UnicastRemoteObject implements Facult
 	public boolean publishCourse(String ID, Course c) throws RemoteException {
 		// TODO Auto-generated method stub
 		boolean admit;
-		admit=FacultyCoursePublish.publishCourse(c);
+		admit=FacultyCoursePublish.publishCourse(ID,c);
 		return admit;
 	}
 
@@ -70,8 +72,7 @@ public class FacultyDeanMethodImpl extends UnicastRemoteObject implements Facult
 	@Override
 	public boolean modifyCourse(Course c) throws RemoteException {
 		// TODO Auto-generated method stub
-		CourseUpdate.updateCourse(c);
-		return false;
+		return CourseUpdate.updateCourse(c);
 	}
 
 	@Override
@@ -110,6 +111,19 @@ public class FacultyDeanMethodImpl extends UnicastRemoteObject implements Facult
 			throws RemoteException {
 		// TODO Auto-generated method stub
 		return CourseGetter.getFacultyTypeCourse(facultyID, grade);
+	}
+
+	@Override
+	public List<Teacher> getFacultyTeacher(String faculty)
+			throws RemoteException {
+		// TODO Auto-generated method stub
+		return TeacherGetter.getFacultyTeacher(faculty);
+	}
+
+	@Override
+	public Teacher getTeacher(String id) throws RemoteException {
+		// TODO Auto-generated method stub
+		return TeacherGetter.getConcreteTeacher(id);
 	}
 
 }

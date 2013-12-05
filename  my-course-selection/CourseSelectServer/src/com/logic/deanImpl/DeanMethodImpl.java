@@ -146,6 +146,12 @@ public class DeanMethodImpl extends UnicastRemoteObject implements DeanMethod{
 		return CourseGetter.getFacultyTypeCourse(facultyID, grade);
 	}
 
+	@Override
+	public Teacher getTeacher(String id) throws RemoteException {
+		// TODO Auto-generated method stub
+		return TeacherGetter.getConcreteTeacher(id);
+	}
+
 	
 
 	

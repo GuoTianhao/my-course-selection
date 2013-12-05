@@ -6,6 +6,7 @@ import java.util.List;
 import Adapter.GradeToTermAdapter;
 
 import com.data.dataImpl.DatabaseImpl;
+import com.data.po.Course;
 import com.dataService.StudentDatabaseMethod;
 import com.logic.dataController.StudentDataController;
 
@@ -31,6 +32,9 @@ public class CourseSelect {
 	}
 
 	public static boolean quitCourse(String ID, String cID) {
+		if(!isQuitable(cID)){
+			return false;
+		}
 		if (isSelected(ID, cID)) {
 			List<String> clueName = new ArrayList<String>();
 			List<String> clue = new ArrayList<String>();
@@ -63,5 +67,14 @@ public class CourseSelect {
 		{
 			return false;
 		}
+	}
+
+	public static boolean isQuitable(String courseID) {
+		Course c = CourseGetter.getConcreteCourse(courseID);
+		switch (c.getType()) {
+		case "B":case "C":case "D":case "E":case "L":
+			return false;
+		}
+		return true;
 	}
 }

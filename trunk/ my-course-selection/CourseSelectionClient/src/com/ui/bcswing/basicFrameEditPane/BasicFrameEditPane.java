@@ -25,7 +25,7 @@ import com.ui.myswing.MTextField;
 
 public class BasicFrameEditPane extends MFrame {
 	private MPanel editPanel;
-	private static Dimension default_size = new Dimension(525, 500);
+	private static Dimension default_size = new Dimension(525, 550);
 	private MLabel moduleLb;
 	private MLabel creditLb;
 	private MLabel periodLb;
@@ -39,7 +39,7 @@ public class BasicFrameEditPane extends MFrame {
 	private MButton yesBtn;
 	private MButton noBtn;
 	private DeanMethod method = DeanMethodController.getMethod();
-	private String[][] elementStr = new String[7][3];
+	private String[][] elementStr = new String[8][3];
 	private MTextField textField;
 	private MTextField textField_1;
 	private MTextField textField_2;
@@ -70,6 +70,11 @@ public class BasicFrameEditPane extends MFrame {
 	private MTextField textField_27;
 	private MTextField textField_28;
 	private MTextField textField_29;
+	private MTextField textField_30;
+	private MTextField textField_31;
+	private MTextField textField_32;
+	private MTextField textField_33;
+	private MTextField textField_34;
 
 	public BasicFrameEditPane() {
 		super(default_size);
@@ -107,11 +112,11 @@ public class BasicFrameEditPane extends MFrame {
 
 		yesBtn = new MButton(null, null, null, new Point(100, 220),
 				new Dimension(80, 25));
-		yesBtn.setLocation(140, 365);
+		yesBtn.setLocation(140, 410);
 		yesBtn.setText("确定");
 		noBtn = new MButton(null, null, null, new Point(220, 220),
 				new Dimension(80, 25));
-		noBtn.setLocation(265, 365);
+		noBtn.setLocation(265, 410);
 		noBtn.setText("取消");
 
 		editPanel.add(moduleLb);
@@ -307,6 +312,36 @@ public class BasicFrameEditPane extends MFrame {
 		textField_29.setBounds(400, 315, 25, 25);
 		editPanel.add(textField_29);
 
+		textField_30 = new MTextField();
+		textField_30.setText(CourseTypeKind.getAllCourseName()[7]);
+		textField_30.setEditable(false);
+		textField_30.setBounds(30, 360, 150, 25);
+		editPanel.add(textField_30);
+		
+		textField_31 = new MTextField();
+		textField_31.setBounds(220, 360, 25, 25);
+		editPanel.add(textField_31);
+		
+		MLabel label_12 = new MLabel("~");
+		label_12.setBounds(245, 360, 25, 25);
+		editPanel.add(label_12);
+		
+		textField_32 = new MTextField();
+		textField_32.setBounds(270, 360, 25, 25);
+		editPanel.add(textField_32);
+		
+		textField_33 = new MTextField();
+		textField_33.setBounds(350, 360, 25, 25);
+		editPanel.add(textField_33);
+		
+		MLabel label_13 = new MLabel("~");
+		label_13.setBounds(375, 360, 25, 25);
+		editPanel.add(label_13);
+		
+		textField_34 = new MTextField();
+		textField_34.setBounds(400, 360, 25, 25);
+		editPanel.add(textField_34);
+		
 		getContentPane().add(editPanel);
 		this.setVisible(true);
 		this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
@@ -400,6 +435,11 @@ public class BasicFrameEditPane extends MFrame {
 				+ textField_16.getText();
 		elementStr[6][2] = textField_28.getText() + "_"
 				+ textField_29.getText();
+		elementStr[7][0] = CourseTypeKind.getType(textField_30.getText());
+		elementStr[7][1] = textField_31.getText() + "_"
+				+ textField_32.getText();
+		elementStr[7][2] = textField_33.getText() + "_"
+				+ textField_34.getText();
 		for (int i = 0; i < elementStr.length; i++) {
 			frame.addFrameElement(new FrameElement(elementStr[i][0],
 					elementStr[i][1], elementStr[i][2]));

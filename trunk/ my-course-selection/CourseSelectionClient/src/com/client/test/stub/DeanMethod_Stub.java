@@ -206,7 +206,7 @@ public class DeanMethod_Stub implements DeanMethod {
 	}
 
 	@Override
-	public List<Course> geFacultyTypeCourse(String arg0, String arg1)
+	public List<Course> geFacultyTermCourse(String arg0, String arg1)
 			throws RemoteException {
 		// TODO Auto-generated method stub
 		return getFacultyCourse("1250");

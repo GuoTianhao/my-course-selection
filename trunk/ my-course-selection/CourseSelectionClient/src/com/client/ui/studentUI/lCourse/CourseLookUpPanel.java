@@ -97,7 +97,7 @@ public class CourseLookUpPanel extends MPanel {
 				StudentMethod method = StudentMethodController.getMethod();
 				try {
 					table.setDataVector(CourseListToVectorAdapter
-							.adapter(method.geFacultyTypeCourse(faculty,
+							.adapter(method.geFacultyTermCourse(faculty,
 									TermKind.getTerm(term) + "")));
 				} catch (RemoteException e1) {
 					e1.printStackTrace();

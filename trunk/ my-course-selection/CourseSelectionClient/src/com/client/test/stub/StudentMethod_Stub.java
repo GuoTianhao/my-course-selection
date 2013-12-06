@@ -99,7 +99,7 @@ public class StudentMethod_Stub implements StudentMethod {
 	}
 
 	@Override
-	public List<Course> geFacultyTypeCourse(String arg0, String arg1)
+	public List<Course> geFacultyTermCourse(String arg0, String arg1)
 			throws RemoteException {
 		// TODO Auto-generated method stub
 		return getCourseList("1000");
@@ -133,5 +133,11 @@ public class StudentMethod_Stub implements StudentMethod {
 	public boolean isTimeForSystemSelect() {
 		// TODO Auto-generated method stub
 		return false;
+	}
+
+	@Override
+	public List<Course> getWaitCourseList(String arg0) throws RemoteException {
+		// TODO Auto-generated method stub
+		return new ArrayList<Course>();
 	}
 }

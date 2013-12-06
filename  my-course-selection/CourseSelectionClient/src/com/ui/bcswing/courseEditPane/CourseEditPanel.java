@@ -306,7 +306,7 @@ public class CourseEditPanel extends MPanel {
 			if (time % 2 == 0) {
 				String selected = (String) typeSelect.getSelectedItem();
 				switch (selected) {
-				case "通识教育课程":
+				case "通识教育课程":case "体育课":
 					gradet.setText("");
 					gradet.disable();
 					numt.enable();

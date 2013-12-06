@@ -47,7 +47,7 @@ public class DeanCoursePane extends CourseEditPane{
 		
 	}
 	private void init(){
-		String[] typeModel = { "通识教育课程", "思想政治理论课程" ,"军事课程","通修课程"};
+		String[] typeModel = { "通识教育课程","体育课", "思想政治理论课程" ,"军事课程","通修课程"};
 		courseEdit.setTypeModel(typeModel);
 		courseEdit.initType();
 	}
@@ -61,7 +61,7 @@ public class DeanCoursePane extends CourseEditPane{
 		DeanMethod method=DeanMethodController.getMethod();
 		try {
 			DeanCoursePane pane=new DeanCoursePane();
-			pane.setCourse(method.getCourse(""));
+			pane.setCourse(method.getCourse("0001"));
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

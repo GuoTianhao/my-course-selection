@@ -128,9 +128,14 @@ public class StudentMethodImpl extends UnicastRemoteObject implements StudentMet
 	}
 
 	@Override
-	public boolean isTimeForByElection() throws RemoteException {
+	public boolean isTimeForGradeOneSelectCourse() {
 		// TODO Auto-generated method stub
 		return false;
 	}
 
+	@Override
+	public boolean isTimeForByElection() throws RemoteException {
+		// TODO Auto-generated method stub
+		return false;
+	}
 }

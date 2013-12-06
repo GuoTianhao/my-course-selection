@@ -177,6 +177,12 @@ public class DeanMethodImpl extends UnicastRemoteObject implements DeanMethod{
 	}
 
 	@Override
+	public boolean isTimeForGradeOneSelectCourse() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
 	public boolean isTimeForByElection() throws RemoteException {
 		// TODO Auto-generated method stub
 		return false;

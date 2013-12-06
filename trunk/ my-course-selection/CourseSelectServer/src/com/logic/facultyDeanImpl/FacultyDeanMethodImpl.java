@@ -150,4 +150,10 @@ public class FacultyDeanMethodImpl extends UnicastRemoteObject implements Facult
 		return false;
 	}
 
+	@Override
+	public boolean isTimeForByElection() throws RemoteException {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
 }

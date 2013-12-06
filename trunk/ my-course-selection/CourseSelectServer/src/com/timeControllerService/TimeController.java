@@ -14,4 +14,7 @@ public interface TimeController {
 	
 	//是否可以退选
 	public boolean isTimeForQuitCourse() throws RemoteException;
+	
+	//是否可以补选
+	public boolean isTimeForByElection() throws RemoteException;
 }

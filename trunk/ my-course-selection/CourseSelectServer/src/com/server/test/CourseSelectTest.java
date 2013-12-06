@@ -1,11 +1,11 @@
 package com.server.test;
 
-import com.logic.method.courseRelative.CourseSelect;
+import com.logic.method.courseRelative.CourseSelectAndQuit;
 
 import junit.framework.TestCase;
 
 public class CourseSelectTest extends TestCase{
 	public void testSelectCourse(){
-		System.out.println(CourseSelect.quitCourse("121250041","0003"));
+		System.out.println(CourseSelectAndQuit.quitCourse("121250041","0003"));
 	}
 }

@@ -111,4 +111,10 @@ public class TeacherMethodImpl extends UnicastRemoteObject implements TeacherMet
 		// TODO Auto-generated method stub
 		return false;
 	}
+
+	@Override
+	public boolean isTimeForByElection() throws RemoteException {
+		// TODO Auto-generated method stub
+		return false;
+	}
 }

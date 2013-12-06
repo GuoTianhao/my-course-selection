@@ -5,5 +5,7 @@
 	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/3"/>
 	<classpathentry kind="lib" path="beautyeye_lnf.jar"/>
 	<classpathentry kind="lib" path="po.jar"/>
+	<classpathentry kind="lib" path="rmi.jar"/>
+	<classpathentry kind="lib" path="time.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

@@ -4,11 +4,15 @@ import java.awt.Dimension;
 import java.awt.Point;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.rmi.RemoteException;
 
 import javax.swing.ImageIcon;
 import javax.swing.SwingConstants;
 import javax.swing.UIManager;
 
+import com.basicdata.Identity;
+import com.client.rmi.StudentMethodController;
+import com.timeControllerService.TimeController;
 import com.ui.bcswing.titleBar.StudentTitleBar;
 import com.ui.bcswing.titleBar.TitleBar;
 import com.ui.myswing.MButton;
@@ -23,6 +27,7 @@ public class StudentMainPanel extends MPanel {
 	private MButton btn5;
 
 	StudentUISwitchController controller;
+	TimeController time;
 
 	public StudentMainPanel(Point loc, Dimension size) {
 		super(loc, size);
@@ -73,6 +78,7 @@ public class StudentMainPanel extends MPanel {
 	}
 
 	private void addListener() {
+		time=StudentMethodController.getMethod();
 		controller = StudentUISwitchController.getUISwitchController();
 
 		btn1.addActionListener(new ActionListener() {
@@ -82,9 +88,19 @@ public class StudentMainPanel extends MPanel {
 		});
 
 		btn2.addActionListener(new ActionListener() {
+			
 			public void actionPerformed(ActionEvent e) {
-				controller.switchToSCourse();
+				try {
+					if(time.isTimeForSelectCourse()){
+						controller.switchToSCourse();	
+					}else{
+						System.out.println("选课尚未开始");
+					}
+				} catch (RemoteException e1) {
+					e1.printStackTrace();
+				}
 			}
+			
 		});
 
 		btn3.addActionListener(new ActionListener() {
@@ -107,6 +123,13 @@ public class StudentMainPanel extends MPanel {
 	}
 
 	public static void main(String[] args) {
+		try {
+			Identity.setIdentity(StudentMethodController.getMethod().getSelf(
+					"121250011"));
+		} catch (RemoteException e) {
+			e.printStackTrace();
+		}
+		
 		try {
 			org.jb2011.lnf.beautyeye.BeautyEyeLNFHelper.launchBeautyEyeLNF();
 			UIManager.put("RootPane.setupButtonVisible", false);

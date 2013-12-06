@@ -175,4 +175,10 @@ public class FacultyDeanMethod_Stub implements FacultyDeanMethod{
 		// TODO Auto-generated method stub
 		return false;
 	}
+
+	@Override
+	public boolean isTimeForByElection() throws RemoteException {
+		// TODO Auto-generated method stub
+		return false;
+	}
 }

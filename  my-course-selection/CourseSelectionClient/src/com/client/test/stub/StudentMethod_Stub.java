@@ -140,4 +140,17 @@ public class StudentMethod_Stub implements StudentMethod {
 		// TODO Auto-generated method stub
 		return new ArrayList<Course>();
 	}
+
+	@Override
+	public boolean isTimeForByElection() throws RemoteException {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean quitSelectCourse(String arg0, String arg1)
+			throws RemoteException {
+		// TODO Auto-generated method stub
+		return true;
+	}
 }

@@ -150,7 +150,7 @@ public class QuitCoursePanel extends MPanel {
 	public static void main(String[] args) {
 		StudentMethod method = StudentMethodController.getMethod();
 		try {
-			Identity.setIdentity(method.getSelf("121250041"));
+			Identity.setIdentity(method.getSelf("121250011"));
 		} catch (RemoteException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();

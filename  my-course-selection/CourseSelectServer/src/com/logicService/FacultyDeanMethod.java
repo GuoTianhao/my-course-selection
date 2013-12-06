@@ -48,7 +48,7 @@ public interface FacultyDeanMethod extends Remote,TimeController {
 	public BasicFrame lookBasicFrame() throws RemoteException;
 
 	// 得到院系具体学期的课程
-	public List<Course> geFacultyTypeCourse(String facultyID, String grade)
+	public List<Course> geFacultyTermCourse(String facultyID, String grade)
 			throws RemoteException;
 
 	// 得到院系老师

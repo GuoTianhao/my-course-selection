@@ -11,6 +11,7 @@ import com.data.dataImpl.method.DatabaseConnection;
 import com.data.dataImpl.method.DatabaseDelete;
 import com.data.dataImpl.method.DatabaseInsert;
 import com.data.dataImpl.method.DatabaseMax;
+import com.data.dataImpl.method.DatabaseNum;
 import com.data.dataImpl.method.DatabaseSearch;
 import com.data.dataImpl.method.DatabaseUpdate;
 import com.dataService.DatabaseMethod;
@@ -55,5 +56,10 @@ public class DatabaseImpl implements DatabaseMethod{
 	public String getMax(String tableName, String clueName) {
 		// TODO Auto-generated method stub
 		return DatabaseMax.getMax(tableName, clueName);
+	}
+	@Override
+	public int getNum(String tableName, List<String> clueName, List<String> clue) {
+		// TODO Auto-generated method stub
+		return DatabaseNum.getNum(tableName, clueName, clue);
 	}
 }

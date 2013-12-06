@@ -61,7 +61,13 @@ public class StudentMethodImpl extends UnicastRemoteObject implements StudentMet
 	@Override
 	public List<Course> getCourseList(String ID) throws RemoteException {
 		// TODO Auto-generated method stub
-		return StudentCourseListGetter.getCourseList(ID);
+		return StudentCourseListGetter.getMCourseList(ID);
+	}
+	
+	@Override
+	public List<Course> getWaitCourseList(String ID) throws RemoteException {
+		// TODO Auto-generated method stub
+		return StudentCourseListGetter.getMWaitedCourseList(ID);
 	}
 
 	@Override
@@ -78,10 +84,10 @@ public class StudentMethodImpl extends UnicastRemoteObject implements StudentMet
 	}
 
 	@Override
-	public List<Course> geFacultyTypeCourse(String facultyID, String grade)
+	public List<Course> geFacultyTermCourse(String facultyID, String grade)
 			throws RemoteException {
 		// TODO Auto-generated method stub
-		return CourseGetter.getFacultyTypeCourse(facultyID, grade);
+		return CourseGetter.getFacultyTermCourse(facultyID, grade);
 	}
 
 	@Override
@@ -99,7 +105,7 @@ public class StudentMethodImpl extends UnicastRemoteObject implements StudentMet
 	@Override
 	public boolean isTimeForSelectCourse() {
 		// TODO Auto-generated method stub
-		return false;
+		return true;
 	}
 
 	@Override

@@ -24,7 +24,7 @@ public class CourseSelect {
 			clue.add(cID);
 			clue.add(ID);
 			clue.add(term + "");
-			method.insert("courseStudent", clueName, clue);
+			method.insert("courseStudentWait", clueName, clue);
 			return true;
 		} else {
 			return false;
@@ -42,7 +42,7 @@ public class CourseSelect {
 			clueName.add("Student");
 			clue.add(cID);
 			clue.add(ID);
-			StudentDataController.getMethod().delete("courseStudent", clueName,
+			StudentDataController.getMethod().delete("courseStudentWait", clueName,
 					clue);
 			return true;
 		} else {
@@ -59,7 +59,7 @@ public class CourseSelect {
 		clue.add(cID);
 		clue.add(ID);
 		aimName.add("ID");
-		List res = StudentDataController.getMethod().search("courseStudent",
+		List res = StudentDataController.getMethod().search("courseStudentWait",
 				clueName, clue, aimName);
 		if (res.size() != 0) {
 			return true;

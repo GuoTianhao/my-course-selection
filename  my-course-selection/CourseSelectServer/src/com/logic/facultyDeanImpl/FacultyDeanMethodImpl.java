@@ -107,10 +107,10 @@ public class FacultyDeanMethodImpl extends UnicastRemoteObject implements Facult
 	}
 
 	@Override
-	public List<Course> geFacultyTypeCourse(String facultyID, String grade)
+	public List<Course> geFacultyTermCourse(String facultyID, String grade)
 			throws RemoteException {
 		// TODO Auto-generated method stub
-		return CourseGetter.getFacultyTypeCourse(facultyID, grade);
+		return CourseGetter.getFacultyTermCourse(facultyID, grade);
 	}
 
 	@Override
@@ -129,7 +129,7 @@ public class FacultyDeanMethodImpl extends UnicastRemoteObject implements Facult
 	@Override
 	public boolean isTimeForPublishCourse() {
 		// TODO Auto-generated method stub
-		return false;
+		return true;
 	}
 
 	@Override

@@ -68,5 +68,5 @@ public interface DeanMethod extends Remote,TimeController {
 	public Course getCourse(String courseID) throws RemoteException;
 	
 	//得到院系具体学期课程
-	public List<Course> geFacultyTypeCourse(String facultyID,String grade) throws RemoteException;
+	public List<Course> geFacultyTermCourse(String facultyID,String grade) throws RemoteException;
 }

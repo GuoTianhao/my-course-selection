@@ -8,7 +8,7 @@ import com.data.po.Course;
 import com.data.po.Student;
 import com.timeControllerService.TimeController;
 
-public interface StudentMethod extends Remote,TimeController {
+public interface StudentMethod extends Remote, TimeController {
 	// 学生登陆,传入ID（帐号）和password(密码)，当ID和password匹配return true，反之return false；
 	public boolean login(String ID, String password) throws RemoteException;
 
@@ -34,13 +34,17 @@ public interface StudentMethod extends Remote,TimeController {
 	// 查看自己选课列表，传入ID（学生）,返回该学生选课列表
 	public List<Course> getCourseList(String ID) throws RemoteException;
 
+	// 得到自己的已选待定课程列表
+	public List<Course> getWaitCourseList(String ID) throws RemoteException;
+
 	// 查看任意课程，传入cID（课程）ID，返回Course.
 	public Course getCourse(String cID) throws RemoteException;
 
 	// 得到院系具体学期课程
-	public List<Course> geFacultyTypeCourse(String facultyID, String grade)
+	public List<Course> geFacultyTermCourse(String facultyID, String grade)
 			throws RemoteException;
-	
-	//得到具体类型课程
+
+	// 得到具体类型课程
 	public List<Course> getTypeCourse(String type) throws RemoteException;
+
 }

@@ -90,4 +90,28 @@ public class StudentMethodImpl extends UnicastRemoteObject implements StudentMet
 		return CourseGetter.getTypeCourse(type);
 	}
 
+	@Override
+	public boolean isTimeForPublishCourse() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean isTimeForSelectCourse() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean isTimeForSystemSelect() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean isTimeForQuitCourse() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
 }

@@ -126,4 +126,28 @@ public class FacultyDeanMethodImpl extends UnicastRemoteObject implements Facult
 		return TeacherGetter.getConcreteTeacher(id);
 	}
 
+	@Override
+	public boolean isTimeForPublishCourse() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean isTimeForSelectCourse() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean isTimeForSystemSelect() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean isTimeForQuitCourse() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
 }

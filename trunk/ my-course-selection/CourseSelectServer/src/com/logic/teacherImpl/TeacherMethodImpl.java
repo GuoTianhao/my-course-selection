@@ -87,4 +87,28 @@ public class TeacherMethodImpl extends UnicastRemoteObject implements TeacherMet
 		// TODO Auto-generated method stub
 		return CourseStudentScoreGetter.ScoreGetter(cID);
 	}
+
+	@Override
+	public boolean isTimeForPublishCourse() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean isTimeForSelectCourse() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean isTimeForSystemSelect() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean isTimeForQuitCourse() {
+		// TODO Auto-generated method stub
+		return false;
+	}
 }

@@ -8,8 +8,9 @@ import java.util.Map;
 import com.data.po.Course;
 import com.data.po.Student;
 import com.data.po.Teacher;
+import com.timeControllerService.TimeController;
 
-public interface TeacherMethod extends Remote{
+public interface TeacherMethod extends Remote,TimeController{
 		//老师登陆,传入ID（帐号）和password(密码)，当ID和password匹配return true，反之return false；
 		public boolean login(String ID,String password) throws RemoteException;
 		//获取用户信息，传入(用户ID)

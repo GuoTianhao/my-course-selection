@@ -6,6 +6,7 @@ import com.client.ui.loginUI.Login;
 import com.client.ui.main.MainFrame;
 import com.client.ui.studentUI.CScore.ScoreCheckPanel;
 import com.client.ui.studentUI.MCourse.MyCoursePanel;
+import com.client.ui.studentUI.QCourse.QuitCoursePanel;
 import com.client.ui.studentUI.SCourse.CourseSelectedPanel;
 import com.client.ui.studentUI.lCourse.CourseLookUpPanel;
 
@@ -55,6 +56,13 @@ public class StudentUISwitchController {
 		frame.add(new CourseSelectedPanel(new Point(0,0),frame.getSize()));
 		frame.refresh();
 	}
+	
+	public void switchToQCourse(){
+		frame.getContentPane().removeAll();
+		frame.add(new QuitCoursePanel(new Point(0,0),frame.getSize()));
+		frame.refresh();
+	}
+	
 	public void dispose(){
 		if (frame != null) {
 			frame.dispose();

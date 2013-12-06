@@ -130,16 +130,7 @@ public class CourseSelectedPanel extends MPanel {
 		Student student = (Student) (Identity.getIdentity());
 
 		public void actionPerformed(ActionEvent e) {
-			TimeController time=StudentMethodController.getMethod();
-			try {
-				if(time.isTimeForSelectCourse()){
-					selectCourse();
-				}else{
-					System.out.println("未到选课时间");
-				}
-			} catch (RemoteException e1) {
-				e1.printStackTrace();
-			}
+			selectCourse();
 		}
 		
 		public void selectCourse(){
@@ -168,16 +159,7 @@ public class CourseSelectedPanel extends MPanel {
 		Student student = (Student) (Identity.getIdentity());
 
 		public void actionPerformed(ActionEvent e) {
-			TimeController time=DeanMethodController.getMethod();
-			try {
-				if(time.isTimeForSelectCourse()){
-					quitCourse();
-				}else{
-					System.out.println("未到退选时间");
-				}
-			} catch (RemoteException e1) {
-				e1.printStackTrace();
-			}
+			quitCourse();
 		}
 		
 		public void quitCourse(){
@@ -187,7 +169,7 @@ public class CourseSelectedPanel extends MPanel {
 				StudentMethod method = StudentMethodController.getMethod();
 
 				try {
-					boolean admit = method.quitCourse(student.getID(), cID);
+					boolean admit = method.quitSelectCourse(student.getID(), cID);
 					if (admit) {
 						System.out.println("退选成功");
 					} else {

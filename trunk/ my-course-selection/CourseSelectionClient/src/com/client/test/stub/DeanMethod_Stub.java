@@ -218,4 +218,28 @@ public class DeanMethod_Stub implements DeanMethod {
 		return new Teacher(arg0,"bb","0000");
 	}
 
+	@Override
+	public boolean isTimeForPublishCourse() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean isTimeForQuitCourse() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean isTimeForSelectCourse() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean isTimeForSystemSelect() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
 }

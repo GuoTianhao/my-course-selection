@@ -129,6 +129,30 @@ public class TeacherMethod_Stub implements TeacherMethod {
 		// TODO Auto-generated method stub
 		return new HashMap<Student, Integer>();
 	}
+
+	@Override
+	public boolean isTimeForPublishCourse() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean isTimeForQuitCourse() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean isTimeForSelectCourse() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean isTimeForSystemSelect() {
+		// TODO Auto-generated method stub
+		return false;
+	}
 }
 
 

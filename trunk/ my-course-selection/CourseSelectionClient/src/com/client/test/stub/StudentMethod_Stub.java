@@ -110,4 +110,28 @@ public class StudentMethod_Stub implements StudentMethod {
 		// TODO Auto-generated method stub
 		return getCourseList(ID);
 	}
+
+	@Override
+	public boolean isTimeForPublishCourse() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean isTimeForQuitCourse() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean isTimeForSelectCourse() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean isTimeForSystemSelect() {
+		// TODO Auto-generated method stub
+		return false;
+	}
 }

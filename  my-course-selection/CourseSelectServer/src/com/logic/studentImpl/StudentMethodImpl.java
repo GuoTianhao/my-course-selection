@@ -7,7 +7,7 @@ import java.util.List;
 import com.data.po.Course;
 import com.data.po.Student;
 import com.logic.method.courseRelative.CourseGetter;
-import com.logic.method.courseRelative.CourseSelect;
+import com.logic.method.courseRelative.CourseSelectAndQuit;
 import com.logic.method.studentRelative.StudentCourseListGetter;
 import com.logic.method.studentRelative.StudentGetter;
 import com.logic.method.studentRelative.StudentScoreGetter;
@@ -40,15 +40,22 @@ public class StudentMethodImpl extends UnicastRemoteObject implements StudentMet
 	@Override
 	public boolean selectCourse(String ID, String cID) throws RemoteException {
 		// TODO Auto-generated method stub
-		boolean admit=CourseSelect.selectCourse(ID, cID);
+		boolean admit=CourseSelectAndQuit.selectCourse(ID, cID);
 		return admit;
 	}
 
 	@Override
 	public boolean quitCourse(String ID, String cID) throws RemoteException {
 		// TODO Auto-generated method stub
-		boolean admit=CourseSelect.quitCourse(ID, cID);
+		boolean admit=CourseSelectAndQuit.quitCourse(ID, cID);
 		return admit;
+	}
+	
+	@Override
+	public boolean quitSelectCourse(String ID, String cID)
+			throws RemoteException {
+		// TODO Auto-generated method stub
+		return CourseSelectAndQuit.quitSelectCourse(ID, cID);
 	}
 
 	@Override
@@ -105,7 +112,7 @@ public class StudentMethodImpl extends UnicastRemoteObject implements StudentMet
 	@Override
 	public boolean isTimeForSelectCourse() {
 		// TODO Auto-generated method stub
-		return true;
+		return false;
 	}
 
 	@Override
@@ -116,6 +123,12 @@ public class StudentMethodImpl extends UnicastRemoteObject implements StudentMet
 
 	@Override
 	public boolean isTimeForQuitCourse() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean isTimeForByElection() throws RemoteException {
 		// TODO Auto-generated method stub
 		return false;
 	}

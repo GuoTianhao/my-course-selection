@@ -10,10 +10,10 @@ import com.data.po.Course;
 import com.dataService.StudentDatabaseMethod;
 import com.logic.dataController.StudentDataController;
 
-public class CourseSelect {
+public class CourseSelectAndQuit {
 	public static boolean selectCourse(String ID, String cID) {
 		StudentDatabaseMethod method = StudentDataController.getMethod();
-		if (!(isSelected(ID, cID))) {
+		if (!(isSelected(ID, cID,true))) {
 			List<String> clueName = new ArrayList<String>();
 			List<String> clue = new ArrayList<String>();
 			String grade = method.search("student", "ID", ID, "Grade").get(0);
@@ -32,25 +32,43 @@ public class CourseSelect {
 	}
 
 	public static boolean quitCourse(String ID, String cID) {
-		if(!isQuitable(cID)){
-			return false;
+		return quitCourse(ID,cID,false);
+	}
+	
+	public static boolean quitSelectCourse(String ID, String cID){
+		return quitCourse(ID,cID,true);
+	}
+
+	protected static boolean quitCourse(String ID, String cID,boolean isWaited){
+		String tableName;
+		if(isWaited){
+			tableName="courseStudentWait";
+		}else{
+			tableName="courseStudent";
 		}
-		if (isSelected(ID, cID)) {
+		if (isSelected(ID, cID,isWaited)) {
 			List<String> clueName = new ArrayList<String>();
 			List<String> clue = new ArrayList<String>();
 			clueName.add("ID");
 			clueName.add("Student");
 			clue.add(cID);
 			clue.add(ID);
-			StudentDataController.getMethod().delete("courseStudentWait", clueName,
+			StudentDataController.getMethod().delete(tableName, clueName,
 					clue);
 			return true;
 		} else {
 			return false;
 		}
+		
 	}
-
-	public static boolean isSelected(String ID, String cID) {
+	
+	private static boolean isSelected(String ID, String cID,boolean isWaited) {
+		String tableName;
+		if(isWaited){
+			tableName="courseStudentWait";
+		}else{
+			tableName="courseStudent";
+		}
 		List<String> clueName = new ArrayList<String>();
 		List<String> clue = new ArrayList<String>();
 		List<String> aimName = new ArrayList<String>();
@@ -59,7 +77,7 @@ public class CourseSelect {
 		clue.add(cID);
 		clue.add(ID);
 		aimName.add("ID");
-		List res = StudentDataController.getMethod().search("courseStudentWait",
+		List res = StudentDataController.getMethod().search(tableName,
 				clueName, clue, aimName);
 		if (res.size() != 0) {
 			return true;
@@ -69,7 +87,7 @@ public class CourseSelect {
 		}
 	}
 
-	public static boolean isQuitable(String courseID) {
+	private static boolean isQuitable(String courseID) {
 		Course c = CourseGetter.getConcreteCourse(courseID);
 		switch (c.getType()) {
 		case "B":case "C":case "D":case "E":case "L":

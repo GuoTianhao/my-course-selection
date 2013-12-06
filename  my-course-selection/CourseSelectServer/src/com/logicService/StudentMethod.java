@@ -28,6 +28,9 @@ public interface StudentMethod extends Remote, TimeController {
 	// true。
 	public boolean quitCourse(String ID, String cID) throws RemoteException;
 
+	//学生放弃选课
+	public boolean quitSelectCourse(String ID, String cID) throws RemoteException;
+	
 	// 查看成绩，传入ID（学生ID）、cID（课程ID），返回学生成绩
 	public int getScore(String ID, String cID) throws RemoteException;
 

@@ -149,7 +149,7 @@ public class CourseManagementPanel extends MPanel {
 	public static void main(String[] args) {
 		FacultyDeanMethod method = FacultyDeanMethodController.getMethod();
 		try {
-			Identity.setIdentity(method.getSelf("100000000"));
+			Identity.setIdentity(method.getSelf("100000001"));
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

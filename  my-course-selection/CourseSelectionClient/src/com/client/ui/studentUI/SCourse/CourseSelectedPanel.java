@@ -12,9 +12,12 @@ import java.util.List;
 
 import javax.swing.UIManager;
 
+import com.basicdata.CourseTypeKind;
 import com.basicdata.Identity;
+import com.client.rmi.DeanMethodController;
 import com.client.rmi.StudentMethodController;
 import com.client.ui.dataAdapter.CourseListToCourseTermListAdapter;
+import com.client.ui.dataAdapter.CourseListToCourseTypeListAdapter;
 import com.client.ui.dataAdapter.GradeToTermAdapter;
 import com.client.ui.dataAdapter.StudentSelectedCourseListToVectorAdapter;
 import com.client.ui.dataAdapter.StudentUnselectedCourseListToVectorAdapeter;
@@ -22,6 +25,7 @@ import com.client.ui.studentUI.StudentUISwitchController;
 import com.data.po.Course;
 import com.data.po.Student;
 import com.logicService.StudentMethod;
+import com.timeControllerService.TimeController;
 import com.ui.bcswing.StudentSelectedCourseDisplayTable;
 import com.ui.bcswing.StudentUnselectedCourseDisplayTable;
 import com.ui.bcswing.titleBar.StudentTitleBar;
@@ -40,7 +44,7 @@ public class CourseSelectedPanel extends MPanel {
 	private StudentSelectedCourseDisplayTable table2;
 	private MComboBox<String> courseType;
 
-	private String[] type = { "选修课程", "通识课程", "跨院系课程" };
+	private String[] type = { "专业选修课", "通识教育课程", "跨院系课程","体育课" };
 
 	public CourseSelectedPanel(Point loc, Dimension size) {
 		super(loc, size);
@@ -98,36 +102,24 @@ public class CourseSelectedPanel extends MPanel {
 
 		courseType.setSelectedIndex(-1);
 		courseType.setSelectedIndex(0);
-
-		refreshSelectedTable();
-
 	}
 
 	private void refreshSelectedTable() {
-		Student student = (Student) (Identity.getIdentity());
-		StudentMethod method = StudentMethodController.getMethod();
-		List<Course> selected = new ArrayList<Course>();
-		try {
-			selected = method.getCourseList(student.getID());
-			selected = CourseListToCourseTermListAdapter.adapter(selected,
-					GradeToTermAdapter.adapter(student.getGrade()));
-			table2.setDataVector(StudentSelectedCourseListToVectorAdapter
-					.adapter(selected));
-		} catch (RemoteException e) {
-			e.printStackTrace();
-		}
+		String type = (String) courseType.getSelectedItem();
+		List<Course> selected=WaitCourseTypeHandle.handle(type);
+		table2.setDataVector(StudentSelectedCourseListToVectorAdapter.adapter(selected));
 	}
 
 	class CourseTypeListener implements ItemListener {
 		int time = 0;
-
 		public void itemStateChanged(ItemEvent e) {
 			time++;
 			if (time % 2 == 0) {
 				String type = (String) courseType.getSelectedItem();
-				List<Course> list = CourseTypeHandle.handle(type);
-				table1.setDataVector(StudentUnselectedCourseListToVectorAdapeter
-						.adapter(list));
+				List<Course> unselected=UnSelectedCourseTypeHandle.handle(type);
+				table1.setDataVector(StudentUnselectedCourseListToVectorAdapeter.adapter(unselected));
+				
+				refreshSelectedTable();
 			}
 		}
 
@@ -138,6 +130,19 @@ public class CourseSelectedPanel extends MPanel {
 		Student student = (Student) (Identity.getIdentity());
 
 		public void actionPerformed(ActionEvent e) {
+			TimeController time=StudentMethodController.getMethod();
+			try {
+				if(time.isTimeForSelectCourse()){
+					selectCourse();
+				}else{
+					System.out.println("未到选课时间");
+				}
+			} catch (RemoteException e1) {
+				e1.printStackTrace();
+			}
+		}
+		
+		public void selectCourse(){
 			int index = table1.getSelectedRow();
 			if (index >= 0) {
 				String cID = (String) table1.getValueAt(index, 0);
@@ -163,6 +168,19 @@ public class CourseSelectedPanel extends MPanel {
 		Student student = (Student) (Identity.getIdentity());
 
 		public void actionPerformed(ActionEvent e) {
+			TimeController time=DeanMethodController.getMethod();
+			try {
+				if(time.isTimeForSelectCourse()){
+					quitCourse();
+				}else{
+					System.out.println("未到退选时间");
+				}
+			} catch (RemoteException e1) {
+				e1.printStackTrace();
+			}
+		}
+		
+		public void quitCourse(){
 			int index = table2.getSelectedRow();
 			if (index >= 0) {
 				String cID = (String) table2.getValueAt(index, 0);

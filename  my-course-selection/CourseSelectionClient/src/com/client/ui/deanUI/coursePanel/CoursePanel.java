@@ -25,6 +25,7 @@ import com.client.ui.facultyUI.Course.FacultyDeanCourseTeacherAssignmentDislayPa
 import com.data.po.Course;
 import com.data.po.FacultyDean;
 import com.logicService.DeanMethod;
+import com.timeControllerService.TimeController;
 import com.ui.bcswing.CourseDisplayTable;
 import com.ui.bcswing.CourseInforPane;
 import com.ui.bcswing.MPopupMenu;
@@ -101,12 +102,7 @@ public class CoursePanel extends MPanel {
 
 		});
 
-		publishOperateBar.addCoursePListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				new DeanCoursePane();
-			}
-
-		});
+		publishOperateBar.addCoursePListener(new PublishCourseListener());
 
 		publishOperateBar.addcourseMListener(new CourseModifyListener());
 
@@ -182,6 +178,25 @@ public class CoursePanel extends MPanel {
 
 	}
 
+	class PublishCourseListener implements ActionListener{
+
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			// TODO Auto-generated method stub
+			TimeController time = DeanMethodController.getMethod();
+			try {
+				if(time.isTimeForPublishCourse()){
+					new DeanCoursePane();
+				}else{
+					System.out.println("未到课程发布时间");
+				}
+			} catch (RemoteException e1) {
+				e1.printStackTrace();
+			}
+		}
+		
+	}
+	
 	class AllCourseSwitchListener implements ActionListener {
 
 		public void actionPerformed(ActionEvent e) {
@@ -246,7 +261,7 @@ public class CoursePanel extends MPanel {
 				DeanMethod method = DeanMethodController.getMethod();
 				try {
 					table.setDataVector(CourseListToVectorAdapter
-							.adapter(method.geFacultyTypeCourse(faculty,
+							.adapter(method.geFacultyTermCourse(faculty,
 									TermKind.getTerm(term) + "")));
 				} catch (RemoteException e1) {
 					e1.printStackTrace();
@@ -279,6 +294,8 @@ public class CoursePanel extends MPanel {
 
 	}
 
+	
+	
 	public static void main(String[] args) {
 		try {
 			Identity.setIdentity(DeanMethodController.getMethod().getSelf(

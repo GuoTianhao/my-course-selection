@@ -10,10 +10,10 @@ import com.logic.method.studentRelative.StudentCourseListGetter;
 
 public class StudentCourseListGetterTest extends TestCase{
 	public void testGetCourseList(){
-		List<Course> list=StudentCourseListGetter.getCourseList("121250041");
-		Iterator<Course> it=list.iterator();
-		while(it.hasNext()){
-			System.out.println("Course Name:"+it.next().getName());
-		}
+	//	List<Course> list=StudentCourseListGetter.getCourseList("121250041",false);
+//		Iterator<Course> it=list.iterator();
+//		while(it.hasNext()){
+//			System.out.println("Course Name:"+it.next().getName());
+//		}
 	}
 }

@@ -91,7 +91,7 @@ public class CourseGetter {
 	}
 
 	// 得到具体学期的院系课程
-	public static List<Course> getFacultyTypeCourse(String facultyID,
+	public static List<Course> getFacultyTermCourse(String facultyID,
 			String grade) {
 		List<Course> list;
 		List<String> clueName = new ArrayList<String>();
@@ -100,6 +100,19 @@ public class CourseGetter {
 		List<String> clue = new ArrayList<String>();
 		clue.add(facultyID);
 		clue.add(grade);
+		list = CourseGetter.getCourse(clueName, clue);
+		return list;
+	}
+	
+	public static List<Course> getFacultyTypeCourse(String facultyID,
+			String type){
+		List<Course> list;
+		List<String> clueName = new ArrayList<String>();
+		clueName.add("faculty");
+		clueName.add("Type");
+		List<String> clue = new ArrayList<String>();
+		clue.add(facultyID);
+		clue.add(type);
 		list = CourseGetter.getCourse(clueName, clue);
 		return list;
 	}

@@ -1,4 +1,4 @@
-package com.logic.timeController;
+package com.timeControllerService;
 
 public interface TimeController {
 	//判断是否可以发布课程

@@ -9,8 +9,9 @@ import com.data.po.Course;
 import com.data.po.FacultyDean;
 import com.data.po.Frame;
 import com.data.po.Teacher;
+import com.timeControllerService.TimeController;
 
-public interface FacultyDeanMethod extends Remote {
+public interface FacultyDeanMethod extends Remote,TimeController {
 	// 院系教务员登陆,输入ID（帐号）、password（密码）当ID和password匹配return true，反之return false；
 	public boolean login(String ID, String password) throws RemoteException;
 

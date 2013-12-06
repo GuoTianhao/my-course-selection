@@ -6,8 +6,9 @@ import java.util.List;
 
 import com.data.po.Course;
 import com.data.po.Student;
+import com.timeControllerService.TimeController;
 
-public interface StudentMethod extends Remote {
+public interface StudentMethod extends Remote,TimeController {
 	// 学生登陆,传入ID（帐号）和password(密码)，当ID和password匹配return true，反之return false；
 	public boolean login(String ID, String password) throws RemoteException;
 

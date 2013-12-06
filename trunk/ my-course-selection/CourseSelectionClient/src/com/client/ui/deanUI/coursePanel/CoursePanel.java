@@ -136,6 +136,8 @@ public class CoursePanel extends MPanel {
 
 	private void init() {
 		courseP.doClick();
+		
+		
 	}
 
 	private void addCoursePublishOperateBar() {

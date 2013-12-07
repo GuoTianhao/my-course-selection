@@ -1,4 +1,4 @@
-package com.logic.method.studentRelative.selectStrategy;
+package com.system.courseSelectStrategy;
 
 public interface SelectStrategy {
 	public void startSelect();

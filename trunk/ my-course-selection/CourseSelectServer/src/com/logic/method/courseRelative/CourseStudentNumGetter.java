@@ -8,6 +8,7 @@ import com.logic.dataController.DatabaseController;
 import com.logic.method.studentRelative.StudentGetter;
 
 public class CourseStudentNumGetter {
+	
 	public static int getCourseStudentNum(String cID,String yearTerm) {
 		DatabaseMethod method = DatabaseController.getMethod();
 		String type = method.search("course", "ID", cID, "type").get(0);

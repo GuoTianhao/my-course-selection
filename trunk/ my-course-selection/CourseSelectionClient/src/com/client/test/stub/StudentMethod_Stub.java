@@ -130,12 +130,6 @@ public class StudentMethod_Stub implements StudentMethod {
 	}
 
 	@Override
-	public boolean isTimeForSystemSelect() {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	@Override
 	public List<Course> getWaitCourseList(String arg0) throws RemoteException {
 		// TODO Auto-generated method stub
 		return new ArrayList<Course>();
@@ -152,5 +146,11 @@ public class StudentMethod_Stub implements StudentMethod {
 			throws RemoteException {
 		// TODO Auto-generated method stub
 		return true;
+	}
+
+	@Override
+	public boolean isTimeForGradeOneSelectCourse() {
+		// TODO Auto-generated method stub
+		return false;
 	}
 }

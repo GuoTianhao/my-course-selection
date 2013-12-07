@@ -149,13 +149,13 @@ public class TeacherMethod_Stub implements TeacherMethod {
 	}
 
 	@Override
-	public boolean isTimeForSystemSelect() {
+	public boolean isTimeForByElection() throws RemoteException {
 		// TODO Auto-generated method stub
 		return false;
 	}
 
 	@Override
-	public boolean isTimeForByElection() throws RemoteException {
+	public boolean isTimeForGradeOneSelectCourse() {
 		// TODO Auto-generated method stub
 		return false;
 	}

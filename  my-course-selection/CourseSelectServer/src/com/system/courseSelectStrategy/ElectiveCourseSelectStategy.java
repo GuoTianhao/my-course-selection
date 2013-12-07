@@ -1,4 +1,4 @@
-package com.logic.method.studentRelative.selectStrategy;
+package com.system.courseSelectStrategy;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -11,7 +11,7 @@ import com.dataService.DatabaseMethod;
 import com.logic.dataController.DatabaseController;
 import com.logic.method.courseRelative.CourseGetter;
 import com.logic.method.courseRelative.CourseStudentNumGetter;
-import com.logic.method.studentRelative.CourseSystemSelect;
+import com.logic.method.studentRelative.CourseSelect;
 import com.logic.method.studentRelative.strategy.Ballot;
 
 public class ElectiveCourseSelectStategy implements SelectStrategy {
@@ -29,7 +29,7 @@ public class ElectiveCourseSelectStategy implements SelectStrategy {
 			method.delete("courseStudentWait", "ID", c.getID());
 			Iterator<String> studentID = student.iterator();
 			while (studentID.hasNext()) {
-				CourseSystemSelect.selectCourse(studentID.next(), c.getID());
+				CourseSelect.selectCourseToReal(studentID.next(), c.getID());
 			}
 		}
 	}

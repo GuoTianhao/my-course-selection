@@ -1,4 +1,6 @@
-package com.logic.method.studentRelative.selectStrategy;
+package com.system.courseSelectStrategy;
+
+
 
 public class PECourseSelectStrategy implements SelectStrategy{
 

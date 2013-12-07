@@ -7,7 +7,8 @@ import java.util.List;
 import com.data.po.Course;
 import com.data.po.Student;
 import com.logic.method.courseRelative.CourseGetter;
-import com.logic.method.studentRelative.CourseSelectAndQuit;
+import com.logic.method.studentRelative.CourseQuit;
+import com.logic.method.studentRelative.CourseSelect;
 import com.logic.method.studentRelative.StudentCourseListGetter;
 import com.logic.method.studentRelative.StudentGetter;
 import com.logic.method.studentRelative.StudentScoreGetter;
@@ -40,14 +41,14 @@ public class StudentMethodImpl extends UnicastRemoteObject implements StudentMet
 	@Override
 	public boolean selectCourse(String ID, String cID) throws RemoteException {
 		// TODO Auto-generated method stub
-		boolean admit=CourseSelectAndQuit.selectCourse(ID, cID);
+		boolean admit=CourseSelect.selectCourse(ID, cID);
 		return admit;
 	}
 
 	@Override
 	public boolean quitCourse(String ID, String cID) throws RemoteException {
 		// TODO Auto-generated method stub
-		boolean admit=CourseSelectAndQuit.quitCourse(ID, cID);
+		boolean admit=CourseQuit.quitCourse(ID, cID);
 		return admit;
 	}
 	
@@ -55,7 +56,7 @@ public class StudentMethodImpl extends UnicastRemoteObject implements StudentMet
 	public boolean quitSelectCourse(String ID, String cID)
 			throws RemoteException {
 		// TODO Auto-generated method stub
-		return CourseSelectAndQuit.quitSelectCourse(ID, cID);
+		return CourseQuit.quitSelectCourse(ID, cID);
 	}
 
 	@Override

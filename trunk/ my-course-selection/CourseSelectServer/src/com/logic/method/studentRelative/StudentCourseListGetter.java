@@ -4,9 +4,8 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-import Adapter.DateToTermAdapter;
 import Adapter.GradeToTermAdapter;
-import Adapter.TimeStringToDateAdapter;
+import Adapter.YearTermToTermAdapter;
 
 import com.data.po.Course;
 import com.dataService.StudentDatabaseMethod;
@@ -33,8 +32,22 @@ public class StudentCourseListGetter {
 	}
 
 	public static List<Course> getMWaitedCourseList(String ID) {
-		return getMImcompulsoryCourseList(ID, "courseStudentWait");
+		StudentDatabaseMethod method = StudentDataController.getMethod();
+		int grade = Integer.parseInt(method
+				.search("student", "ID", ID, "Grade").get(0));
+		List<Course> courseList = new ArrayList<Course>();
+
+		List<String> list = method.search("courseStudentWait", "Student", ID,
+				"ID");
+		Iterator<String> it = list.iterator();
+		while (it.hasNext()) {
+			Course c = CourseGetter.getConcreteCourse(it.next());
+			c.setGrade(GradeToTermAdapter.adapter(grade));
+			courseList.add(c);
+		}
+		return courseList;
 	}
+	
 
 	public static List<Course> getMImcompulsoryCourseList(String ID,
 			String tableName) {
@@ -61,9 +74,7 @@ public class StudentCourseListGetter {
 			innerList = it.next();
 			innerIt = innerList.iterator();
 			Course c = CourseGetter.getConcreteCourse(innerIt.next());
-			c.setGrade(DateToTermAdapter.adapter(
-					TimeStringToDateAdapter.adapter(innerIt.next()),
-					GradeToTermAdapter.adapter(grade)));
+			c.setGrade(YearTermToTermAdapter.adapter(innerIt.next(), grade));
 			courseList.add(c);
 		}
 		return courseList;

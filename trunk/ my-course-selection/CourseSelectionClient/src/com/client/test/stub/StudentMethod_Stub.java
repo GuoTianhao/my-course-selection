@@ -153,4 +153,11 @@ public class StudentMethod_Stub implements StudentMethod {
 		// TODO Auto-generated method stub
 		return false;
 	}
+
+	@Override
+	public boolean bySelectCourse(String arg0, String arg1)
+			throws RemoteException {
+		// TODO Auto-generated method stub
+		return false;
+	}
 }

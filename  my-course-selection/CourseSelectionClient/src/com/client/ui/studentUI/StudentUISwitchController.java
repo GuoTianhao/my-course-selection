@@ -4,6 +4,7 @@ import java.awt.Point;
 
 import com.client.ui.loginUI.Login;
 import com.client.ui.main.MainFrame;
+import com.client.ui.studentUI.BSCourse.BySelectionCoursePanel;
 import com.client.ui.studentUI.CScore.ScoreCheckPanel;
 import com.client.ui.studentUI.MCourse.MyCoursePanel;
 import com.client.ui.studentUI.QCourse.QuitCoursePanel;
@@ -60,6 +61,12 @@ public class StudentUISwitchController {
 	public void switchToQCourse(){
 		frame.getContentPane().removeAll();
 		frame.add(new QuitCoursePanel(new Point(0,0),frame.getSize()));
+		frame.refresh();
+	}
+	
+	public void switchToBSCourse(){
+		frame.getContentPane().removeAll();
+		frame.add(new BySelectionCoursePanel(new Point(0,0),frame.getSize()));
 		frame.refresh();
 	}
 	

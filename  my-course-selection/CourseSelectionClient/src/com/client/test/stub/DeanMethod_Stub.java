@@ -236,14 +236,16 @@ public class DeanMethod_Stub implements DeanMethod {
 		return false;
 	}
 
+	
+
 	@Override
-	public boolean isTimeForSystemSelect() {
+	public boolean isTimeForByElection() throws RemoteException {
 		// TODO Auto-generated method stub
 		return false;
 	}
 
 	@Override
-	public boolean isTimeForByElection() throws RemoteException {
+	public boolean isTimeForGradeOneSelectCourse() {
 		// TODO Auto-generated method stub
 		return false;
 	}

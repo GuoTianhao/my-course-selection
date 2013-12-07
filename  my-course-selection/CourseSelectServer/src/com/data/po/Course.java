@@ -13,7 +13,7 @@ public class Course implements Serializable {
 	private String period = "";
 	private String faculty = "";
 	private String script = "";
-	private int num;
+	private int num=0;
 	private int credit;
 	private List<String> time = new ArrayList<String>();
 	private List<Teacher> teacher = new ArrayList<Teacher>();
@@ -136,7 +136,9 @@ public class Course implements Serializable {
 	}
 
 	public void setNum(int num) {
-		this.num = num;
+		if(num>=0){
+			this.num = num;	
+		}
 	}
 
 	public int getCredit() {

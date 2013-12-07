@@ -19,7 +19,7 @@ public class TeacherListExcelIn {
 	public static Vector read(String fileName) {
 		List<Teacher> teaList = new ArrayList<Teacher>();
 		try {
-			Workbook book = Workbook.getWorkbook(new File(fileName));
+			Workbook book = Workbook.getWorkbook(new File(fileName+".xls"));
 			Sheet sheet = book.getSheet(0);
 			int rownum = sheet.getRows();
 			for (int i = 1; i < rownum; i++) {

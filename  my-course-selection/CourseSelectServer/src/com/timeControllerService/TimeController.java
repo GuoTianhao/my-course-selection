@@ -10,10 +10,7 @@ public interface TimeController {
 	public boolean isTimeForSelectCourse() throws RemoteException;
 
 	// 判断大一上学生是否可以选课
-	public boolean isTimeForGradeOneSelectCourse();
-
-	// 判断是否系统开始根据算法筛选课程时间
-	public boolean isTimeForSystemSelect() throws RemoteException;
+	public boolean isTimeForGradeOneSelectCourse() throws RemoteException;
 
 	// 是否可以退选
 	public boolean isTimeForQuitCourse() throws RemoteException;

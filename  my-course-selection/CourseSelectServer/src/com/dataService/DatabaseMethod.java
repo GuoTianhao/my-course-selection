@@ -22,4 +22,6 @@ public interface DatabaseMethod {
 	public String getMax(String tableName,String cluName);
 	
 	public int getNum(String tableName,List<String> clueName,List<String> clue);
+	
+	public int getNum(String tableName,String clueName,String clue);
 }

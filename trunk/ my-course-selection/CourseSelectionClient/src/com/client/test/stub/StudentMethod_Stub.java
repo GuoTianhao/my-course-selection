@@ -160,4 +160,10 @@ public class StudentMethod_Stub implements StudentMethod {
 		// TODO Auto-generated method stub
 		return false;
 	}
+
+	@Override
+	public int getCourseSelectNum(String arg0) throws RemoteException {
+		// TODO Auto-generated method stub
+		return 0;
+	}
 }

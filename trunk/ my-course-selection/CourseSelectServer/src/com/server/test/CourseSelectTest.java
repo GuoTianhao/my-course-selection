@@ -1,6 +1,6 @@
 package com.server.test;
 
-import com.logic.method.courseRelative.CourseSelectAndQuit;
+import com.logic.method.studentRelative.CourseSelectAndQuit;
 
 import junit.framework.TestCase;
 

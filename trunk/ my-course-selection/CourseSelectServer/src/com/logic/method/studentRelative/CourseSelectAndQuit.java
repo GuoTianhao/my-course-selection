@@ -1,5 +1,6 @@
-package com.logic.method.courseRelative;
+package com.logic.method.studentRelative;
 
+import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -9,11 +10,33 @@ import com.data.dataImpl.DatabaseImpl;
 import com.data.po.Course;
 import com.dataService.StudentDatabaseMethod;
 import com.logic.dataController.StudentDataController;
+import com.logic.method.courseRelative.CourseGetter;
+import com.timeControllerService.TimeController;
+import com.timeControllerService.TimeControllerController;
 
 public class CourseSelectAndQuit {
 	public static boolean selectCourse(String ID, String cID) {
+		TimeController time=TimeControllerController.getMethod();
+		boolean admit=false;
+	//	try {
+	//		if(time.isTimeForSelectCourse()||time.isTimeForByElection()){
+				admit=selectCourse(ID,cID, true);
+	//		}
+//		} catch (RemoteException e) {
+//			e.printStackTrace();
+//		}
+		return admit;
+	}
+	
+	public static boolean selectCourse(String ID, String cID,boolean isWaited){
+		String tableName;
+		if(isWaited){
+			tableName="courseStudentWait";
+		}else{
+			tableName="courseStudent";
+		}
 		StudentDatabaseMethod method = StudentDataController.getMethod();
-		if (!(isSelected(ID, cID,true))) {
+		if (!(isSelected(ID, cID,isWaited))) {
 			List<String> clueName = new ArrayList<String>();
 			List<String> clue = new ArrayList<String>();
 			String grade = method.search("student", "ID", ID, "Grade").get(0);
@@ -24,7 +47,7 @@ public class CourseSelectAndQuit {
 			clue.add(cID);
 			clue.add(ID);
 			clue.add(term + "");
-			method.insert("courseStudentWait", clueName, clue);
+			method.insert(tableName, clueName, clue);
 			return true;
 		} else {
 			return false;

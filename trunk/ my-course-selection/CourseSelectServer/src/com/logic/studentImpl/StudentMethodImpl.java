@@ -7,7 +7,7 @@ import java.util.List;
 import com.data.po.Course;
 import com.data.po.Student;
 import com.logic.method.courseRelative.CourseGetter;
-import com.logic.method.courseRelative.CourseSelectAndQuit;
+import com.logic.method.studentRelative.CourseSelectAndQuit;
 import com.logic.method.studentRelative.StudentCourseListGetter;
 import com.logic.method.studentRelative.StudentGetter;
 import com.logic.method.studentRelative.StudentScoreGetter;

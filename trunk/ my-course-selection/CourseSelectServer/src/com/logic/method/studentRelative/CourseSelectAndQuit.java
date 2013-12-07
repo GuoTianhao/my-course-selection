@@ -1,7 +1,9 @@
 package com.logic.method.studentRelative;
 
 import java.rmi.RemoteException;
+import java.text.DateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 import Adapter.GradeToTermAdapter;
@@ -16,37 +18,36 @@ import com.timeControllerService.TimeControllerController;
 
 public class CourseSelectAndQuit {
 	public static boolean selectCourse(String ID, String cID) {
-		TimeController time=TimeControllerController.getMethod();
-		boolean admit=false;
-	//	try {
-	//		if(time.isTimeForSelectCourse()||time.isTimeForByElection()){
-				admit=selectCourse(ID,cID, true);
-	//		}
-//		} catch (RemoteException e) {
-//			e.printStackTrace();
-//		}
+		TimeController time = TimeControllerController.getMethod();
+		boolean admit = false;
+		// try {
+		// if(time.isTimeForSelectCourse()||time.isTimeForByElection()){
+		admit = selectCourse(ID, cID, true);
+		// }
+		// } catch (RemoteException e) {
+		// e.printStackTrace();
+		// }
 		return admit;
 	}
-	
-	public static boolean selectCourse(String ID, String cID,boolean isWaited){
+
+	public static boolean selectCourse(String ID, String cID, boolean isWaited) {
 		String tableName;
-		if(isWaited){
-			tableName="courseStudentWait";
-		}else{
-			tableName="courseStudent";
+		if (isWaited) {
+			tableName = "courseStudentWait";
+		} else {
+			tableName = "courseStudent";
 		}
 		StudentDatabaseMethod method = StudentDataController.getMethod();
-		if (!(isSelected(ID, cID,isWaited))) {
+		if (!(isSelected(ID, cID, isWaited))) {
 			List<String> clueName = new ArrayList<String>();
 			List<String> clue = new ArrayList<String>();
-			String grade = method.search("student", "ID", ID, "Grade").get(0);
-			int term = GradeToTermAdapter.adapter(Integer.parseInt(grade));
 			clueName.add("ID");
 			clueName.add("Student");
-			clueName.add("Term");
+			clueName.add("time");
 			clue.add(cID);
 			clue.add(ID);
-			clue.add(term + "");
+			clue.add(DateFormat.getDateTimeInstance().format(
+					(Calendar.getInstance()).getTime()));
 			method.insert(tableName, clueName, clue);
 			return true;
 		} else {
@@ -55,42 +56,41 @@ public class CourseSelectAndQuit {
 	}
 
 	public static boolean quitCourse(String ID, String cID) {
-		return quitCourse(ID,cID,false);
-	}
-	
-	public static boolean quitSelectCourse(String ID, String cID){
-		return quitCourse(ID,cID,true);
+		return quitCourse(ID, cID, false);
 	}
 
-	protected static boolean quitCourse(String ID, String cID,boolean isWaited){
+	public static boolean quitSelectCourse(String ID, String cID) {
+		return quitCourse(ID, cID, true);
+	}
+
+	protected static boolean quitCourse(String ID, String cID, boolean isWaited) {
 		String tableName;
-		if(isWaited){
-			tableName="courseStudentWait";
-		}else{
-			tableName="courseStudent";
+		if (isWaited) {
+			tableName = "courseStudentWait";
+		} else {
+			tableName = "courseStudent";
 		}
-		if (isSelected(ID, cID,isWaited)) {
+		if (isSelected(ID, cID, isWaited)) {
 			List<String> clueName = new ArrayList<String>();
 			List<String> clue = new ArrayList<String>();
 			clueName.add("ID");
 			clueName.add("Student");
 			clue.add(cID);
 			clue.add(ID);
-			StudentDataController.getMethod().delete(tableName, clueName,
-					clue);
+			StudentDataController.getMethod().delete(tableName, clueName, clue);
 			return true;
 		} else {
 			return false;
 		}
-		
+
 	}
-	
-	private static boolean isSelected(String ID, String cID,boolean isWaited) {
+
+	private static boolean isSelected(String ID, String cID, boolean isWaited) {
 		String tableName;
-		if(isWaited){
-			tableName="courseStudentWait";
-		}else{
-			tableName="courseStudent";
+		if (isWaited) {
+			tableName = "courseStudentWait";
+		} else {
+			tableName = "courseStudent";
 		}
 		List<String> clueName = new ArrayList<String>();
 		List<String> clue = new ArrayList<String>();
@@ -113,7 +113,11 @@ public class CourseSelectAndQuit {
 	private static boolean isQuitable(String courseID) {
 		Course c = CourseGetter.getConcreteCourse(courseID);
 		switch (c.getType()) {
-		case "B":case "C":case "D":case "E":case "L":
+		case "B":
+		case "C":
+		case "D":
+		case "E":
+		case "L":
 			return false;
 		}
 		return true;

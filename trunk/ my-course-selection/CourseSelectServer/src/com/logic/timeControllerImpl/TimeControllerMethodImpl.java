@@ -52,18 +52,18 @@ public class TimeControllerMethodImpl implements
 			return false;
 	}
 
-	@Override
-	public boolean isTimeForSystemSelect() {
-		// TODO Auto-generated method stub
-		if (((systemTime.after(period.getTermOneEndDay())) && (systemTime
-				.before(period.getTermTwoStartDay())))
-				|| ((systemTime.after(period.getTermTwoEndDay())) && (systemTime
-						.before(addDay(period.getSummerEndDay(), 1))))) {
-			return true;
-		} else {
-			return false;
-		}
-	}
+
+//	public boolean isTimeForSystemSelect() {
+//		// TODO Auto-generated method stub
+//		if (((systemTime.after(period.getTermOneEndDay())) && (systemTime
+//				.before(period.getTermTwoStartDay())))
+//				|| ((systemTime.after(period.getTermTwoEndDay())) && (systemTime
+//						.before(addDay(period.getSummerEndDay(), 1))))) {
+//			return true;
+//		} else {
+//			return false;
+//		}
+//	}
 
 	@Override
 	public boolean isTimeForQuitCourse() {

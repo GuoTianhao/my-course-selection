@@ -100,11 +100,6 @@ public class TeacherMethodImpl extends UnicastRemoteObject implements TeacherMet
 		return false;
 	}
 
-	@Override
-	public boolean isTimeForSystemSelect() {
-		// TODO Auto-generated method stub
-		return false;
-	}
 
 	@Override
 	public boolean isTimeForQuitCourse() {

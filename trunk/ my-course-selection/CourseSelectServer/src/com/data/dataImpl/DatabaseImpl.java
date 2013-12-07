@@ -62,4 +62,10 @@ public class DatabaseImpl implements DatabaseMethod{
 		// TODO Auto-generated method stub
 		return DatabaseNum.getNum(tableName, clueName, clue);
 	}
+	@Override
+	public int getNum(String tableName, String clueName, String clue) {
+		// TODO Auto-generated method stub
+		return DatabaseNum.getNum(tableName, clueName, clue);
+	}
+	
 }

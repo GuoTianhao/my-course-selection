@@ -138,11 +138,6 @@ public class FacultyDeanMethodImpl extends UnicastRemoteObject implements Facult
 		return false;
 	}
 
-	@Override
-	public boolean isTimeForSystemSelect() {
-		// TODO Auto-generated method stub
-		return false;
-	}
 
 	@Override
 	public boolean isTimeForQuitCourse() {

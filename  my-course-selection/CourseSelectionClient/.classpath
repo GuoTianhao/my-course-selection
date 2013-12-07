@@ -7,6 +7,6 @@
 	<classpathentry kind="lib" path="po.jar"/>
 	<classpathentry kind="lib" path="rmi.jar"/>
 	<classpathentry kind="lib" path="time.jar"/>
-	<classpathentry kind="lib" path="D:/workspace/jxl.jar"/>
+	<classpathentry kind="lib" path="jxl.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

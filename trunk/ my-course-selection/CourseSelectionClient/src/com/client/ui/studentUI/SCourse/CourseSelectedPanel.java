@@ -189,7 +189,7 @@ public class CourseSelectedPanel extends MPanel {
 	public static void main(String[] args) {
 		try {
 			Identity.setIdentity(StudentMethodController.getMethod().getSelf(
-					"121250011"));
+					"121250041"));
 		} catch (RemoteException e) {
 			e.printStackTrace();
 		}

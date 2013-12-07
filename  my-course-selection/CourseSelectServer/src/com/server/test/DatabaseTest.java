@@ -42,8 +42,8 @@ public class DatabaseTest extends TestCase {
 			conn = DatabaseConnection.getConnection();
 			st = conn.createStatement();
 			String sql;
-			sql = "SELECT datepart(YYYY,time) FROM courseStudentWait";
-			// sql="DELETE FROM course WHERE ID='0003'";
+	//		sql = "SELECT datepart(YYYY,time) FROM courseStudentWait";
+			 sql="DELETE FROM courseStudentWait";
 			// sql="INSERT INTO courseTeacher  (ID,Teacher) VALUES('0001','100000003')";
 			st.execute(sql);
 			

@@ -39,7 +39,7 @@ public class TitleBar extends MPanel{
 		passwordChange.setText("修改密码");
 		message=new MLabel(new Point(20,20),new Dimension(300,50));
 		message.setText("Welcome, 韩旭！");
-		message.setFont(MFont.titleFont);
+//		message.setFont(MFont.titleFont);
 		
 		menu=new MButton(null,null,null,new Point(15,40),new Dimension(100,30));
 		menu.setText("主菜单");

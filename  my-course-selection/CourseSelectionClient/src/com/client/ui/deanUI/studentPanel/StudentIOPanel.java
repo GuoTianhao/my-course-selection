@@ -6,16 +6,20 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.ImageIcon;
+import javax.swing.JFileChooser;
+import javax.swing.JOptionPane;
 import javax.swing.UIManager;
 
 import com.basicdata.FacultyKind;
 import com.client.ui.deanUI.DeanUISwitchController;
+import com.data.excellIO.StudentListExcelIn;
 import com.ui.bcswing.StudentDisplayTable;
 import com.ui.bcswing.titleBar.DeanTitlebar;
 import com.ui.bcswing.titleBar.TitleBar;
 import com.ui.myswing.*;
 
 public class StudentIOPanel extends MPanel {
+	JFileChooser j1 ;
 	private TitleBar title;
 	private MLabel choose;
 	private MComboBox<String> department;
@@ -33,6 +37,7 @@ public class StudentIOPanel extends MPanel {
 	}
 
 	private void createComponent() {
+		 j1 = new JFileChooser();
 		title = new DeanTitlebar(new Point(0, 0), new Dimension(
 				this.getWidth(), 75));
 		choose = new MLabel(new Point(15, 95), new Dimension(75, 22), "选择院系：");
@@ -63,6 +68,20 @@ public class StudentIOPanel extends MPanel {
 				DeanUISwitchController controller = DeanUISwitchController
 						.getUISwitchController();
 				controller.swicthToMainFrame();
+			}
+		});
+		importFromFile.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				int n = j1.showOpenDialog(null);
+				String filename = j1.getSelectedFile().toString();
+				if (n == JFileChooser.APPROVE_OPTION) {
+	                  if(StudentListExcelIn.testFile(filename))
+	                	  StudentListExcelIn.read(filename);
+	                  else
+	                	  JOptionPane.showConfirmDialog(null, "Fail!", "提示",
+	  							JOptionPane.YES_OPTION);
+
+				}
 			}
 		});
 

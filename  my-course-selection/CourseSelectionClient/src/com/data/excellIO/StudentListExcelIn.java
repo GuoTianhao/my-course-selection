@@ -31,4 +31,26 @@ public class StudentListExcelIn {
 
 		return StudentListToVectorAdapter.adapter(teaList);
 	}
+	public static boolean testFile(String fileName) {
+		boolean cmd=false;
+		String[] getStrings=fileName.split(".");
+		if(!(getStrings[1].equals("xls"))) {
+			cmd=false;
+			return cmd;
+		}
+		try {
+			Workbook book = Workbook.getWorkbook(new File(fileName+".xls"));
+			Sheet sheet = book.getSheet(0);
+			if((sheet.getCell(0, 0).getContents().equals("ID"))
+					&&(sheet.getCell(1, 0).getContents().equals("Nmae"))
+					&&(sheet.getCell(2, 0).getContents().equals("Factuly"))
+					&&(sheet.getCell(3, 0).getContents().equals("Grade")))
+				cmd=true;
+			book.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return cmd;
+	}
 }

@@ -76,7 +76,8 @@ public class BySelectionCoursePanel extends MPanel {
 	}
 
 	private void init() {
-
+		courseType.setSelectedIndex(-1);
+		courseType.setSelectedIndex(0);
 	}
 
 	private void refreshTable() {

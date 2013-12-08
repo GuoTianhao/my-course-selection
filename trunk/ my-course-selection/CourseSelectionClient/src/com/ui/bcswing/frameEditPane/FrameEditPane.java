@@ -282,21 +282,7 @@ public class FrameEditPane extends MFrame {
 	}
 
 	private void addListener() {
-		button.addActionListener(new ActionListener() {
-
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
-				try {
-					method.modifyFrame(getFrame());
-					FrameEditPane.this.dispose();
-				} catch (RemoteException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
-			}
-		});
-
+		
 		button_1.addActionListener(new ActionListener() {
 
 			@Override
@@ -367,6 +353,10 @@ public class FrameEditPane extends MFrame {
 
 	public void setFrame(Frame f) {
 
+	}
+	
+	public void addConfirmListener(ActionListener al){
+		button.addActionListener(al);
 	}
 
 	public static void main(String[] args) {

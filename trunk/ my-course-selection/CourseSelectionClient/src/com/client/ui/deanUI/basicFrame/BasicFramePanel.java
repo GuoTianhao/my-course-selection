@@ -31,7 +31,6 @@ public class BasicFramePanel extends MPanel {
 	private FrameDisplayTable table;
 	private MButton make;
 	private MButton change;
-	private Object[] data;
 
 	public BasicFramePanel(Point loc, Dimension size) {
 		super(loc, size);

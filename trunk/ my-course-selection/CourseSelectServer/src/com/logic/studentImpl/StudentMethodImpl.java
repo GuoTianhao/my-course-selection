@@ -4,9 +4,13 @@ import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.List;
 
+import Adapter.YearTerm;
+
 import com.data.po.Course;
 import com.data.po.Student;
 import com.logic.method.courseRelative.CourseGetter;
+import com.logic.method.courseRelative.CourseStudentNumGetter;
+import com.logic.method.studentRelative.CourseBySelect;
 import com.logic.method.studentRelative.CourseQuit;
 import com.logic.method.studentRelative.CourseSelect;
 import com.logic.method.studentRelative.StudentCourseListGetter;
@@ -132,5 +136,17 @@ public class StudentMethodImpl extends UnicastRemoteObject implements StudentMet
 	public boolean isTimeForByElection() throws RemoteException {
 		// TODO Auto-generated method stub
 		return false;
+	}
+
+	@Override
+	public boolean bySelectCourse(String ID, String cID) throws RemoteException {
+		// TODO Auto-generated method stub
+		return CourseBySelect.bySelectCourse(ID, cID);
+	}
+
+	@Override
+	public int getCourseSelectNum(String cID) throws RemoteException {
+		// TODO Auto-generated method stub
+		return CourseStudentNumGetter.getCourseStudentNum(cID, YearTerm.getNowYearTerm());
 	}
 }

@@ -30,7 +30,7 @@ public class OtherFacultyCourseSelectStrategy implements SelectStrategy{
 			method.delete("courseStudentWait", "ID", c.getID());
 			Iterator<String> studentID = student.iterator();
 			while (studentID.hasNext()) {
-				CourseSelect.selectCourseToReal(studentID.next(), c.getID());
+				CourseSelect.selectCourseToReal(studentID.next(), c.getID(),YearTerm.getNowYearTerm());
 			}
 		}
 	}

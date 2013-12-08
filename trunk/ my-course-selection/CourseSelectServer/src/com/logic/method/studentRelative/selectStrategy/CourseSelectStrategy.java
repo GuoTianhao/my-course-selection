@@ -15,7 +15,7 @@ public class CourseSelectStrategy {
 		case "G":
 			if (CourseStudentNumGetter.getCourseStudentNum(cID,
 					YearTerm.getNowYearTerm()) < c.getNum()) {
-				return CourseSelect.selectCourseToReal(ID, cID);
+				return CourseSelect.selectCourseToReal(ID, cID,YearTerm.getNowYearTerm());
 			}
 			break;
 		default:

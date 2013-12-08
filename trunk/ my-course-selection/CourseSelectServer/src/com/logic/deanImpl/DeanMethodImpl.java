@@ -155,7 +155,7 @@ public class DeanMethodImpl extends UnicastRemoteObject implements DeanMethod{
 	@Override
 	public boolean isTimeForPublishCourse() {
 		// TODO Auto-generated method stub
-		return false;
+		return true;
 	}
 
 	@Override

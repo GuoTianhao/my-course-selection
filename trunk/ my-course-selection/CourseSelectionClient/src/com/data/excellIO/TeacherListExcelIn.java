@@ -36,13 +36,13 @@ public class TeacherListExcelIn {
 	}
 	public static boolean testFile(String fileName) {
 		boolean cmd=false;
-		String[] getStrings=fileName.split(".");
+		String[] getStrings=fileName.split("\\.");
 		if(!(getStrings[1].equals("xls"))) {
 			cmd=false;
 			return cmd;
 		}
 		try {
-			Workbook book = Workbook.getWorkbook(new File(fileName+".xls"));
+			Workbook book = Workbook.getWorkbook(new File(fileName));
 			Sheet sheet = book.getSheet(0);
 			if((sheet.getCell(0, 0).getContents().equals("ID"))
 					&&(sheet.getCell(1, 0).getContents().equals("Nmae"))

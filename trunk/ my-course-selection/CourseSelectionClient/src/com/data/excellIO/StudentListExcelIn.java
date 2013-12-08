@@ -15,7 +15,7 @@ public class StudentListExcelIn {
 	public static Vector read(String fileName) {
 		List<Student> teaList = new ArrayList<Student>();
 		try {
-			Workbook book = Workbook.getWorkbook(new File(fileName+".xls"));
+			Workbook book = Workbook.getWorkbook(new File(fileName));
 			Sheet sheet = book.getSheet(0);
 			int rownum = sheet.getRows();
 			for (int i = 1; i < rownum; i++) {
@@ -35,6 +35,7 @@ public class StudentListExcelIn {
 		boolean cmd=false;
 		System.out.println(fileName);
 		String[] getStrings=fileName.split("\\.");
+		System.out.println(getStrings[0]);
 		if(!(getStrings[1].equals("xls"))) {
 			cmd=false;
 			return cmd;

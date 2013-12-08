@@ -1,6 +1,7 @@
 package com.client.ui.deanUI.studentPanel;
 
 import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.Point;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -9,6 +10,8 @@ import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.UIManager;
+
+import org.jb2011.lnf.beautyeye.resources.beautyeye;
 
 import com.basicdata.FacultyKind;
 import com.client.ui.deanUI.DeanUISwitchController;
@@ -94,6 +97,8 @@ public class StudentIOPanel extends MPanel {
 		try {
 			org.jb2011.lnf.beautyeye.BeautyEyeLNFHelper.launchBeautyEyeLNF();
 			UIManager.put("RootPane.setupButtonVisible", false);
+//			for (int i = 0; i < MFont.DEFAULT_FONT.length; i++)
+//		        UIManager.put(MFont.DEFAULT_FONT[i],new Font("宋体", Font.PLAIN,12));
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

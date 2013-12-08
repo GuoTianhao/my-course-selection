@@ -7,6 +7,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.rmi.RemoteException;
+import java.util.Iterator;
 
 import javax.swing.JOptionPane;
 import javax.swing.UIManager;
@@ -197,81 +198,81 @@ public class FrameEditPane extends MFrame {
 		button_1.setText("取消");
 		button_1.setBounds(273, 412, 80, 25);
 		panel.add(button_1);
-		
+
 		MLabel label_3 = new MLabel("~");
 		label_3.setBounds(375, 47, 25, 25);
 		panel.add(label_3);
-		
+
 		MLabel label_4 = new MLabel("~");
 		label_4.setBounds(375, 92, 25, 25);
 		panel.add(label_4);
-		
+
 		MLabel label_5 = new MLabel("~");
 		label_5.setBounds(375, 137, 25, 25);
 		panel.add(label_5);
-		
+
 		MLabel label_6 = new MLabel("~");
 		label_6.setBounds(375, 182, 25, 25);
 		panel.add(label_6);
-		
+
 		MLabel label_7 = new MLabel("~");
 		label_7.setBounds(375, 227, 25, 25);
 		panel.add(label_7);
-		
+
 		MLabel label_8 = new MLabel("~");
 		label_8.setBounds(375, 272, 25, 25);
 		panel.add(label_8);
-		
+
 		MLabel label_9 = new MLabel("~");
 		label_9.setBounds(375, 317, 25, 25);
 		panel.add(label_9);
-		
+
 		textField_21 = new MTextField();
 		textField_21.setBounds(400, 47, 25, 25);
 		panel.add(textField_21);
-		
+
 		textField_22 = new MTextField();
 		textField_22.setBounds(400, 92, 25, 25);
 		panel.add(textField_22);
-		
+
 		textField_23 = new MTextField();
 		textField_23.setBounds(400, 137, 25, 25);
 		panel.add(textField_23);
-		
+
 		textField_24 = new MTextField();
 		textField_24.setBounds(400, 182, 25, 25);
 		panel.add(textField_24);
-		
+
 		textField_25 = new MTextField();
 		textField_25.setBounds(400, 227, 25, 25);
 		panel.add(textField_25);
-		
+
 		textField_26 = new MTextField();
 		textField_26.setBounds(400, 272, 25, 25);
 		panel.add(textField_26);
-		
+
 		textField_27 = new MTextField();
 		textField_27.setBounds(400, 317, 25, 25);
 		panel.add(textField_27);
-		
+
 		textField_28 = new MTextField();
 		textField_28.setText(CourseTypeKind.getAllCourseName()[7]);
 		textField_28.setEditable(false);
 		textField_28.setBounds(38, 362, 150, 25);
 		panel.add(textField_28);
-		
+
 		textField_29 = new MTextField();
 		textField_29.setBounds(250, 362, 25, 25);
 		panel.add(textField_29);
-		
+
 		textField_30 = new MTextField();
 		textField_30.setBounds(350, 362, 25, 25);
 		panel.add(textField_30);
-		
+
 		MLabel label_10 = new MLabel("~");
 		label_10.setBounds(375, 362, 25, 25);
 		panel.add(label_10);
-		
+
 		textField_31 = new MTextField();
 		textField_31.setBounds(400, 362, 25, 25);
 		panel.add(textField_31);
@@ -282,7 +283,7 @@ public class FrameEditPane extends MFrame {
 	}
 
 	private void addListener() {
-		
+
 		button_1.addActionListener(new ActionListener() {
 
 			@Override
@@ -322,28 +323,36 @@ public class FrameEditPane extends MFrame {
 		Frame frame = new Frame(fDean.getFaculty());
 		elementsStr[0][0] = CourseTypeKind.getType(textField.getText());
 		elementsStr[0][1] = textField_7.getText();
-		elementsStr[0][2] = textField_20.getText()+"_"+textField_21.getText();
+		elementsStr[0][2] = textField_20.getText() + "_"
+				+ textField_21.getText();
 		elementsStr[1][0] = CourseTypeKind.getType(textField_1.getText());
 		elementsStr[1][1] = textField_8.getText();
-		elementsStr[1][2] = textField_19.getText()+"_"+textField_22.getText();
+		elementsStr[1][2] = textField_19.getText() + "_"
+				+ textField_22.getText();
 		elementsStr[2][0] = CourseTypeKind.getType(textField_2.getText());
 		elementsStr[2][1] = textField_9.getText();
-		elementsStr[2][2] = textField_18.getText()+"_"+textField_23.getText();
+		elementsStr[2][2] = textField_18.getText() + "_"
+				+ textField_23.getText();
 		elementsStr[3][0] = CourseTypeKind.getType(textField_3.getText());
 		elementsStr[3][1] = textField_10.getText();
-		elementsStr[3][2] = textField_17.getText()+"_"+textField_24.getText();
+		elementsStr[3][2] = textField_17.getText() + "_"
+				+ textField_24.getText();
 		elementsStr[4][0] = CourseTypeKind.getType(textField_4.getText());
 		elementsStr[4][1] = textField_11.getText();
-		elementsStr[4][2] = textField_16.getText()+"_"+textField_25.getText();
+		elementsStr[4][2] = textField_16.getText() + "_"
+				+ textField_25.getText();
 		elementsStr[5][0] = CourseTypeKind.getType(textField_5.getText());
 		elementsStr[5][1] = textField_12.getText();
-		elementsStr[5][2] = textField_15.getText()+"_"+textField_26.getText();
+		elementsStr[5][2] = textField_15.getText() + "_"
+				+ textField_26.getText();
 		elementsStr[6][0] = CourseTypeKind.getType(textField_6.getText());
 		elementsStr[6][1] = textField_13.getText();
-		elementsStr[6][2] = textField_14.getText()+"_"+textField_27.getText();
+		elementsStr[6][2] = textField_14.getText() + "_"
+				+ textField_27.getText();
 		elementsStr[7][0] = CourseTypeKind.getType(textField_28.getText());
 		elementsStr[7][1] = textField_29.getText();
-		elementsStr[7][2] = textField_30.getText()+"_"+textField_31.getText();
+		elementsStr[7][2] = textField_30.getText() + "_"
+				+ textField_31.getText();
 		for (int i = 0; i < elementsStr.length; i++) {
 			frame.addFrameElement(new FrameElement(elementsStr[i][0],
 					elementsStr[i][1], elementsStr[i][2]));
@@ -352,10 +361,32 @@ public class FrameEditPane extends MFrame {
 	}
 
 	public void setFrame(Frame f) {
-
+		Iterator<FrameElement> it = f.iterator();
+		MTextField textFields[][] = {
+				{ textField, textField_7, textField_20, textField_21 },
+				{ textField_1, textField_8, textField_19, textField_22 },
+				{ textField_2, textField_9, textField_18, textField_23 },
+				{ textField_3, textField_10, textField_17, textField_24 },
+				{ textField_4, textField_11, textField_16, textField_25 },
+				{ textField_5, textField_12, textField_15, textField_26 },
+				{ textField_6, textField_13, textField_14, textField_27 },
+				{ textField_28, textField_29, textField_30, textField_31 } };
+		int i = 0;
+		while (it.hasNext()) {
+			FrameElement e = (FrameElement) it.next();
+			String textStr[] = new String[4];
+			textStr[0] = e.getType();
+			textStr[1] = e.getCredit();
+			textStr[2] = e.getPeriod().split("_")[0];
+			textStr[3] = e.getPeriod().split("_")[1];
+			for (int j = 0; j < textFields[i].length; j++) {
+				textFields[i][j].setText(textStr[j]);
+			}
+			i++;
+		}
 	}
-	
-	public void addConfirmListener(ActionListener al){
+
+	public void addConfirmListener(ActionListener al) {
 		button.addActionListener(al);
 	}
 

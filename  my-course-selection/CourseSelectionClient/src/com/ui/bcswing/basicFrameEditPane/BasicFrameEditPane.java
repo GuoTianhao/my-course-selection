@@ -11,6 +11,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.rmi.RemoteException;
+import java.util.Iterator;
 
 import javax.swing.JOptionPane;
 import javax.swing.UIManager;
@@ -317,31 +318,31 @@ public class BasicFrameEditPane extends MFrame {
 		textField_30.setEditable(false);
 		textField_30.setBounds(30, 360, 150, 25);
 		editPanel.add(textField_30);
-		
+
 		textField_31 = new MTextField();
 		textField_31.setBounds(220, 360, 25, 25);
 		editPanel.add(textField_31);
-		
+
 		MLabel label_12 = new MLabel("~");
 		label_12.setBounds(245, 360, 25, 25);
 		editPanel.add(label_12);
-		
+
 		textField_32 = new MTextField();
 		textField_32.setBounds(270, 360, 25, 25);
 		editPanel.add(textField_32);
-		
+
 		textField_33 = new MTextField();
 		textField_33.setBounds(350, 360, 25, 25);
 		editPanel.add(textField_33);
-		
+
 		MLabel label_13 = new MLabel("~");
 		label_13.setBounds(375, 360, 25, 25);
 		editPanel.add(label_13);
-		
+
 		textField_34 = new MTextField();
 		textField_34.setBounds(400, 360, 25, 25);
 		editPanel.add(textField_34);
-		
+
 		getContentPane().add(editPanel);
 		this.setVisible(true);
 		this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
@@ -397,6 +398,38 @@ public class BasicFrameEditPane extends MFrame {
 	}
 
 	public void setBasicFrame(BasicFrame frame) {
+		Iterator<FrameElement> it = frame.iterator();
+		MTextField[][] textFields = {
+				{ moduleField, creditField1, creditField2, periodField1,
+						periodField2 },
+				{ textField, textField_6, textField_7, textField_18,
+						textField_19 },
+				{ textField_1, textField_9, textField_8, textField_20,
+						textField_21 },
+				{ textField_2, textField_11, textField_10, textField_22,
+						textField_23 },
+				{ textField_3, textField_13, textField_12, textField_24,
+						textField_25 },
+				{ textField_4, textField_15, textField_14, textField_26,
+						textField_27 },
+				{ textField_5, textField_17, textField_16, textField_28,
+						textField_29 },
+				{ textField_30, textField_31, textField_32, textField_33,
+						textField_34 } };
+		int i = 0;
+		while (it.hasNext()) {
+			FrameElement e = (FrameElement) it.next();
+			String textStr[] = new String[5];
+			textStr[0] = e.getType();
+			textStr[1] = e.getCredit().split("_")[0];
+			textStr[2] = e.getCredit().split("_")[1];
+			textStr[3] = e.getPeriod().split("_")[0];
+			textStr[4] = e.getPeriod().split("_")[1];
+			for (int j = 0; j < textFields[i].length; j++) {
+				textFields[i][j].setText(textStr[j]);
+			}
+			i++;
+		}
 
 	}
 

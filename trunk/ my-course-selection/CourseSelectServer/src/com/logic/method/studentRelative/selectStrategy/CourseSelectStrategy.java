@@ -13,15 +13,10 @@ public class CourseSelectStrategy {
 		Course c = CourseGetter.getConcreteCourse(cID);
 		switch (c.getType()) {
 		case "G":
-			if (CourseStudentNumGetter.getCourseStudentNum(cID,
-					YearTerm.getNowYearTerm()) < c.getNum()) {
-				return CourseSelect.selectCourseToReal(ID, cID,YearTerm.getNowYearTerm());
-			}
-			break;
+			return PESelectStrategy.selectCourse(ID, cID);
 		default:
 			return CourseSelect.selectCourseToWait(ID, cID);
 		}
-		return false;
 	}
 
 }

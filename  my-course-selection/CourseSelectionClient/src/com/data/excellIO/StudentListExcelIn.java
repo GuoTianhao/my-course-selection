@@ -42,7 +42,7 @@ public class StudentListExcelIn {
 			Workbook book = Workbook.getWorkbook(new File(fileName+".xls"));
 			Sheet sheet = book.getSheet(0);
 			if((sheet.getCell(0, 0).getContents().equals("ID"))
-					&&(sheet.getCell(1, 0).getContents().equals("Nmae"))
+					&&(sheet.getCell(1, 0).getContents().equals("Name"))
 					&&(sheet.getCell(2, 0).getContents().equals("Factuly"))
 					&&(sheet.getCell(3, 0).getContents().equals("Grade")))
 				cmd=true;

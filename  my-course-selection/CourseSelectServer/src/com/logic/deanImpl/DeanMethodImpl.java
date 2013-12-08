@@ -20,11 +20,15 @@ import com.logic.method.deanRelative.BasicFrameManagement;
 import com.logic.method.deanRelative.DeanGetter;
 import com.logic.method.deanRelative.DeanPublishCourse;
 import com.logic.method.deanRelative.MCourseGetter;
+import com.logic.method.studentRelative.CourseBySelect;
 import com.logic.method.userRelative.Login;
 import com.logic.method.userRelative.PasswordChange;
 import com.logicService.DeanMethod;
+import com.timeControllerService.TimeController;
+import com.timeControllerService.TimeControllerController;
 
 public class DeanMethodImpl extends UnicastRemoteObject implements DeanMethod{
+	TimeController time=TimeControllerController.getMethod();
 
 	public DeanMethodImpl() throws RemoteException {
 		super();
@@ -153,38 +157,33 @@ public class DeanMethodImpl extends UnicastRemoteObject implements DeanMethod{
 	}
 
 	@Override
-	public boolean isTimeForPublishCourse() {
+	public boolean isTimeForPublishCourse() throws RemoteException{
 		// TODO Auto-generated method stub
-		return true;
+		return time.isTimeForPublishCourse();
 	}
 
 	@Override
-	public boolean isTimeForSelectCourse() {
+	public boolean isTimeForSelectCourse() throws RemoteException{
 		// TODO Auto-generated method stub
-		return false;
-	}
-
-
-	@Override
-	public boolean isTimeForQuitCourse() {
-		// TODO Auto-generated method stub
-		return false;
+		return time.isTimeForSelectCourse();
 	}
 
 	@Override
-	public boolean isTimeForGradeOneSelectCourse() {
+	public boolean isTimeForQuitCourse() throws RemoteException{
 		// TODO Auto-generated method stub
-		return false;
+		return time.isTimeForQuitCourse();
+	}
+
+	@Override
+	public boolean isTimeForGradeOneSelectCourse() throws RemoteException{
+		// TODO Auto-generated method stub
+		return time.isTimeForGradeOneSelectCourse();
 	}
 
 	@Override
 	public boolean isTimeForByElection() throws RemoteException {
 		// TODO Auto-generated method stub
-		return false;
-	}
-
-	
-
-	
+		return time.isTimeForByElection();
+	}	
 
 }

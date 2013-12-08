@@ -19,9 +19,11 @@ import com.logic.method.studentRelative.StudentScoreGetter;
 import com.logic.method.userRelative.Login;
 import com.logic.method.userRelative.PasswordChange;
 import com.logicService.StudentMethod;
+import com.timeControllerService.TimeController;
+import com.timeControllerService.TimeControllerController;
 
 public class StudentMethodImpl extends UnicastRemoteObject implements StudentMethod{
-
+	TimeController time=TimeControllerController.getMethod();
 	public StudentMethodImpl() throws RemoteException {
 		super();
 		// TODO Auto-generated constructor stub
@@ -109,33 +111,33 @@ public class StudentMethodImpl extends UnicastRemoteObject implements StudentMet
 	}
 
 	@Override
-	public boolean isTimeForPublishCourse() {
+	public boolean isTimeForPublishCourse() throws RemoteException{
 		// TODO Auto-generated method stub
-		return false;
+		return time.isTimeForPublishCourse();
 	}
 
 	@Override
-	public boolean isTimeForSelectCourse() {
+	public boolean isTimeForSelectCourse() throws RemoteException{
 		// TODO Auto-generated method stub
-		return false;
+		return time.isTimeForSelectCourse();
 	}
 
 	@Override
-	public boolean isTimeForQuitCourse() {
+	public boolean isTimeForQuitCourse() throws RemoteException{
 		// TODO Auto-generated method stub
-		return false;
+		return time.isTimeForQuitCourse();
 	}
 
 	@Override
-	public boolean isTimeForGradeOneSelectCourse() {
+	public boolean isTimeForGradeOneSelectCourse() throws RemoteException{
 		// TODO Auto-generated method stub
-		return false;
+		return time.isTimeForGradeOneSelectCourse();
 	}
 
 	@Override
 	public boolean isTimeForByElection() throws RemoteException {
 		// TODO Auto-generated method stub
-		return false;
+		return time.isTimeForByElection();
 	}
 
 	@Override

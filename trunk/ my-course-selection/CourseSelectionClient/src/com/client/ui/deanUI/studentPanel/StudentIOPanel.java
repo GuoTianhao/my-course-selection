@@ -13,7 +13,6 @@ import javax.swing.UIManager;
 import com.basicdata.FacultyKind;
 import com.client.ui.deanUI.DeanUISwitchController;
 import com.data.excellIO.StudentListExcelIn;
-import com.ui.bcswing.StudentDisplayTable;
 import com.ui.bcswing.titleBar.DeanTitlebar;
 import com.ui.bcswing.titleBar.TitleBar;
 import com.ui.myswing.*;
@@ -26,7 +25,7 @@ public class StudentIOPanel extends MPanel {
 	private MButton importFromFile;
 	private MTextField search;
 	private MButton searchBtn;
-	private StudentDisplayTable table;
+	private StudentIOTable table;
 	private String[] departmentItems = FacultyKind.getAllFaculty();
 
 	public StudentIOPanel(Point loc, Dimension size) {
@@ -50,7 +49,7 @@ public class StudentIOPanel extends MPanel {
 		search.setBounds(635, 95, 120, 25);
 		searchBtn = new MButton(new ImageIcon());
 		searchBtn.setBounds(760, 95, 25, 25);
-		table = new StudentDisplayTable(new Point(10, 130), new Dimension(780,
+		table = new StudentIOTable(new Point(10, 130), new Dimension(780,
 				430));
 		this.add(title);
 		this.add(choose);

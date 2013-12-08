@@ -9,6 +9,7 @@ import com.data.po.Course;
 import com.data.po.Dean;
 import com.data.po.Frame;
 import com.data.po.FrameElement;
+import com.data.po.Student;
 import com.data.po.Teacher;
 import com.logicService.DeanMethod;
 
@@ -246,6 +247,18 @@ public class DeanMethod_Stub implements DeanMethod {
 
 	@Override
 	public boolean isTimeForGradeOneSelectCourse() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean importStudent(List<Student> arg0) throws RemoteException {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean importTeacher(List<Teacher> arg0) throws RemoteException {
 		// TODO Auto-generated method stub
 		return false;
 	}

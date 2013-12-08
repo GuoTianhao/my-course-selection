@@ -11,10 +11,8 @@ import javax.swing.JOptionPane;
 import javax.swing.UIManager;
 
 import com.basicdata.FacultyKind;
-import com.basicdata.Identity;
 import com.client.ui.deanUI.DeanUISwitchController;
 import com.data.excellIO.TeacherListExcelIn;
-import com.ui.bcswing.TeacherDisplayTable;
 import com.ui.bcswing.titleBar.DeanTitlebar;
 import com.ui.bcswing.titleBar.TitleBar;
 import com.ui.myswing.MButton;
@@ -31,9 +29,8 @@ public class TeacherIOPanel extends MPanel {
 	private MButton importFromFile;
 	private MTextField search;
 	private MButton searchBtn;
-	private TeacherDisplayTable table;
+	private TeacherIOTable table;
 	private String[] departmentItems = FacultyKind.getAllFaculty();
-	private Object[] data;
 
 	public TeacherIOPanel(Point loc, Dimension size) {
 		super(loc, size);
@@ -56,7 +53,7 @@ public class TeacherIOPanel extends MPanel {
 		search.setBounds(635, 95, 120, 25);
 		searchBtn = new MButton(new ImageIcon());
 		searchBtn.setBounds(760, 95, 25, 25);
-		table = new TeacherDisplayTable(new Point(10, 130), new Dimension(780,
+		table = new TeacherIOTable(new Point(10, 130), new Dimension(780,
 				430));
 		this.add(title);
 		this.add(choose);

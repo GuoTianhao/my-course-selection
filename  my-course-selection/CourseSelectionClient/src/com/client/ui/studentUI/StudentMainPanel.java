@@ -12,6 +12,8 @@ import javax.swing.UIManager;
 
 import com.basicdata.Identity;
 import com.client.rmi.StudentMethodController;
+import com.client.ui.dataAdapter.GradeToTermAdapter;
+import com.data.po.Student;
 import com.timeControllerService.TimeController;
 import com.ui.bcswing.titleBar.StudentTitleBar;
 import com.ui.bcswing.titleBar.TitleBar;
@@ -78,7 +80,7 @@ public class StudentMainPanel extends MPanel {
 	}
 
 	private void addListener() {
-		time=StudentMethodController.getMethod();
+		time = StudentMethodController.getMethod();
 		controller = StudentUISwitchController.getUISwitchController();
 
 		btn1.addActionListener(new ActionListener() {
@@ -88,19 +90,23 @@ public class StudentMainPanel extends MPanel {
 		});
 
 		btn2.addActionListener(new ActionListener() {
-			
+
 			public void actionPerformed(ActionEvent e) {
 				try {
-					if(time.isTimeForSelectCourse()){
-						controller.switchToSCourse();	
-					}else{
+					Student s = (Student) Identity.getIdentity();
+
+					if (time.isTimeForSelectCourse()
+							|| (time.isTimeForGradeOneSelectCourse() && GradeToTermAdapter
+									.adapter(s.getGrade()) == 1)) {
+						controller.switchToSCourse();
+					} else {
 						System.out.println("选课尚未开始");
 					}
 				} catch (RemoteException e1) {
 					e1.printStackTrace();
 				}
 			}
-			
+
 		});
 
 		btn3.addActionListener(new ActionListener() {
@@ -129,7 +135,7 @@ public class StudentMainPanel extends MPanel {
 		} catch (RemoteException e) {
 			e.printStackTrace();
 		}
-		
+
 		try {
 			org.jb2011.lnf.beautyeye.BeautyEyeLNFHelper.launchBeautyEyeLNF();
 			UIManager.put("RootPane.setupButtonVisible", false);

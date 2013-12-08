@@ -3,6 +3,7 @@ package com.client.ui.dataAdapter;
 import java.util.Iterator;
 import java.util.Vector;
 
+import com.basicdata.CourseTypeKind;
 import com.data.po.Frame;
 import com.data.po.FrameElement;
 
@@ -13,7 +14,7 @@ public class FrameToVectorAdapter {
 		while (it.hasNext()) {
 			FrameElement e = (FrameElement) it.next();
 			Vector row = new Vector();
-			row.add(e.getType());
+			row.add(CourseTypeKind.getName(e.getType()));
 			row.add(e.getCredit());
 			row.add(e.getPeriod());
 			res.add(row);

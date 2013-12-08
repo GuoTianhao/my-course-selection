@@ -13,8 +13,6 @@ public class StudentCourseToCourseTypeListAdapter {
 		case "专业选修课":
 			list = CourseListToCourseTypeListAdapter.adapter(list,
 					"F");
-			list = CourseListToCourseTermListAdapter.adapter(list,
-					GradeToTermAdapter.adapter(student.getGrade()));
 			list=CourseListToFacultyAdapter.adapter(list,
 					student.getFaculty());
 			break;

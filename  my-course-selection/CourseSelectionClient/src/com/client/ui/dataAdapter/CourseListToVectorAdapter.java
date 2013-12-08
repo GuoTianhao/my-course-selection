@@ -4,6 +4,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Vector;
 
+import com.basicdata.CourseTypeKind;
 import com.data.po.Course;
 
 public class CourseListToVectorAdapter {
@@ -14,7 +15,7 @@ public class CourseListToVectorAdapter {
 			Course c = (Course) it.next();
 			Vector row = new Vector<>();
 			row.add(c.getID());
-			row.add(c.getType());
+			row.add(CourseTypeKind.getName(c.getType()));
 			row.add(c.getName());
 			row.add(c.getCredit());
 			row.add(c.getPeriod());

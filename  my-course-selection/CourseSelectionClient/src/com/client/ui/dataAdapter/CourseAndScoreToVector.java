@@ -4,6 +4,7 @@ import java.util.Iterator;
 import java.util.Map;
 import java.util.Vector;
 
+import com.basicdata.CourseTypeKind;
 import com.data.po.Course;
 
 public class CourseAndScoreToVector {
@@ -15,7 +16,7 @@ public class CourseAndScoreToVector {
 			Vector row = new Vector<>();
 			row.add(c.getID());
 			row.add(c.getName());
-			row.add(c.getType());
+			row.add(CourseTypeKind.getName(c.getType()));
 			row.add(c.getCredit());
 			row.add(map.get(c));
 			res.add(row);

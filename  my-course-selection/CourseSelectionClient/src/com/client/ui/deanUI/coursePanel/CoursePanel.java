@@ -132,8 +132,17 @@ public class CoursePanel extends MPanel {
 
 	private void init() {
 		courseP.doClick();
-		
-		
+
+	}
+
+	private void refreshTable() {
+		DeanMethod method = DeanMethodController.getMethod();
+		try {
+			table.setDataVector(CourseListToVectorAdapter.adapter(method
+					.getMCourse()));
+		} catch (RemoteException e1) {
+			e1.printStackTrace();
+		}
 	}
 
 	private void addCoursePublishOperateBar() {
@@ -166,37 +175,33 @@ public class CoursePanel extends MPanel {
 			if (state == 1) {
 				addCoursePublishOperateBar();
 			}
-			DeanMethod method = DeanMethodController.getMethod();
-			try {
-				table.setDataVector(CourseListToVectorAdapter.adapter(method
-						.getMCourse()));
-			} catch (RemoteException e1) {
-				e1.printStackTrace();
-			}
+			refreshTable();
 			publishOperateBarSearch();
 		}
 
 	}
 
-	class PublishCourseListener implements ActionListener{
+	class PublishCourseListener implements ActionListener {
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			// TODO Auto-generated method stub
 			TimeController time = DeanMethodController.getMethod();
 			try {
-				if(time.isTimeForPublishCourse()){
+				if (time.isTimeForPublishCourse()) {
 					new DeanCoursePane();
-				}else{
+				} else {
 					System.out.println("未到课程发布时间");
 				}
 			} catch (RemoteException e1) {
 				e1.printStackTrace();
 			}
+			refreshTable();
+
 		}
-		
+
 	}
-	
+
 	class AllCourseSwitchListener implements ActionListener {
 
 		public void actionPerformed(ActionEvent e) {
@@ -294,8 +299,6 @@ public class CoursePanel extends MPanel {
 
 	}
 
-	
-	
 	public static void main(String[] args) {
 		try {
 			Identity.setIdentity(DeanMethodController.getMethod().getSelf(

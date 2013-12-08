@@ -24,13 +24,17 @@ public interface StudentMethod extends Remote, TimeController {
 	// false。
 	public boolean selectCourse(String ID, String cID) throws RemoteException;
 
+	// 补选
+	public boolean bySelectCourse(String ID, String cID) throws RemoteException;
+
 	// 学生退选课程，传入ID（学生ID）、cID（课程ID），若未选该课程，推选失败return false，若已选该课程，推选成功 return
 	// true。
 	public boolean quitCourse(String ID, String cID) throws RemoteException;
 
-	//学生放弃选课
-	public boolean quitSelectCourse(String ID, String cID) throws RemoteException;
-	
+	// 学生放弃选课
+	public boolean quitSelectCourse(String ID, String cID)
+			throws RemoteException;
+
 	// 查看成绩，传入ID（学生ID）、cID（课程ID），返回学生成绩
 	public int getScore(String ID, String cID) throws RemoteException;
 
@@ -43,6 +47,9 @@ public interface StudentMethod extends Remote, TimeController {
 	// 查看任意课程，传入cID（课程）ID，返回Course.
 	public Course getCourse(String cID) throws RemoteException;
 
+	//得到课程以选人数
+	public int getCourseSelectNum(String cID) throws RemoteException;
+	
 	// 得到院系具体学期课程
 	public List<Course> geFacultyTermCourse(String facultyID, String grade)
 			throws RemoteException;

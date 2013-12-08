@@ -1,5 +1,8 @@
 package com.dataService;
 
-public interface StudentDatabaseMethod extends DatabaseMethod{
+import java.util.ArrayList;
+import java.util.List;
 
+public interface StudentDatabaseMethod extends DatabaseMethod{
+	public List<ArrayList<String>> getLiberalCourseList(String ID);
 }

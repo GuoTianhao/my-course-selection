@@ -33,21 +33,21 @@ public class CourseSelect {
 		}
 	}
 
-	public static boolean selectCourseToReal(String ID, String cID) {
+	public static boolean selectCourseToReal(String ID, String cID,String yearTerm) {
 		String tableName;
 		tableName = "courseStudent";
 		StudentDatabaseMethod method = StudentDataController.getMethod();
-		int grade = Integer.parseInt(method
-				.search("student", "ID", ID, "Grade").get(0));
-		List<String> clueName = new ArrayList<String>();
-		List<String> clue = new ArrayList<String>();
-		clueName.add("ID");
-		clueName.add("Student");
-		clueName.add("time");
-		clue.add(cID);
-		clue.add(ID);
-		clue.add(YearTerm.getNowYearTerm());
-		method.insert(tableName, clueName, clue);
+		if(!isSelect(ID,cID,yearTerm)){
+			List<String> clueName = new ArrayList<String>();
+			List<String> clue = new ArrayList<String>();
+			clueName.add("ID");
+			clueName.add("Student");
+			clueName.add("time");
+			clue.add(cID);
+			clue.add(ID);
+			clue.add(yearTerm);
+			method.insert(tableName, clueName, clue);	
+		}
 		return true;
 	}
 
@@ -68,6 +68,28 @@ public class CourseSelect {
 			return true;
 		}
 		return false;
+	}
+	
+	private static boolean isSelect(String ID,String cID,String yearTerm){
+		String tableName;
+		tableName = "courseStudent";
+		List<String> clueName = new ArrayList<String>();
+		List<String> clue = new ArrayList<String>();
+		List<String> aimName = new ArrayList<String>();
+		clueName.add("ID");
+		clueName.add("Student");
+		clueName.add("time");
+		clue.add(cID);
+		clue.add(ID);
+		clue.add(yearTerm);
+		aimName.add("ID");
+		List res = StudentDataController.getMethod().search(tableName,
+				clueName, clue, aimName);
+		if (res.size() != 0) {
+			return true;
+		}
+		return false;
+
 	}
 
 }

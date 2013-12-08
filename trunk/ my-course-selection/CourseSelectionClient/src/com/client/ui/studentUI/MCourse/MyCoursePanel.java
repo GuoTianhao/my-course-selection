@@ -101,7 +101,7 @@ public class MyCoursePanel extends MPanel {
 	public static void main(String[] args) {
 		try {
 			Identity.setIdentity(StudentMethodController.getMethod().getSelf(
-					"121250041"));
+					"121250011"));
 		} catch (RemoteException e) {
 			e.printStackTrace();
 		}

@@ -13,11 +13,9 @@ import javax.swing.UIManager;
 
 import com.basicdata.Identity;
 import com.client.rmi.StudentMethodController;
-import com.client.ui.dataAdapter.CourseListToCourseTermListAdapter;
-import com.client.ui.dataAdapter.GradeToTermAdapter;
-import com.client.ui.dataAdapter.StudentCourseToCourseTypeListAdapter;
-import com.client.ui.dataAdapter.StudentUnselectedCourseListToVectorAdapeter;
+import com.client.ui.dataAdapter.CourseListToBySelectCourseVectorAdapter;
 import com.client.ui.studentUI.StudentUISwitchController;
+import com.client.ui.studentUI.SCourse.UnSelectedCourseTypeHandle;
 import com.data.po.Course;
 import com.data.po.Student;
 import com.logicService.StudentMethod;
@@ -28,7 +26,7 @@ import com.ui.myswing.MButton;
 import com.ui.myswing.MComboBox;
 import com.ui.myswing.MPanel;
 
-public class BySelectionCoursePanel extends MPanel{
+public class BySelectionCoursePanel extends MPanel {
 	private TitleBar title;
 	private MComboBox courseType;
 	private MButton bSelect;
@@ -44,7 +42,7 @@ public class BySelectionCoursePanel extends MPanel{
 	private void createComponent() {
 		title = new StudentTitleBar(new Point(0, 0), new Dimension(
 				this.getWidth(), 75));
-		String[] type = { "专业选修课", "通识教育课程", "跨院系课程"};
+		String[] type = { "专业选修课", "通识教育课程", "跨院系课程" };
 		courseType = new MComboBox<>(type, new Point(90, 95), new Dimension(
 				150, 25));
 
@@ -73,8 +71,8 @@ public class BySelectionCoursePanel extends MPanel{
 		});
 
 		courseType.addItemListener(new CourseTypeListener());
-		
-		bSelect.addActionListener(new QuitListener());
+
+		bSelect.addActionListener(new BySelectListener());
 	}
 
 	private void init() {
@@ -82,21 +80,12 @@ public class BySelectionCoursePanel extends MPanel{
 	}
 
 	private void refreshTable() {
-		StudentMethod method = StudentMethodController.getMethod();
-		Student student = (Student) Identity.getIdentity();
-
 		String type = (String) courseType.getSelectedItem();
 		List<Course> list;
-		try {
-			list = method.getCourseList(student.getID());
-			list = StudentCourseToCourseTypeListAdapter.adapter(list, type);
-			list = CourseListToCourseTermListAdapter.adapter(list,
-					GradeToTermAdapter.adapter(student.getGrade()));
-			table.setDataVector(StudentUnselectedCourseListToVectorAdapeter
-					.adapter(list));
-		} catch (RemoteException e1) {
-			e1.printStackTrace();
-		}
+		list = UnSelectedCourseTypeHandle.handle(type);
+		table.setDataVector(CourseListToBySelectCourseVectorAdapter
+				.adapter(list));
+
 	}
 
 	class CourseTypeListener implements ItemListener {
@@ -110,27 +99,26 @@ public class BySelectionCoursePanel extends MPanel{
 		}
 	}
 
-	class QuitListener implements ActionListener {
+	class BySelectListener implements ActionListener {
 
 		Student student = (Student) (Identity.getIdentity());
 
 		public void actionPerformed(ActionEvent e) {
-			quitCourse();
+			bySelectCourse();
 		}
 
-		public void quitCourse() {
+		public void bySelectCourse() {
 			int index = table.getSelectedRow();
 			if (index >= 0) {
 				String cID = (String) table.getValueAt(index, 0);
 				StudentMethod method = StudentMethodController.getMethod();
 
 				try {
-					boolean admit = method.quitCourse(student.getID(),
-							cID);
+					boolean admit = method.bySelectCourse(student.getID(), cID);
 					if (admit) {
-						System.out.println("退选成功");
+						System.out.println("补选成功");
 					} else {
-						System.out.println("退选失败");
+						System.out.println("补选失败");
 					}
 
 				} catch (RemoteException e1) {
@@ -148,7 +136,6 @@ public class BySelectionCoursePanel extends MPanel{
 		try {
 			Identity.setIdentity(method.getSelf("121250011"));
 		} catch (RemoteException e1) {
-			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
 		try {

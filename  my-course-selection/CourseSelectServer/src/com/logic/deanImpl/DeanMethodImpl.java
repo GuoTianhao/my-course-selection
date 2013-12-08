@@ -10,6 +10,7 @@ import com.data.po.BasicFrame;
 import com.data.po.Course;
 import com.data.po.Dean;
 import com.data.po.Frame;
+import com.data.po.Student;
 import com.data.po.Teacher;
 import com.logic.method.FaucltyDeanRelative.FrameManagement;
 import com.logic.method.TeacherRelative.TeacherGetter;
@@ -159,7 +160,7 @@ public class DeanMethodImpl extends UnicastRemoteObject implements DeanMethod{
 	@Override
 	public boolean isTimeForPublishCourse() throws RemoteException{
 		// TODO Auto-generated method stub
-		return time.isTimeForPublishCourse();
+		return true;
 	}
 
 	@Override
@@ -184,6 +185,18 @@ public class DeanMethodImpl extends UnicastRemoteObject implements DeanMethod{
 	public boolean isTimeForByElection() throws RemoteException {
 		// TODO Auto-generated method stub
 		return time.isTimeForByElection();
+	}
+
+	@Override
+	public boolean importStudent(List<Student> list) throws RemoteException {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean importTeacher(List<Teacher> list) throws RemoteException {
+		// TODO Auto-generated method stub
+		return false;
 	}	
 
 }

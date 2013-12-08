@@ -46,9 +46,10 @@ public class CourseSelect {
 			clue.add(cID);
 			clue.add(ID);
 			clue.add(yearTerm);
-			method.insert(tableName, clueName, clue);	
+			method.insert(tableName, clueName, clue);
+			return true;
 		}
-		return true;
+		return false;
 	}
 
 	private static boolean isSelected(String ID, String cID) {

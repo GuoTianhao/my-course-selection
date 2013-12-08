@@ -7,6 +7,10 @@ public class YearTerm {
 		return "20131";
 	}
 	
+	public static String getNextYearTerm(){
+		return "20131";
+	}
+	
 	public static String getYearTerm(Calendar c){
 		return "20131";
 	}

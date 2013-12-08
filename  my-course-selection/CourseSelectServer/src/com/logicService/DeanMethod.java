@@ -8,6 +8,7 @@ import com.data.po.BasicFrame;
 import com.data.po.Course;
 import com.data.po.Dean;
 import com.data.po.Frame;
+import com.data.po.Student;
 import com.data.po.Teacher;
 import com.timeControllerService.TimeController;
 
@@ -69,4 +70,10 @@ public interface DeanMethod extends Remote,TimeController {
 	
 	//得到院系具体学期课程
 	public List<Course> geFacultyTermCourse(String facultyID,String grade) throws RemoteException;
+	
+	//导入学生
+	public boolean importStudent(List<Student> list) throws RemoteException;
+	
+	//导入老师
+	public boolean importTeacher(List<Teacher> list) throws RemoteException;
 }

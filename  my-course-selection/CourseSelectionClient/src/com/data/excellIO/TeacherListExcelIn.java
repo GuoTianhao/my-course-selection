@@ -17,22 +17,24 @@ import com.data.po.Teacher;
 
 public class TeacherListExcelIn {
 	public static Vector read(String fileName) {
-		List<Teacher> teaList = new ArrayList<Teacher>();
+		Vector<Vector> res = new Vector<Vector>();
 		try {
-			Workbook book = Workbook.getWorkbook(new File(fileName+".xls"));
+			Workbook book = Workbook.getWorkbook(new File(fileName));
 			Sheet sheet = book.getSheet(0);
 			int rownum = sheet.getRows();
 			for (int i = 1; i < rownum; i++) {
-				teaList.add(new Teacher(sheet.getCell(0, i).getContents(),
-						sheet.getCell(1, i).getContents(), 
-						sheet.getCell(2, i).getContents()));
+				Vector row = new Vector<>();
+				row.add(sheet.getCell(0, i).getContents());
+				row.add(sheet.getCell(1, i).getContents());
+				row.add(sheet.getCell(2, i).getContents());
+				res.add(row);
 			}
 			book.close();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 
-		return TeacherListToVectorAdapter.adapter(teaList);
+		return res;
 	}
 	public static boolean testFile(String fileName) {
 		boolean cmd=false;

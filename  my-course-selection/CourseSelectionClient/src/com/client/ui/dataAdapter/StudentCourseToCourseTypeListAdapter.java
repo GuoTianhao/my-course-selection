@@ -30,7 +30,7 @@ public class StudentCourseToCourseTypeListAdapter {
 			list = CourseListToCourseTypeListAdapter.adapter(list,
 					"F");
 			list.addAll(temp);
-			list = CourseListToFacultyAdapter.adapterRverse(list,
+			list = CourseListToFacultyAdapter.adapterReverse(list,
 					student.getFaculty());
 			break;
 		}

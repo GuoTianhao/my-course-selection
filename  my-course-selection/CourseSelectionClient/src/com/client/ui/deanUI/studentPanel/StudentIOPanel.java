@@ -94,6 +94,7 @@ public class StudentIOPanel extends MPanel {
 	}
 
 	public static void main(String[] args) {
+
 		try {
 			org.jb2011.lnf.beautyeye.BeautyEyeLNFHelper.launchBeautyEyeLNF();
 			UIManager.put("RootPane.setupButtonVisible", false);

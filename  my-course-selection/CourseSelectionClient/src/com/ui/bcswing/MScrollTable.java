@@ -195,6 +195,10 @@ public class MScrollTable extends JScrollPane {
 		return table.rowAtPoint(point);
 	}
 
+	public void selectAll(){
+		table.selectAll();
+	}
+	
 	public void setSelectIntervalRow(List<Integer> list) {
 		table.selectAll();
 		int count = table.getRowCount();

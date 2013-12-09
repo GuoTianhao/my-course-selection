@@ -9,6 +9,8 @@ import com.client.ui.studentUI.CScore.ScoreCheckPanel;
 import com.client.ui.studentUI.MCourse.MyCoursePanel;
 import com.client.ui.studentUI.QCourse.QuitCoursePanel;
 import com.client.ui.studentUI.SCourse.CourseSelectedPanel;
+import com.client.ui.studentUI.SCourse.LiberalCourseSelectPanel;
+import com.client.ui.studentUI.SCourse.PECourseSelectPanel;
 import com.client.ui.studentUI.lCourse.CourseLookUpPanel;
 
 public class StudentUISwitchController {
@@ -67,6 +69,18 @@ public class StudentUISwitchController {
 	public void switchToBSCourse(){
 		frame.getContentPane().removeAll();
 		frame.add(new BySelectionCoursePanel(new Point(0,0),frame.getSize()));
+		frame.refresh();
+	}
+	
+	public void switchToPESelectPanel(){
+		frame.getContentPane().removeAll();
+		frame.add(new PECourseSelectPanel(new Point(0,0),frame.getSize()));
+		frame.refresh();
+	}
+	
+	public void switchToLiberalSelectPanel(){
+		frame.getContentPane().removeAll();
+		frame.add(new LiberalCourseSelectPanel(new Point(0,0),frame.getSize()));
 		frame.refresh();
 	}
 	

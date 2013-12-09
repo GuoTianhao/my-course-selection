@@ -18,7 +18,7 @@ public class CourseListToFacultyAdapter {
 		}
 		return newList;
 	}
-	public static List<Course> adapterRverse(List<Course> list,String faculty){
+	public static List<Course> adapterReverse(List<Course> list,String faculty){
 		List<Course> newList=new LinkedList<Course>();
 		Iterator<Course> it=list.iterator();
 		while(it.hasNext()){

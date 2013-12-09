@@ -55,4 +55,7 @@ public class StudentListExcelIn {
 		
 		return cmd;
 	}
+	public static void main(String[] args){
+		StudentListExcelIn.testFile("test.r");
+	}
 }

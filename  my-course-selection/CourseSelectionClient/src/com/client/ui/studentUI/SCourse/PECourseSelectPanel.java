@@ -110,6 +110,6 @@ public class PECourseSelectPanel extends MPanel {
 		}
 		StudentUISwitchController controller = StudentUISwitchController
 				.getUISwitchController();
-		controller.switchToPESelectPanel();
+		controller.switchToPESelect();
 	}
 }

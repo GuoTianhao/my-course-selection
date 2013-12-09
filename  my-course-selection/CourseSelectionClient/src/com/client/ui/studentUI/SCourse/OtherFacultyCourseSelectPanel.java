@@ -17,6 +17,7 @@ import com.client.ui.dataAdapter.CourseListToBallotCourseTableVectorAdapter;
 import com.client.ui.dataAdapter.CourseListToCourseTypeListAdapter;
 import com.client.ui.dataAdapter.CourseListToFacultyAdapter;
 import com.client.ui.main.MainFrame;
+import com.client.ui.studentUI.StudentUISwitchController;
 import com.data.po.Course;
 import com.data.po.Student;
 import com.logicService.StudentMethod;
@@ -100,9 +101,9 @@ public class OtherFacultyCourseSelectPanel extends BallotTableCourseSelectPanel 
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		MainFrame f = new MainFrame();
-		f.add(new OtherFacultyCourseSelectPanel(new Point(0, 0), f.getSize()));
-		f.refresh();
+		StudentUISwitchController controller = StudentUISwitchController
+				.getUISwitchController();
+		controller.switchToOtherFacultyCourseSelect();
 	}
 
 }

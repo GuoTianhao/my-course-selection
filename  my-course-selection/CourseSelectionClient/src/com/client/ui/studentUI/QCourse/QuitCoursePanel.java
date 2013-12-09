@@ -12,15 +12,12 @@ import java.util.List;
 import javax.swing.UIManager;
 
 import com.basicdata.Identity;
-import com.basicdata.TermKind;
 import com.client.rmi.StudentMethodController;
 import com.client.ui.dataAdapter.CourseListToCourseTermListAdapter;
 import com.client.ui.dataAdapter.GradeToTermAdapter;
 import com.client.ui.dataAdapter.StudentCourseToCourseTypeListAdapter;
 import com.client.ui.dataAdapter.StudentUnselectedCourseListToVectorAdapeter;
 import com.client.ui.studentUI.StudentUISwitchController;
-import com.client.ui.studentUI.SCourse.CourseSelectedPanel;
-import com.client.ui.studentUI.SCourse.UnSelectedCourseTypeHandle;
 import com.data.po.Course;
 import com.data.po.Student;
 import com.logicService.StudentMethod;

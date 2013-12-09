@@ -8,8 +8,10 @@ import com.client.ui.studentUI.BSCourse.BySelectionCoursePanel;
 import com.client.ui.studentUI.CScore.ScoreCheckPanel;
 import com.client.ui.studentUI.MCourse.MyCoursePanel;
 import com.client.ui.studentUI.QCourse.QuitCoursePanel;
-import com.client.ui.studentUI.SCourse.CourseSelectedPanel;
+import com.client.ui.studentUI.SCourse.CourseSelectPanel;
+import com.client.ui.studentUI.SCourse.ElectiveCourseSelectPanel;
 import com.client.ui.studentUI.SCourse.LiberalCourseSelectPanel;
+import com.client.ui.studentUI.SCourse.OtherFacultyCourseSelectPanel;
 import com.client.ui.studentUI.SCourse.PECourseSelectPanel;
 import com.client.ui.studentUI.lCourse.CourseLookUpPanel;
 
@@ -54,12 +56,6 @@ public class StudentUISwitchController {
 		frame.refresh();
 	}
 	
-	public void switchToSCourse(){
-		frame.getContentPane().removeAll();
-		frame.add(new CourseSelectedPanel(new Point(0,0),frame.getSize()));
-		frame.refresh();
-	}
-	
 	public void switchToQCourse(){
 		frame.getContentPane().removeAll();
 		frame.add(new QuitCoursePanel(new Point(0,0),frame.getSize()));
@@ -72,15 +68,33 @@ public class StudentUISwitchController {
 		frame.refresh();
 	}
 	
-	public void switchToPESelectPanel(){
+	public void switchToCourseSelect(){
+		frame.getContentPane().removeAll();
+		frame.add(new CourseSelectPanel(new Point(0,0),frame.getSize()));
+		frame.refresh();
+	}
+	
+	public void switchToPESelect(){
 		frame.getContentPane().removeAll();
 		frame.add(new PECourseSelectPanel(new Point(0,0),frame.getSize()));
 		frame.refresh();
 	}
 	
-	public void switchToLiberalSelectPanel(){
+	public void switchToLiberalSelect(){
 		frame.getContentPane().removeAll();
 		frame.add(new LiberalCourseSelectPanel(new Point(0,0),frame.getSize()));
+		frame.refresh();
+	}
+	
+	public void switchToElectiveCourseSelec(){
+		frame.getContentPane().removeAll();
+		frame.add(new ElectiveCourseSelectPanel(new Point(0,0),frame.getSize()));
+		frame.refresh();
+	}
+	
+	public void switchToOtherFacultyCourseSelect(){
+		frame.getContentPane().removeAll();
+		frame.add(new OtherFacultyCourseSelectPanel(new Point(0,0),frame.getSize()));
 		frame.refresh();
 	}
 	

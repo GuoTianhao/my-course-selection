@@ -105,7 +105,7 @@ public class TeachingPlanPanel extends MPanel {
 
 			public void actionPerformed(ActionEvent e) {
 				FacultyDean self = (FacultyDean) Identity.getIdentity();
-				String id = self.getID();
+				String id = self.getFaculty();
 				FacultyDeanMethod method = FacultyDeanMethodController
 						.getMethod();
 				FrameEditPane pane = new FrameEditPane();

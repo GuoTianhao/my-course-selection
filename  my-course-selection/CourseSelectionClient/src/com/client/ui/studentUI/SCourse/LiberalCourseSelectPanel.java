@@ -19,6 +19,7 @@ import com.client.ui.dataAdapter.CourseListToCourseTypeListAdapter;
 import com.client.ui.dataAdapter.CourseListToFacultyAdapter;
 import com.client.ui.dataAdapter.PECourseSelectListToVectorAdapter;
 import com.client.ui.main.MainFrame;
+import com.client.ui.studentUI.StudentUISwitchController;
 import com.data.po.Course;
 import com.data.po.Student;
 import com.data.po.Teacher;
@@ -98,8 +99,8 @@ public class LiberalCourseSelectPanel extends BallotTableCourseSelectPanel {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		MainFrame f = new MainFrame();
-		f.add(new LiberalCourseSelectPanel(new Point(0, 0), f.getSize()));
-		f.refresh();
+		StudentUISwitchController controller = StudentUISwitchController
+				.getUISwitchController();
+		controller.switchToLiberalSelect();
 	}
 }

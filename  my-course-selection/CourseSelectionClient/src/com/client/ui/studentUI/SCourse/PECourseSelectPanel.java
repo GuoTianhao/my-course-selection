@@ -55,7 +55,7 @@ public class PECourseSelectPanel extends MPanel {
 			public void actionPerformed(ActionEvent e) {
 				StudentUISwitchController controller = StudentUISwitchController
 						.getUISwitchController();
-				controller.switchToMainFrame();
+				controller.switchToPESelect();
 			}
 		});
 

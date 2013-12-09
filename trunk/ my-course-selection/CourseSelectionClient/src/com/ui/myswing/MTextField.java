@@ -43,7 +43,7 @@ public class MTextField extends JTextField implements ValidInput {
 		setLocation(location);
 		setSize(size);
 	}
-
+	
 	public boolean isValidInput() {
 		boolean isValid = true;
 		if(validInput!=null){
@@ -54,5 +54,9 @@ public class MTextField extends JTextField implements ValidInput {
 
 	public void setValidInput(ValidInput validInput) {
 		this.validInput = validInput;
+	}
+	public void setTextandBool(String string,boolean bool) {
+		setText(string);
+		setEditable(bool);
 	}
 }

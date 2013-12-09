@@ -26,21 +26,18 @@ public class CourseInforPane extends MFrame {
 	private MLabel gradel;
 	private MLabel facultyl;
 	private MLabel periodl;
-
 	private MLabel timel;
 
-	private MLabel namet;
-	private MLabel idt;
-	private MLabel loct;
-	private MLabel creditt;
-	private MLabel numt;
-	private MLabel typet;
-	private MLabel gradet;
-	private MLabel facultyt;
-	private MLabel periodt;
-	private MLabel timet1;
-	private MLabel timet2;
-	private MLabel timet3;
+	private MTextField namet;
+	private MTextField idt;
+	private MTextField loct;
+	private MTextField creditt;
+	private MTextField numt;
+	private MTextField typet;
+	private MTextField gradet;
+	private MTextField facultyt;
+	private MTextField periodt;
+    private MTextField timet;
 
 	public CourseInforPane(Dimension size) {
 		super(size);
@@ -66,28 +63,30 @@ public class CourseInforPane extends MFrame {
 		periodl = new MLabel(new Point(0, 250), new Dimension(100, 20), "上课周数:");
 		timel = new MLabel(new Point(0, 280), new Dimension(100, 20), "上课时间:");
 
-		namet = new MLabel(new Point(150, 0), new Dimension(100, 20),
-				course.getName());
-		idt = new MLabel(new Point(150, 30), new Dimension(100, 20),
-				course.getID());
-		loct = new MLabel(new Point(150, 60), new Dimension(100, 20),
-				course.getLoc());
-		creditt = new MLabel(new Point(150, 90), new Dimension(100, 20),
-				course.getCredit() + "");
-		numt = new MLabel(new Point(150, 120), new Dimension(100, 20),
-				course.getNum() + "");
-		typet = new MLabel(new Point(150, 150), new Dimension(100, 20),
-				course.getType());
-		gradet = new MLabel(new Point(150, 180), new Dimension(100, 20),
-				course.getGrade() + "");
-		facultyt = new MLabel(new Point(150, 210), new Dimension(100, 20),
-				course.getFaculty());
-		periodt = new MLabel(new Point(150, 250), new Dimension(100, 20),
-				course.getPeriod());
-		timet1=new MLabel(new Point(150,290),new Dimension(60,20),course.getTime().get(0).toString());
-		timet2=new MLabel(new Point(220,290),new Dimension(60,20),course.getTime().get(0).toString());
-		timet3=new MLabel(new Point(300,290),new Dimension(60,20),course.getTime().get(0).toString());
-           
+		namet = new MTextField(new Point(150, 0), new Dimension(100, 20));
+		idt = new MTextField(new Point(150, 30), new Dimension(100, 20));
+		loct = new MTextField(new Point(150, 60), new Dimension(100, 20));
+		creditt = new MTextField(new Point(150, 90), new Dimension(100, 20));
+		numt = new MTextField(new Point(150, 120), new Dimension(100, 20));
+		typet = new MTextField(new Point(150, 150), new Dimension(100, 20));
+		gradet = new MTextField(new Point(150, 180), new Dimension(100, 20));
+		facultyt = new MTextField(new Point(150, 210), new Dimension(100, 20));
+		periodt = new MTextField(new Point(150, 250), new Dimension(100, 20));
+		timet=new MTextField(new Point(150,290),new Dimension(60,20));
+		
+          
+		namet.setTextandBool(course.getName(),false);
+		idt.setTextandBool(course.getID(),false);
+		loct.setTextandBool(course.getLoc(),false);
+		creditt.setTextandBool(course.getCredit()+"",false);
+		numt.setTextandBool(course.getNum()+"",false);
+		typet.setTextandBool(course.getType(),false);
+		gradet.setTextandBool(course.getGrade()+"",false);
+		facultyt.setTextandBool(course.getFaculty(),false);
+		periodt.setTextandBool(course.getPeriod(),false);
+		timet.setTextandBool(course.getTime().get(0)+"  从"+course.getTime().get(1)+"到"+course.getTime().get(2),false);
+		
+		
 		this.add(namel);
 		this.add(idl);
 		this.add(locl);
@@ -108,9 +107,7 @@ public class CourseInforPane extends MFrame {
 		this.add(gradet);
 		this.add(facultyt);
 		this.add(periodt);
-		this.add(timet1);
-		this.add(timet2);
-		this.add(timet3);
+		this.add(timet);
 		
 		this.setVisible(true);
 		this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);

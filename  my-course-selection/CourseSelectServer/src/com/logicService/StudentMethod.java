@@ -50,6 +50,9 @@ public interface StudentMethod extends Remote, TimeController {
 	//得到课程以选人数
 	public int getCourseSelectNum(String cID) throws RemoteException;
 	
+	//得到已选课的人数
+	public int getWaitCourseStudentNum(String cID)throws RemoteException;
+	
 	// 得到院系具体学期课程
 	public List<Course> geFacultyTermCourse(String facultyID, String grade)
 			throws RemoteException;

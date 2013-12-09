@@ -151,4 +151,10 @@ public class StudentMethodImpl extends UnicastRemoteObject implements StudentMet
 		// TODO Auto-generated method stub
 		return CourseStudentNumGetter.getCourseStudentNum(cID, YearTerm.getNowYearTerm());
 	}
+
+	@Override
+	public int getWaitCourseStudentNum(String cID) throws RemoteException {
+		// TODO Auto-generated method stub
+		return CourseStudentNumGetter.getWaitCourseStudentNum(cID);
+	}
 }

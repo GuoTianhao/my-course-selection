@@ -25,7 +25,6 @@ public class DatabaseNum {
 					}
 				}
 			}
-			System.out.println(sql);
 			st = (Statement) conn.createStatement();
 			ResultSet res = st.executeQuery(sql);
 			while(res.next()){

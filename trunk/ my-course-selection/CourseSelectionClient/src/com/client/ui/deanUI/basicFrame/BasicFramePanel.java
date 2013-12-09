@@ -71,7 +71,7 @@ public class BasicFramePanel extends MPanel {
 		make.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				new BasicFrameEditPane();
-			}
+							}
 		});
 		
 		change.addActionListener(new ActionListener() {
@@ -96,8 +96,10 @@ public class BasicFramePanel extends MPanel {
 			Iterator<FrameElement> it=frame.iterator();
 			if(!it.hasNext()){
 				change.setEnabled(false);
+				make.setEnabled(true);
 			}else{
 				make.setEnabled(false);
+				change.setEnabled(true);
 			}
 			table.setDataVector(BasicFrameToVectorAdapter
 					.adapter(frame));

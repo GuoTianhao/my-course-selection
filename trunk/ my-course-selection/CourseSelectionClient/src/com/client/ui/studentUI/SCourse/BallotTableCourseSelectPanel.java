@@ -2,6 +2,8 @@ package com.client.ui.studentUI.SCourse;
 
 import java.awt.Dimension;
 import java.awt.Point;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.rmi.RemoteException;
@@ -16,6 +18,7 @@ import com.basicdata.Identity;
 import com.client.rmi.StudentMethodController;
 import com.client.ui.dataAdapter.CourseListToCourseTypeListAdapter;
 import com.client.ui.main.MainFrame;
+import com.client.ui.studentUI.StudentUISwitchController;
 import com.data.po.Course;
 import com.data.po.Student;
 import com.logicService.StudentMethod;
@@ -35,6 +38,7 @@ public class BallotTableCourseSelectPanel extends MPanel {
 		super(loc, size);
 		createComponent();
 		init();
+		addListener();
 	}
 
 	private void createComponent() {
@@ -52,6 +56,16 @@ public class BallotTableCourseSelectPanel extends MPanel {
 		this.refresh();
 	}
 
+	private void addListener(){
+		title.addReturnMenu(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				StudentUISwitchController controller= StudentUISwitchController
+						.getUISwitchController();
+				controller.switchToCourseSelect();
+			}
+		});
+	}
+	
 	private void init() {
 		table.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
 	}

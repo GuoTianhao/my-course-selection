@@ -15,7 +15,6 @@ import com.basicdata.Identity;
 import com.client.rmi.StudentMethodController;
 import com.client.ui.dataAdapter.CourseListToBySelectCourseVectorAdapter;
 import com.client.ui.studentUI.StudentUISwitchController;
-import com.client.ui.studentUI.SCourse.UnSelectedCourseTypeHandle;
 import com.data.po.Course;
 import com.data.po.Student;
 import com.logicService.StudentMethod;

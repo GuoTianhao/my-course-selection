@@ -1,33 +1,36 @@
-package com.client.ui.studentUI.SCourse;
+package com.client.ui.studentUI.BSCourse;
 
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.basicdata.CourseTypeKind;
 import com.basicdata.Identity;
 import com.client.rmi.StudentMethodController;
 import com.client.ui.dataAdapter.CourseListToCourseTermListAdapter;
-import com.client.ui.dataAdapter.CourseListToCourseTypeListAdapter;
 import com.client.ui.dataAdapter.CourseListToFacultyAdapter;
+import com.client.ui.dataAdapter.CourseListToVectorAdapter;
 import com.client.ui.dataAdapter.GradeToTermAdapter;
 import com.client.ui.dataAdapter.StudentCourseToCourseTypeListAdapter;
-import com.client.ui.dataAdapter.StudentSelectedCourseListToVectorAdapter;
 import com.data.po.Course;
 import com.data.po.Student;
 import com.logicService.StudentMethod;
 
-public class WaitCourseTypeHandle {
+public class UnSelectedCourseTypeHandle {
 	public static List<Course> handle(String type) {
-		List<Course> selected = new ArrayList<Course>();
-		Student student = (Student) Identity.getIdentity();
 		StudentMethod method = StudentMethodController.getMethod();
+		List<Course> list = new ArrayList<Course>();
 		try {
-			selected = method.getWaitCourseList(student.getID());
+			list = method.getTypeCourse("A");
+			list.addAll(method.getTypeCourse("B"));
+			list.addAll(method.getTypeCourse("C"));
+			list.addAll(method.getTypeCourse("D"));
+			list.addAll(method.getTypeCourse("E"));
+			list.addAll(method.getTypeCourse("F"));
+			list.addAll(method.getTypeCourse("G"));
 		} catch (RemoteException e) {
 			e.printStackTrace();
 		}
-		selected = StudentCourseToCourseTypeListAdapter.adapter(selected, type);
-		return selected;
+		list=StudentCourseToCourseTypeListAdapter.adapter(list, type);
+		return list;
 	}
 }

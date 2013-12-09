@@ -375,7 +375,7 @@ public class FrameEditPane extends MFrame {
 		while (it.hasNext()) {
 			FrameElement e = (FrameElement) it.next();
 			String textStr[] = new String[4];
-			textStr[0] = e.getType();
+			textStr[0] = CourseTypeKind.getName(e.getType());
 			textStr[1] = e.getCredit();
 			textStr[2] = e.getPeriod().split("_")[0];
 			textStr[3] = e.getPeriod().split("_")[1];

@@ -98,7 +98,7 @@ public class StudentMainPanel extends MPanel {
 					if (time.isTimeForSelectCourse()
 							|| (time.isTimeForGradeOneSelectCourse() && GradeToTermAdapter
 									.adapter(s.getGrade()) == 1)) {
-						controller.switchToSCourse();
+					//	controller.switchToSCourse();
 					} else {
 						System.out.println("选课尚未开始");
 					}

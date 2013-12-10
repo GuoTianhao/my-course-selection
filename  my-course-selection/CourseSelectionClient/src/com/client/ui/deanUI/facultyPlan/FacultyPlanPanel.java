@@ -18,7 +18,7 @@ import com.client.ui.deanUI.DeanUISwitchController;
 import com.client.ui.main.MainFrame;
 import com.data.po.Frame;
 import com.logicService.DeanMethod;
-import com.ui.bcswing.FrameDisplayTable;
+import com.ui.bcswing.MScrollTable;
 import com.ui.bcswing.titleBar.DeanTitlebar;
 import com.ui.bcswing.titleBar.TitleBar;
 import com.ui.myswing.MComboBox;
@@ -29,7 +29,7 @@ public class FacultyPlanPanel extends MPanel {
 	private TitleBar title;
 	private MLabel choose;
 	private MComboBox<String> department;
-	private FrameDisplayTable table;
+	private MScrollTable table;
 	private String[] departmentItems = FacultyKind.getAllFaculty();
 	private Object[] data;
 
@@ -46,8 +46,10 @@ public class FacultyPlanPanel extends MPanel {
 		choose = new MLabel(new Point(15, 95), new Dimension(75, 22), "选择院系：");
 		department = new MComboBox<>(departmentItems, new Point(90, 95),
 				new Dimension(150, 25));
-		table = new FrameDisplayTable(new Point(10, 130), new Dimension(780,
+		table = new MScrollTable(new Point(10, 130), new Dimension(780,
 				430));
+		String[] c = { "课程模块", "建议学分", "开设学期" };
+		table.setColumnIdentifiers(c);
 		this.add(title);
 		this.add(choose);
 		this.add(department);

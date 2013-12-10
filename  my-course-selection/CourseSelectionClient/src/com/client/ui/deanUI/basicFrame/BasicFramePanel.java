@@ -5,22 +5,18 @@ import java.awt.Point;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.rmi.RemoteException;
-import java.util.ArrayList;
 import java.util.Iterator;
 
-import javax.swing.ListSelectionModel;
 import javax.swing.UIManager;
 
 import com.client.rmi.DeanMethodController;
 import com.client.ui.dataAdapter.BasicFrameToVectorAdapter;
 import com.client.ui.deanUI.DeanUISwitchController;
-import com.client.ui.main.MainFrame;
 import com.data.po.BasicFrame;
 import com.data.po.FrameElement;
 import com.logicService.DeanMethod;
 import com.ui.myswing.MPanel;
-import com.ui.bcswing.CourseDisplayTable;
-import com.ui.bcswing.FrameDisplayTable;
+import com.ui.bcswing.MScrollTable;
 import com.ui.bcswing.basicFrameEditPane.BasicFrameEditPane;
 import com.ui.bcswing.titleBar.DeanTitlebar;
 import com.ui.bcswing.titleBar.TitleBar;
@@ -28,7 +24,7 @@ import com.ui.myswing.MButton;
 
 public class BasicFramePanel extends MPanel {
 	private TitleBar title;
-	private FrameDisplayTable table;
+	private MScrollTable table;
 	private MButton make;
 	private MButton change;
 
@@ -42,8 +38,11 @@ public class BasicFramePanel extends MPanel {
 	private void createComponent() {
 		title = new DeanTitlebar(new Point(0, 0), new Dimension(
 				this.getWidth(), 75));
-		table = new FrameDisplayTable(new Point(10, 130), new Dimension(780,
+		table = new MScrollTable(new Point(10, 130), new Dimension(780,
 				430));
+		String[] c = { "课程模块", "建议学分", "开设学期" };
+		table.setColumnIdentifiers(c);
+		
 		make = new MButton(null, null, null, new Point(15, 95), new Dimension(
 				100, 30));
 		change = new MButton(null, null, null, new Point(130, 95),
@@ -59,7 +58,7 @@ public class BasicFramePanel extends MPanel {
 	}
 
 	private void addListener() {
-		
+
 		title.addReturnMenu(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				DeanUISwitchController controller = DeanUISwitchController
@@ -67,42 +66,41 @@ public class BasicFramePanel extends MPanel {
 				controller.swicthToMainFrame();
 			}
 		});
-		
+
 		make.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				new BasicFrameEditPane();
-							}
+			}
 		});
-		
+
 		change.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				DeanMethod method = DeanMethodController.getMethod();
 				try {
 					BasicFrame frame = method.lookUpBasicFrame();
-					BasicFrameEditPane pane=new BasicFrameEditPane();
+					BasicFrameEditPane pane = new BasicFrameEditPane();
 					pane.setBasicFrame(frame);
 				} catch (RemoteException e1) {
 					e1.printStackTrace();
 				}
 			}
 		});
-		
+
 	}
 
 	private void init() {
 		DeanMethod method = DeanMethodController.getMethod();
 		try {
-			BasicFrame frame =method.lookUpBasicFrame();
-			Iterator<FrameElement> it=frame.iterator();
-			if(!it.hasNext()){
+			BasicFrame frame = method.lookUpBasicFrame();
+			Iterator<FrameElement> it = frame.iterator();
+			if (!it.hasNext()) {
 				change.setEnabled(false);
 				make.setEnabled(true);
-			}else{
+			} else {
 				make.setEnabled(false);
 				change.setEnabled(true);
 			}
-			table.setDataVector(BasicFrameToVectorAdapter
-					.adapter(frame));
+			table.setDataVector(BasicFrameToVectorAdapter.adapter(frame));
 		} catch (RemoteException e) {
 			e.printStackTrace();
 		}

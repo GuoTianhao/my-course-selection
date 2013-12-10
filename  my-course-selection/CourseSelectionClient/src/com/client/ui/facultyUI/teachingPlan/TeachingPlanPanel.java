@@ -20,7 +20,7 @@ import com.data.po.FrameElement;
 import com.logicService.FacultyDeanMethod;
 import com.ui.myswing.MPanel;
 import com.ui.myswing.MButton;
-import com.ui.bcswing.FrameDisplayTable;
+import com.ui.bcswing.MScrollTable;
 import com.ui.bcswing.frameEditPane.FrameEditPane;
 import com.ui.bcswing.titleBar.FacultyTitleBar;
 import com.ui.bcswing.titleBar.TitleBar;
@@ -30,7 +30,7 @@ public class TeachingPlanPanel extends MPanel {
 	private MButton add;
 	private MButton change;
 	private MButton publish;
-	private FrameDisplayTable table;
+	private MScrollTable table;
 
 	public TeachingPlanPanel(Point loc, Dimension size) {
 		super(loc, size);
@@ -42,8 +42,10 @@ public class TeachingPlanPanel extends MPanel {
 	private void createComponent() {
 		title = new FacultyTitleBar(new Point(0, 0), new Dimension(
 				this.getWidth(), 75));
-		table = new FrameDisplayTable(new Point(10, 130), new Dimension(780,
+		table = new MScrollTable(new Point(10, 130), new Dimension(780,
 				430));
+		String[] c = { "课程模块", "建议学分", "开设学期" };
+		table.setColumnIdentifiers(c);
 		add = new MButton(new ImageIcon(), new ImageIcon(), new ImageIcon(),
 				new Point(15, 95), new Dimension(100, 30));
 		change = new MButton(null, null, null, new Point(100, 95),

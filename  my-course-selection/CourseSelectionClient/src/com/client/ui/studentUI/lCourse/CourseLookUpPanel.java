@@ -19,8 +19,7 @@ import com.client.ui.main.MainFrame;
 import com.client.ui.studentUI.StudentUISwitchController;
 import com.logicService.DeanMethod;
 import com.logicService.StudentMethod;
-import com.ui.bcswing.CourseDisplayTable;
-import com.ui.bcswing.FrameDisplayTable;
+import com.ui.bcswing.MScrollTable;
 import com.ui.bcswing.titleBar.StudentTitleBar;
 import com.ui.bcswing.titleBar.TitleBar;
 import com.ui.myswing.MComboBox;
@@ -33,7 +32,7 @@ public class CourseLookUpPanel extends MPanel {
 	private MLabel choose2;
 	private MComboBox<String> term;
 	private MComboBox<String> department;
-	private CourseDisplayTable table;
+	private MScrollTable table;
 	private String[] departmentItems = FacultyKind.getAllFaculty();
 	private Object[] data;
 
@@ -53,8 +52,10 @@ public class CourseLookUpPanel extends MPanel {
 		choose2 = new MLabel(new Point(260, 95), new Dimension(75, 22), "选择院系：");
 		department = new MComboBox<>(departmentItems, new Point(350, 95),
 				new Dimension(150, 25));
-		table = new CourseDisplayTable(new Point(10, 130), new Dimension(780,
+		table = new MScrollTable(new Point(10, 130), new Dimension(780,
 				430));
+		String[] c = { "课程编号", "课程模块", "课程名称", "学分", "开设学期" };
+		table.setColumnIdentifiers(c);
 		this.add(title);
 		this.add(choose1);
 		this.add(choose2);

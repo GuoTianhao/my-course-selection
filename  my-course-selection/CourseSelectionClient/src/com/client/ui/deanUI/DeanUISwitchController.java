@@ -7,6 +7,7 @@ import com.client.ui.deanUI.coursePanel.CoursePanel;
 import com.client.ui.deanUI.facultyPlan.FacultyPlanPanel;
 import com.client.ui.deanUI.studentPanel.StudentIOPanel;
 import com.client.ui.deanUI.teacherPanel.TeacherIOPanel;
+import com.client.ui.deanUI.timePanel.TimeControlPanel;
 import com.client.ui.loginUI.Login;
 import com.client.ui.main.MainFrame;
 
@@ -62,6 +63,12 @@ public class DeanUISwitchController {
 	public void switchToTeacherPanel() {
 		frame.getContentPane().removeAll();
 		frame.add(new TeacherIOPanel(new Point(0, 0), frame.getSize()));
+		frame.refresh();
+	}
+	
+	public void switchTpTimePanel(){
+		frame.getContentPane().removeAll();
+		frame.add(new TimeControlPanel(new Point(0, 0), frame.getSize()));
 		frame.refresh();
 	}
 	

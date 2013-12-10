@@ -18,7 +18,7 @@ import com.client.ui.studentUI.StudentUISwitchController;
 import com.data.po.Course;
 import com.data.po.Student;
 import com.logicService.StudentMethod;
-import com.ui.bcswing.BySelectCourseTable;
+import com.ui.bcswing.MScrollTable;
 import com.ui.bcswing.titleBar.StudentTitleBar;
 import com.ui.bcswing.titleBar.TitleBar;
 import com.ui.myswing.MButton;
@@ -29,7 +29,7 @@ public class BySelectionCoursePanel extends MPanel {
 	private TitleBar title;
 	private MComboBox courseType;
 	private MButton bSelect;
-	private BySelectCourseTable table;
+	private MScrollTable table;
 
 	public BySelectionCoursePanel(Point loc, Dimension size) {
 		super(loc, size);
@@ -49,9 +49,10 @@ public class BySelectionCoursePanel extends MPanel {
 				new Dimension(100, 30));
 		bSelect.setText("补选");
 
-		table = new BySelectCourseTable(new Point(10, 130), new Dimension(780,
+		table = new MScrollTable(new Point(10, 130), new Dimension(780,
 				430));
-
+		String[] c = { "课程编号","课程名称","上课地点","上课时间", "学分","剩余人数" };
+		table.setColumnIdentifiers(c);
 		this.add(title);
 		this.add(courseType);
 		this.add(bSelect);

@@ -17,9 +17,9 @@ import com.client.ui.teacherUI.TeacherUISwitchController;
 import com.data.po.Course;
 import com.data.po.Teacher;
 import com.logicService.TeacherMethod;
-import com.ui.bcswing.CourseDisplayTable;
 import com.ui.bcswing.CourseInforPane;
 import com.ui.bcswing.CourseScriptPane;
+import com.ui.bcswing.MScrollTable;
 import com.ui.bcswing.titleBar.TeacherTitleBar;
 import com.ui.bcswing.titleBar.TitleBar;
 import com.ui.myswing.MButton;
@@ -30,7 +30,7 @@ public class CourseManagementPanel extends MPanel {
 	private MButton editB;
 	private MButton inforB;
 	private MButton recordB;
-	private CourseDisplayTable table;
+	private MScrollTable table;
 
 	public CourseManagementPanel(Point loc, Dimension size) {
 		super(loc, size);
@@ -48,9 +48,10 @@ public class CourseManagementPanel extends MPanel {
 				new Dimension(100, 30));
 		recordB = new MButton(null, null, null, new Point(230, 95),
 				new Dimension(100, 30));
-		table = new CourseDisplayTable(new Point(10, 130), new Dimension(780,
+		table = new MScrollTable(new Point(10, 130), new Dimension(780,
 				430));
-
+		String[] c = { "课程编号", "课程模块", "课程名称", "学分", "开设学期" };
+		table.setColumnIdentifiers(c);
 		editB.setText("编辑");
 		inforB.setText("详细信息");
 		recordB.setText("查看学生列表／登记成绩");

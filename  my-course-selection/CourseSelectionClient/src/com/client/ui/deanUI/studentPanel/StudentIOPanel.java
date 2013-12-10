@@ -16,6 +16,7 @@ import org.jb2011.lnf.beautyeye.resources.beautyeye;
 import com.basicdata.FacultyKind;
 import com.client.ui.deanUI.DeanUISwitchController;
 import com.data.excellIO.StudentListExcelIn;
+import com.ui.bcswing.MScrollTable;
 import com.ui.bcswing.titleBar.DeanTitlebar;
 import com.ui.bcswing.titleBar.TitleBar;
 import com.ui.myswing.*;
@@ -28,7 +29,7 @@ public class StudentIOPanel extends MPanel {
 	private MButton importFromFile;
 	private MTextField search;
 	private MButton searchBtn;
-	private StudentIOTable table;
+	private MScrollTable table;
 	private String[] departmentItems = FacultyKind.getAllFaculty();
 
 	public StudentIOPanel(Point loc, Dimension size) {
@@ -52,8 +53,10 @@ public class StudentIOPanel extends MPanel {
 		search.setBounds(635, 95, 120, 25);
 		searchBtn = new MButton(new ImageIcon());
 		searchBtn.setBounds(760, 95, 25, 25);
-		table = new StudentIOTable(new Point(10, 130), new Dimension(780,
+		table = new MScrollTable(new Point(10, 130), new Dimension(780,
 				430));
+		String[] c = {"学号","姓名","入学年份" };
+		table.setColumnIdentifiers(c);
 		this.add(title);
 		this.add(choose);
 		this.add(department);

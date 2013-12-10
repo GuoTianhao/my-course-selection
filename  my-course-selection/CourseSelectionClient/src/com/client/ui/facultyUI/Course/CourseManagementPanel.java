@@ -7,7 +7,6 @@ import java.awt.event.ActionListener;
 import java.awt.event.InputEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 import java.rmi.RemoteException;
 import java.util.List;
 
@@ -20,8 +19,8 @@ import com.client.ui.facultyUI.FacultyUISwitchController;
 import com.data.po.Course;
 import com.data.po.FacultyDean;
 import com.logicService.FacultyDeanMethod;
-import com.ui.bcswing.CourseDisplayTable;
 import com.ui.bcswing.MPopupMenu;
+import com.ui.bcswing.MScrollTable;
 import com.ui.bcswing.courseEditPane.FacultyCoursePane;
 import com.ui.bcswing.titleBar.FacultyTitleBar;
 import com.ui.bcswing.titleBar.TitleBar;
@@ -33,7 +32,7 @@ public class CourseManagementPanel extends MPanel {
 	private TitleBar title;
 	private MButton button1;
 	private MButton button2;
-	private CourseDisplayTable table;
+	private MScrollTable table;
 	private MPopupMenu popupMenu;
 
 	public CourseManagementPanel(Point loc, Dimension size) {
@@ -52,8 +51,10 @@ public class CourseManagementPanel extends MPanel {
 		button2 = new MButton(null, null, null, new Point(130, 95),
 				new Dimension(50, 25));
 		button2.setText("编辑");
-		table = new CourseDisplayTable(new Point(10, 130), new Dimension(780,
+		table = new MScrollTable(new Point(10, 130), new Dimension(780,
 				430));
+		String[] c = { "课程编号", "课程模块", "课程名称", "学分", "开设学期" };
+		table.setColumnIdentifiers(c);
 		popupMenu = new MPopupMenu();
 		table.add(popupMenu);
 		this.add(title);
@@ -74,7 +75,14 @@ public class CourseManagementPanel extends MPanel {
 
 		button1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				new FacultyCoursePane();
+				FacultyDeanMethod method=FacultyDeanMethodController.getMethod();
+				try {
+					if(method.isTimeForPublishCourse()){
+						new FacultyCoursePane();	
+					}
+				} catch (RemoteException e1) {
+					e1.printStackTrace();
+				}
 			}
 
 		});

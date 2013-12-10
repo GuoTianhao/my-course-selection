@@ -4,11 +4,15 @@ import java.awt.Dimension;
 import java.awt.Point;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.rmi.RemoteException;
 
 import javax.swing.ImageIcon;
 import javax.swing.SwingConstants;
 import javax.swing.UIManager;
 
+import com.basicdata.Identity;
+import com.client.rmi.FacultyDeanMethodController;
+import com.logicService.FacultyDeanMethod;
 import com.ui.bcswing.titleBar.FacultyTitleBar;
 import com.ui.bcswing.titleBar.TitleBar;
 import com.ui.myswing.MButton;
@@ -80,6 +84,13 @@ public class FacultyMainPanel extends MPanel {
 	}
 
 	public static void main(String[] args) {
+		FacultyDeanMethod method = FacultyDeanMethodController.getMethod();
+		try {
+			Identity.setIdentity(method.getSelf("100000001"));
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		try {
 			org.jb2011.lnf.beautyeye.BeautyEyeLNFHelper.launchBeautyEyeLNF();
 			UIManager.put("RootPane.setupButtonVisible", false);

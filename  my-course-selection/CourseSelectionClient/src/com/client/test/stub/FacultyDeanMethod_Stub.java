@@ -182,4 +182,47 @@ public class FacultyDeanMethod_Stub implements FacultyDeanMethod{
 		// TODO Auto-generated method stub
 		return false;
 	}
+
+	@Override
+	public boolean isTimeForSystemSelect() throws RemoteException {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public void setIsTimeForByElection(boolean arg0) throws RemoteException {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void setIsTimeForGradeOneSelectCourse(boolean arg0)
+			throws RemoteException {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void setIsTimeForPublishCourse(boolean arg0) throws RemoteException {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void setIsTimeForQuitCourse(boolean arg0) throws RemoteException {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void setIsTimeForSelectCourse(boolean arg0) throws RemoteException {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void setIsTimeForSystemSelect(boolean arg0) throws RemoteException {
+		// TODO Auto-generated method stub
+		
+	}
 }

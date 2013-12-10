@@ -21,20 +21,17 @@ import com.basicdata.TermKind;
 import com.client.rmi.DeanMethodController;
 import com.client.ui.dataAdapter.CourseListToVectorAdapter;
 import com.client.ui.deanUI.DeanUISwitchController;
-import com.client.ui.facultyUI.Course.FacultyDeanCourseTeacherAssignmentDislayPane;
 import com.data.po.Course;
-import com.data.po.FacultyDean;
 import com.logicService.DeanMethod;
 import com.timeControllerService.TimeController;
-import com.ui.bcswing.CourseDisplayTable;
 import com.ui.bcswing.CourseInforPane;
 import com.ui.bcswing.MPopupMenu;
+import com.ui.bcswing.MScrollTable;
 import com.ui.bcswing.courseEditPane.DeanCoursePane;
 import com.ui.bcswing.titleBar.DeanTitlebar;
 import com.ui.bcswing.titleBar.TitleBar;
 import com.ui.myswing.MButton;
 import com.ui.myswing.MPanel;
-import com.ui.myswing.MTextField;
 
 public class CoursePanel extends MPanel {
 	private TitleBar title;
@@ -43,7 +40,7 @@ public class CoursePanel extends MPanel {
 	private CoursePublicOperateBar publishOperateBar;
 	private AllCourseOperateBar allCourseOperateBar;
 
-	private CourseDisplayTable table;
+	private MScrollTable table;
 
 	private int state;
 
@@ -68,8 +65,10 @@ public class CoursePanel extends MPanel {
 		courseP.setText("公共课程");
 		courseA.setText("全校课程");
 
-		table = new CourseDisplayTable(new Point(10, 180), new Dimension(
+		table = new MScrollTable(new Point(10, 180), new Dimension(
 				size.width - 70, 380));
+		String[] c = { "课程编号", "课程模块", "课程名称", "学分", "开设学期" };
+		table.setColumnIdentifiers(c);
 		popupMenu = new MPopupMenu();
 		table.add(popupMenu);
 

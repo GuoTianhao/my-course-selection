@@ -16,7 +16,7 @@ import com.client.ui.dataAdapter.VectorToScoreAdapter;
 import com.client.ui.teacherUI.TeacherUISwitchController;
 import com.data.po.Student;
 import com.logicService.TeacherMethod;
-import com.ui.bcswing.CourseScoreTable;
+import com.ui.bcswing.MScrollTable;
 import com.ui.bcswing.titleBar.TeacherTitleBar;
 import com.ui.bcswing.titleBar.TitleBar;
 import com.ui.myswing.MButton;
@@ -24,7 +24,7 @@ import com.ui.myswing.MPanel;
 
 public class CourseScoreRecordPanel extends MPanel {
 	private TitleBar title;
-	private CourseScoreTable table;
+	private MScrollTable table;
 	private MButton backB;
 	private MButton editB;
 	private String courseID;
@@ -39,8 +39,10 @@ public class CourseScoreRecordPanel extends MPanel {
 	private void createComponent() {
 		title = new TeacherTitleBar(new Point(0, 0), new Dimension(
 				this.getWidth(), 75));
-		table = new CourseScoreTable(new Point(10, 130),
+		table = new MScrollTable(new Point(10, 130),
 				new Dimension(780, 430));
+		String[] c = { "学号","姓名","院系","年级","成绩" };
+		table.setColumnIdentifiers(c);
 		backB = new MButton(null, null, null, new Point(10, 95), new Dimension(
 				100, 30));
 		editB = new MButton(null, null, null, new Point(700, 95),

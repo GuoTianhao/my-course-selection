@@ -7,7 +7,6 @@ import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.rmi.RemoteException;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
@@ -20,12 +19,11 @@ import com.basicdata.TermKind;
 import com.client.rmi.StudentMethodController;
 import com.client.ui.dataAdapter.CourseAndScoreToVector;
 import com.client.ui.dataAdapter.CourseListToCourseTermListAdapter;
-import com.client.ui.main.MainFrame;
 import com.client.ui.studentUI.StudentUISwitchController;
 import com.data.po.Course;
 import com.data.po.Student;
 import com.logicService.StudentMethod;
-import com.ui.bcswing.StudentGetScore;
+import com.ui.bcswing.MScrollTable;
 import com.ui.bcswing.titleBar.StudentTitleBar;
 import com.ui.bcswing.titleBar.TitleBar;
 import com.ui.myswing.MComboBox;
@@ -37,7 +35,7 @@ public class ScoreCheckPanel extends MPanel {
 	private TitleBar title;
 	private MLabel choose;
 	private MComboBox<String> term;
-	private StudentGetScore table;
+	private MScrollTable table;
 
 	public ScoreCheckPanel(Point loc, Dimension size) {
 		super(loc, size);
@@ -52,7 +50,9 @@ public class ScoreCheckPanel extends MPanel {
 		choose = new MLabel(new Point(15, 95), new Dimension(75, 22), "选择学期：");
 		term = new MComboBox<>(TermKind.getAllTerm(), new Point(90, 95),
 				new Dimension(150, 25));
-		table = new StudentGetScore(new Point(10, 130), new Dimension(780, 430));
+		table = new MScrollTable(new Point(10, 130), new Dimension(780, 430));
+		String[] c = { "课程编号","课程名称","课程类型","学分","成绩" };
+		table.setColumnIdentifiers(c);
 		this.add(title);
 		this.add(choose);
 		this.add(term);

@@ -21,7 +21,7 @@ import com.client.ui.studentUI.StudentUISwitchController;
 import com.data.po.Course;
 import com.data.po.Student;
 import com.logicService.StudentMethod;
-import com.ui.bcswing.CourseDisplayTable;
+import com.ui.bcswing.MScrollTable;
 import com.ui.bcswing.titleBar.StudentTitleBar;
 import com.ui.bcswing.titleBar.TitleBar;
 import com.ui.myswing.MButton;
@@ -33,7 +33,7 @@ public class QuitCoursePanel extends MPanel {
 	private TitleBar title;
 	private MComboBox courseType;
 	private MButton quitB;
-	private CourseDisplayTable table;
+	private MScrollTable table;
 
 	public QuitCoursePanel(Point loc, Dimension size) {
 		super(loc, size);
@@ -53,8 +53,10 @@ public class QuitCoursePanel extends MPanel {
 				new Dimension(100, 30));
 		quitB.setText("退选");
 
-		table = new CourseDisplayTable(new Point(10, 130), new Dimension(780,
+		table = new MScrollTable(new Point(10, 130), new Dimension(780,
 				430));
+		String[] c = { "课程编号", "课程模块", "课程名称", "学分", "开设学期" };
+		table.setColumnIdentifiers(c);
 
 		this.add(title);
 		this.add(courseType);

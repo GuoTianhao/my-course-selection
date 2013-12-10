@@ -16,7 +16,7 @@ import com.logicService.TeacherMethod;
 
 public class ServerStart {
 	public static void main(String[] args){
-		RmiInit.init();
 		TimeInit.init();
+		RmiInit.init();
 	}
 }

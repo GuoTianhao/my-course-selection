@@ -109,6 +109,12 @@ public class StudentMethodImpl extends UnicastRemoteObject implements StudentMet
 		// TODO Auto-generated method stub
 		return CourseGetter.getTypeCourse(type);
 	}
+	
+	@Override
+	public int getCourseSelectNum(String cID) throws RemoteException {
+		// TODO Auto-generated method stub
+		return CourseStudentNumGetter.getCourseStudentNum(cID, YearTerm.getNowYearTerm());
+	}
 
 	@Override
 	public boolean isTimeForPublishCourse() throws RemoteException{
@@ -147,14 +153,51 @@ public class StudentMethodImpl extends UnicastRemoteObject implements StudentMet
 	}
 
 	@Override
-	public int getCourseSelectNum(String cID) throws RemoteException {
-		// TODO Auto-generated method stub
-		return CourseStudentNumGetter.getCourseStudentNum(cID, YearTerm.getNowYearTerm());
-	}
-
-	@Override
 	public int getWaitCourseStudentNum(String cID) throws RemoteException {
 		// TODO Auto-generated method stub
 		return CourseStudentNumGetter.getWaitCourseStudentNum(cID);
+	}
+
+	@Override
+	public boolean isTimeForSystemSelect() throws RemoteException {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public void setIsTimeForPublishCourse(boolean admit) throws RemoteException {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void setIsTimeForSelectCourse(boolean admit) throws RemoteException {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void setIsTimeForGradeOneSelectCourse(boolean admit)
+			throws RemoteException {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void setIsTimeForQuitCourse(boolean admit) throws RemoteException {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void setIsTimeForByElection(boolean admit) throws RemoteException {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void setIsTimeForSystemSelect(boolean admit) throws RemoteException {
+		// TODO Auto-generated method stub
+		
 	}
 }

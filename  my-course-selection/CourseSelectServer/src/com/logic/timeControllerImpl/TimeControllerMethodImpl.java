@@ -3,8 +3,7 @@ package com.logic.timeControllerImpl;
 import java.rmi.RemoteException;
 import java.util.Calendar;
 
-public class TimeControllerMethodImpl implements
-		com.timeControllerService.TimeController {
+public class TimeControllerMethodImpl  {
 	private Calendar systemTime;
 	private SystemPeriod period;
 
@@ -22,7 +21,7 @@ public class TimeControllerMethodImpl implements
 		return c;
 	}
 
-	@Override
+	
 	public boolean isTimeForPublishCourse() {
 		// TODO Auto-generated method stub
 		if (((systemTime.after(addDay(period.getTermOneStartDay(), -1))) && (systemTime
@@ -35,7 +34,7 @@ public class TimeControllerMethodImpl implements
 		}
 	}
 
-	@Override
+	
 	public boolean isTimeForSelectCourse() {
 		// TODO Auto-generated method stub
 		if (((systemTime.after(addDay(period.getTermOneEndDay(), -8))) && (systemTime
@@ -65,7 +64,7 @@ public class TimeControllerMethodImpl implements
 //		}
 //	}
 
-	@Override
+	
 	public boolean isTimeForQuitCourse() {
 		// TODO Auto-generated method stub
 		if (((systemTime.after(addDay(period.getTermOneStartDay(), -1))) && (systemTime
@@ -82,7 +81,7 @@ public class TimeControllerMethodImpl implements
 			return false;
 	}
 
-	@Override
+	
 	public boolean isTimeForGradeOneSelectCourse() {
 		// TODO Auto-generated method stub
 		if ((systemTime.after(addDay(period.getTermOneStartDay(), -1)))
@@ -94,7 +93,7 @@ public class TimeControllerMethodImpl implements
 
 	}
 
-	@Override
+	
 	public boolean isTimeForByElection() throws RemoteException {
 		// TODO Auto-generated method stub
 		return false;

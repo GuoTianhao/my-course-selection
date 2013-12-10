@@ -158,9 +158,21 @@ public class DeanMethodImpl extends UnicastRemoteObject implements DeanMethod{
 	}
 
 	@Override
+	public boolean importStudent(List<Student> list) throws RemoteException {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean importTeacher(List<Teacher> list) throws RemoteException {
+		// TODO Auto-generated method stub
+		return false;
+	}
+	
+	@Override
 	public boolean isTimeForPublishCourse() throws RemoteException{
 		// TODO Auto-generated method stub
-		return true;
+		return time.isTimeForPublishCourse();
 	}
 
 	@Override
@@ -188,15 +200,46 @@ public class DeanMethodImpl extends UnicastRemoteObject implements DeanMethod{
 	}
 
 	@Override
-	public boolean importStudent(List<Student> list) throws RemoteException {
+	public boolean isTimeForSystemSelect() throws RemoteException {
 		// TODO Auto-generated method stub
-		return false;
+		return time.isTimeForSystemSelect();
 	}
 
 	@Override
-	public boolean importTeacher(List<Teacher> list) throws RemoteException {
+	public void setIsTimeForPublishCourse(boolean admit) throws RemoteException {
 		// TODO Auto-generated method stub
-		return false;
+		time.setIsTimeForPublishCourse(admit);
+	}
+
+	@Override
+	public void setIsTimeForSelectCourse(boolean admit) throws RemoteException {
+		// TODO Auto-generated method stub
+		time.setIsTimeForSelectCourse(admit);
+	}
+
+	@Override
+	public void setIsTimeForGradeOneSelectCourse(boolean admit)
+			throws RemoteException {
+		// TODO Auto-generated method stub
+		time.setIsTimeForGradeOneSelectCourse(admit);
+	}
+
+	@Override
+	public void setIsTimeForQuitCourse(boolean admit) throws RemoteException {
+		// TODO Auto-generated method stub
+		time.setIsTimeForQuitCourse(admit);
+	}
+
+	@Override
+	public void setIsTimeForByElection(boolean admit) throws RemoteException {
+		// TODO Auto-generated method stub
+		time.setIsTimeForByElection(admit);
+	}
+
+	@Override
+	public void setIsTimeForSystemSelect(boolean admit) throws RemoteException {
+		// TODO Auto-generated method stub
+		time.setIsTimeForSystemSelect(admit);
 	}	
 
 }

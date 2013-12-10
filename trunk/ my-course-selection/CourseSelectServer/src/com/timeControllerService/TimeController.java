@@ -17,4 +17,19 @@ public interface TimeController {
 	
 	//是否可以补选
 	public boolean isTimeForByElection() throws RemoteException;
+	
+	//系统是否开始选课
+	public boolean isTimeForSystemSelect() throws RemoteException;
+	
+	public void setIsTimeForPublishCourse(boolean admit) throws RemoteException;
+	
+	public void setIsTimeForSelectCourse(boolean admit) throws RemoteException;
+	
+	public void setIsTimeForGradeOneSelectCourse(boolean admit) throws RemoteException;
+	
+	public void setIsTimeForQuitCourse(boolean admit) throws RemoteException;
+	
+	public void setIsTimeForByElection(boolean admit) throws RemoteException;
+	
+	public void setIsTimeForSystemSelect(boolean admit) throws RemoteException;
 }

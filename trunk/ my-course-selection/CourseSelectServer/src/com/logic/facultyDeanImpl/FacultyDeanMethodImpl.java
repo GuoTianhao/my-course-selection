@@ -160,4 +160,47 @@ public class FacultyDeanMethodImpl extends UnicastRemoteObject implements Facult
 		return time.isTimeForByElection();
 	}
 
+	@Override
+	public boolean isTimeForSystemSelect() throws RemoteException {
+		// TODO Auto-generated method stub
+		return time.isTimeForSystemSelect();
+	}
+
+	@Override
+	public void setIsTimeForPublishCourse(boolean admit) throws RemoteException {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void setIsTimeForSelectCourse(boolean admit) throws RemoteException {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void setIsTimeForGradeOneSelectCourse(boolean admit)
+			throws RemoteException {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void setIsTimeForQuitCourse(boolean admit) throws RemoteException {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void setIsTimeForByElection(boolean admit) throws RemoteException {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void setIsTimeForSystemSelect(boolean admit) throws RemoteException {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

@@ -8,6 +8,7 @@ import java.awt.event.ActionListener;
 import javax.swing.ImageIcon;
 import javax.swing.SwingConstants;
 import javax.swing.UIManager;
+import javax.swing.UnsupportedLookAndFeelException;
 import javax.swing.text.StyledEditorKit.ForegroundAction;
 
 import com.client.ui.main.MainFrame;
@@ -125,6 +126,13 @@ public class DeanMainPanel extends MPanel {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+//		try {
+//			UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+//		} catch (ClassNotFoundException | InstantiationException
+//				| IllegalAccessException | UnsupportedLookAndFeelException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
 		DeanUISwitchController controller = DeanUISwitchController
 				.getUISwitchController();
 		controller.swicthToMainFrame();

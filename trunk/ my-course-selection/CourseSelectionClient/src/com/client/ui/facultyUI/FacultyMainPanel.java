@@ -9,8 +9,7 @@ import java.rmi.RemoteException;
 import javax.swing.ImageIcon;
 import javax.swing.SwingConstants;
 import javax.swing.UIManager;
-
-import org.jb2011.lnf.beautyeye.BeautyEyeLNFHelper;
+import javax.swing.UnsupportedLookAndFeelException;
 
 import com.basicdata.Identity;
 import com.client.rmi.FacultyDeanMethodController;
@@ -93,11 +92,17 @@ public class FacultyMainPanel extends MPanel {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+//		try {
+//			org.jb2011.lnf.beautyeye.BeautyEyeLNFHelper.launchBeautyEyeLNF();
+//			UIManager.put("RootPane.setupButtonVisible", false);
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		}
 		try {
-			BeautyEyeLNFHelper.frameBorderStyle = BeautyEyeLNFHelper.FrameBorderStyle.osLookAndFeelDecorated;
-			org.jb2011.lnf.beautyeye.BeautyEyeLNFHelper.launchBeautyEyeLNF();
-			UIManager.put("RootPane.setupButtonVisible", false);
-		} catch (Exception e) {
+			UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+		} catch (ClassNotFoundException | InstantiationException
+				| IllegalAccessException | UnsupportedLookAndFeelException e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		FacultyUISwitchController controller = FacultyUISwitchController

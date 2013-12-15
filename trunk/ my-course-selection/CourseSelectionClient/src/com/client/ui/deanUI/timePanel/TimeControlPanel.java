@@ -7,6 +7,7 @@ import java.awt.event.ActionListener;
 import java.rmi.RemoteException;
 
 import javax.swing.UIManager;
+import javax.swing.UnsupportedLookAndFeelException;
 
 import com.client.rmi.DeanMethodController;
 import com.client.ui.deanUI.DeanUISwitchController;
@@ -208,15 +209,23 @@ public class TimeControlPanel extends MPanel {
 
 	public static void main(String[] args) {
 
+//		try {
+//			org.jb2011.lnf.beautyeye.BeautyEyeLNFHelper.launchBeautyEyeLNF();
+//			UIManager.put("RootPane.setupButtonVisible", false);
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		}
+		
 		try {
-			org.jb2011.lnf.beautyeye.BeautyEyeLNFHelper.launchBeautyEyeLNF();
-			UIManager.put("RootPane.setupButtonVisible", false);
-		} catch (Exception e) {
+			UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+		} catch (ClassNotFoundException | InstantiationException
+				| IllegalAccessException | UnsupportedLookAndFeelException e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		DeanUISwitchController controller = DeanUISwitchController
 				.getUISwitchController();
-		controller.switchTpTimePanel();
+		controller.switchToTimePanel();
 	}
 
 }

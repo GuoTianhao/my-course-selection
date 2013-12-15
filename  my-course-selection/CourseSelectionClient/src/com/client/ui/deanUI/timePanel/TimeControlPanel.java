@@ -6,6 +6,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.rmi.RemoteException;
 
+import javax.swing.ImageIcon;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 
@@ -15,16 +16,27 @@ import com.timeControllerService.TimeController;
 import com.ui.bcswing.titleBar.DeanTitlebar;
 import com.ui.bcswing.titleBar.TitleBar;
 import com.ui.myswing.MButton;
+import com.ui.myswing.MFont;
+import com.ui.myswing.MLabel;
 import com.ui.myswing.MPanel;
 
 public class TimeControlPanel extends MPanel {
 	private TitleBar title;
+	private MLabel publishLb;
 	private MButton publish;
+	private MLabel studentSelectLb;
 	private MButton studentSelect;
+	private MLabel gradeOneSelectLb;
 	private MButton gradeOneSelect;
+	private MLabel quitCourseLb;
 	private MButton quitCourse;
+	private MLabel bySelectLb;
 	private MButton bySelect;
+	private MLabel systemSelectLb;
 	private MButton systemSelect;
+	private ImageIcon on = new ImageIcon("resource\\on.png");
+	private ImageIcon off = new ImageIcon("resource\\off.png");
+
 
 	private TimeController time = DeanMethodController.getMethod();
 
@@ -40,21 +52,27 @@ public class TimeControlPanel extends MPanel {
 		title = new DeanTitlebar(new Point(0, 0), new Dimension(
 				this.getWidth(), 75));
 
-		publish = new MButton(null, null, null, new Point(15, 100),
+		publishLb = new MLabel(new Point(20, 95), new Dimension(60, 40), "发布课程");
+		publish = new MButton(off, null, null, new Point(80, 100),
+				new Dimension(100, 40));
+		
+		studentSelectLb = new MLabel(new Point(20, 145), new Dimension(60, 40),"学生选课");
+		studentSelect = new MButton(off, null, null, new Point(80, 150),
+				new Dimension(100,40));
+		
+		gradeOneSelect = new MButton(off, null, null, new Point(15, 200),
 				new Dimension(200, 30));
-		studentSelect = new MButton(null, null, null, new Point(15, 150),
+		quitCourse = new MButton(off, null, null, new Point(15, 250),
 				new Dimension(200, 30));
-		gradeOneSelect = new MButton(null, null, null, new Point(15, 200),
+		bySelect = new MButton(off, null, null, new Point(15, 300),
 				new Dimension(200, 30));
-		quitCourse = new MButton(null, null, null, new Point(15, 250),
-				new Dimension(200, 30));
-		bySelect = new MButton(null, null, null, new Point(15, 300),
-				new Dimension(200, 30));
-		systemSelect = new MButton(null, null, null, new Point(15, 350),
+		systemSelect = new MButton(off, null, null, new Point(15, 350),
 				new Dimension(200, 30));
 
 		this.add(publish);
+		this.add(publishLb);
 		this.add(studentSelect);
+		this.add(studentSelectLb);
 		this.add(gradeOneSelect);
 		this.add(quitCourse);
 		this.add(bySelect);
@@ -167,15 +185,19 @@ public class TimeControlPanel extends MPanel {
 	private void refreshButton() {
 		try {
 			if (!time.isTimeForPublishCourse()) {
-				publish.setText("开始发布课程");
+//				publish.setText("开始发布课程");
+				publish.setIcon(off);
 			} else {
-				publish.setText("结束发布课程");
+//				publish.setText("结束发布课程");
+				publish.setIcon(on);
 			}
 
 			if (!time.isTimeForSelectCourse()) {
-				studentSelect.setText("开始选课");
+//				studentSelect.setText("开始选课");
+				studentSelect.setIcon(off);
 			} else {
-				studentSelect.setText("结束选课");
+//				studentSelect.setText("结束选课");
+				studentSelect.setIcon(on);
 			}
 
 			if (!time.isTimeForGradeOneSelectCourse()) {
@@ -209,20 +231,20 @@ public class TimeControlPanel extends MPanel {
 
 	public static void main(String[] args) {
 
-//		try {
-//			org.jb2011.lnf.beautyeye.BeautyEyeLNFHelper.launchBeautyEyeLNF();
-//			UIManager.put("RootPane.setupButtonVisible", false);
-//		} catch (Exception e) {
-//			e.printStackTrace();
-//		}
-		
 		try {
-			UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
-		} catch (ClassNotFoundException | InstantiationException
-				| IllegalAccessException | UnsupportedLookAndFeelException e) {
-			// TODO Auto-generated catch block
+			org.jb2011.lnf.beautyeye.BeautyEyeLNFHelper.launchBeautyEyeLNF();
+			UIManager.put("RootPane.setupButtonVisible", false);
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		
+//		try {
+//			UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+//		} catch (ClassNotFoundException | InstantiationException
+//				| IllegalAccessException | UnsupportedLookAndFeelException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
 		DeanUISwitchController controller = DeanUISwitchController
 				.getUISwitchController();
 		controller.switchToTimePanel();

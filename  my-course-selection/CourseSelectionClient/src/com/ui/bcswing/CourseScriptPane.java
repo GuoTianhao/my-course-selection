@@ -37,15 +37,19 @@ public class CourseScriptPane extends MFrame {
 	private MButton yesBtn;
 	private MButton noBtn;
 
-	public CourseScriptPane(Dimension size) {
-		super(size);
+	public CourseScriptPane(Point loc, Dimension size) {
+		super(default_size);
+		this.setLocation(new Point(loc.x + size.width / 2
+				- this.getSize().width / 2, loc.y + size.height / 2
+				- this.getSize().height / 2));
 		createComponent();
 		addListener();
 	}
 
-	public CourseScriptPane(Course c) {
-		this(default_size);
+	public CourseScriptPane(Point loc, Dimension size, Course c) {
+		this(loc, size);
 		setCourse(c);
+		init();
 	}
 
 	private void createComponent() {
@@ -82,8 +86,18 @@ public class CourseScriptPane extends MFrame {
 		this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 	}
 
+	private void init() {
+		if(!course.getScript().equals("")){
+			String[] script = course.getScript().split(";");
+			outlineArea.setText(script[0]);
+			bookArea.setText(script[1]);
+			refBookArea.setText(script[2]);	
+		}
+	}
+
 	private void setCourse(Course c) {
 		course = c;
+
 	}
 
 	public String getScript() {
@@ -136,15 +150,4 @@ public class CourseScriptPane extends MFrame {
 		});
 	}
 
-	public static void main(String[] args) {
-		try {
-			org.jb2011.lnf.beautyeye.BeautyEyeLNFHelper.launchBeautyEyeLNF();
-			UIManager.put("RootPane.setupButtonVisible", false);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		CourseScriptPane pane = new CourseScriptPane(new Course(null, null,
-				null, null, 0, null, null, null, 0, 3, null, null));
-
-	}
 }

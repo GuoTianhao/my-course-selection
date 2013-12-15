@@ -9,10 +9,11 @@ import java.util.List;
 
 import javax.swing.UIManager;
 
+import org.jb2011.lnf.beautyeye.BeautyEyeLNFHelper;
+
 import com.basicdata.Identity;
 import com.client.rmi.TeacherMethodController;
 import com.client.ui.dataAdapter.CourseListToVectorAdapter;
-import com.client.ui.studentUI.StudentUISwitchController;
 import com.client.ui.teacherUI.TeacherUISwitchController;
 import com.data.po.Course;
 import com.data.po.Teacher;
@@ -48,8 +49,7 @@ public class CourseManagementPanel extends MPanel {
 				new Dimension(100, 30));
 		recordB = new MButton(null, null, null, new Point(230, 95),
 				new Dimension(100, 30));
-		table = new MScrollTable(new Point(10, 130), new Dimension(780,
-				430));
+		table = new MScrollTable(new Point(10, 130), new Dimension(780, 430));
 		String[] c = { "课程编号", "课程模块", "课程名称", "学分", "开设学期" };
 		table.setColumnIdentifiers(c);
 		editB.setText("编辑");
@@ -72,7 +72,7 @@ public class CourseManagementPanel extends MPanel {
 				controller.switchToMainFrame();
 			}
 		});
-		
+
 		recordB.addActionListener(new RecordListener());
 
 		editB.addActionListener(new EditListener());
@@ -83,17 +83,17 @@ public class CourseManagementPanel extends MPanel {
 
 	private void init() {
 		TeacherMethod method = TeacherMethodController.getMethod();
-		Teacher teacher=(Teacher) Identity.getIdentity();
-		String id=teacher.getID();
+		Teacher teacher = (Teacher) Identity.getIdentity();
+		String id = teacher.getID();
 		try {
-			List<Course> list=method.getMyCourseList(id);
+			List<Course> list = method.getMyCourseList(id);
 			table.setDataVector(CourseListToVectorAdapter.adapter(list));
 		} catch (RemoteException e) {
 			e.printStackTrace();
 		}
 	}
-	
-	class RecordListener implements ActionListener{
+
+	class RecordListener implements ActionListener {
 
 		public void actionPerformed(ActionEvent e) {
 			int index = table.getSelectedRow();
@@ -101,10 +101,10 @@ public class CourseManagementPanel extends MPanel {
 				String id = (String) table.getValueAt(index, 0);
 				TeacherUISwitchController controller = TeacherUISwitchController
 						.getUISwitchController();
-				controller.switchToRecordScore(id);	
+				controller.switchToRecordScore(id);
 			}
 		}
-		
+
 	}
 
 	class EditListener implements ActionListener {
@@ -115,14 +115,17 @@ public class CourseManagementPanel extends MPanel {
 				String id = (String) table.getValueAt(index, 0);
 				TeacherMethod method = TeacherMethodController.getMethod();
 				try {
+					TeacherUISwitchController controller = TeacherUISwitchController
+							.getUISwitchController();
 					CourseScriptPane scriptPane = new CourseScriptPane(
+							controller.getLoc(),
+							CourseManagementPanel.this.getSize(),
 							method.getCourse(id));
-				} catch (RemoteException e1) {
+				} catch (Exception e1) {
 					e1.printStackTrace();
 				}
 			}
 		}
-
 	}
 
 	class CourseInforListener implements ActionListener {
@@ -146,13 +149,14 @@ public class CourseManagementPanel extends MPanel {
 	public static void main(String[] args) {
 		TeacherMethod method = TeacherMethodController.getMethod();
 		try {
-			Identity.setIdentity(method.getSelf("100000003"));
+			Identity.setIdentity(method.getSelf("100000001"));
 		} catch (RemoteException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
-		
+
 		try {
+			BeautyEyeLNFHelper.frameBorderStyle = BeautyEyeLNFHelper.FrameBorderStyle.osLookAndFeelDecorated;
 			org.jb2011.lnf.beautyeye.BeautyEyeLNFHelper.launchBeautyEyeLNF();
 			UIManager.put("RootPane.setupButtonVisible", false);
 		} catch (Exception e) {

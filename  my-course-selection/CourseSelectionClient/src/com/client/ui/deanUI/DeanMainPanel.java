@@ -11,6 +11,8 @@ import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 import javax.swing.text.StyledEditorKit.ForegroundAction;
 
+import org.jb2011.lnf.beautyeye.BeautyEyeLNFHelper;
+
 import com.client.ui.main.MainFrame;
 import com.client.ui.main.MainUISwitchController;
 import com.ui.bcswing.titleBar.DeanTitlebar;
@@ -143,10 +145,10 @@ public class DeanMainPanel extends MPanel {
 //			e.printStackTrace();
 //		}
 		try {
-			UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
-		} catch (ClassNotFoundException | InstantiationException
-				| IllegalAccessException | UnsupportedLookAndFeelException e) {
-			// TODO Auto-generated catch block
+			BeautyEyeLNFHelper.frameBorderStyle = BeautyEyeLNFHelper.FrameBorderStyle.osLookAndFeelDecorated;
+			org.jb2011.lnf.beautyeye.BeautyEyeLNFHelper.launchBeautyEyeLNF();
+			UIManager.put("RootPane.setupButtonVisible", false);
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		DeanUISwitchController controller = DeanUISwitchController

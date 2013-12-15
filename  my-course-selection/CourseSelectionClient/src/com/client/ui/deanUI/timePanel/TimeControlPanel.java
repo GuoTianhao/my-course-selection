@@ -1,5 +1,6 @@
 package com.client.ui.deanUI.timePanel;
 
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Point;
 import java.awt.event.ActionEvent;
@@ -9,6 +10,8 @@ import java.rmi.RemoteException;
 import javax.swing.ImageIcon;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
+
+import org.jb2011.lnf.beautyeye.BeautyEyeLNFHelper;
 
 import com.client.rmi.DeanMethodController;
 import com.client.ui.deanUI.DeanUISwitchController;
@@ -34,8 +37,8 @@ public class TimeControlPanel extends MPanel {
 	private MButton bySelect;
 	private MLabel systemSelectLb;
 	private MButton systemSelect;
-	private ImageIcon on = new ImageIcon("resource\\on.png");
-	private ImageIcon off = new ImageIcon("resource\\off.png");
+	private ImageIcon on = new ImageIcon("resource//on.png");
+	private ImageIcon off = new ImageIcon("resource//off.png");
 
 
 	private TimeController time = DeanMethodController.getMethod();
@@ -55,7 +58,6 @@ public class TimeControlPanel extends MPanel {
 		publishLb = new MLabel(new Point(20, 95), new Dimension(60, 40), "发布课程");
 		publish = new MButton(off, null, null, new Point(80, 100),
 				new Dimension(100, 40));
-		
 		studentSelectLb = new MLabel(new Point(20, 145), new Dimension(60, 40),"学生选课");
 		studentSelect = new MButton(off, null, null, new Point(80, 150),
 				new Dimension(100,40));
@@ -232,12 +234,12 @@ public class TimeControlPanel extends MPanel {
 	public static void main(String[] args) {
 
 		try {
+			BeautyEyeLNFHelper.frameBorderStyle = BeautyEyeLNFHelper.FrameBorderStyle.osLookAndFeelDecorated;
 			org.jb2011.lnf.beautyeye.BeautyEyeLNFHelper.launchBeautyEyeLNF();
 			UIManager.put("RootPane.setupButtonVisible", false);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
 //		try {
 //			UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
 //		} catch (ClassNotFoundException | InstantiationException

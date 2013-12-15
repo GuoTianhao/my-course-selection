@@ -6,7 +6,7 @@
 	<classpathentry kind="lib" path="beautyeye_lnf.jar"/>
 	<classpathentry kind="lib" path="po.jar"/>
 	<classpathentry kind="lib" path="jxl.jar"/>
-	<classpathentry kind="lib" path="rmi.jar"/>
+	<classpathentry kind="lib" path="rmi.jar" sourcepath="/CourseSelectionServer/src/com/logicService"/>
 	<classpathentry kind="lib" path="time.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

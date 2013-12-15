@@ -24,7 +24,7 @@ public class CourseStudentGetterTest extends TestCase{
 			StudentMethod method=new StudentMethodImpl();
 			int num;
 			
-			num=method.getCourseSelectNum("0006");
+			num=method.getCourseSelectNum("0001");
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

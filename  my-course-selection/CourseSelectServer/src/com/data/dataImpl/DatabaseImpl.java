@@ -5,6 +5,7 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import com.data.dataImpl.method.DatabaseConnection;
@@ -14,6 +15,7 @@ import com.data.dataImpl.method.DatabaseMax;
 import com.data.dataImpl.method.DatabaseNum;
 import com.data.dataImpl.method.DatabaseSearch;
 import com.data.dataImpl.method.DatabaseUpdate;
+import com.data.dataImpl.method.dean.TimeGetter;
 import com.dataService.DatabaseMethod;
 
 public class DatabaseImpl implements DatabaseMethod{
@@ -66,6 +68,11 @@ public class DatabaseImpl implements DatabaseMethod{
 	public int getNum(String tableName, String clueName, String clue) {
 		// TODO Auto-generated method stub
 		return DatabaseNum.getNum(tableName, clueName, clue);
+	}
+	@Override
+	public Date getTime(String period) {
+		// TODO Auto-generated method stub
+		return TimeGetter.getTime(period);
 	}
 	
 }

@@ -6,6 +6,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.rmi.RemoteException;
 import java.text.DateFormat;
+import java.text.ParseException;
 
 import javax.swing.ImageIcon;
 import javax.swing.UIManager;
@@ -14,8 +15,11 @@ import org.jb2011.lnf.beautyeye.BeautyEyeLNFHelper;
 
 import com.client.rmi.DeanMethodController;
 import com.client.ui.deanUI.DeanUISwitchController;
+import com.client.ui.studentUI.StudentMainPanel;
+import com.client.ui.studentUI.StudentUISwitchController;
 import com.logicService.DeanMethod;
 import com.timeControllerService.TimeController;
+import com.ui.bcswing.TipFrame;
 import com.ui.bcswing.titleBar.DeanTitlebar;
 import com.ui.bcswing.titleBar.TitleBar;
 import com.ui.myswing.MButton;
@@ -140,8 +144,9 @@ public class TimeControlPanel extends MPanel {
 				"summerEndDay");
 		summerEndDay=new MTextField(new Point(500,450),new Dimension(100,30));
 		
-		confirm=new MButton(off, null, null, new Point(400, 500),
+		confirm=new MButton(null, null, null, new Point(400, 500),
 				new Dimension(80, 40));
+		confirm.setText("确定");
 		
 		this.add(publishLb);
 		this.add(publish);
@@ -173,6 +178,7 @@ public class TimeControlPanel extends MPanel {
 		this.add(summerEndDayLb);
 		this.add(summerEndDay);
 		
+		this.add(confirm);
 		
 		this.add(title);
 
@@ -196,6 +202,7 @@ public class TimeControlPanel extends MPanel {
 	}
 	
 	private void addListener() {
+		
 		title.addReturnMenu(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				DeanUISwitchController controller = DeanUISwitchController
@@ -203,6 +210,8 @@ public class TimeControlPanel extends MPanel {
 				controller.swicthToMainFrame();
 			}
 		});
+		
+		
 
 		publish.addActionListener(new ActionListener() {
 
@@ -295,7 +304,10 @@ public class TimeControlPanel extends MPanel {
 
 		});
 
+		confirm.addActionListener(new ConfirmListener());
+		
 	}
+	
 
 	private void refreshButton() {
 		try {
@@ -340,6 +352,35 @@ public class TimeControlPanel extends MPanel {
 
 	}
 
+	class ConfirmListener implements ActionListener{
+
+		public void actionPerformed(ActionEvent e) {
+			// TODO Auto-generated method stub
+			DeanMethod method=DeanMethodController.getMethod();
+			DateFormat format=DateFormat.getDateInstance();
+			try {
+				method.setPeriodTime("1",format.parse(termOneStartDay.getText()) );
+				method.setPeriodTime("2",format.parse(termOneEndDay.getText()) );
+				method.setPeriodTime("3",format.parse(winterStartDay.getText()) );
+				method.setPeriodTime("4",format.parse(winterEndDay.getText()) );
+				method.setPeriodTime("5",format.parse(termTwoStartDay.getText()) );
+				method.setPeriodTime("6",format.parse(termTwoEndDay.getText()) );
+				method.setPeriodTime("7",format.parse(summerStartDay.getText()) );
+				method.setPeriodTime("8",format.parse(summerEndDay.getText()) );
+				DeanUISwitchController controller = DeanUISwitchController
+						.getUISwitchController();
+				TipFrame t = new TipFrame(controller.getLoc(),TimeControlPanel.this.getSize(), 5,
+						"时间设置成功");
+				t.startEndClock();
+			} catch (RemoteException e1) {
+				e1.printStackTrace();
+			} catch (ParseException e1) {
+				e1.printStackTrace();
+			}
+		}
+		
+	}
+	
 	public static void main(String[] args) {
 
 		try {

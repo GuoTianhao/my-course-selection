@@ -2,6 +2,7 @@ package com.client.test.stub;
 
 import java.rmi.RemoteException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import com.data.po.BasicFrame;
@@ -304,6 +305,18 @@ public class DeanMethod_Stub implements DeanMethod {
 	public void setIsTimeForSystemSelect(boolean arg0) throws RemoteException {
 		// TODO Auto-generated method stub
 		
+	}
+
+	@Override
+	public Date getPeriodTime(String arg0) throws RemoteException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public boolean setPeriodTime(String arg0, Date arg1) throws RemoteException {
+		// TODO Auto-generated method stub
+		return false;
 	}
 
 }

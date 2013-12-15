@@ -1,6 +1,8 @@
 package com.client.ui.deanUI;
 
 import java.awt.Dimension;
+import java.awt.Graphics;
+import java.awt.Image;
 import java.awt.Point;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -11,8 +13,11 @@ import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 import javax.swing.text.StyledEditorKit.ForegroundAction;
 
+import org.jb2011.lnf.beautyeye.BeautyEyeLNFHelper;
+
 import com.client.ui.main.MainFrame;
 import com.client.ui.main.MainUISwitchController;
+import com.ui.bcswing.TipFrame;
 import com.ui.bcswing.titleBar.DeanTitlebar;
 import com.ui.bcswing.titleBar.TitleBar;
 import com.ui.myswing.MButton;
@@ -30,11 +35,18 @@ public class DeanMainPanel extends MPanel {
 
 	DeanUISwitchController controller;
 
+	Image tip;
+	
 	public DeanMainPanel(Point loc, Dimension size) {
 		super(loc, size);
 		createComponent();
 		addListener();
 	}
+	
+//	public void paint(Graphics g){
+//		super.paint(g);
+//		g.drawImage(tip,300, 300,300,300, null);
+//	}
 
 	private void createComponent() {
 		title = new DeanTitlebar(new Point(0, 0),
@@ -121,6 +133,7 @@ public class DeanMainPanel extends MPanel {
 
 	public static void main(String[] args) {
 		try {
+			BeautyEyeLNFHelper.frameBorderStyle = BeautyEyeLNFHelper.FrameBorderStyle.osLookAndFeelDecorated;
 			org.jb2011.lnf.beautyeye.BeautyEyeLNFHelper.launchBeautyEyeLNF();
 			UIManager.put("RootPane.setupButtonVisible", false);
 		} catch (Exception e) {

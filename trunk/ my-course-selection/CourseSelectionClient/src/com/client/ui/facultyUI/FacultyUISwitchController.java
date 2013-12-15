@@ -41,6 +41,10 @@ public class FacultyUISwitchController {
 		frame.add(new CourseManagementPanel(new Point(0, 0), frame.getSize()));
 		frame.refresh();
 	}
+	
+	public Point getLoc(){
+		return frame.getLocation();
+	}
 
 	public void dispose(){
 		if (frame != null) {

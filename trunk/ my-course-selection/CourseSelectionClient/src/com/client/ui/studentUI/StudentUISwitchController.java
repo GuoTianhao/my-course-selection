@@ -98,6 +98,10 @@ public class StudentUISwitchController {
 		frame.refresh();
 	}
 	
+	public Point getLoc(){
+		return frame.getLocation();
+	}
+	
 	public void dispose(){
 		if (frame != null) {
 			frame.dispose();

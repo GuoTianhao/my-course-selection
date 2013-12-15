@@ -41,13 +41,13 @@ public class CourseEditPanel extends MPanel {
 
 	private MLabel timel;
 
-	private MTextField namet;
-	private MTextField loct;
-	private MTextField creditt;
-	private MTextField numt;
-	private MComboBox typeSelect;
-	private MTextField gradet;
-	private MTextField periodt;
+	protected MTextField namet;
+	protected MTextField loct;
+	protected MTextField creditt;
+	protected MTextField numt;
+	protected MComboBox typeSelect;
+	protected MTextField gradet;
+	protected MTextField periodt;
 
 	private MButton confirm;
 

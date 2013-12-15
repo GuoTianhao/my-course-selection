@@ -10,11 +10,16 @@ import javax.swing.ImageIcon;
 import javax.swing.SwingConstants;
 import javax.swing.UIManager;
 
+import org.jb2011.lnf.beautyeye.BeautyEyeLNFHelper;
+
 import com.basicdata.Identity;
 import com.client.rmi.StudentMethodController;
 import com.client.ui.dataAdapter.GradeToTermAdapter;
+import com.client.ui.deanUI.DeanUISwitchController;
+import com.client.ui.deanUI.coursePanel.CoursePanel;
 import com.data.po.Student;
 import com.timeControllerService.TimeController;
+import com.ui.bcswing.TipFrame;
 import com.ui.bcswing.titleBar.StudentTitleBar;
 import com.ui.bcswing.titleBar.TitleBar;
 import com.ui.myswing.MButton;
@@ -100,7 +105,12 @@ public class StudentMainPanel extends MPanel {
 									.adapter(s.getGrade()) == 1)) {
 						controller.switchToCourseSelect();
 					} else {
-						System.out.println("选课尚未开始");
+						StudentUISwitchController controller = StudentUISwitchController
+								.getUISwitchController();
+						TipFrame t = new TipFrame(controller.getLoc(),StudentMainPanel.this.getSize(), 5,
+								"未到选课时间");
+						t.startEndClock();
+
 					}
 				} catch (RemoteException e1) {
 					e1.printStackTrace();
@@ -137,6 +147,7 @@ public class StudentMainPanel extends MPanel {
 		}
 
 		try {
+			BeautyEyeLNFHelper.frameBorderStyle = BeautyEyeLNFHelper.FrameBorderStyle.osLookAndFeelDecorated;
 			org.jb2011.lnf.beautyeye.BeautyEyeLNFHelper.launchBeautyEyeLNF();
 			UIManager.put("RootPane.setupButtonVisible", false);
 		} catch (Exception e) {

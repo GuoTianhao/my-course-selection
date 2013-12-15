@@ -17,7 +17,7 @@ public class TimeControllerMethodImpl  {
 	}
 	
 	public static Calendar getSystemTime() {
-		return systemTime;
+		return systemTime=Calendar.getInstance();
 	}
 
 	public static Calendar addDay(Calendar c, int i) {

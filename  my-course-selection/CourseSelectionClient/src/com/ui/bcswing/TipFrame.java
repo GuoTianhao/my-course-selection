@@ -7,6 +7,8 @@ import java.awt.Point;
 
 import javax.swing.UIManager;
 
+import org.jb2011.lnf.beautyeye.BeautyEyeLNFHelper;
+
 import com.ui.myswing.MFrame;
 import com.ui.myswing.MLabel;
 import com.ui.myswing.MPanel;
@@ -22,13 +24,13 @@ public class TipFrame extends MFrame {
 	private MLabel label;
 	private MPanel panel;
 
-	public TipFrame(Point loc,int font_size, String tip) {
-		super();
+	public TipFrame(Point loc, Dimension size,int font_size, String tip) {
+		super(new Dimension(width, height));
 		this.setUndecorated(true);
 		this.setOpacity(opacityPoint);
-		this.setLocation(loc);
-		this.setSize(new Dimension(width, height));
-		font = new Font("TimesRoman", Font.BOLD,font_size);
+		
+		this.setLocation(new Point(loc.x+size.width/2-width/2,loc.y+size.height/2-height/2));
+		font = new Font("TimesRoman", Font.BOLD, font_size);
 		label = new MLabel(new Point(0, 0), new Dimension(width, height),
 				textFactory(tip));
 		panel = new MPanel();
@@ -36,6 +38,7 @@ public class TipFrame extends MFrame {
 		panel.setBackground(default_bColor);
 		panel.add(label);
 		this.add(panel);
+	//	this.add(label);
 		this.setVisible(true);
 	}
 
@@ -45,12 +48,14 @@ public class TipFrame extends MFrame {
 				+ text + "</font></html>";
 		return str;
 	}
-	public void startEndClock(){
+
+	public void startEndClock() {
 		startEndClock(-1);
 	}
+
 	public void startEndClock(int time) {
-		if(time>=0){
-			clock=time;
+		if (time >= 0) {
+			clock = time;
 		}
 		new CloseClock().start();
 	}
@@ -76,8 +81,17 @@ public class TipFrame extends MFrame {
 			TipFrame.this.dispose();
 		}
 	}
-	public static void main(String[] args){
-		TipFrame t=new TipFrame(new Point(200,200),10,"Welcome!");
-		t.startEndClock();
+
+	public static void main(String[] args) {
+		try {
+			// 设置本属性将改变窗口边框样式定义
+			BeautyEyeLNFHelper.frameBorderStyle = BeautyEyeLNFHelper.FrameBorderStyle.osLookAndFeelDecorated;
+			org.jb2011.lnf.beautyeye.BeautyEyeLNFHelper.launchBeautyEyeLNF();
+			 UIManager.put("RootPane.setupButtonVisible", false);
+		} catch (Exception e) {
+			// TODO exception
+		}
+		TipFrame t = new TipFrame(new Point(200, 200),new Dimension(100,100), 10, "Welcome!");
+		 t.startEndClock();
 	}
 }

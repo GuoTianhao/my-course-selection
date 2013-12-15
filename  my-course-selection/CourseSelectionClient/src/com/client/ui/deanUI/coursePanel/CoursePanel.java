@@ -15,6 +15,8 @@ import java.rmi.RemoteException;
 
 import javax.swing.UIManager;
 
+import org.jb2011.lnf.beautyeye.BeautyEyeLNFHelper;
+
 import com.basicdata.FacultyKind;
 import com.basicdata.Identity;
 import com.basicdata.TermKind;
@@ -27,6 +29,7 @@ import com.timeControllerService.TimeController;
 import com.ui.bcswing.CourseInforPane;
 import com.ui.bcswing.MPopupMenu;
 import com.ui.bcswing.MScrollTable;
+import com.ui.bcswing.TipFrame;
 import com.ui.bcswing.courseEditPane.DeanCoursePane;
 import com.ui.bcswing.titleBar.DeanTitlebar;
 import com.ui.bcswing.titleBar.TitleBar;
@@ -190,7 +193,11 @@ public class CoursePanel extends MPanel {
 				if (time.isTimeForPublishCourse()) {
 					new DeanCoursePane();
 				} else {
-					System.out.println("未到课程发布时间");
+					DeanUISwitchController controller = DeanUISwitchController
+							.getUISwitchController();
+					TipFrame t = new TipFrame(controller.getLoc(),CoursePanel.this.getSize(), 5,
+							"未到课程发布时间");
+					t.startEndClock();
 				}
 			} catch (RemoteException e1) {
 				e1.printStackTrace();
@@ -261,7 +268,6 @@ public class CoursePanel extends MPanel {
 				String term = allCourseOperateBar.getTerm();
 				String faculty = FacultyKind.getID(allCourseOperateBar
 						.getFaculty());
-				faculty = FacultyKind.getID(faculty);
 				DeanMethod method = DeanMethodController.getMethod();
 				try {
 					table.setDataVector(CourseListToVectorAdapter
@@ -307,12 +313,12 @@ public class CoursePanel extends MPanel {
 			e1.printStackTrace();
 		}
 		try {
+			BeautyEyeLNFHelper.frameBorderStyle = BeautyEyeLNFHelper.FrameBorderStyle.osLookAndFeelDecorated;
 			org.jb2011.lnf.beautyeye.BeautyEyeLNFHelper.launchBeautyEyeLNF();
 			UIManager.put("RootPane.setupButtonVisible", false);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-
 		DeanUISwitchController controller = DeanUISwitchController
 				.getUISwitchController();
 		controller.switchToCoursePanel();

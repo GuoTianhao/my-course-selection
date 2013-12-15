@@ -12,15 +12,20 @@ import java.util.List;
 
 import javax.swing.UIManager;
 
+import org.jb2011.lnf.beautyeye.BeautyEyeLNFHelper;
+
 import com.basicdata.Identity;
 import com.client.rmi.FacultyDeanMethodController;
 import com.client.ui.dataAdapter.CourseListToVectorAdapter;
+import com.client.ui.deanUI.DeanUISwitchController;
+import com.client.ui.deanUI.coursePanel.CoursePanel;
 import com.client.ui.facultyUI.FacultyUISwitchController;
 import com.data.po.Course;
 import com.data.po.FacultyDean;
 import com.logicService.FacultyDeanMethod;
 import com.ui.bcswing.MPopupMenu;
 import com.ui.bcswing.MScrollTable;
+import com.ui.bcswing.TipFrame;
 import com.ui.bcswing.courseEditPane.FacultyCoursePane;
 import com.ui.bcswing.titleBar.FacultyTitleBar;
 import com.ui.bcswing.titleBar.TitleBar;
@@ -35,6 +40,8 @@ public class CourseManagementPanel extends MPanel {
 	private MScrollTable table;
 	private MPopupMenu popupMenu;
 
+	private FacultyCoursePane pane;
+	
 	public CourseManagementPanel(Point loc, Dimension size) {
 		super(loc, size);
 		createComponent();
@@ -78,7 +85,30 @@ public class CourseManagementPanel extends MPanel {
 				FacultyDeanMethod method=FacultyDeanMethodController.getMethod();
 				try {
 					if(method.isTimeForPublishCourse()){
-						new FacultyCoursePane();	
+						pane=new FacultyCoursePane();
+						
+						pane.addListener(new ActionListener(){
+							
+							public void actionPerformed(ActionEvent e) {
+								FacultyDean facultyDean=(FacultyDean) Identity.getIdentity();
+								String faculty=facultyDean.getFaculty();
+								Course c=pane.getCourse();
+								FacultyDeanMethod method=FacultyDeanMethodController.getMethod();
+								try {
+									method.publishCourse(faculty,c);
+								} catch (RemoteException e1) {
+									e1.printStackTrace();
+								}
+							}
+							
+						});
+					}else{
+						FacultyUISwitchController controller = FacultyUISwitchController
+								.getUISwitchController();
+						TipFrame t = new TipFrame(controller.getLoc(),CourseManagementPanel.this.getSize(), 5,
+								"未到课程发布时间");
+						t.startEndClock();
+
 					}
 				} catch (RemoteException e1) {
 					e1.printStackTrace();
@@ -153,7 +183,7 @@ public class CourseManagementPanel extends MPanel {
 		}
 
 	}
-
+	
 	public static void main(String[] args) {
 		FacultyDeanMethod method = FacultyDeanMethodController.getMethod();
 		try {
@@ -163,6 +193,7 @@ public class CourseManagementPanel extends MPanel {
 			e.printStackTrace();
 		}
 		try {
+			BeautyEyeLNFHelper.frameBorderStyle = BeautyEyeLNFHelper.FrameBorderStyle.osLookAndFeelDecorated;
 			org.jb2011.lnf.beautyeye.BeautyEyeLNFHelper.launchBeautyEyeLNF();
 			UIManager.put("RootPane.setupButtonVisible", false);
 		} catch (Exception e) {

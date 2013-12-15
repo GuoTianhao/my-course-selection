@@ -1,27 +1,27 @@
 package com.client.ui.deanUI.timePanel;
 
-import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Point;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.rmi.RemoteException;
+import java.text.DateFormat;
 
 import javax.swing.ImageIcon;
 import javax.swing.UIManager;
-import javax.swing.UnsupportedLookAndFeelException;
 
 import org.jb2011.lnf.beautyeye.BeautyEyeLNFHelper;
 
 import com.client.rmi.DeanMethodController;
 import com.client.ui.deanUI.DeanUISwitchController;
+import com.logicService.DeanMethod;
 import com.timeControllerService.TimeController;
 import com.ui.bcswing.titleBar.DeanTitlebar;
 import com.ui.bcswing.titleBar.TitleBar;
 import com.ui.myswing.MButton;
-import com.ui.myswing.MFont;
 import com.ui.myswing.MLabel;
 import com.ui.myswing.MPanel;
+import com.ui.myswing.MTextField;
 
 public class TimeControlPanel extends MPanel {
 	private TitleBar title;
@@ -37,6 +37,29 @@ public class TimeControlPanel extends MPanel {
 	private MButton bySelect;
 	private MLabel systemSelectLb;
 	private MButton systemSelect;
+	
+	
+	
+	private MLabel termOneStartDayLb;
+	private MLabel termOneEndDayLb;
+	private MLabel winterStartDayLb;
+	private MLabel winterEndDayLb;
+	private MLabel termTwoStartDayLb;
+	private MLabel termTwoEndDayLb;
+	private MLabel summerStartDayLb;
+	private MLabel summerEndDayLb;
+	
+	private MTextField termOneStartDay;
+	private MTextField termOneEndDay;
+	private MTextField winterStartDay;
+	private MTextField winterEndDay;
+	private MTextField termTwoStartDay;
+	private MTextField termTwoEndDay;
+	private MTextField summerStartDay;
+	private MTextField summerEndDay;
+	
+	private MButton confirm;
+	
 	private ImageIcon on = new ImageIcon("resource//on.png");
 	private ImageIcon off = new ImageIcon("resource//off.png");
 
@@ -45,6 +68,7 @@ public class TimeControlPanel extends MPanel {
 	public TimeControlPanel(Point loc, Dimension size) {
 		super(loc, size);
 		createComponent();
+		init();
 		addListener();
 		refreshButton();
 	}
@@ -81,7 +105,44 @@ public class TimeControlPanel extends MPanel {
 				"补选");
 		systemSelect = new MButton(off, null, null, new Point(140, 350),
 				new Dimension(80, 40));
+		
+		
 
+		termOneStartDayLb=new MLabel(new Point(400, 100), new Dimension(80, 40),
+				"termOneStartDay");
+		termOneStartDay=new MTextField(new Point(500,100),new Dimension(100,30));
+		
+		termOneEndDayLb=new MLabel(new Point(400, 150), new Dimension(80, 40),
+				"termOneEndDay");
+		termOneEndDay=new MTextField(new Point(500,150),new Dimension(100,30));
+		
+		winterStartDayLb=new MLabel(new Point(400, 200), new Dimension(80, 40),
+				"winterStartDay");
+		winterStartDay=new MTextField(new Point(500,200),new Dimension(100,30));
+		
+		winterEndDayLb=new MLabel(new Point(400, 250), new Dimension(80, 40),
+				"winterEndDay");
+		winterEndDay=new MTextField(new Point(500,250),new Dimension(100,30));
+		
+		termTwoStartDayLb=new MLabel(new Point(400, 300), new Dimension(80, 40),
+				"termTwoStartDay");
+		termTwoStartDay=new MTextField(new Point(500,300),new Dimension(100,30));
+		
+		termTwoEndDayLb=new MLabel(new Point(400, 350), new Dimension(80, 40),
+				"termTwoEndDay");
+		termTwoEndDay=new MTextField(new Point(500,350),new Dimension(100,30));
+		
+		summerStartDayLb=new MLabel(new Point(400, 400), new Dimension(80, 40),
+				"summerStartDay");
+		summerStartDay=new MTextField(new Point(500,400),new Dimension(100,30));
+		
+		summerEndDayLb=new MLabel(new Point(400, 450), new Dimension(80, 40),
+				"summerEndDay");
+		summerEndDay=new MTextField(new Point(500,450),new Dimension(100,30));
+		
+		confirm=new MButton(off, null, null, new Point(400, 500),
+				new Dimension(80, 40));
+		
 		this.add(publishLb);
 		this.add(publish);
 		this.add(studentSelectLb);
@@ -94,10 +155,46 @@ public class TimeControlPanel extends MPanel {
 		this.add(bySelect);
 		this.add(systemSelectLb);
 		this.add(systemSelect);
+		
+		this.add(termOneStartDayLb);
+		this.add(termOneStartDay);
+		this.add(termOneEndDayLb);
+		this.add(termOneEndDay);
+		this.add(winterStartDayLb);
+		this.add(winterStartDay);
+		this.add(winterEndDayLb);
+		this.add(winterEndDay);
+		this.add(termTwoStartDayLb);
+		this.add(termTwoStartDay);
+		this.add(termTwoEndDayLb);
+		this.add(termTwoEndDay);
+		this.add(summerStartDayLb);
+		this.add(summerStartDay);
+		this.add(summerEndDayLb);
+		this.add(summerEndDay);
+		
+		
 		this.add(title);
 
 	}
 
+	private void init(){
+		DeanMethod method=DeanMethodController.getMethod();
+		DateFormat format=DateFormat.getDateInstance();
+		try {
+			termOneStartDay.setText(format.format(method.getPeriodTime("1")));
+			termOneEndDay.setText(format.format(method.getPeriodTime("2")));
+			winterStartDay.setText(format.format(method.getPeriodTime("3")));
+			winterEndDay.setText(format.format(method.getPeriodTime("4")));
+			termTwoStartDay.setText(format.format(method.getPeriodTime("5")));
+			termTwoEndDay.setText(format.format(method.getPeriodTime("6")));
+			summerStartDay.setText(format.format(method.getPeriodTime("7")));
+			summerEndDay.setText(format.format(method.getPeriodTime("8")));
+		} catch (RemoteException e) {
+			e.printStackTrace();
+		}
+	}
+	
 	private void addListener() {
 		title.addReturnMenu(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -203,49 +300,37 @@ public class TimeControlPanel extends MPanel {
 	private void refreshButton() {
 		try {
 			if (!time.isTimeForPublishCourse()) {
-				// publish.setText("开始发布课程");
 				publish.setIcon(off);
 			} else {
-				// publish.setText("结束发布课程");
 				publish.setIcon(on);
 			}
 
 			if (!time.isTimeForSelectCourse()) {
-				// studentSelect.setText("开始选课");
 				studentSelect.setIcon(off);
 			} else {
-				// studentSelect.setText("结束选课");
 				studentSelect.setIcon(on);
 			}
 
 			if (!time.isTimeForGradeOneSelectCourse()) {
-				// gradeOneSelect.setText("大一新生开始选课");
 				gradeOneSelect.setIcon(off);
 			} else {
-				// gradeOneSelect.setText("大一新生结束选课");
 				gradeOneSelect.setIcon(on);
 			}
 
 			if (!time.isTimeForQuitCourse()) {
-				// quitCourse.setText("开始退课");
 				quitCourse.setIcon(off);
 			} else {
-				// quitCourse.setText("结束退课");
 				quitCourse.setIcon(on);
 			}
 			if (!time.isTimeForByElection()) {
-				// bySelect.setText("开始补选");
 				bySelect.setIcon(off);
 			} else {
-				// bySelect.setText("结束补选");
 				bySelect.setIcon(on);
 			}
 
 			if (!time.isTimeForSystemSelect()) {
-				// systemSelect.setText("系统选课开始");
 				systemSelect.setIcon(off);
 			} else {
-				// systemSelect.setText("系统选课结束");
 				systemSelect.setIcon(on);
 			}
 

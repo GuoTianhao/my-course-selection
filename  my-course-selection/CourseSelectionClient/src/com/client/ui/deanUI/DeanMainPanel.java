@@ -1,8 +1,6 @@
 package com.client.ui.deanUI;
 
 import java.awt.Dimension;
-import java.awt.Graphics;
-import java.awt.Image;
 import java.awt.Point;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -13,11 +11,8 @@ import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 import javax.swing.text.StyledEditorKit.ForegroundAction;
 
-import org.jb2011.lnf.beautyeye.BeautyEyeLNFHelper;
-
 import com.client.ui.main.MainFrame;
 import com.client.ui.main.MainUISwitchController;
-import com.ui.bcswing.TipFrame;
 import com.ui.bcswing.titleBar.DeanTitlebar;
 import com.ui.bcswing.titleBar.TitleBar;
 import com.ui.myswing.MButton;
@@ -32,61 +27,61 @@ public class DeanMainPanel extends MPanel {
 	private MButton btn4;
 	private MButton btn5;
 	private MButton btn6;
+	private MButton btn7;
 
 	DeanUISwitchController controller;
 
-	Image tip;
-	
 	public DeanMainPanel(Point loc, Dimension size) {
 		super(loc, size);
 		createComponent();
 		addListener();
 	}
-	
-//	public void paint(Graphics g){
-//		super.paint(g);
-//		g.drawImage(tip,300, 300,300,300, null);
-//	}
 
 	private void createComponent() {
 		title = new DeanTitlebar(new Point(0, 0),
 				new Dimension(this.getWidth(), 75));
 
 		btn1 = new MButton(new ImageIcon("blank.png"), null, null, new Point(
-				85, 134), new Dimension(180, 150));
+				60, 134), new Dimension(128, 145));
 		btn1.setText("整体框架策略");
 		btn1.setHorizontalTextPosition(SwingConstants.CENTER);
 		btn1.setVerticalTextPosition(SwingConstants.BOTTOM);
 
 		btn2 = new MButton(new ImageIcon("blank.png"), null, null, new Point(
-				323, 134), new Dimension(180, 150));
+				248, 134), new Dimension(128, 145));
 		btn2.setText("教学计划");
 		btn2.setHorizontalTextPosition(SwingConstants.CENTER);
 		btn2.setVerticalTextPosition(SwingConstants.BOTTOM);
 
 		btn3 = new MButton(new ImageIcon("blank.png"), null, null, new Point(
-				535, 134), new Dimension(180, 150));
+				436, 134), new Dimension(128, 145));
 		btn3.setText("课程");
 		btn3.setHorizontalTextPosition(SwingConstants.CENTER);
 		btn3.setVerticalTextPosition(SwingConstants.BOTTOM);
 
 		btn4 = new MButton(new ImageIcon("blank.png"), null, null, new Point(
-				85, 344), new Dimension(180, 150));
+				624, 134), new Dimension(128, 145));
 		btn4.setText("教师");
 		btn4.setHorizontalTextPosition(SwingConstants.CENTER);
 		btn4.setVerticalTextPosition(SwingConstants.BOTTOM);
 
 		btn5 = new MButton(new ImageIcon("blank.png"), null, null, new Point(
-				323, 344), new Dimension(180, 150));
+				60, 344), new Dimension(128, 145));
 		btn5.setText("学生");
 		btn5.setHorizontalTextPosition(SwingConstants.CENTER);
 		btn5.setVerticalTextPosition(SwingConstants.BOTTOM);
 
 		btn6 = new MButton(new ImageIcon("blank.png"), null, null, new Point(
-				535, 344), new Dimension(180, 150));
+				248, 344), new Dimension(128, 145));
 		btn6.setText("专业准入准出");
 		btn6.setHorizontalTextPosition(SwingConstants.CENTER);
 		btn6.setVerticalTextPosition(SwingConstants.BOTTOM);
+
+		btn7 = new MButton(new ImageIcon("blank.png"), null, null, new Point(
+				436, 344), new Dimension(128, 145));
+		btn7.setText("系统设置");
+		btn7.setHorizontalTextPosition(SwingConstants.CENTER);
+		btn7.setVerticalTextPosition(SwingConstants.BOTTOM);
 
 		this.add(title);
 		this.add(btn1);
@@ -95,33 +90,34 @@ public class DeanMainPanel extends MPanel {
 		this.add(btn4);
 		this.add(btn5);
 		this.add(btn6);
+		this.add(btn7);
 	}
 
 	private void addListener() {
 		controller = DeanUISwitchController.getUISwitchController();
 		btn1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				DeanMainPanel.this.controller.switchToBasicFramePanel();
+				controller.switchToBasicFramePanel();
 			}
 		});
 		btn2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				DeanMainPanel.this.controller.switchToFacultyPlanPanel();
+				controller.switchToFacultyPlanPanel();
 			}
 		});
 		btn3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				DeanMainPanel.this.controller.switchToCoursePanel();
+				controller.switchToCoursePanel();
 			}
 		});
 		btn4.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				DeanMainPanel.this.controller.switchToStudentPanel();
+				controller.switchToStudentPanel();
 			}
 		});
 		btn5.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				DeanMainPanel.this.controller.switchToTeacherPanel();
+				controller.switchToTeacherPanel();
 			}
 		});
 		btn6.addActionListener(new ActionListener() {
@@ -129,23 +125,30 @@ public class DeanMainPanel extends MPanel {
 
 			}
 		});
+		btn7.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				controller.switchToTimePanel();
+			}
+		});
 	}
 
 	public static void main(String[] args) {
-		try {
-			BeautyEyeLNFHelper.frameBorderStyle = BeautyEyeLNFHelper.FrameBorderStyle.osLookAndFeelDecorated;
-			org.jb2011.lnf.beautyeye.BeautyEyeLNFHelper.launchBeautyEyeLNF();
-			UIManager.put("RootPane.setupButtonVisible", false);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
 //		try {
-//			UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
-//		} catch (ClassNotFoundException | InstantiationException
-//				| IllegalAccessException | UnsupportedLookAndFeelException e) {
-//			// TODO Auto-generated catch block
+//			org.jb2011.lnf.beautyeye.BeautyEyeLNFHelper.launchBeautyEyeLNF();
+//			UIManager.put("RootPane.setupButtonVisible", false);
+//		} catch (Exception e) {
 //			e.printStackTrace();
 //		}
+		try {
+			UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+		} catch (ClassNotFoundException | InstantiationException
+				| IllegalAccessException | UnsupportedLookAndFeelException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		DeanUISwitchController controller = DeanUISwitchController
 				.getUISwitchController();
 		controller.swicthToMainFrame();

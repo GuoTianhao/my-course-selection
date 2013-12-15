@@ -66,7 +66,7 @@ public class DeanUISwitchController {
 		frame.refresh();
 	}
 	
-	public void switchTpTimePanel(){
+	public void switchToTimePanel(){
 		frame.getContentPane().removeAll();
 		frame.add(new TimeControlPanel(new Point(0, 0), frame.getSize()));
 		frame.refresh();

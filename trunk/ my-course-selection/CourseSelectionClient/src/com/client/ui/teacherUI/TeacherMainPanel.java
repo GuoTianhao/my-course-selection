@@ -4,11 +4,17 @@ import java.awt.Dimension;
 import java.awt.Point;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.rmi.RemoteException;
 
 import javax.swing.ImageIcon;
 import javax.swing.SwingConstants;
 import javax.swing.UIManager;
 
+import org.jb2011.lnf.beautyeye.BeautyEyeLNFHelper;
+
+import com.basicdata.Identity;
+import com.client.rmi.TeacherMethodController;
+import com.logicService.TeacherMethod;
 import com.ui.bcswing.titleBar.TeacherTitleBar;
 import com.ui.myswing.MButton;
 import com.ui.myswing.MPanel;
@@ -49,7 +55,15 @@ public class TeacherMainPanel extends MPanel {
 	}
 	
 	public static void main(String[] args) {
+		TeacherMethod method = TeacherMethodController.getMethod();
 		try {
+			Identity.setIdentity(method.getSelf("100000003"));
+		} catch (RemoteException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		try {
+			BeautyEyeLNFHelper.frameBorderStyle = BeautyEyeLNFHelper.FrameBorderStyle.osLookAndFeelDecorated;
 			org.jb2011.lnf.beautyeye.BeautyEyeLNFHelper.launchBeautyEyeLNF();
 			UIManager.put("RootPane.setupButtonVisible", false);
 		} catch (Exception e) {

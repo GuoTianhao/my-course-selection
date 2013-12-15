@@ -44,6 +44,10 @@ public class TeacherUISwitchController {
 		frame.refresh();
 		return panel;
 	}
+	
+	public Point getLoc(){
+		return frame.getLocation();
+	}
 
 	public void dispose() {
 		if (frame != null) {

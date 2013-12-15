@@ -16,6 +16,7 @@ public class MButton extends JButton {
 		setPressedIcon(pressedIcon);
 		setRolloverIcon(rolloverIcon);
 		setRolloverEnabled(true);
+		setFocusPainted(false);
 		if(!(defaultIcon==null&&pressedIcon==null&&rolloverIcon==null)){
 			setContentAreaFilled(false);
 			this.setBorderPainted(false);

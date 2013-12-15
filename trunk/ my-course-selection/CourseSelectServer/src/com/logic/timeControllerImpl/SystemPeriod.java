@@ -11,14 +11,14 @@ public class SystemPeriod {
 
 	}
 
-	private static Calendar termOneStartDay;
-	private static Calendar termOneEndDay;
-	private static Calendar winterStartDay;
-	private static Calendar winterEndDay;
-	private static Calendar termTwoStartDay;
-	private static Calendar termTwoEndDay;
-	private static Calendar summerStartDay;
-	private static Calendar summerEndDay;
+	private static Calendar termOneStartDay=Calendar.getInstance();
+	private static Calendar termOneEndDay=Calendar.getInstance();
+	private static Calendar winterStartDay=Calendar.getInstance();
+	private static Calendar winterEndDay=Calendar.getInstance();
+	private static Calendar termTwoStartDay=Calendar.getInstance();
+	private static Calendar termTwoEndDay=Calendar.getInstance();
+	private static Calendar summerStartDay=Calendar.getInstance();
+	private static Calendar summerEndDay=Calendar.getInstance();
 
 	public static Calendar getTermOneStartDay() {
 		return termOneStartDay;

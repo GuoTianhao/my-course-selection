@@ -5,6 +5,7 @@ import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Point;
 
+import javax.swing.JLabel;
 import javax.swing.UIManager;
 
 import org.jb2011.lnf.beautyeye.BeautyEyeLNFHelper;
@@ -33,6 +34,7 @@ public class TipFrame extends MFrame {
 		font = new Font("TimesRoman", Font.BOLD, font_size);
 		label = new MLabel(new Point(0, 0), new Dimension(width, height),
 				textFactory(tip));
+		label.setHorizontalAlignment(JLabel.CENTER);
 		panel = new MPanel();
 		panel.setLayout(null);
 		panel.setBackground(default_bColor);

@@ -4,15 +4,26 @@ import java.awt.Dimension;
 import java.awt.Point;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.rmi.RemoteException;
+import java.util.Iterator;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Vector;
 
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.UIManager;
 
+import org.jb2011.lnf.beautyeye.BeautyEyeLNFHelper;
+
 import com.basicdata.FacultyKind;
+import com.client.rmi.DeanMethodController;
 import com.client.ui.deanUI.DeanUISwitchController;
 import com.data.excellIO.TeacherListExcelIn;
+import com.data.po.Student;
+import com.data.po.Teacher;
+import com.logicService.DeanMethod;
 import com.ui.bcswing.MScrollTable;
 import com.ui.bcswing.titleBar.DeanTitlebar;
 import com.ui.bcswing.titleBar.TitleBar;
@@ -29,7 +40,7 @@ public class TeacherIOPanel extends MPanel {
 	private MComboBox<String> department;
 	private MButton importFromFile;
 	private MTextField search;
-	private MButton searchBtn;
+	private MButton confirm;
 	private MScrollTable table;
 	private String[] departmentItems = FacultyKind.getAllFaculty();
 
@@ -52,8 +63,9 @@ public class TeacherIOPanel extends MPanel {
 		importFromFile.setText("从文件导入...");
 		search = new MTextField("搜索");
 		search.setBounds(635, 95, 120, 25);
-		searchBtn = new MButton(new ImageIcon());
-		searchBtn.setBounds(760, 95, 25, 25);
+		confirm = new MButton(null, null, null, new Point(400, 95),
+				new Dimension(100, 25));
+		confirm.setText("确定");
 		table = new MScrollTable(new Point(10, 130), new Dimension(780,
 				430));
 		String[] c = {"工号","姓名"};
@@ -63,7 +75,7 @@ public class TeacherIOPanel extends MPanel {
 		this.add(department);
 		this.add(importFromFile);
 		this.add(search);
-		this.add(searchBtn);
+		this.add(confirm);
 		this.add(table);
 	}
 
@@ -90,6 +102,32 @@ public class TeacherIOPanel extends MPanel {
 				}
 			}
 		});
+		
+		confirm.addActionListener(new ActionListener() {
+
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				String faculty = FacultyKind.getID((String) department
+						.getSelectedItem());
+				DeanMethod method = DeanMethodController.getMethod();
+				List<Teacher> teacherList = new LinkedList<Teacher>();
+
+				Vector<Vector> vector = table.getDataVector();
+				Iterator<Vector> it = vector.iterator();
+				while (it.hasNext()) {
+					Vector<String> row = it.next();
+					teacherList.add(new Teacher(row.get(0), row.get(1),
+							faculty));
+				}
+				try {
+					method.importTeacher(teacherList);
+				} catch (RemoteException e1) {
+					e1.printStackTrace();
+				}
+			}
+
+		});
+
 	}
 
 	private void init() {
@@ -99,6 +137,7 @@ public class TeacherIOPanel extends MPanel {
 	public static void main(String[] args) {
 		
 		try {
+			BeautyEyeLNFHelper.frameBorderStyle = BeautyEyeLNFHelper.FrameBorderStyle.osLookAndFeelDecorated;
 			org.jb2011.lnf.beautyeye.BeautyEyeLNFHelper.launchBeautyEyeLNF();
 			UIManager.put("RootPane.setupButtonVisible", false);
 		} catch (Exception e) {

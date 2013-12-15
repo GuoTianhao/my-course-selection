@@ -1,6 +1,9 @@
 package com.logic.timeControllerImpl;
 
 import java.util.Calendar;
+import java.util.Date;
+
+import com.data.dataImpl.method.dean.TimeGetter;
 
 //要有存入数据库的io
 public class SystemPeriod {
@@ -49,36 +52,36 @@ public class SystemPeriod {
 		return summerEndDay;
 	}
 
-	public static void setTermOneStartDay(Calendar termOneStartDay) {
-		SystemPeriod.termOneStartDay = termOneStartDay;
+	public static void setTermOneStartDay(Date termOneStartDay) {
+		SystemPeriod.termOneStartDay.setTime(termOneStartDay);;
 	}
 
-	public static void setTermOneEndDay(Calendar termOneEndDay) {
-		SystemPeriod.termOneEndDay = termOneEndDay;
+	public static void setTermOneEndDay(Date termOneEndDay) {
+		SystemPeriod.termOneEndDay.setTime(termOneEndDay);
 	}
 
-	public static void setWinterStartDay(Calendar winterStartDay) {
-		SystemPeriod.winterStartDay = winterStartDay;
+	public static void setWinterStartDay(Date winterStartDay) {
+		SystemPeriod.winterStartDay.setTime(winterStartDay);
 	}
 
-	public static void setWinterEndDay(Calendar winterEndDay) {
-		SystemPeriod.winterEndDay = winterEndDay;
+	public static void setWinterEndDay(Date winterEndDay) {
+		SystemPeriod.winterEndDay.setTime(winterEndDay);
 	}
 
-	public static void setTermTwoStartDay(Calendar termTwoStartDay) {
-		SystemPeriod.termTwoStartDay = termTwoStartDay;
+	public static void setTermTwoStartDay(Date termTwoStartDay) {
+		SystemPeriod.termTwoStartDay.setTime(termTwoStartDay);
 	}
 
-	public static void setTermTwoEndDay(Calendar termTwoEndDay) {
-		SystemPeriod.termTwoEndDay = termTwoEndDay;
+	public static void setTermTwoEndDay(Date termTwoEndDay) {
+		SystemPeriod.termTwoEndDay.setTime(termTwoEndDay);
 	}
 
-	public static void setSummerStartDay(Calendar summerStartDay) {
-		SystemPeriod.summerStartDay = summerStartDay;
+	public static void setSummerStartDay(Date summerStartDay) {
+		SystemPeriod.summerStartDay.setTime(summerStartDay);
 	}
 
-	public static void setSummerEndDay(Calendar summerEndDay) {
-		SystemPeriod.summerEndDay = summerEndDay;
+	public static void setSummerEndDay(Date summerEndDay) {
+		SystemPeriod.summerEndDay.setTime(summerEndDay);
 	}
 
 	public static boolean isInPeriod(Calendar time, Calendar start, Calendar end) {
@@ -87,6 +90,17 @@ public class SystemPeriod {
 		} else {
 			return false;
 		}
+	}
+	
+	public static void init() {
+		setTermOneStartDay(TimeGetter.getTime("1"));
+		setTermOneEndDay(TimeGetter.getTime("2"));
+		setWinterStartDay(TimeGetter.getTime("3"));
+		setWinterEndDay(TimeGetter.getTime("4"));
+		setTermTwoStartDay(TimeGetter.getTime("5"));
+		setTermTwoEndDay(TimeGetter.getTime("6"));
+		setSummerStartDay(TimeGetter.getTime("7"));
+		setSummerEndDay(TimeGetter.getTime("8"));
 	}
 
 }

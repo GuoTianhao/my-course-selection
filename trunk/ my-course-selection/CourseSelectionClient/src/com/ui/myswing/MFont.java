@@ -6,6 +6,7 @@ import java.awt.GraphicsEnvironment;
 public class MFont {
 	public static Font titleFont = new Font("华文细黑", Font.BOLD, 16);
 	public static Font btnFont = new Font("宋体", Font.PLAIN, 14);
+	public static Font lbFont = new Font("黑体", Font.PLAIN, 14);
 	public static String[] DEFAULT_FONT = new String[] { "Table.font",
 			"TableHeader.font", "CheckBox.font", "Tree.font", "Viewport.font",
 			"ProgressBar.font", "RadioButtonMenuItem.font", "ToolBar.font",

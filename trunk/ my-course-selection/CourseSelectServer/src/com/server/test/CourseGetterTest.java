@@ -16,7 +16,7 @@ public class CourseGetterTest extends TestCase{
 //		System.out.println(c.getName());
 //	}
 	public void testGetFacultyCourse(){
-		List<Course> list=CourseGetter.getFacultyCourse("1250");
+		List<Course> list=CourseGetter.getFacultyCourse("1025");
 		Iterator it=list.iterator();
 		while(it.hasNext()){
 			Course c=(Course) it.next();

@@ -23,25 +23,31 @@ public class MButton extends JButton {
 		}
 		setLocation(location);
 		setSize(size);
+		setFont(MFont.btnFont);
 	}
 	public MButton() {
 		super(null, null);
+		setFont(MFont.btnFont);
 	}
 
 	public MButton(Icon icon) {
 		super(null, icon);
+		setFont(MFont.btnFont);
 	}
 
 	public MButton(String text) {
 		super(text, null);
+		setFont(MFont.btnFont);
 	}
 
 	public MButton(Action a) {
 		super(a);
+		setFont(MFont.btnFont);
 	}
 
 	public MButton(String text, Icon icon) {
 		super(text, icon);
+		setFont(MFont.btnFont);
 	}
 	public void setSize(Dimension size){
 		if(size!=null){

@@ -40,7 +40,6 @@ public class TimeControlPanel extends MPanel {
 	private ImageIcon on = new ImageIcon("resource//on.png");
 	private ImageIcon off = new ImageIcon("resource//off.png");
 
-
 	private TimeController time = DeanMethodController.getMethod();
 
 	public TimeControlPanel(Point loc, Dimension size) {
@@ -55,29 +54,45 @@ public class TimeControlPanel extends MPanel {
 		title = new DeanTitlebar(new Point(0, 0), new Dimension(
 				this.getWidth(), 75));
 
-		publishLb = new MLabel(new Point(20, 95), new Dimension(60, 40), "发布课程");
-		publish = new MButton(off, null, null, new Point(80, 100),
-				new Dimension(100, 40));
-		studentSelectLb = new MLabel(new Point(20, 145), new Dimension(60, 40),"学生选课");
-		studentSelect = new MButton(off, null, null, new Point(80, 150),
-				new Dimension(100,40));
-		
-		gradeOneSelect = new MButton(off, null, null, new Point(15, 200),
-				new Dimension(200, 30));
-		quitCourse = new MButton(off, null, null, new Point(15, 250),
-				new Dimension(200, 30));
-		bySelect = new MButton(off, null, null, new Point(15, 300),
-				new Dimension(200, 30));
-		systemSelect = new MButton(off, null, null, new Point(15, 350),
-				new Dimension(200, 30));
+		publishLb = new MLabel(new Point(40, 95), new Dimension(80, 40), "发布课程");
+		publish = new MButton(off, null, null, new Point(140, 100),
+				new Dimension(80, 40));
 
-		this.add(publish);
+		studentSelectLb = new MLabel(new Point(40, 145), new Dimension(80, 40),
+				"学生选课");
+		studentSelect = new MButton(off, null, null, new Point(140, 150),
+				new Dimension(80, 40));
+
+		gradeOneSelectLb = new MLabel(new Point(40, 195),
+				new Dimension(100, 40), "大一新生选课");
+		gradeOneSelect = new MButton(off, null, null, new Point(140, 200),
+				new Dimension(80, 40));
+
+		quitCourseLb = new MLabel(new Point(40, 245), new Dimension(80, 40),
+				"退选");
+		quitCourse = new MButton(off, null, null, new Point(140, 250),
+				new Dimension(80, 40));
+
+		bySelectLb = new MLabel(new Point(40, 295), new Dimension(80, 40), "补选");
+		bySelect = new MButton(off, null, null, new Point(140, 300),
+				new Dimension(80, 40));
+
+		systemSelectLb = new MLabel(new Point(40, 345), new Dimension(80, 40),
+				"补选");
+		systemSelect = new MButton(off, null, null, new Point(140, 350),
+				new Dimension(80, 40));
+
 		this.add(publishLb);
-		this.add(studentSelect);
+		this.add(publish);
 		this.add(studentSelectLb);
+		this.add(studentSelect);
+		this.add(gradeOneSelectLb);
 		this.add(gradeOneSelect);
+		this.add(quitCourseLb);
 		this.add(quitCourse);
+		this.add(bySelectLb);
 		this.add(bySelect);
+		this.add(systemSelectLb);
 		this.add(systemSelect);
 		this.add(title);
 
@@ -91,23 +106,23 @@ public class TimeControlPanel extends MPanel {
 				controller.swicthToMainFrame();
 			}
 		});
-		
-		
-		publish.addActionListener(new ActionListener(){
+
+		publish.addActionListener(new ActionListener() {
 
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
 				try {
-					time.setIsTimeForPublishCourse(!time.isTimeForPublishCourse());
+					time.setIsTimeForPublishCourse(!time
+							.isTimeForPublishCourse());
 					refreshButton();
 				} catch (RemoteException e1) {
 					e1.printStackTrace();
 				}
 			}
-			
+
 		});
-		
-		studentSelect.addActionListener(new ActionListener(){
+
+		studentSelect.addActionListener(new ActionListener() {
 
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
@@ -119,25 +134,26 @@ public class TimeControlPanel extends MPanel {
 					e1.printStackTrace();
 				}
 			}
-			
+
 		});
-		
-		gradeOneSelect.addActionListener(new ActionListener(){
+
+		gradeOneSelect.addActionListener(new ActionListener() {
 
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
 				try {
-					time.setIsTimeForGradeOneSelectCourse(!time.isTimeForGradeOneSelectCourse());
+					time.setIsTimeForGradeOneSelectCourse(!time
+							.isTimeForGradeOneSelectCourse());
 					refreshButton();
 				} catch (RemoteException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
 			}
-			
+
 		});
-		
-		quitCourse.addActionListener(new ActionListener(){
+
+		quitCourse.addActionListener(new ActionListener() {
 
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
@@ -149,10 +165,10 @@ public class TimeControlPanel extends MPanel {
 					e1.printStackTrace();
 				}
 			}
-			
+
 		});
-		
-		bySelect.addActionListener(new ActionListener(){
+
+		bySelect.addActionListener(new ActionListener() {
 
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
@@ -164,10 +180,10 @@ public class TimeControlPanel extends MPanel {
 					e1.printStackTrace();
 				}
 			}
-			
+
 		});
-		
-		systemSelect.addActionListener(new ActionListener(){
+
+		systemSelect.addActionListener(new ActionListener() {
 
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
@@ -179,50 +195,58 @@ public class TimeControlPanel extends MPanel {
 					e1.printStackTrace();
 				}
 			}
-			
+
 		});
-		
+
 	}
 
 	private void refreshButton() {
 		try {
 			if (!time.isTimeForPublishCourse()) {
-//				publish.setText("开始发布课程");
+				// publish.setText("开始发布课程");
 				publish.setIcon(off);
 			} else {
-//				publish.setText("结束发布课程");
+				// publish.setText("结束发布课程");
 				publish.setIcon(on);
 			}
 
 			if (!time.isTimeForSelectCourse()) {
-//				studentSelect.setText("开始选课");
+				// studentSelect.setText("开始选课");
 				studentSelect.setIcon(off);
 			} else {
-//				studentSelect.setText("结束选课");
+				// studentSelect.setText("结束选课");
 				studentSelect.setIcon(on);
 			}
 
 			if (!time.isTimeForGradeOneSelectCourse()) {
-				gradeOneSelect.setText("大一新生开始选课");
+				// gradeOneSelect.setText("大一新生开始选课");
+				gradeOneSelect.setIcon(off);
 			} else {
-				gradeOneSelect.setText("大一新生结束选课");
+				// gradeOneSelect.setText("大一新生结束选课");
+				gradeOneSelect.setIcon(on);
 			}
 
 			if (!time.isTimeForQuitCourse()) {
-				quitCourse.setText("开始退课");
+				// quitCourse.setText("开始退课");
+				quitCourse.setIcon(off);
 			} else {
-				quitCourse.setText("结束退课");
+				// quitCourse.setText("结束退课");
+				quitCourse.setIcon(on);
 			}
 			if (!time.isTimeForByElection()) {
-				bySelect.setText("开始补选");
+				// bySelect.setText("开始补选");
+				bySelect.setIcon(off);
 			} else {
-				bySelect.setText("结束补选");
+				// bySelect.setText("结束补选");
+				bySelect.setIcon(on);
 			}
-			
+
 			if (!time.isTimeForSystemSelect()) {
-				systemSelect.setText("系统选课开始");
+				// systemSelect.setText("系统选课开始");
+				systemSelect.setIcon(off);
 			} else {
-				systemSelect.setText("系统选课结束");
+				// systemSelect.setText("系统选课结束");
+				systemSelect.setIcon(on);
 			}
 
 		} catch (RemoteException e) {
@@ -240,13 +264,6 @@ public class TimeControlPanel extends MPanel {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-//		try {
-//			UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
-//		} catch (ClassNotFoundException | InstantiationException
-//				| IllegalAccessException | UnsupportedLookAndFeelException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
 		DeanUISwitchController controller = DeanUISwitchController
 				.getUISwitchController();
 		controller.switchToTimePanel();

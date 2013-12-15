@@ -20,32 +20,39 @@ public class MLabel extends JLabel {
 		this.setLocation(location);
 		this.setSize(size);
 		this.setText(text);
-		setHorizontalAlignment(CENTER);
+		setHorizontalAlignment(LEFT);
+		this.setFont(MFont.lbFont);
 	}
 
 	public MLabel(String text, Icon icon, int horizontalAlignment) {
 		super(text, icon, horizontalAlignment);
+		setFont(MFont.lbFont);
 	}
 
 	public MLabel(String text, int horizontalAlignment) {
 		super(text, horizontalAlignment);
+		setFont(MFont.lbFont);
 	}
 
 	public MLabel(String text) {
 		super(text);
 		setHorizontalAlignment(CENTER);
+		setFont(MFont.lbFont);
 	}
 
 	public MLabel(Icon image, int horizontalAlignment) {
 		super(image, horizontalAlignment);
+		setFont(MFont.lbFont);
 	}
 
 	public MLabel(Icon image) {
 		super(image);
+		setFont(MFont.lbFont);
 	}
 
 	public MLabel() {
 		super();
+		setFont(MFont.lbFont);
 	}
 
 	public void setText(String text) {

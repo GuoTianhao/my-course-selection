@@ -16,6 +16,8 @@ import java.util.Iterator;
 import javax.swing.JOptionPane;
 import javax.swing.UIManager;
 
+import org.jb2011.lnf.beautyeye.BeautyEyeLNFHelper;
+
 import com.data.po.FrameElement;
 import com.logicService.DeanMethod;
 import com.ui.myswing.MButton;

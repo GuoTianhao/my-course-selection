@@ -19,7 +19,7 @@ import com.data.po.FacultyDean;
 import com.data.po.Frame;
 import com.data.po.FrameElement;
 import com.logicService.FacultyDeanMethod;
-import com.ui.myswing.MComboBox;
+import com.ui.input.NumLimitInput;
 import com.ui.myswing.MFrame;
 import com.ui.myswing.MLabel;
 import com.ui.myswing.MPanel;
@@ -27,6 +27,8 @@ import com.ui.myswing.MTextField;
 import com.ui.myswing.MButton;
 
 import javax.swing.ImageIcon;
+
+import org.jb2011.lnf.beautyeye.BeautyEyeLNFHelper;
 
 public class FrameEditPane extends MFrame {
 	private MPanel panel;
@@ -315,7 +317,44 @@ public class FrameEditPane extends MFrame {
 				}
 			}
 		});
+		
+		
+		NumLimitInput limit = new NumLimitInput();
+		textField.addKeyListener(limit);
+		textField_7.addKeyListener(limit);
+		textField_20.addKeyListener(limit);
+		textField_21.addKeyListener(limit);
+		textField_1.addKeyListener(limit);
+		textField_8.addKeyListener(limit);
+		textField_19.addKeyListener(limit);
+		textField_22.addKeyListener(limit);
+		textField_2.addKeyListener(limit);
+		textField_9.addKeyListener(limit);
+		textField_18.addKeyListener(limit);
+		textField_23.addKeyListener(limit);
+		textField_3.addKeyListener(limit);
+		textField_10.addKeyListener(limit);
+		textField_17.addKeyListener(limit);
+		textField_24.addKeyListener(limit);
+		textField_4.addKeyListener(limit);
+		textField_11.addKeyListener(limit);
+		textField_16.addKeyListener(limit);
+		textField_25.addKeyListener(limit);
+		textField_5.addKeyListener(limit);
+		textField_12.addKeyListener(limit);
+		textField_15.addKeyListener(limit);
+		textField_26.addKeyListener(limit);
+		textField_6.addKeyListener(limit);
+		textField_13.addKeyListener(limit);
+		textField_14.addKeyListener(limit);
+		textField_27.addKeyListener(limit);
+		textField_28.addKeyListener(limit);
+		textField_29.addKeyListener(limit);
+		textField_30.addKeyListener(limit);
+		textField_31.addKeyListener(limit);
 
+		
+		
 	}
 
 	public Frame getFrame() {
@@ -392,6 +431,7 @@ public class FrameEditPane extends MFrame {
 
 	public static void main(String[] args) {
 		try {
+			BeautyEyeLNFHelper.frameBorderStyle = BeautyEyeLNFHelper.FrameBorderStyle.osLookAndFeelDecorated;
 			org.jb2011.lnf.beautyeye.BeautyEyeLNFHelper.launchBeautyEyeLNF();
 			UIManager.put("RootPane.setupButtonVisible", false);
 		} catch (Exception e) {

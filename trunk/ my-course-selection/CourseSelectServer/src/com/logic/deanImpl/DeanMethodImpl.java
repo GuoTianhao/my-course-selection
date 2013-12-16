@@ -3,9 +3,12 @@ package com.logic.deanImpl;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import com.data.dataImpl.DeanDatabaseImpl;
+import com.data.dataImpl.method.dean.TimeGetter;
+import com.data.dataImpl.method.dean.TimeSetter;
 import com.data.po.BasicFrame;
 import com.data.po.Course;
 import com.data.po.Dean;
@@ -240,6 +243,19 @@ public class DeanMethodImpl extends UnicastRemoteObject implements DeanMethod{
 	public void setIsTimeForSystemSelect(boolean admit) throws RemoteException {
 		// TODO Auto-generated method stub
 		time.setIsTimeForSystemSelect(admit);
+	}
+
+	@Override
+	public boolean setPeriodTime(String period, Date start)
+			throws RemoteException {
+		// TODO Auto-generated method stub
+		return TimeSetter.setTime(period, start);
+	}
+
+	@Override
+	public Date getPeriodTime(String period) throws RemoteException {
+		// TODO Auto-generated method stub
+		return TimeGetter.getTime(period);
 	}	
 
 }

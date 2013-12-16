@@ -2,6 +2,7 @@ package com.logicService;
 
 import java.rmi.Remote;
 import java.rmi.RemoteException;
+import java.util.Date;
 import java.util.List;
 
 import com.data.po.BasicFrame;
@@ -76,4 +77,10 @@ public interface DeanMethod extends Remote,TimeController {
 	
 	//导入老师
 	public boolean importTeacher(List<Teacher> list) throws RemoteException;
+	
+	//设置阶段开始时间
+	public boolean setPeriodTime(String period,Date start)throws RemoteException;
+	
+	//得到阶段开始时间
+	public Date getPeriodTime(String period)throws RemoteException;
 }

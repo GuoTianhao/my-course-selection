@@ -21,6 +21,7 @@ import com.basicdata.CourseTypeKind;
 import com.data.po.Course;
 import com.data.po.Teacher;
 import com.ui.bcswing.MObservable;
+import com.ui.input.NumLimitInput;
 import com.ui.myswing.MButton;
 import com.ui.myswing.MComboBox;
 import com.ui.myswing.MFrame;
@@ -122,6 +123,11 @@ public class CourseEditPanel extends MPanel {
 		typeSelect.addItemListener(new TypeItemListener());
 
 		new TimeButtonListener().actionPerformed(null);
+		
+		NumLimitInput limit = new NumLimitInput();
+		creditt.addKeyListener(limit);
+		numt.addKeyListener(limit);
+		gradet.addKeyListener(limit);
 	}
 
 	protected void init() {

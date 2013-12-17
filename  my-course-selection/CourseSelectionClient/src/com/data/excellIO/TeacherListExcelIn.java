@@ -26,7 +26,6 @@ public class TeacherListExcelIn {
 				Vector row = new Vector<>();
 				row.add(sheet.getCell(0, i).getContents());
 				row.add(sheet.getCell(1, i).getContents());
-				row.add(sheet.getCell(2, i).getContents());
 				res.add(row);
 			}
 			book.close();
@@ -47,8 +46,7 @@ public class TeacherListExcelIn {
 			Workbook book = Workbook.getWorkbook(new File(fileName));
 			Sheet sheet = book.getSheet(0);
 			if((sheet.getCell(0, 0).getContents().equals("ID"))
-					&&(sheet.getCell(1, 0).getContents().equals("Nmae"))
-					&&(sheet.getCell(2, 0).getContents().equals("Factuly")))
+					&&(sheet.getCell(1, 0).getContents().equals("Nmae")))
 				cmd=true;
 			book.close();
 		} catch (Exception e) {

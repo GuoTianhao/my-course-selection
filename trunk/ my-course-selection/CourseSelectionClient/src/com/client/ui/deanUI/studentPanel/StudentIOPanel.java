@@ -91,7 +91,7 @@ public class StudentIOPanel extends MPanel {
 				String filename = j1.getSelectedFile().toString();
 				if (n == JFileChooser.APPROVE_OPTION) {
 					if (StudentListExcelIn.testFile(filename))
-						StudentListExcelIn.read(filename);
+						table.setDataVector(StudentListExcelIn.read(filename));
 					else
 						JOptionPane.showConfirmDialog(null, "Fail!", "提示",
 								JOptionPane.YES_OPTION);

@@ -23,6 +23,7 @@ public class StudentListExcelIn {
 				row.add(sheet.getCell(0, i).getContents());
 				row.add(sheet.getCell(1, i).getContents());
 				row.add(sheet.getCell(2, i).getContents());
+				row.add(sheet.getCell(3, i).getContents());
 				res.add(row);
 			}
 			book.close();
@@ -32,30 +33,33 @@ public class StudentListExcelIn {
 
 		return res;
 	}
+
 	public static boolean testFile(String fileName) {
-		boolean cmd=false;
+		boolean cmd = false;
 		System.out.println(fileName);
-		String[] getStrings=fileName.split("\\.");
+		String[] getStrings = fileName.split("\\.");
 		System.out.println(getStrings[0]);
-		if(!(getStrings[1].equals("xls"))) {
-			cmd=false;
+		if (!(getStrings[1].equals("xls"))) {
+			cmd = false;
 			return cmd;
 		}
 		try {
 			Workbook book = Workbook.getWorkbook(new File(fileName));
 			Sheet sheet = book.getSheet(0);
-			if((sheet.getCell(0, 0).getContents().equals("ID"))
-					&&(sheet.getCell(1, 0).getContents().equals("Name"))
-					&&(sheet.getCell(2, 0).getContents().equals("Grade")))
-				cmd=true;
+			if ((sheet.getCell(0, 0).getContents().equals("ID"))
+					&& (sheet.getCell(1, 0).getContents().equals("Name"))
+					&& (sheet.getCell(2, 0).getContents().equals("Grade"))
+					&& (sheet.getCell(3, 0).getContents().equals("Faculty")))
+				cmd = true;
 			book.close();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
+
 		return cmd;
 	}
-	public static void main(String[] args){
+
+	public static void main(String[] args) {
 		StudentListExcelIn.testFile("test.r");
 	}
 }

@@ -7,7 +7,7 @@ import com.logicService.FacultyDeanMethod;
 
 public class FacultyDeanMethodController {
 	private static FacultyDeanMethod facultyMethod = null;
-	private static String look="rmi://127.0.0.1:6601/facultyDeanMethod";
+	private static String look="rmi://172.26.61.148:6601/facultyDeanMethod";
 	public static FacultyDeanMethod getMethod() {
 		if (facultyMethod == null) {
 			try {

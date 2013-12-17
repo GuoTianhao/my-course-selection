@@ -1,5 +1,6 @@
 package com.client.ui.facultyUI;
 
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Point;
 import java.awt.event.ActionEvent;
@@ -10,6 +11,8 @@ import javax.swing.ImageIcon;
 import javax.swing.SwingConstants;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
+
+import org.jb2011.lnf.beautyeye.BeautyEyeLNFHelper;
 
 import com.basicdata.Identity;
 import com.client.rmi.FacultyDeanMethodController;
@@ -23,7 +26,7 @@ public class FacultyMainPanel extends MPanel {
 	private TitleBar title;
 	private MButton btn1;
 	private MButton btn2;
-	private MButton btn3;
+	// private MButton btn3;
 
 	FacultyUISwitchController controller;
 
@@ -35,30 +38,31 @@ public class FacultyMainPanel extends MPanel {
 
 	private void createComponent() {
 		title = new FacultyTitleBar(new Point(0, 0), new Dimension(
-				this.getWidth(), 75));
+				this.getWidth(), 100));
 
-		btn1 = new MButton(new ImageIcon("blank.png"), null, null, new Point(
-				85, 134), new Dimension(180, 150));
+		btn1 = new MButton(new ImageIcon("resource//plan.png"), null, null,
+				new Point(85, 134), new Dimension(180, 150));
 		btn1.setText("教学计划");
 		btn1.setHorizontalTextPosition(SwingConstants.CENTER);
 		btn1.setVerticalTextPosition(SwingConstants.BOTTOM);
 
-		btn2 = new MButton(new ImageIcon("blank.png"), null, null, new Point(
-				323, 134), new Dimension(180, 150));
+		btn2 = new MButton(new ImageIcon("resource//course.png"), null,
+				new ImageIcon("resource//course3.png"), new Point(323, 134),
+				new Dimension(180, 150));
 		btn2.setText("课程");
 		btn2.setHorizontalTextPosition(SwingConstants.CENTER);
 		btn2.setVerticalTextPosition(SwingConstants.BOTTOM);
 
-		btn3 = new MButton(new ImageIcon("blank.png"), null, null, new Point(
-				535, 134), new Dimension(180, 150));
-		btn3.setText("专业准入准出");
-		btn3.setHorizontalTextPosition(SwingConstants.CENTER);
-		btn3.setVerticalTextPosition(SwingConstants.BOTTOM);
+		// btn3 = new MButton(new ImageIcon("blank.png"), null, null, new Point(
+		// 535, 134), new Dimension(180, 150));
+		// btn3.setText("专业准入准出");
+		// btn3.setHorizontalTextPosition(SwingConstants.CENTER);
+		// btn3.setVerticalTextPosition(SwingConstants.BOTTOM);
 
 		this.add(title);
 		this.add(btn1);
 		this.add(btn2);
-		this.add(btn3);
+		// this.add(btn3);
 	}
 
 	private void addListener() {
@@ -76,11 +80,11 @@ public class FacultyMainPanel extends MPanel {
 				;
 			}
 		});
-		btn3.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-
-			}
-		});
+		// btn3.addActionListener(new ActionListener() {
+		// public void actionPerformed(ActionEvent e) {
+		//
+		// }
+		// });
 
 	}
 
@@ -92,19 +96,14 @@ public class FacultyMainPanel extends MPanel {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-//		try {
-//			org.jb2011.lnf.beautyeye.BeautyEyeLNFHelper.launchBeautyEyeLNF();
-//			UIManager.put("RootPane.setupButtonVisible", false);
-//		} catch (Exception e) {
-//			e.printStackTrace();
-//		}
 		try {
-			UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
-		} catch (ClassNotFoundException | InstantiationException
-				| IllegalAccessException | UnsupportedLookAndFeelException e) {
-			// TODO Auto-generated catch block
+			BeautyEyeLNFHelper.frameBorderStyle = BeautyEyeLNFHelper.FrameBorderStyle.osLookAndFeelDecorated;
+			org.jb2011.lnf.beautyeye.BeautyEyeLNFHelper.launchBeautyEyeLNF();
+			UIManager.put("RootPane.setupButtonVisible", false);
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
+
 		FacultyUISwitchController controller = FacultyUISwitchController
 				.getUISwitchController();
 		controller.swicthToMainFrame();

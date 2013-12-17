@@ -82,70 +82,70 @@ public class TimeControlPanel extends MPanel {
 		title = new DeanTitlebar(new Point(0, 0), new Dimension(
 				this.getWidth(), 75));
 
-		publishLb = new MLabel(new Point(40, 95), new Dimension(80, 40), "发布课程");
-		publish = new MButton(off, null, null, new Point(140, 100),
+		publishLb = new MLabel(new Point(120, 95), new Dimension(80, 40), "发布课程");
+		publish = new MButton(off, null, null, new Point(220, 100),
 				new Dimension(80, 40));
 
-		studentSelectLb = new MLabel(new Point(40, 145), new Dimension(80, 40),
+		studentSelectLb = new MLabel(new Point(120, 145), new Dimension(80, 40),
 				"学生选课");
-		studentSelect = new MButton(off, null, null, new Point(140, 150),
+		studentSelect = new MButton(off, null, null, new Point(220, 150),
 				new Dimension(80, 40));
 
-		gradeOneSelectLb = new MLabel(new Point(40, 195),
+		gradeOneSelectLb = new MLabel(new Point(120, 195),
 				new Dimension(100, 40), "大一新生选课");
-		gradeOneSelect = new MButton(off, null, null, new Point(140, 200),
+		gradeOneSelect = new MButton(off, null, null, new Point(220, 200),
 				new Dimension(80, 40));
 
-		quitCourseLb = new MLabel(new Point(40, 245), new Dimension(80, 40),
+		quitCourseLb = new MLabel(new Point(120, 245), new Dimension(80, 40),
 				"退选");
-		quitCourse = new MButton(off, null, null, new Point(140, 250),
+		quitCourse = new MButton(off, null, null, new Point(220, 250),
 				new Dimension(80, 40));
 
-		bySelectLb = new MLabel(new Point(40, 295), new Dimension(80, 40), "补选");
-		bySelect = new MButton(off, null, null, new Point(140, 300),
+		bySelectLb = new MLabel(new Point(120, 295), new Dimension(80, 40), "补选");
+		bySelect = new MButton(off, null, null, new Point(220, 300),
 				new Dimension(80, 40));
 
-		systemSelectLb = new MLabel(new Point(40, 345), new Dimension(80, 40),
-				"补选");
-		systemSelect = new MButton(off, null, null, new Point(140, 350),
+		systemSelectLb = new MLabel(new Point(120, 345), new Dimension(80, 40),
+				"系统选课");
+		systemSelect = new MButton(off, null, null, new Point(220, 350),
 				new Dimension(80, 40));
 		
 		
 
-		termOneStartDayLb=new MLabel(new Point(400, 100), new Dimension(80, 40),
-				"termOneStartDay");
-		termOneStartDay=new MTextField(new Point(500,100),new Dimension(100,30));
+		termOneStartDayLb=new MLabel(new Point(485, 95), new Dimension(100, 40),
+				"第一学期开始");
+		termOneStartDay=new MTextField(new Point(585,100),new Dimension(80,25));
 		
-		termOneEndDayLb=new MLabel(new Point(400, 150), new Dimension(80, 40),
-				"termOneEndDay");
-		termOneEndDay=new MTextField(new Point(500,150),new Dimension(100,30));
+		termOneEndDayLb=new MLabel(new Point(485, 145), new Dimension(100, 40),
+				"第一学期结束");
+		termOneEndDay=new MTextField(new Point(585,150),new Dimension(80,25));
 		
-		winterStartDayLb=new MLabel(new Point(400, 200), new Dimension(80, 40),
-				"winterStartDay");
-		winterStartDay=new MTextField(new Point(500,200),new Dimension(100,30));
+		winterStartDayLb=new MLabel(new Point(485, 195), new Dimension(100, 40),
+				"寒假开始");
+		winterStartDay=new MTextField(new Point(585,200),new Dimension(80,25));
 		
-		winterEndDayLb=new MLabel(new Point(400, 250), new Dimension(80, 40),
-				"winterEndDay");
-		winterEndDay=new MTextField(new Point(500,250),new Dimension(100,30));
+		winterEndDayLb=new MLabel(new Point(485, 245), new Dimension(100, 40),
+				"寒假结束");
+		winterEndDay=new MTextField(new Point(585,250),new Dimension(80,25));
 		
-		termTwoStartDayLb=new MLabel(new Point(400, 300), new Dimension(80, 40),
-				"termTwoStartDay");
-		termTwoStartDay=new MTextField(new Point(500,300),new Dimension(100,30));
+		termTwoStartDayLb=new MLabel(new Point(485, 295), new Dimension(100, 40),
+				"第二学期开始");
+		termTwoStartDay=new MTextField(new Point(585,300),new Dimension(80,25));
 		
-		termTwoEndDayLb=new MLabel(new Point(400, 350), new Dimension(80, 40),
-				"termTwoEndDay");
-		termTwoEndDay=new MTextField(new Point(500,350),new Dimension(100,30));
+		termTwoEndDayLb=new MLabel(new Point(485, 345), new Dimension(100, 40),
+				"第二学期结束");
+		termTwoEndDay=new MTextField(new Point(585,350),new Dimension(80,25));
 		
-		summerStartDayLb=new MLabel(new Point(400, 400), new Dimension(80, 40),
-				"summerStartDay");
-		summerStartDay=new MTextField(new Point(500,400),new Dimension(100,30));
+		summerStartDayLb=new MLabel(new Point(485, 395), new Dimension(100, 40),
+				"暑假开始");
+		summerStartDay=new MTextField(new Point(585,400),new Dimension(80,25));
 		
-		summerEndDayLb=new MLabel(new Point(400, 450), new Dimension(80, 40),
-				"summerEndDay");
-		summerEndDay=new MTextField(new Point(500,450),new Dimension(100,30));
+		summerEndDayLb=new MLabel(new Point(485, 445), new Dimension(100, 40),
+				"暑假结束");
+		summerEndDay=new MTextField(new Point(585,450),new Dimension(80,25));
 		
-		confirm=new MButton(null, null, null, new Point(400, 500),
-				new Dimension(80, 40));
+		confirm=new MButton(null, null, null, new Point(535, 500),
+				new Dimension(80, 25));
 		confirm.setText("确定");
 		
 		this.add(publishLb);

@@ -40,7 +40,7 @@ public class FacultyMainPanel extends MPanel {
 		title = new FacultyTitleBar(new Point(0, 0), new Dimension(
 				this.getWidth(), 100));
 
-		btn1 = new MButton(new ImageIcon("resource//plan.png"), null, null,
+		btn1 = new MButton(new ImageIcon("resource//plan.png"), null, new ImageIcon("resource//plan3.png"),
 				new Point(85, 134), new Dimension(180, 150));
 		btn1.setText("教学计划");
 		btn1.setHorizontalTextPosition(SwingConstants.CENTER);

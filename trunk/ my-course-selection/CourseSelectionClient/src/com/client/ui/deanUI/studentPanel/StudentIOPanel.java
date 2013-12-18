@@ -1,26 +1,28 @@
 package com.client.ui.deanUI.studentPanel;
 
 import java.awt.Dimension;
-import java.awt.Font;
 import java.awt.Point;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import java.rmi.RemoteException;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Vector;
 
-import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.UIManager;
 
 import org.jb2011.lnf.beautyeye.BeautyEyeLNFHelper;
-import org.jb2011.lnf.beautyeye.resources.beautyeye;
 
 import com.basicdata.FacultyKind;
 import com.client.rmi.DeanMethodController;
+import com.client.ui.dataAdapter.StudentListToVectorAdapter;
 import com.client.ui.deanUI.DeanUISwitchController;
 import com.data.excellIO.StudentListExcelIn;
 import com.data.po.Student;
@@ -37,7 +39,6 @@ public class StudentIOPanel extends MPanel {
 	private MComboBox<String> department;
 	private MButton importFromFile;
 	private MTextField search;
-	private MButton confirm;
 	private MScrollTable table;
 	private String[] departmentItems = FacultyKind.getAllFaculty();
 
@@ -60,18 +61,14 @@ public class StudentIOPanel extends MPanel {
 		importFromFile.setText("从文件导入...");
 		search = new MTextField("搜索");
 		search.setBounds(635, 95, 120, 25);
-		confirm = new MButton(null, null, null, new Point(400, 95),
-				new Dimension(100, 25));
-		confirm.setText("确定");
 		table = new MScrollTable(new Point(10, 130), new Dimension(780, 430));
-		String[] c = { "学号", "姓名", "入学年份" };
+		String[] c = { "学号", "姓名", "院系","入学年份" };
 		table.setColumnIdentifiers(c);
 		this.add(title);
 		this.add(choose);
 		this.add(department);
 		this.add(importFromFile);
 		this.add(search);
-		this.add(confirm);
 		this.add(table);
 	}
 
@@ -86,38 +83,33 @@ public class StudentIOPanel extends MPanel {
 		});
 
 		importFromFile.addActionListener(new ActionListener() {
+			
 			public void actionPerformed(ActionEvent arg0) {
 				int n = j1.showOpenDialog(null);
 				String filename = j1.getSelectedFile().toString();
 				if (n == JFileChooser.APPROVE_OPTION) {
-					if (StudentListExcelIn.testFile(filename))
-						table.setDataVector(StudentListExcelIn.read(filename));
-					else
+					if (StudentListExcelIn.testFile(filename)) {
+						importStudent(StudentListExcelIn.read(filename));
+					} else {
 						JOptionPane.showConfirmDialog(null, "Fail!", "提示",
 								JOptionPane.YES_OPTION);
-
+					}
 				}
 			}
-		});
 
-		confirm.addActionListener(new ActionListener() {
-
-			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
-				String faculty = FacultyKind.getID((String) department
-						.getSelectedItem());
+			public void importStudent(Vector<Vector> vector) {
 				DeanMethod method = DeanMethodController.getMethod();
 				List<Student> studentList = new LinkedList<Student>();
-
-				Vector<Vector> vector = table.getDataVector();
 				Iterator<Vector> it = vector.iterator();
 				while (it.hasNext()) {
 					Vector<String> row = it.next();
 					studentList.add(new Student(row.get(0), row.get(1),
-							faculty, Integer.parseInt(row.get(2))));
+							FacultyKind.getID(row.get(3)), Integer.parseInt(row
+									.get(2))));
 				}
 				try {
 					method.importStudent(studentList);
+					refreshTable();
 				} catch (RemoteException e1) {
 					e1.printStackTrace();
 				}
@@ -125,12 +117,48 @@ public class StudentIOPanel extends MPanel {
 
 		});
 
+		search.addKeyListener(new KeyAdapter() {
+			public void keyReleased(KeyEvent e) {
+				String content = search.getText();
+				table.regrexFilter(content);
+			}
+		});
+
+		department.addItemListener(new FacultyListener());
+		
 	}
 
 	private void init() {
-
+		department.setSelectedIndex(-1);
+		department.setSelectedIndex(0);
 	}
 
+	
+	private void refreshTable(){
+		String faculty = (String) department.getSelectedItem();
+		faculty = FacultyKind.getID(faculty);
+		DeanMethod method = DeanMethodController.getMethod();
+		try {
+			List<Student> student=method.getFacultyStudent(faculty);
+			table.setDataVector(StudentListToVectorAdapter.adapter(student));
+		} catch (RemoteException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+	}
+	
+	class FacultyListener implements ItemListener {
+		int time = 0;
+
+		public void itemStateChanged(ItemEvent e) {
+			time++;
+			if (time % 2 == 0) {
+				refreshTable();
+			}
+		}
+		
+	}
+	
 	public static void main(String[] args) {
 
 		try {

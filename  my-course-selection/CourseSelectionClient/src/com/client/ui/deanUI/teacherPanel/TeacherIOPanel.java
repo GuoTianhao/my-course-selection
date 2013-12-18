@@ -4,6 +4,10 @@ import java.awt.Dimension;
 import java.awt.Point;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import java.rmi.RemoteException;
 import java.util.Iterator;
 import java.util.LinkedList;
@@ -19,8 +23,11 @@ import org.jb2011.lnf.beautyeye.BeautyEyeLNFHelper;
 
 import com.basicdata.FacultyKind;
 import com.client.rmi.DeanMethodController;
+import com.client.ui.dataAdapter.FrameToVectorAdapter;
+import com.client.ui.dataAdapter.TeacherListToVectorAdapter;
 import com.client.ui.deanUI.DeanUISwitchController;
 import com.data.excellIO.TeacherListExcelIn;
+import com.data.po.Frame;
 import com.data.po.Student;
 import com.data.po.Teacher;
 import com.logicService.DeanMethod;
@@ -34,13 +41,12 @@ import com.ui.myswing.MPanel;
 import com.ui.myswing.MTextField;
 
 public class TeacherIOPanel extends MPanel {
-	JFileChooser j1 ;
+	JFileChooser j1;
 	private TitleBar title;
 	private MLabel choose;
 	private MComboBox<String> department;
 	private MButton importFromFile;
 	private MTextField search;
-	private MButton confirm;
 	private MScrollTable table;
 	private String[] departmentItems = FacultyKind.getAllFaculty();
 
@@ -63,19 +69,14 @@ public class TeacherIOPanel extends MPanel {
 		importFromFile.setText("从文件导入...");
 		search = new MTextField("搜索");
 		search.setBounds(635, 95, 120, 25);
-		confirm = new MButton(null, null, null, new Point(400, 95),
-				new Dimension(100, 25));
-		confirm.setText("确定");
-		table = new MScrollTable(new Point(10, 130), new Dimension(780,
-				430));
-		String[] c = {"工号","姓名"};
+		table = new MScrollTable(new Point(10, 130), new Dimension(780, 430));
+		String[] c = { "工号", "姓名", "院系" };
 		table.setColumnIdentifiers(c);
 		this.add(title);
 		this.add(choose);
 		this.add(department);
 		this.add(importFromFile);
 		this.add(search);
-		this.add(confirm);
 		this.add(table);
 	}
 
@@ -88,54 +89,85 @@ public class TeacherIOPanel extends MPanel {
 				controller.swicthToMainFrame();
 			}
 		});
+		
 		importFromFile.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				int n = j1.showOpenDialog(null);
 				String filename = j1.getSelectedFile().toString();
 				if (n == JFileChooser.APPROVE_OPTION) {
-	                  if(TeacherListExcelIn.testFile(filename)) 
-			                 TeacherListExcelIn.read(filename);
-	                  else
-	                	  JOptionPane.showConfirmDialog(null, "Fail!", "提示",
-	  							JOptionPane.YES_OPTION);
+					if (TeacherListExcelIn.testFile(filename))
+						importTeacher(TeacherListExcelIn.read(filename));
+					else
+						JOptionPane.showConfirmDialog(null, "Fail!", "提示",
+								JOptionPane.YES_OPTION);
 
 				}
 			}
-		});
-		
-		confirm.addActionListener(new ActionListener() {
 
-			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
-				String faculty = FacultyKind.getID((String) department
-						.getSelectedItem());
+			public void importTeacher(Vector<Vector> vector) {
+
 				DeanMethod method = DeanMethodController.getMethod();
 				List<Teacher> teacherList = new LinkedList<Teacher>();
 
-				Vector<Vector> vector = table.getDataVector();
 				Iterator<Vector> it = vector.iterator();
 				while (it.hasNext()) {
 					Vector<String> row = it.next();
 					teacherList.add(new Teacher(row.get(0), row.get(1),
-							faculty));
+							FacultyKind.getID(row.get(2))));
 				}
 				try {
 					method.importTeacher(teacherList);
+					refreshTable();
 				} catch (RemoteException e1) {
 					e1.printStackTrace();
 				}
 			}
-
+			
 		});
 
+		search.addKeyListener(new KeyAdapter() {
+			public void keyReleased(KeyEvent e) {
+				String content = search.getText();
+				table.regrexFilter(content);
+			}
+		});
+
+		department.addItemListener(new FacultyListener());
 	}
 
 	private void init() {
+		department.setSelectedIndex(-1);
+		department.setSelectedIndex(0);
+	}
 
+	private void refreshTable(){
+		
+		String faculty = (String) department.getSelectedItem();
+		faculty = FacultyKind.getID(faculty);
+		DeanMethod method = DeanMethodController.getMethod();
+		try {
+			List<Teacher> teacher=method.getFacultyTeacher(faculty);
+			table.setDataVector(TeacherListToVectorAdapter.adapter(teacher));
+		} catch (RemoteException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		
+	}
+	
+	class FacultyListener implements ItemListener {
+		int time = 0;
+
+		public void itemStateChanged(ItemEvent e) {
+			time++;
+			if (time % 2 == 0) {
+				refreshTable();
+			}
+		}
 	}
 
 	public static void main(String[] args) {
-		
+
 		try {
 			BeautyEyeLNFHelper.frameBorderStyle = BeautyEyeLNFHelper.FrameBorderStyle.osLookAndFeelDecorated;
 			org.jb2011.lnf.beautyeye.BeautyEyeLNFHelper.launchBeautyEyeLNF();
@@ -147,5 +179,5 @@ public class TeacherIOPanel extends MPanel {
 				.getUISwitchController();
 		controller.switchToTeacherPanel();
 	}
-	
+
 }

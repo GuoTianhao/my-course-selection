@@ -319,4 +319,10 @@ public class DeanMethod_Stub implements DeanMethod {
 		return false;
 	}
 
+	@Override
+	public List<Student> getFacultyStudent(String arg0) throws RemoteException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

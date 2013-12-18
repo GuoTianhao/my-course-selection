@@ -15,6 +15,7 @@ import javax.swing.JFrame;
 import javax.swing.SwingConstants;
 
 import com.client.ui.main.MainUISwitchController;
+import com.ui.bcswing.TipFrame;
 import com.ui.myswing.*;
 
 public class Login extends JFrame {
@@ -126,7 +127,9 @@ public class Login extends JFrame {
 					}
 					Login.this.dispose();
 				} else {
-					System.out.println("帐号或密码错误");
+					TipFrame t = new TipFrame(getLocation(),getSize(), 5, "帐号或密码错误");
+					t.startEndClock();
+
 				}
 			} else {
 				System.out.println("输入错误");

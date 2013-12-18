@@ -1,5 +1,6 @@
 package com.client.ui.deanUI;
 
+import java.awt.Dimension;
 import java.awt.Point;
 
 import com.client.ui.deanUI.basicFrame.BasicFramePanel;
@@ -74,6 +75,10 @@ public class DeanUISwitchController {
 	
 	public Point getLoc(){
 		return frame.getLocation();
+	}
+	
+	public Dimension getSize(){
+		return frame.getSize();
 	}
 	
 	public void dispose(){

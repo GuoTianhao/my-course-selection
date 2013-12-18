@@ -1,5 +1,6 @@
 package com.client.ui.teacherUI;
 
+import java.awt.Dimension;
 import java.awt.Point;
 
 import com.client.ui.main.MainFrame;
@@ -47,6 +48,10 @@ public class TeacherUISwitchController {
 	
 	public Point getLoc(){
 		return frame.getLocation();
+	}
+	
+	public Dimension getSize(){
+		return frame.getSize();
 	}
 
 	public void dispose() {

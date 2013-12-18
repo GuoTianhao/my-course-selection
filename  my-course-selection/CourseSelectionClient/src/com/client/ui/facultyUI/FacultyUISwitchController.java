@@ -1,5 +1,6 @@
 package com.client.ui.facultyUI;
 
+import java.awt.Dimension;
 import java.awt.Point;
 
 import com.client.ui.facultyUI.Course.CourseManagementPanel;
@@ -44,6 +45,10 @@ public class FacultyUISwitchController {
 	
 	public Point getLoc(){
 		return frame.getLocation();
+	}
+	
+	public Dimension getSize(){
+		return frame.getSize();
 	}
 
 	public void dispose(){

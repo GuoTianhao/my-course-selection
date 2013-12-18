@@ -1,5 +1,6 @@
 package com.client.ui.studentUI;
 
+import java.awt.Dimension;
 import java.awt.Point;
 
 import com.client.ui.loginUI.Login;
@@ -100,6 +101,10 @@ public class StudentUISwitchController {
 	
 	public Point getLoc(){
 		return frame.getLocation();
+	}
+	
+	public Dimension getSize(){
+		return frame.getSize();
 	}
 	
 	public void dispose(){

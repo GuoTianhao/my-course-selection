@@ -24,7 +24,9 @@ import com.logic.method.deanRelative.BasicFrameManagement;
 import com.logic.method.deanRelative.DeanGetter;
 import com.logic.method.deanRelative.DeanPublishCourse;
 import com.logic.method.deanRelative.MCourseGetter;
+import com.logic.method.deanRelative.StudentImport;
 import com.logic.method.studentRelative.CourseBySelect;
+import com.logic.method.studentRelative.StudentGetter;
 import com.logic.method.userRelative.Login;
 import com.logic.method.userRelative.PasswordChange;
 import com.logicService.DeanMethod;
@@ -163,7 +165,7 @@ public class DeanMethodImpl extends UnicastRemoteObject implements DeanMethod{
 	@Override
 	public boolean importStudent(List<Student> list) throws RemoteException {
 		// TODO Auto-generated method stub
-		return false;
+		return StudentImport.importStudent(list);
 	}
 
 	@Override
@@ -256,6 +258,12 @@ public class DeanMethodImpl extends UnicastRemoteObject implements DeanMethod{
 	public Date getPeriodTime(String period) throws RemoteException {
 		// TODO Auto-generated method stub
 		return TimeGetter.getTime(period);
-	}	
+	}
 
+	@Override
+	public List<Student> getFacultyStudent(String facultyID)
+			throws RemoteException {
+		// TODO Auto-generated method stub
+		return StudentGetter.getFacultyStudent(facultyID);
+	}		
 }

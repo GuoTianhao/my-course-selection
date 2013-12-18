@@ -13,7 +13,7 @@ import com.data.po.Student;
 import com.data.po.Teacher;
 import com.timeControllerService.TimeController;
 
-public interface DeanMethod extends Remote,TimeController {
+public interface DeanMethod extends Remote, TimeController {
 	// 登陆操作，传入ID（帐号）和password(密码)，当ID和password匹配return true，反之return false；
 	public boolean login(String ID, String password) throws RemoteException;
 
@@ -46,18 +46,22 @@ public interface DeanMethod extends Remote,TimeController {
 	// 得到全校老师列表，return List<Teacher>(一个链表)
 	public List<Teacher> getAllTeacher() throws RemoteException;
 
-	//得到老师
+	// 得到老师
 	public Teacher getTeacher(String id) throws RemoteException;
-	
+
 	// 得到院系老师列表，传入facultyID（院系），return List<Teacher>(一个链表)
 	public List<Teacher> getFacultyTeacher(String facultyID)
 			throws RemoteException;
- 
+
 	// 得到全校课程列表，return List<Course>
 	public List<Course> getAllCourse() throws RemoteException;
 
 	// 得到院系课程列表，传入falculty(院系)，return List<Course>.
 	public List<Course> getFacultyCourse(String facultyID)
+			throws RemoteException;
+
+	//得到院系的学生
+	public List<Student> getFacultyStudent(String facultyID)
 			throws RemoteException;
 
 	// 分种类得到课程
@@ -68,19 +72,21 @@ public interface DeanMethod extends Remote,TimeController {
 
 	// 得到具体课程
 	public Course getCourse(String courseID) throws RemoteException;
-	
-	//得到院系具体学期课程
-	public List<Course> geFacultyTermCourse(String facultyID,String grade) throws RemoteException;
-	
-	//导入学生
+
+	// 得到院系具体学期课程
+	public List<Course> geFacultyTermCourse(String facultyID, String grade)
+			throws RemoteException;
+
+	// 导入学生
 	public boolean importStudent(List<Student> list) throws RemoteException;
-	
-	//导入老师
+
+	// 导入老师
 	public boolean importTeacher(List<Teacher> list) throws RemoteException;
-	
-	//设置阶段开始时间
-	public boolean setPeriodTime(String period,Date start)throws RemoteException;
-	
-	//得到阶段开始时间
-	public Date getPeriodTime(String period)throws RemoteException;
+
+	// 设置阶段开始时间
+	public boolean setPeriodTime(String period, Date start)
+			throws RemoteException;
+
+	// 得到阶段开始时间
+	public Date getPeriodTime(String period) throws RemoteException;
 }

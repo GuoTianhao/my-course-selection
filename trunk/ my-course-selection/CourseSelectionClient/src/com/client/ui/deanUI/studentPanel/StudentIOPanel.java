@@ -52,16 +52,16 @@ public class StudentIOPanel extends MPanel {
 	private void createComponent() {
 		j1 = new JFileChooser();
 		title = new DeanTitlebar(new Point(0, 0), new Dimension(
-				this.getWidth(), 75));
-		choose = new MLabel(new Point(15, 95), new Dimension(75, 22), "选择院系：");
-		department = new MComboBox<>(departmentItems, new Point(90, 95),
+				this.getWidth(), 95));
+		choose = new MLabel(new Point(20, 95), new Dimension(75, 25), "选择院系：");
+		department = new MComboBox<>(departmentItems, new Point(95, 95),
 				new Dimension(150, 25));
 		importFromFile = new MButton(null, null, null, new Point(255, 95),
 				new Dimension(100, 25));
 		importFromFile.setText("从文件导入...");
 		search = new MTextField("搜索");
-		search.setBounds(635, 95, 120, 25);
-		table = new MScrollTable(new Point(10, 130), new Dimension(780, 430));
+		search.setBounds(700, 95, 120, 25);
+		table = new MScrollTable(new Point(20, 130), new Dimension(800, 480));
 		String[] c = { "学号", "姓名", "院系","入学年份" };
 		table.setColumnIdentifiers(c);
 		this.add(title);

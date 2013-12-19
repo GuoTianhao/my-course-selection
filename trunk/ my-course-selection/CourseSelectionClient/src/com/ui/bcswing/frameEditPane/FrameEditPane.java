@@ -32,7 +32,7 @@ import org.jb2011.lnf.beautyeye.BeautyEyeLNFHelper;
 
 public class FrameEditPane extends MFrame {
 	private MPanel panel;
-	private static Dimension default_size = new Dimension(525, 550);
+	private static Dimension default_size = new Dimension(480, 480);
 	private String[][] elementsStr = new String[8][3];
 	FacultyDeanMethod method = FacultyDeanMethodController.getMethod();
 	private MButton button;

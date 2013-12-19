@@ -4,7 +4,7 @@ import java.awt.Font;
 import java.awt.GraphicsEnvironment;
 
 public class MFont {
-	public static Font titleFont = new Font("微软雅黑", Font.PLAIN, 20);
+	public static Font titleFont = new Font("微软雅黑", Font.PLAIN, 24);
 	public static Font btnFont = new Font("微软雅黑", Font.PLAIN, 12);
 	public static Font lbFont = new Font("微软雅黑", Font.PLAIN, 14);
 	public static Font textFont = new Font("宋体", Font.PLAIN, 13);

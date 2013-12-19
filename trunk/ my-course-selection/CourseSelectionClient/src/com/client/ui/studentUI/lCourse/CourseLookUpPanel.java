@@ -10,6 +10,8 @@ import java.rmi.RemoteException;
 
 import javax.swing.UIManager;
 
+import org.jb2011.lnf.beautyeye.BeautyEyeLNFHelper;
+
 import com.basicdata.FacultyKind;
 import com.basicdata.TermKind;
 import com.client.rmi.DeanMethodController;
@@ -45,15 +47,15 @@ public class CourseLookUpPanel extends MPanel {
 
 	private void createComponent() {
 		title = new StudentTitleBar(new Point(0, 0), new Dimension(
-				this.getWidth(), 75));
-		choose1 = new MLabel(new Point(15, 95), new Dimension(75, 22), "选择学期：");
-		term = new MComboBox<>(TermKind.getAllTerm(), new Point(90, 95),
+				this.getWidth(), 95));
+		choose1 = new MLabel(new Point(25, 95), new Dimension(60, 25), "选择学期");
+		term = new MComboBox<>(TermKind.getAllTerm(), new Point(95, 95),
 				new Dimension(150, 25));
-		choose2 = new MLabel(new Point(260, 95), new Dimension(75, 22), "选择院系：");
+		choose2 = new MLabel(new Point(280, 95), new Dimension(75, 25), "选择院系");
 		department = new MComboBox<>(departmentItems, new Point(350, 95),
 				new Dimension(150, 25));
-		table = new MScrollTable(new Point(10, 130), new Dimension(780,
-				430));
+		table = new MScrollTable(new Point(20, 130), new Dimension(800,
+				480));
 		String[] c = { "课程编号", "课程模块", "课程名称", "学分", "开设学期" };
 		table.setColumnIdentifiers(c);
 		this.add(title);
@@ -111,6 +113,7 @@ public class CourseLookUpPanel extends MPanel {
 
 	public static void main(String[] args) {
 		try {
+			BeautyEyeLNFHelper.frameBorderStyle = BeautyEyeLNFHelper.FrameBorderStyle.osLookAndFeelDecorated;
 			org.jb2011.lnf.beautyeye.BeautyEyeLNFHelper.launchBeautyEyeLNF();
 			UIManager.put("RootPane.setupButtonVisible", false);
 		} catch (Exception e) {

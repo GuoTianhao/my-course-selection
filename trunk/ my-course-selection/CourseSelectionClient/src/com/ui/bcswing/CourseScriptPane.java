@@ -1,17 +1,23 @@
 package com.ui.bcswing;
 
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Point;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.FocusAdapter;
+import java.awt.event.FocusEvent;
+import java.awt.event.FocusListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 import java.rmi.RemoteException;
 
+import javax.swing.BorderFactory;
 import javax.swing.JOptionPane;
 import javax.swing.JTextArea;
 import javax.swing.UIManager;
+import javax.swing.border.Border;
 
 import com.client.rmi.TeacherMethodController;
 import com.data.po.Course;
@@ -23,7 +29,7 @@ import com.ui.myswing.MPanel;
 
 //教师完善课程信息框
 public class CourseScriptPane extends MFrame {
-	private static Dimension default_size = new Dimension(550, 500);
+	private static Dimension default_size = new Dimension(480, 500);
 	private Course course;
 	private TeacherMethod method = TeacherMethodController.getMethod();
 
@@ -127,7 +133,29 @@ public class CourseScriptPane extends MFrame {
 				CourseScriptPane.this.dispose();
 			}
 		});
-
+		
+//		outlineArea.addFocusListener(new FocusAdapter() {
+//			public void focusLost(FocusEvent e){
+//				outlineArea.setBorder(BorderFactory.createLineBorder(Color.GRAY, 1, true));
+//				refresh();
+//			}
+//		});
+//
+//		bookArea.addFocusListener(new FocusAdapter() {
+//			public void focusLost(FocusEvent e){
+//				bookArea.setBorder(BorderFactory.createLineBorder(Color.GRAY, 1, true));
+//				refresh();
+//			}
+//		});
+//		
+//		refBookArea.addFocusListener(new FocusAdapter() {
+//			public void focusLost(FocusEvent e){
+//				refBookArea.setBorder(BorderFactory.createLineBorder(Color.GRAY, 1, true));
+//				refresh();
+//			}
+//		});
+		
+		
 		addWindowListener(new WindowAdapter() {
 			public void windowClosing(WindowEvent e) {
 				int val = JOptionPane.showConfirmDialog(rootPane, "是否保存当前更改？",

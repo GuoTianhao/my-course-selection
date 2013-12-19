@@ -18,7 +18,7 @@ import com.ui.myswing.MPasswordField;
 import com.ui.myswing.MTextField;
 
 public class PasswordChangePane extends MFrame {
-	private static Dimension default_size = new Dimension(400, 350);
+	private static Dimension default_size = new Dimension(280, 280);
 
 	protected MPanel panel;
 	protected MLabel oPasswordLb;
@@ -39,19 +39,19 @@ public class PasswordChangePane extends MFrame {
 	private void createComponent() {
 		panel = new MPanel(new Point(0, 0), default_size);
 
-		oPasswordLb = new MLabel(new Point(10, 50), new Dimension(100, 30),
+		oPasswordLb = new MLabel(new Point(30, 50), new Dimension(100, 25),
 				"原密码");
-		mPasswordLb = new MLabel(new Point(10, 100), new Dimension(100, 30),
+		mPasswordLb = new MLabel(new Point(30, 100), new Dimension(100, 25),
 				"新密码");
-		mPasswordALb = new MLabel(new Point(10, 150), new Dimension(100, 30),
-				"新密码");
+		mPasswordALb = new MLabel(new Point(30, 150), new Dimension(100, 25),
+				"确认新密码");
 
-		oPassword = new MPasswordField(new Point(120, 50), new Dimension(100, 30));
-		mPassword = new MPasswordField(new Point(120, 100), new Dimension(100, 30));
-		mPasswordA = new MPasswordField(new Point(120, 150), new Dimension(100, 30));
+		oPassword = new MPasswordField(new Point(120, 50), new Dimension(100, 25));
+		mPassword = new MPasswordField(new Point(120, 100), new Dimension(100, 25));
+		mPasswordA = new MPasswordField(new Point(120, 150), new Dimension(100, 25));
 
 		
-		confirm=new MButton(null,null,null,new Point(50,200),new Dimension(100,30));
+		confirm=new MButton(null,null,null,new Point(90,200),new Dimension(80,25));
 		confirm.setText("确定");
 		
 		panel.add(oPasswordLb);

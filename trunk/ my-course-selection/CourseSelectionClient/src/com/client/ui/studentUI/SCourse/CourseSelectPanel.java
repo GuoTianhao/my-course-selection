@@ -10,6 +10,8 @@ import javax.swing.ImageIcon;
 import javax.swing.SwingConstants;
 import javax.swing.UIManager;
 
+import org.jb2011.lnf.beautyeye.BeautyEyeLNFHelper;
+
 import com.basicdata.Identity;
 import com.client.rmi.StudentMethodController;
 import com.client.ui.studentUI.StudentUISwitchController;
@@ -34,7 +36,7 @@ public class CourseSelectPanel extends MPanel{
 	
 	private void createComponent(){
 		title = new StudentTitleBar(new Point(0, 0), new Dimension(
-				this.getWidth(), 75));
+				this.getWidth(), 95));
 		btn1 = new MButton(new ImageIcon("blank.png"), null, null, new Point(
 				85, 134), new Dimension(180, 150));
 		btn1.setText("通识课选课");
@@ -108,6 +110,7 @@ public class CourseSelectPanel extends MPanel{
 			e.printStackTrace();
 		}
 		try {
+			BeautyEyeLNFHelper.frameBorderStyle = BeautyEyeLNFHelper.FrameBorderStyle.osLookAndFeelDecorated;
 			org.jb2011.lnf.beautyeye.BeautyEyeLNFHelper.launchBeautyEyeLNF();
 			UIManager.put("RootPane.setupButtonVisible", false);
 		} catch (Exception e) {

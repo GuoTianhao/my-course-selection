@@ -9,6 +9,8 @@ import java.util.Map;
 
 import javax.swing.UIManager;
 
+import org.jb2011.lnf.beautyeye.BeautyEyeLNFHelper;
+
 import com.basicdata.Identity;
 import com.client.rmi.TeacherMethodController;
 import com.client.ui.dataAdapter.StudentAndScoreToVectorAdapter;
@@ -38,15 +40,15 @@ public class CourseScoreRecordPanel extends MPanel {
 
 	private void createComponent() {
 		title = new TeacherTitleBar(new Point(0, 0), new Dimension(
-				this.getWidth(), 75));
-		table = new MScrollTable(new Point(10, 130),
-				new Dimension(780, 430));
+				this.getWidth(), 95));
+		table = new MScrollTable(new Point(20, 130),
+				new Dimension(800, 480));
 		String[] c = { "学号","姓名","院系","年级","成绩" };
 		table.setColumnIdentifiers(c);
-		backB = new MButton(null, null, null, new Point(10, 95), new Dimension(
-				100, 30));
-		editB = new MButton(null, null, null, new Point(700, 95),
-				new Dimension(100, 30));
+		backB = new MButton(null, null, null, new Point(30, 95), new Dimension(
+				60, 25));
+		editB = new MButton(null, null, null, new Point(690, 95),
+				new Dimension(130, 25));
 
 		backB.setText("返回");
 		editB.setText("双击以编辑成绩");
@@ -133,6 +135,7 @@ public class CourseScoreRecordPanel extends MPanel {
 			e1.printStackTrace();
 		}
 		try {
+			BeautyEyeLNFHelper.frameBorderStyle = BeautyEyeLNFHelper.FrameBorderStyle.osLookAndFeelDecorated;
 			org.jb2011.lnf.beautyeye.BeautyEyeLNFHelper.launchBeautyEyeLNF();
 			UIManager.put("RootPane.setupButtonVisible", false);
 		} catch (Exception e) {

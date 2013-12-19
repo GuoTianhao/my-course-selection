@@ -22,15 +22,15 @@ public class CoursePublicOperateBar extends MPanel {
 	}
 
 	private void creatComponent() {
-		courseP = new MButton(null, null, null, new Point(0, 0), null);
-		courseM = new MButton(null, null, null, new Point(110, 0), null);
-		courseInfor = new MButton(null, null, null, new Point(220, 0), null);
+		courseP = new MButton(null, null, null, new Point(30, 0), new Dimension(80, 25));
+		courseM = new MButton(null, null, null, new Point(120, 0), new Dimension(80, 25));
+		courseInfor = new MButton(null, null, null, new Point(210, 0), new Dimension(100, 25));
 
 		courseP.setText("发布新课程");
 		courseM.setText("修改课程");
 		courseInfor.setText("课程详细信息");
 
-		search = new MTextField(new Point(650, 0), new Dimension(100, 30));
+		search = new MTextField(new Point(700, 0), new Dimension(120, 25));
 
 		this.add(courseP);
 		this.add(courseM);

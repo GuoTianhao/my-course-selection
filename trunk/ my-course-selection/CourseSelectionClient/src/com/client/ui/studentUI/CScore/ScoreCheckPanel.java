@@ -14,6 +14,8 @@ import java.util.Map;
 
 import javax.swing.UIManager;
 
+import org.jb2011.lnf.beautyeye.BeautyEyeLNFHelper;
+
 import com.basicdata.Identity;
 import com.basicdata.TermKind;
 import com.client.rmi.StudentMethodController;
@@ -46,11 +48,11 @@ public class ScoreCheckPanel extends MPanel {
 
 	private void createComponent() {
 		title = new StudentTitleBar(new Point(0, 0), new Dimension(
-				this.getWidth(), 75));
-		choose = new MLabel(new Point(15, 95), new Dimension(75, 22), "选择学期：");
-		term = new MComboBox<>(TermKind.getAllTerm(), new Point(90, 95),
+				this.getWidth(), 95));
+		choose = new MLabel(new Point(25, 95), new Dimension(75, 25), "选择学期");
+		term = new MComboBox<>(TermKind.getAllTerm(), new Point(100, 95),
 				new Dimension(150, 25));
-		table = new MScrollTable(new Point(10, 130), new Dimension(780, 430));
+		table = new MScrollTable(new Point(20, 130), new Dimension(800, 480));
 		String[] c = { "课程编号","课程名称","课程类型","学分","成绩" };
 		table.setColumnIdentifiers(c);
 		this.add(title);
@@ -118,6 +120,7 @@ public class ScoreCheckPanel extends MPanel {
 			e1.printStackTrace();
 		}
 		try {
+			BeautyEyeLNFHelper.frameBorderStyle = BeautyEyeLNFHelper.FrameBorderStyle.osLookAndFeelDecorated;
 			org.jb2011.lnf.beautyeye.BeautyEyeLNFHelper.launchBeautyEyeLNF();
 			UIManager.put("RootPane.setupButtonVisible", false);
 		} catch (Exception e) {

@@ -10,6 +10,8 @@ import java.util.Iterator;
 import javax.swing.ImageIcon;
 import javax.swing.UIManager;
 
+import org.jb2011.lnf.beautyeye.BeautyEyeLNFHelper;
+
 import com.basicdata.Identity;
 import com.client.rmi.FacultyDeanMethodController;
 import com.client.ui.dataAdapter.FrameToVectorAdapter;
@@ -41,16 +43,16 @@ public class TeachingPlanPanel extends MPanel {
 
 	private void createComponent() {
 		title = new FacultyTitleBar(new Point(0, 0), new Dimension(
-				this.getWidth(), 75));
-		table = new MScrollTable(new Point(10, 130), new Dimension(780, 430));
+				this.getWidth(), 95));
+		table = new MScrollTable(new Point(20, 130), new Dimension(800, 480));
 		String[] c = { "课程模块", "建议学分", "开设学期" };
 		table.setColumnIdentifiers(c);
-		add = new MButton(null, null, null, new Point(15, 95), new Dimension(
-				100, 30));
-		change = new MButton(null, null, null, new Point(100, 95),
-				new Dimension(80, 30));
-		publish = new MButton(null, null, null, new Point(185, 95),
-				new Dimension(80, 30));
+		add = new MButton(null, null, null, new Point(30, 95), new Dimension(
+				80, 25));
+		change = new MButton(null, null, null, new Point(120, 95),
+				new Dimension(80, 25));
+		publish = new MButton(null, null, null, new Point(210, 95),
+				new Dimension(80, 25));
 
 		add.setText("添加");
 		change.setText("更改");
@@ -162,6 +164,7 @@ public class TeachingPlanPanel extends MPanel {
 			e.printStackTrace();
 		}
 		try {
+			BeautyEyeLNFHelper.frameBorderStyle = BeautyEyeLNFHelper.FrameBorderStyle.osLookAndFeelDecorated;
 			org.jb2011.lnf.beautyeye.BeautyEyeLNFHelper.launchBeautyEyeLNF();
 			UIManager.put("RootPane.setupButtonVisible", false);
 		} catch (Exception e) {

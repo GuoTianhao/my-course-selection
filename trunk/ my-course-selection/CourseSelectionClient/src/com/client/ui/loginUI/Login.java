@@ -45,20 +45,14 @@ public class Login extends JFrame {
 		bLogin.setText("登录");
 
 		// textfiled
-		tID = new MTextField(new Point(70, 19), new Dimension(120, 25));
-		tID.setLocation(80, 140);
-		tPassword = new MPasswordField(new Point(70, 68),
+		tID = new MTextField(new Point(90, 140), new Dimension(120, 25));
+		tPassword = new MPasswordField(new Point(90, 180),
 				new Dimension(120, 25));
-		tPassword.setLocation(80, 180);
 
 		// label
-		MLabel lID = new MLabel(new Point(20, 30), new Dimension(50, 25));
-		lID.setSize(35, 25);
-		lID.setLocation(32, 140);
+		MLabel lID = new MLabel(new Point(55, 140), new Dimension(35, 25));
 		lID.setText("ID");
-		MLabel lPassword = new MLabel(new Point(20, 80), new Dimension(50, 25));
-		lPassword.setSize(35, 25);
-		lPassword.setLocation(32, 180);
+		MLabel lPassword = new MLabel(new Point(55, 180), new Dimension(35, 25));
 		lPassword.setText("密码");
 		icon = new MLabel("南京大学教务系统", new ImageIcon("resource//icon.png"), SwingConstants.CENTER);
 		icon.setBounds(5, 10, 250, 120);

@@ -33,8 +33,8 @@ public class TeacherMainPanel extends MPanel {
 
 	private void createComponent() {
 		title = new TeacherTitleBar(new Point(0, 0), new Dimension(
-				this.getWidth(), 75));
-		btn1 = new MButton(new ImageIcon("blank.png"), null, null, new Point(
+				this.getWidth(), 95));
+		btn1 = new MButton(new ImageIcon("resource//mycourse.png"), null, new ImageIcon("resource//mycourse3.png"), new Point(
 				85, 134), new Dimension(180, 150));
 		btn1.setText("我的课程");
 		btn1.setHorizontalTextPosition(SwingConstants.CENTER);

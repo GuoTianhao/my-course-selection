@@ -13,6 +13,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.rmi.RemoteException;
 
+import javax.swing.JTabbedPane;
 import javax.swing.UIManager;
 
 import org.jb2011.lnf.beautyeye.BeautyEyeLNFHelper;
@@ -43,6 +44,8 @@ public class CoursePanel extends MPanel {
 	private CoursePublicOperateBar publishOperateBar;
 	private AllCourseOperateBar allCourseOperateBar;
 
+	private JTabbedPane tabbedPane;
+	
 	private MScrollTable table;
 
 	private int state;
@@ -74,17 +77,26 @@ public class CoursePanel extends MPanel {
 		table.setColumnIdentifiers(c);
 		popupMenu = new MPopupMenu();
 		table.add(popupMenu);
-
-		this.add(title);
-		this.add(courseP);
-		this.add(courseA);
-		this.add(table);
+		
+		tabbedPane=new JTabbedPane();
+		tabbedPane.setLocation(new Point(0,95));
+		tabbedPane.setSize(new Dimension(700,200));
 
 		publishOperateBar = new CoursePublicOperateBar(new Point(0, 130),
 				new Dimension(size.width, 50));
-
+//原来130
 		allCourseOperateBar = new AllCourseOperateBar(new Point(0, 130),
 				new Dimension(size.width, 50));
+
+		
+//		tabbedPane.addTab("公共课程", publishOperateBar);
+//		tabbedPane.addTab("全校课程", allCourseOperateBar);
+//		tabbedPane.se
+		this.add(title);
+		this.add(courseP);
+		this.add(courseA);
+		this.add(tabbedPane);
+		this.add(table);
 
 		addCoursePublishOperateBar();
 	}

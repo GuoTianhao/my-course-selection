@@ -19,25 +19,25 @@ public class PasswordChange {
 
 	public static boolean deanChangePassword(String ID,
 			String originalPassword, String password) {
-		return changePassword(ID, originalPassword, originalPassword,
+		return changePassword(ID, originalPassword, password,
 				"deanPassword");
 	}
 
 	public static boolean facultyDeanChangePassword(String ID,
 			String originalPassword, String password) {
-		return changePassword(ID, originalPassword, originalPassword,
+		return changePassword(ID, originalPassword, password,
 				"facultyPassword");
 	}
 
 	public static boolean teacherChangePassword(String ID,
 			String originalPassword, String password) {
-		return changePassword(ID, originalPassword, originalPassword,
+		return changePassword(ID, originalPassword, password,
 				"teacherPassword");
 	}
 
 	public static boolean studentChangePassword(String ID,
 			String originalPassword, String password) {
-		return changePassword(ID, originalPassword, originalPassword,
+		return changePassword(ID, originalPassword, password,
 				"studentPassword");
 	}
 }

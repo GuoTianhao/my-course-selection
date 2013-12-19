@@ -32,6 +32,7 @@ public class TeacherAssignmentDisplayPane extends MFrame {
 		panel.add(table);
 		panel.add(confirm);
 		this.add(panel);
+		this.setLocationRelativeTo(null);
 		this.setVisible(true);
 		this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 	}

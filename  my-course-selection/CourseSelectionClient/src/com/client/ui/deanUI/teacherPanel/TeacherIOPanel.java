@@ -93,8 +93,9 @@ public class TeacherIOPanel extends MPanel {
 		importFromFile.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				int n = j1.showOpenDialog(null);
-				String filename = j1.getSelectedFile().toString();
+//				String filename = j1.getSelectedFile().toString();
 				if (n == JFileChooser.APPROVE_OPTION) {
+					String filename = j1.getSelectedFile().toString();
 					if (TeacherListExcelIn.testFile(filename))
 						importTeacher(TeacherListExcelIn.read(filename));
 					else

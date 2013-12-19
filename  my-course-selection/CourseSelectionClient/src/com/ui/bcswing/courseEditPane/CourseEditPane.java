@@ -16,6 +16,7 @@ public class CourseEditPane extends MScrollForm {
 
 	public CourseEditPane() {
 		super();
+		this.setLocationRelativeTo(null);
 		this.setSize(default_size);
 		this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		addComponent();

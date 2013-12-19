@@ -346,6 +346,8 @@ public class BasicFrameEditPane extends MFrame {
 		textField_34.setBounds(400, 360, 25, 25);
 		editPanel.add(textField_34);
 
+		
+		setLocationRelativeTo(null);
 		getContentPane().add(editPanel);
 		this.setVisible(true);
 		this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);

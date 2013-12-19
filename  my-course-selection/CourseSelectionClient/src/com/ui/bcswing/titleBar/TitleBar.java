@@ -28,10 +28,10 @@ import com.ui.myswing.MLabel;
 import com.ui.myswing.MPanel;
 
 public class TitleBar extends MPanel {
-	private MLabel message;
-	private MButton logout;
-	private MButton passwordChange;
-	private MLabel line;
+	protected MLabel message;
+	protected MButton logout;
+	protected MButton passwordChange;
+	protected MLabel line;
 
 	private MButton menu;
 
@@ -71,17 +71,9 @@ public class TitleBar extends MPanel {
 	}
 
 	private void addListener() {
-		logout.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				DeanUISwitchController.getUISwitchController().dispose();
-				FacultyUISwitchController.getUISwitchController().dispose();
-				TeacherUISwitchController.getUISwitchController().dispose();
-				StudentUISwitchController.getUISwitchController().dispose();
-				MainUISwitchController.getUISwitchController()
-						.switchToLoginPanel();
-			}
-
-		});
+		
+		
+		
 	}
 
 	public void addReturnMenu(ActionListener al) {

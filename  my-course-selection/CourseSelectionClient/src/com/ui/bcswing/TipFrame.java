@@ -5,6 +5,7 @@ import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Point;
 
+import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.UIManager;
 
@@ -35,12 +36,15 @@ public class TipFrame extends MFrame {
 		label = new MLabel(new Point(0, 0), new Dimension(width, height),
 				textFactory(tip));
 		label.setHorizontalAlignment(JLabel.CENTER);
+		label.setVerticalTextPosition(JLabel.CENTER);
+		label.setHorizontalTextPosition(JLabel.CENTER);
+		label.setIcon(new ImageIcon("tip.png"));
 		panel = new MPanel();
 		panel.setLayout(null);
 		panel.setBackground(default_bColor);
 		panel.add(label);
-		this.add(panel);
-	//	this.add(label);
+	//	this.add(panel);
+		this.add(label);
 		this.setVisible(true);
 	}
 
@@ -61,6 +65,8 @@ public class TipFrame extends MFrame {
 		}
 		new CloseClock().start();
 	}
+	
+	
 
 	private class CloseClock extends Thread {
 		private long startTime;
@@ -93,7 +99,7 @@ public class TipFrame extends MFrame {
 		} catch (Exception e) {
 			// TODO exception
 		}
-		TipFrame t = new TipFrame(new Point(200, 200),new Dimension(100,100), 10, "Welcome!");
+		TipFrame t = new TipFrame(new Point(100, 200),new Dimension(100,100), 10, "Welcome!");
 		 t.startEndClock();
 	}
 }

@@ -279,6 +279,7 @@ public class FrameEditPane extends MFrame {
 		textField_31.setBounds(400, 362, 25, 25);
 		panel.add(textField_31);
 
+		this.setLocationRelativeTo(null);
 		getContentPane().add(panel);
 		this.setVisible(true);
 		this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);

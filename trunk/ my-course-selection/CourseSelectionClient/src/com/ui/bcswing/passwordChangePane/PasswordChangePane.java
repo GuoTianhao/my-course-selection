@@ -61,6 +61,7 @@ public class PasswordChangePane extends MFrame {
 		panel.add(mPassword);
 		panel.add(mPasswordA);
 		panel.add(confirm);
+		this.setLocationRelativeTo(null);
 		this.add(panel);
 		this.setVisible(true);
 		this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);

@@ -162,7 +162,19 @@ public class StudentMainPanel extends MPanel {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-				controller.switchToQCourse();
+				try {
+					if(time.isTimeForQuitCourse()){
+						controller.switchToQCourse();	
+					}else{
+						StudentUISwitchController controller = StudentUISwitchController
+								.getUISwitchController();
+						TipFrame t = new TipFrame(controller.getLoc(),
+								StudentMainPanel.this.getSize(), 5, "未到退选时间");
+						t.startEndClock();
+					}
+				} catch (RemoteException e1) {
+					e1.printStackTrace();
+				}
 			}
 		});
 
@@ -171,7 +183,19 @@ public class StudentMainPanel extends MPanel {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-				controller.switchToBSCourse();
+				try {
+					if(time.isTimeForByElection()){
+						controller.switchToBSCourse();
+					}else{
+						StudentUISwitchController controller = StudentUISwitchController
+								.getUISwitchController();
+						TipFrame t = new TipFrame(controller.getLoc(),
+								StudentMainPanel.this.getSize(), 5, "未到补选时间");
+						t.startEndClock();
+					}
+				} catch (RemoteException e1) {
+					e1.printStackTrace();
+				}
 			}
 		});
 	}

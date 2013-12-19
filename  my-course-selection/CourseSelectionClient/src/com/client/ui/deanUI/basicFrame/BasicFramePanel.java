@@ -9,6 +9,8 @@ import java.util.Iterator;
 
 import javax.swing.UIManager;
 
+import org.jb2011.lnf.beautyeye.BeautyEyeLNFHelper;
+
 import com.client.rmi.DeanMethodController;
 import com.client.ui.dataAdapter.BasicFrameToVectorAdapter;
 import com.client.ui.deanUI.DeanUISwitchController;
@@ -37,16 +39,16 @@ public class BasicFramePanel extends MPanel {
 
 	private void createComponent() {
 		title = new DeanTitlebar(new Point(0, 0), new Dimension(
-				this.getWidth(), 75));
-		table = new MScrollTable(new Point(10, 130), new Dimension(780,
-				430));
+				this.getWidth(), 95));
+		table = new MScrollTable(new Point(20, 130), new Dimension(800,
+				450));
 		String[] c = { "课程模块", "建议学分", "开设学期" };
 		table.setColumnIdentifiers(c);
 		
-		make = new MButton(null, null, null, new Point(15, 95), new Dimension(
-				100, 30));
-		change = new MButton(null, null, null, new Point(130, 95),
-				new Dimension(100, 30));
+		make = new MButton(null, null, null, new Point(30, 95), new Dimension(
+				120, 25));
+		change = new MButton(null, null, null, new Point(160, 95),
+				new Dimension(120, 25));
 
 		make.setText("制定整体框架策略");
 		change.setText("修改整体框架策略");
@@ -108,6 +110,7 @@ public class BasicFramePanel extends MPanel {
 
 	public static void main(String[] args) {
 		try {
+			BeautyEyeLNFHelper.frameBorderStyle = BeautyEyeLNFHelper.FrameBorderStyle.osLookAndFeelDecorated;
 			org.jb2011.lnf.beautyeye.BeautyEyeLNFHelper.launchBeautyEyeLNF();
 			UIManager.put("RootPane.setupButtonVisible", false);
 		} catch (Exception e) {

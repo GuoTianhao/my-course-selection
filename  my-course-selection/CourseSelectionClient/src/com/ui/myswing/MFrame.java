@@ -25,6 +25,7 @@ public class MFrame extends JFrame {
 	public MFrame(String title, GraphicsConfiguration gc) {
 		super(title, gc);
 	}
+	
 	public MFrame(Dimension size){
 		this();
 		this.setSize(size);

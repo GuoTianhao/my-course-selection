@@ -51,15 +51,15 @@ public class CourseManagementPanel extends MPanel {
 
 	private void createComponent() {
 		title = new FacultyTitleBar(new Point(0, 0), new Dimension(
-				this.getWidth(), 75));
-		button1 = new MButton(null, null, null, new Point(15, 95),
+				this.getWidth(), 95));
+		button1 = new MButton(null, null, null, new Point(30, 95),
 				new Dimension(100, 25));
 		button1.setText("添加课程");
-		button2 = new MButton(null, null, null, new Point(130, 95),
+		button2 = new MButton(null, null, null, new Point(140, 95),
 				new Dimension(50, 25));
 		button2.setText("编辑");
-		table = new MScrollTable(new Point(10, 130), new Dimension(780,
-				430));
+		table = new MScrollTable(new Point(20, 130), new Dimension(800,
+				480));
 		String[] c = { "课程编号", "课程模块", "课程名称", "学分", "开设学期" };
 		table.setColumnIdentifiers(c);
 		popupMenu = new MPopupMenu();

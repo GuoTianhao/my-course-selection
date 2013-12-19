@@ -11,6 +11,8 @@ import java.util.List;
 
 import javax.swing.UIManager;
 
+import org.jb2011.lnf.beautyeye.BeautyEyeLNFHelper;
+
 import com.basicdata.Identity;
 import com.basicdata.TermKind;
 import com.client.rmi.StudentMethodController;
@@ -44,12 +46,12 @@ public class MyCoursePanel extends MPanel {
 
 	private void createComponent() {
 		title = new StudentTitleBar(new Point(0, 0), new Dimension(
-				this.getWidth(), 75));
-		choose = new MLabel(new Point(15, 95), new Dimension(75, 22), "选择学期：");
+				this.getWidth(), 95));
+		choose = new MLabel(new Point(25, 95), new Dimension(60, 25), "选择学期");
 		term = new MComboBox<>(TermKind.getAllTerm(), new Point(90, 95),
 				new Dimension(150, 25));
-		table = new MScrollTable(new Point(10, 130), new Dimension(780,
-				430));
+		table = new MScrollTable(new Point(20, 130), new Dimension(800,
+				480));
 		String[] c = { "课程编号", "课程模块", "课程名称", "学分", "开设学期" };
 		table.setColumnIdentifiers(c);
 		this.add(title);
@@ -108,6 +110,7 @@ public class MyCoursePanel extends MPanel {
 			e.printStackTrace();
 		}
 		try {
+			BeautyEyeLNFHelper.frameBorderStyle = BeautyEyeLNFHelper.FrameBorderStyle.osLookAndFeelDecorated;
 			org.jb2011.lnf.beautyeye.BeautyEyeLNFHelper.launchBeautyEyeLNF();
 			UIManager.put("RootPane.setupButtonVisible", false);
 		} catch (Exception e) {

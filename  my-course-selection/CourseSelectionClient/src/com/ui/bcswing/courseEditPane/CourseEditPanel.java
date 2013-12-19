@@ -66,14 +66,14 @@ public class CourseEditPanel extends MPanel {
 	}
 
 	private void creatComponent() {
-		namel = new MLabel(new Point(0, 0), new Dimension(100, 20), "课程名称:");
-		locl = new MLabel(new Point(0, 180), new Dimension(100, 20), "上课地点:");
-		creditl = new MLabel(new Point(0, 60), new Dimension(100, 20), "学分:");
-		numl = new MLabel(new Point(0, 120), new Dimension(100, 20), "上课人数:");
-		typel = new MLabel(new Point(0, 30), new Dimension(100, 20), "课程类型:");
-		gradel = new MLabel(new Point(0, 90), new Dimension(100, 20), "年级:");
-		periodl = new MLabel(new Point(0, 150), new Dimension(100, 20), "上课周数:");
-		timel = new MLabel(new Point(0, 210), new Dimension(100, 20), "上课时间:");
+		namel = new MLabel(new Point(30, 0), new Dimension(100, 25), "课程名称:");
+		locl = new MLabel(new Point(30, 180), new Dimension(100, 25), "上课地点:");
+		creditl = new MLabel(new Point(30, 60), new Dimension(100, 25), "学分:");
+		numl = new MLabel(new Point(30, 120), new Dimension(100, 25), "上课人数:");
+		typel = new MLabel(new Point(30, 30), new Dimension(100, 25), "课程类型:");
+		gradel = new MLabel(new Point(30, 90), new Dimension(100, 25), "年级:");
+		periodl = new MLabel(new Point(30, 150), new Dimension(100, 25), "上课周数:");
+		timel = new MLabel(new Point(30, 210), new Dimension(100, 25), "上课时间:");
 
 		namet = new MTextField(new Point(150, 0), new Dimension(100, 20));
 		loct = new MTextField(new Point(150, 180), new Dimension(100, 20));

@@ -29,9 +29,9 @@ public class AllCourseOperateBar extends MPanel{
 		creatComponent();
 	}
 	private void creatComponent(){
-		faculty=new MComboBox(FacultyKind.getAllFaculty(),new Point(50,0),new Dimension(100,30));
-		termBox=new MComboBox(TermKind.getAllTerm(),new Point(200,0),new Dimension(100,30));
-		search = new MTextField(new Point(650, 0), new Dimension(100,30));
+		faculty=new MComboBox(FacultyKind.getAllFaculty(),new Point(30,0),new Dimension(100,25));
+		termBox=new MComboBox(TermKind.getAllTerm(),new Point(140,0),new Dimension(100,25));
+		search = new MTextField(new Point(700, 0), new Dimension(120,25));
 		
 		this.add(faculty);
 		this.add(termBox);

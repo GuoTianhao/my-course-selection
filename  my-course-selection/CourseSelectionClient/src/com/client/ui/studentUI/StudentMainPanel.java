@@ -30,7 +30,7 @@ public class StudentMainPanel extends MPanel {
 	private MButton btn2;
 	private MButton btn3;
 	private MButton btn4;
-	private MButton btn5;
+	// private MButton btn5;
 	private MButton btn6;
 	private MButton btn7;
 
@@ -47,44 +47,49 @@ public class StudentMainPanel extends MPanel {
 		title = new StudentTitleBar(new Point(0, 0), new Dimension(
 				this.getWidth(), 75));
 
-		btn1 = new MButton(new ImageIcon("blank.png"), null, null, new Point(
-				60, 134), new Dimension(128, 145));
+		btn1 = new MButton(new ImageIcon("resource//mycourse.png"), null,
+				new ImageIcon("resource//mycourse3.png"), new Point(60, 134),
+				new Dimension(128, 145));
 		btn1.setText("我的课程");
 		btn1.setHorizontalTextPosition(SwingConstants.CENTER);
 		btn1.setVerticalTextPosition(SwingConstants.BOTTOM);
 
-		btn2 = new MButton(new ImageIcon("blank.png"), null, null, new Point(
-				60, 344), new Dimension(128, 145));
+		btn2 = new MButton(new ImageIcon("resource//selectcourse.png"), null,
+				new ImageIcon("resource//selectcourse3.png"), new Point(624,
+						134), new Dimension(128, 145));
 		btn2.setText("选课");
 		btn2.setHorizontalTextPosition(SwingConstants.CENTER);
 		btn2.setVerticalTextPosition(SwingConstants.BOTTOM);
 
-		btn3 = new MButton(new ImageIcon("blank.png"), null, null, new Point(
-				248, 134), new Dimension(128, 145));
+		btn3 = new MButton(new ImageIcon("resource//course.png"), null,
+				new ImageIcon("resource//course3.png"), new Point(248, 134),
+				new Dimension(128, 145));
 		btn3.setText("全校课程");
 		btn3.setHorizontalTextPosition(SwingConstants.CENTER);
 		btn3.setVerticalTextPosition(SwingConstants.BOTTOM);
 
-		btn4 = new MButton(new ImageIcon("blank.png"), null, null, new Point(
+		btn4 = new MButton(new ImageIcon("resource//grade.png"), null, null, new Point(
 				436, 134), new Dimension(128, 145));
 		btn4.setText("我的成绩");
 		btn4.setHorizontalTextPosition(SwingConstants.CENTER);
 		btn4.setVerticalTextPosition(SwingConstants.BOTTOM);
 
-		btn5 = new MButton(new ImageIcon("blank.png"), null, null, new Point(
-				624, 134), new Dimension(128, 145));
-		btn5.setText("专业准入准出");
-		btn5.setHorizontalTextPosition(SwingConstants.CENTER);
-		btn5.setVerticalTextPosition(SwingConstants.BOTTOM);
+		// btn5 = new MButton(new ImageIcon("blank.png"), null, null, new Point(
+		// 624, 134), new Dimension(128, 145));
+		// btn5.setText("专业准入准出");
+		// btn5.setHorizontalTextPosition(SwingConstants.CENTER);
+		// btn5.setVerticalTextPosition(SwingConstants.BOTTOM);
 
-		btn6 = new MButton(new ImageIcon("blank.png"), null, null, new Point(
-				248, 344), new Dimension(128, 145));
+		btn6 = new MButton(new ImageIcon("resource//quitcourse.png"), null,
+				new ImageIcon("resource//quitcourse3.png"), new Point(60, 344),
+				new Dimension(128, 145));
 		btn6.setText("退选");
 		btn6.setHorizontalTextPosition(SwingConstants.CENTER);
 		btn6.setVerticalTextPosition(SwingConstants.BOTTOM);
 
-		btn7 = new MButton(new ImageIcon("blank.png"), null, null, new Point(
-				436, 344), new Dimension(128, 145));
+		btn7 = new MButton(new ImageIcon("resource//byselect.png"), null,
+				new ImageIcon("resource//byselect3.png"), new Point(248, 344),
+				new Dimension(128, 145));
 		btn7.setText("补选");
 		btn7.setHorizontalTextPosition(SwingConstants.CENTER);
 		btn7.setVerticalTextPosition(SwingConstants.BOTTOM);
@@ -94,7 +99,7 @@ public class StudentMainPanel extends MPanel {
 		this.add(btn2);
 		this.add(btn3);
 		this.add(btn4);
-		this.add(btn5);
+		// this.add(btn5);
 		this.add(btn6);
 		this.add(btn7);
 	}
@@ -122,8 +127,8 @@ public class StudentMainPanel extends MPanel {
 					} else {
 						StudentUISwitchController controller = StudentUISwitchController
 								.getUISwitchController();
-						TipFrame t = new TipFrame(controller.getLoc(),StudentMainPanel.this.getSize(), 5,
-								"未到选课时间");
+						TipFrame t = new TipFrame(controller.getLoc(),
+								StudentMainPanel.this.getSize(), 5, "未到选课时间");
 						t.startEndClock();
 
 					}
@@ -146,11 +151,11 @@ public class StudentMainPanel extends MPanel {
 			}
 		});
 
-		btn5.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-
-			}
-		});
+		// btn5.addActionListener(new ActionListener() {
+		// public void actionPerformed(ActionEvent e) {
+		//
+		// }
+		// });
 
 		btn6.addActionListener(new ActionListener() {
 
@@ -172,26 +177,18 @@ public class StudentMainPanel extends MPanel {
 	}
 
 	public static void main(String[] args) {
-		 try {
-		 Identity.setIdentity(StudentMethodController.getMethod().getSelf(
-		 "121250011"));
-		 } catch (RemoteException e) {
-		 e.printStackTrace();
-		 }
-//
-//		try {
-//			org.jb2011.lnf.beautyeye.BeautyEyeLNFHelper.launchBeautyEyeLNF();
-//			BeautyEyeLNFHelper.frameBorderStyle = BeautyEyeLNFHelper.FrameBorderStyle.osLookAndFeelDecorated;
-//			UIManager.put("RootPane.setupButtonVisible", false);
-//		} catch (Exception e) {
-//			e.printStackTrace();
-//		}
+		try {
+			Identity.setIdentity(StudentMethodController.getMethod().getSelf(
+					"121250011"));
+		} catch (RemoteException e) {
+			e.printStackTrace();
+		}
 
 		try {
-			UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
-		} catch (ClassNotFoundException | InstantiationException
-				| IllegalAccessException | UnsupportedLookAndFeelException e) {
-			// TODO Auto-generated catch block
+			BeautyEyeLNFHelper.frameBorderStyle = BeautyEyeLNFHelper.FrameBorderStyle.osLookAndFeelDecorated;
+			org.jb2011.lnf.beautyeye.BeautyEyeLNFHelper.launchBeautyEyeLNF();
+			UIManager.put("RootPane.setupButtonVisible", false);
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 

@@ -11,6 +11,8 @@ import java.util.List;
 
 import javax.swing.UIManager;
 
+import org.jb2011.lnf.beautyeye.BeautyEyeLNFHelper;
+
 import com.basicdata.Identity;
 import com.client.rmi.StudentMethodController;
 import com.client.ui.dataAdapter.CourseListToCourseTermListAdapter;
@@ -44,17 +46,17 @@ public class QuitCoursePanel extends MPanel {
 
 	private void createComponent() {
 		title = new StudentTitleBar(new Point(0, 0), new Dimension(
-				this.getWidth(), 75));
+				this.getWidth(), 95));
 		String[] type = { "专业选修课", "通识教育课程", "跨院系课程", "体育课" };
-		courseType = new MComboBox<>(type, new Point(90, 95), new Dimension(
+		courseType = new MComboBox<>(type, new Point(30, 95), new Dimension(
 				150, 25));
 
-		quitB = new MButton(null, null, null, new Point(500, 95),
-				new Dimension(100, 30));
+		quitB = new MButton(null, null, null, new Point(720, 95),
+				new Dimension(100, 25));
 		quitB.setText("退选");
 
-		table = new MScrollTable(new Point(10, 130), new Dimension(780,
-				430));
+		table = new MScrollTable(new Point(20, 130), new Dimension(800,
+				480));
 		String[] c = { "课程编号", "课程模块", "课程名称", "学分", "开设学期" };
 		table.setColumnIdentifiers(c);
 
@@ -155,6 +157,7 @@ public class QuitCoursePanel extends MPanel {
 			e1.printStackTrace();
 		}
 		try {
+			BeautyEyeLNFHelper.frameBorderStyle = BeautyEyeLNFHelper.FrameBorderStyle.osLookAndFeelDecorated;
 			org.jb2011.lnf.beautyeye.BeautyEyeLNFHelper.launchBeautyEyeLNF();
 			UIManager.put("RootPane.setupButtonVisible", false);
 		} catch (Exception e) {

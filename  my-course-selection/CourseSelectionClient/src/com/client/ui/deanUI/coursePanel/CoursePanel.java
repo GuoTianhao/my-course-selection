@@ -59,17 +59,17 @@ public class CoursePanel extends MPanel {
 	private void creatComponent() {
 		Dimension size = this.getSize();
 		title = new DeanTitlebar(new Point(0, 0),
-				new Dimension(size.width, 100));
-		courseP = new MButton(null, null, null, new Point(0, 100),
-				new Dimension(100, 30));
-		courseA = new MButton(null, null, null, new Point(110, 100),
-				new Dimension(100, 30));
+				new Dimension(size.width, 95));
+		courseP = new MButton(null, null, null, new Point(30, 95),
+				new Dimension(100, 25));
+		courseA = new MButton(null, null, null, new Point(140, 95),
+				new Dimension(100, 25));
 
 		courseP.setText("公共课程");
 		courseA.setText("全校课程");
 
-		table = new MScrollTable(new Point(10, 180), new Dimension(
-				size.width - 70, 380));
+		table = new MScrollTable(new Point(20, 160), new Dimension(
+				size.width - 50, 450));
 		String[] c = { "课程编号", "课程模块", "课程名称", "学分", "开设学期" };
 		table.setColumnIdentifiers(c);
 		popupMenu = new MPopupMenu();
@@ -80,10 +80,10 @@ public class CoursePanel extends MPanel {
 		this.add(courseA);
 		this.add(table);
 
-		publishOperateBar = new CoursePublicOperateBar(new Point(0, 140),
+		publishOperateBar = new CoursePublicOperateBar(new Point(0, 130),
 				new Dimension(size.width, 50));
 
-		allCourseOperateBar = new AllCourseOperateBar(new Point(0, 140),
+		allCourseOperateBar = new AllCourseOperateBar(new Point(0, 130),
 				new Dimension(size.width, 50));
 
 		addCoursePublishOperateBar();

@@ -119,12 +119,12 @@ public class DeanMainPanel extends MPanel {
 		});
 		btn4.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				controller.switchToStudentPanel();
+				controller.switchToTeacherPanel();
 			}
 		});
 		btn5.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				controller.switchToTeacherPanel();
+				controller.switchToStudentPanel();
 			}
 		});
 //		btn6.addActionListener(new ActionListener() {

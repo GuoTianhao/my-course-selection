@@ -42,14 +42,14 @@ public class CourseManagementPanel extends MPanel {
 
 	private void createComponent() {
 		title = new TeacherTitleBar(new Point(0, 0), new Dimension(
-				this.getWidth(), 75));
-		editB = new MButton(null, null, null, new Point(10, 95), new Dimension(
-				100, 30));
-		inforB = new MButton(null, null, null, new Point(120, 95),
-				new Dimension(100, 30));
-		recordB = new MButton(null, null, null, new Point(230, 95),
-				new Dimension(100, 30));
-		table = new MScrollTable(new Point(10, 130), new Dimension(780, 430));
+				this.getWidth(), 95));
+		editB = new MButton(null, null, null, new Point(30, 95), new Dimension(
+				60, 25));
+		inforB = new MButton(null, null, null, new Point(100, 95),
+				new Dimension(80, 25));
+		recordB = new MButton(null, null, null, new Point(190, 95),
+				new Dimension(180, 25));
+		table = new MScrollTable(new Point(20, 130), new Dimension(800, 480));
 		String[] c = { "课程编号", "课程模块", "课程名称", "学分", "开设学期" };
 		table.setColumnIdentifiers(c);
 		editB.setText("编辑");

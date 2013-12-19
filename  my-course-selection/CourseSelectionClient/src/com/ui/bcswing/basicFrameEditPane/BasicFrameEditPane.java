@@ -29,7 +29,7 @@ import com.ui.myswing.MTextField;
 
 public class BasicFrameEditPane extends MFrame {
 	private MPanel editPanel;
-	private static Dimension default_size = new Dimension(525, 550);
+	private static Dimension default_size = new Dimension(480, 480);
 	private MLabel moduleLb;
 	private MLabel creditLb;
 	private MLabel periodLb;

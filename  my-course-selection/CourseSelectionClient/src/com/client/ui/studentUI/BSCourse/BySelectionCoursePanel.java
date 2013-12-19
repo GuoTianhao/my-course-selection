@@ -42,17 +42,17 @@ public class BySelectionCoursePanel extends MPanel {
 
 	private void createComponent() {
 		title = new StudentTitleBar(new Point(0, 0), new Dimension(
-				this.getWidth(), 75));
+				this.getWidth(), 95));
 		String[] type = { "专业选修课", "通识教育课程", "跨院系课程" };
-		courseType = new MComboBox<>(type, new Point(90, 95), new Dimension(
+		courseType = new MComboBox<>(type, new Point(30, 95), new Dimension(
 				150, 25));
 
-		bSelect = new MButton(null, null, null, new Point(500, 95),
-				new Dimension(100, 30));
+		bSelect = new MButton(null, null, null, new Point(720, 95),
+				new Dimension(80, 25));
 		bSelect.setText("补选");
 
-		table = new MScrollTable(new Point(10, 130), new Dimension(780,
-				430));
+		table = new MScrollTable(new Point(20, 130), new Dimension(800,
+				480));
 		String[] c = { "课程编号","课程名称","上课地点","上课时间", "学分","剩余人数" };
 		table.setColumnIdentifiers(c);
 		this.add(title);

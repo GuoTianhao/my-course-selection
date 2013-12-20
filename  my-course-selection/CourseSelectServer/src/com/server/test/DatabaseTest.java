@@ -56,7 +56,7 @@ public class DatabaseTest extends TestCase {
 			st = conn.createStatement();
 			String sql;
 			// sql = "SELECT datepart(YYYY,time) FROM courseStudentWait";
-			sql = "DELETE FROM studentPassword";
+			sql = "DELETE FROM frame WHERE faculty='1025'";
 			// sql="INSERT INTO courseTeacher  (ID,Teacher) VALUES('0001','100000003')";
 			st.execute(sql);
 

@@ -20,34 +20,34 @@ public class MTextField extends JTextField implements ValidInput {
 	private InvalidAction action;
 	public MTextField() {
 		this(null, null, 0);
-		setFont(MFont.textFont);
+		setFont(MFont.textFieldFont);
 	}
 
 	public MTextField(String text) {
 		this(null, text, 0);
-		setFont(MFont.textFont);
+		setFont(MFont.textFieldFont);
 
 	}
 
 	public MTextField(int columns) {
 		this(null, null, columns);
-		setFont(MFont.textFont);
+		setFont(MFont.textFieldFont);
 	}
 
 	public MTextField(String text, int columns) {
 		this(null, text, columns);
-		setFont(MFont.textFont);
+		setFont(MFont.textFieldFont);
 	}
 
 	public MTextField(Document doc, String text, int columns) {
 		super(doc, text, columns);
-		setFont(MFont.textFont);
+		setFont(MFont.textFieldFont);
 	}
 
 	public MTextField(Point location, Dimension size) {
 		setLocation(location);
 		setSize(size);
-		setFont(MFont.textFont);
+		setFont(MFont.textFieldFont);
 	}
 	
 	public boolean isValidInput() {

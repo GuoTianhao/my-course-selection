@@ -69,7 +69,7 @@ public class TeacherIOPanel extends MPanel {
 		importFromFile.setText("从文件导入...");
 		search = new MTextField("搜索");
 		search.setBounds(700, 95, 120, 25);
-		table = new MScrollTable(new Point(20, 130), new Dimension(800, 480));
+		table = new MScrollTable(new Point(20, 130), new Dimension(810, 480));
 		String[] c = { "工号", "姓名", "院系" };
 		table.setColumnIdentifiers(c);
 		this.add(title);

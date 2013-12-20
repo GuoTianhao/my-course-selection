@@ -12,6 +12,7 @@ import java.util.ArrayList;
 import java.util.Observable;
 import java.util.Observer;
 
+import javax.swing.BorderFactory;
 import javax.swing.JScrollPane;
 import javax.swing.UIManager;
 
@@ -45,6 +46,7 @@ public class MScrollForm extends MFrame implements Observer {
 				.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
 		scrollPane
 				.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
+		scrollPane.setBorder(BorderFactory.createEmptyBorder());
 		this.add(scrollPane);
 
 		this.validate();

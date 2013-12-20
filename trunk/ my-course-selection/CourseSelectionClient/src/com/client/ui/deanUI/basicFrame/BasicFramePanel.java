@@ -40,7 +40,7 @@ public class BasicFramePanel extends MPanel {
 	private void createComponent() {
 		title = new DeanTitlebar(new Point(0, 0), new Dimension(
 				this.getWidth(), 95));
-		table = new MScrollTable(new Point(20, 130), new Dimension(800,
+		table = new MScrollTable(new Point(20, 130), new Dimension(810,
 				450));
 		String[] c = { "课程模块", "建议学分", "开设学期" };
 		table.setColumnIdentifiers(c);

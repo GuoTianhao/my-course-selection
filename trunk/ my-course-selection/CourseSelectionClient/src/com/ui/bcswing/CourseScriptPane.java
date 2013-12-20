@@ -17,19 +17,22 @@ import javax.swing.BorderFactory;
 import javax.swing.JOptionPane;
 import javax.swing.JTextArea;
 import javax.swing.UIManager;
+import javax.swing.border.BevelBorder;
 import javax.swing.border.Border;
+import javax.swing.border.EtchedBorder;
 
 import com.client.rmi.TeacherMethodController;
 import com.data.po.Course;
 import com.logicService.TeacherMethod;
 import com.ui.myswing.MButton;
+import com.ui.myswing.MFont;
 import com.ui.myswing.MFrame;
 import com.ui.myswing.MLabel;
 import com.ui.myswing.MPanel;
 
 //教师完善课程信息框
 public class CourseScriptPane extends MFrame {
-	private static Dimension default_size = new Dimension(480, 500);
+	private static Dimension default_size = new Dimension(440, 450);
 	private Course course;
 	private TeacherMethod method = TeacherMethodController.getMethod();
 
@@ -60,24 +63,33 @@ public class CourseScriptPane extends MFrame {
 
 	private void createComponent() {
 		scriptPanel = new MPanel(new Point(0, 0), default_size);
-		outlineLb = new MLabel(new Point(20, 20), new Dimension(80, 25), "课程大纲");
+		outlineLb = new MLabel(new Point(40, 20), new Dimension(80, 25), "课程大纲");
 		outlineArea = new JTextArea();
-		outlineArea.setLocation(150, 20);
-		outlineArea.setSize(250, 60);
-		bookLb = new MLabel(new Point(20, 130), new Dimension(80, 25), "教材");
+		outlineArea.setLocation(130, 20);
+		outlineArea.setSize(250, 90);
+		outlineArea.setLineWrap(true);
+		outlineArea.setBorder(BorderFactory.createLineBorder(new Color(71, 114, 157), 2, true));
+		outlineArea.setFont(MFont.textAreaFont);
+		bookLb = new MLabel(new Point(40, 130), new Dimension(80, 25), "教材");
 		bookArea = new JTextArea();
-		bookArea.setLocation(150, 130);
-		bookArea.setSize(250, 60);
-		refBookLb = new MLabel(new Point(20, 240), new Dimension(80, 25),
+		bookArea.setLocation(130, 130);
+		bookArea.setSize(250, 90);
+		bookArea.setLineWrap(true);
+		bookArea.setBorder(BorderFactory.createLineBorder(new Color(71, 114, 157), 2, true));
+		bookArea.setFont(MFont.textAreaFont);
+		refBookLb = new MLabel(new Point(40, 240), new Dimension(80, 25),
 				"参考书目");
 		refBookArea = new JTextArea();
-		refBookArea.setLocation(150, 240);
-		refBookArea.setSize(250, 60);
-		yesBtn = new MButton(null, null, null, new Point(120, 330),
-				new Dimension(80, 25));
+		refBookArea.setLocation(130, 240);
+		refBookArea.setSize(250, 90);
+		refBookArea.setLineWrap(true);
+		refBookArea.setBorder(BorderFactory.createLineBorder(new Color(71, 114, 157), 2, true));
+		refBookArea.setFont(MFont.textAreaFont);
+		yesBtn = new MButton(null, null, null, new Point(170, 350),
+				new Dimension(60, 25));
 		yesBtn.setText("确认");
-		noBtn = new MButton(null, null, null, new Point(250, 330),
-				new Dimension(80, 25));
+		noBtn = new MButton(null, null, null, new Point(250, 350),
+				new Dimension(60, 25));
 		noBtn.setText("取消");
 		scriptPanel.add(outlineLb);
 		scriptPanel.add(outlineArea);
@@ -93,11 +105,11 @@ public class CourseScriptPane extends MFrame {
 	}
 
 	private void init() {
-		if(!course.getScript().equals("")){
+		if (!course.getScript().equals("")) {
 			String[] script = course.getScript().split(";");
 			outlineArea.setText(script[0]);
 			bookArea.setText(script[1]);
-			refBookArea.setText(script[2]);	
+			refBookArea.setText(script[2]);
 		}
 	}
 
@@ -133,29 +145,31 @@ public class CourseScriptPane extends MFrame {
 				CourseScriptPane.this.dispose();
 			}
 		});
-		
-//		outlineArea.addFocusListener(new FocusAdapter() {
-//			public void focusLost(FocusEvent e){
-//				outlineArea.setBorder(BorderFactory.createLineBorder(Color.GRAY, 1, true));
-//				refresh();
-//			}
-//		});
-//
-//		bookArea.addFocusListener(new FocusAdapter() {
-//			public void focusLost(FocusEvent e){
-//				bookArea.setBorder(BorderFactory.createLineBorder(Color.GRAY, 1, true));
-//				refresh();
-//			}
-//		});
-//		
-//		refBookArea.addFocusListener(new FocusAdapter() {
-//			public void focusLost(FocusEvent e){
-//				refBookArea.setBorder(BorderFactory.createLineBorder(Color.GRAY, 1, true));
-//				refresh();
-//			}
-//		});
-		
-		
+
+		// outlineArea.addFocusListener(new FocusAdapter() {
+		// public void focusLost(FocusEvent e){
+		// outlineArea.setBorder(BorderFactory.createLineBorder(Color.GRAY, 1,
+		// true));
+		// refresh();
+		// }
+		// });
+		//
+		// bookArea.addFocusListener(new FocusAdapter() {
+		// public void focusLost(FocusEvent e){
+		// bookArea.setBorder(BorderFactory.createLineBorder(Color.GRAY, 1,
+		// true));
+		// refresh();
+		// }
+		// });
+		//
+		// refBookArea.addFocusListener(new FocusAdapter() {
+		// public void focusLost(FocusEvent e){
+		// refBookArea.setBorder(BorderFactory.createLineBorder(Color.GRAY, 1,
+		// true));
+		// refresh();
+		// }
+		// });
+
 		addWindowListener(new WindowAdapter() {
 			public void windowClosing(WindowEvent e) {
 				int val = JOptionPane.showConfirmDialog(rootPane, "是否保存当前更改？",

@@ -32,13 +32,13 @@ public class TipFrame extends MFrame {
 		this.setOpacity(opacityPoint);
 		
 		this.setLocation(new Point(loc.x+size.width/2-width/2,loc.y+size.height/2-height/2));
-		font = new Font("TimesRoman", Font.BOLD, font_size);
+		font = new Font("微软雅黑", Font.BOLD, font_size);
 		label = new MLabel(new Point(0, 0), new Dimension(width, height),
 				textFactory(tip));
 		label.setHorizontalAlignment(JLabel.CENTER);
 		label.setVerticalTextPosition(JLabel.CENTER);
 		label.setHorizontalTextPosition(JLabel.CENTER);
-		label.setIcon(new ImageIcon("tip.png"));
+		label.setIcon(new ImageIcon("resource//tip.png"));
 		panel = new MPanel();
 		panel.setLayout(null);
 		panel.setBackground(default_bColor);

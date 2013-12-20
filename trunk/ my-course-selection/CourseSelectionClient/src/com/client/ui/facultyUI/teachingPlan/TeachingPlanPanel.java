@@ -29,7 +29,7 @@ import com.ui.bcswing.titleBar.TitleBar;
 
 public class TeachingPlanPanel extends MPanel {
 	private TitleBar title;
-	private MButton add;
+//	private MButton add;
 	private MButton change;
 	private MButton publish;
 	private MScrollTable table;
@@ -47,19 +47,19 @@ public class TeachingPlanPanel extends MPanel {
 		table = new MScrollTable(new Point(20, 130), new Dimension(800, 480));
 		String[] c = { "课程模块", "建议学分", "开设学期" };
 		table.setColumnIdentifiers(c);
-		add = new MButton(null, null, null, new Point(30, 95), new Dimension(
-				80, 25));
+//		add = new MButton(null, null, null, new Point(30, 95), new Dimension(
+//				80, 25));
 		change = new MButton(null, null, null, new Point(120, 95),
 				new Dimension(80, 25));
-		publish = new MButton(null, null, null, new Point(210, 95),
+		publish = new MButton(null, null, null, new Point(30, 95),
 				new Dimension(80, 25));
 
-		add.setText("添加");
+//		add.setText("添加");
 		change.setText("更改");
 		publish.setText("发布");
 
 		this.add(title);
-		this.add(add);
+//		this.add(add);
 		this.add(change);
 		this.add(publish);
 		this.add(table);

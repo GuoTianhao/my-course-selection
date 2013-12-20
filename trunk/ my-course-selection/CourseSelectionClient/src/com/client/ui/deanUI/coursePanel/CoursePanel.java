@@ -72,7 +72,7 @@ public class CoursePanel extends MPanel {
 		courseA.setText("全校课程");
 
 		table = new MScrollTable(new Point(20, 160), new Dimension(
-				size.width - 50, 450));
+				size.width - 40, 450));
 		String[] c = { "课程编号", "课程模块", "课程名称", "学分", "开设学期" };
 		table.setColumnIdentifiers(c);
 		popupMenu = new MPopupMenu();

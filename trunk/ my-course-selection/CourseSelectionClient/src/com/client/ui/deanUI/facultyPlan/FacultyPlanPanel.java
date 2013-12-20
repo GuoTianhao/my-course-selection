@@ -48,7 +48,7 @@ public class FacultyPlanPanel extends MPanel {
 		choose = new MLabel(new Point(20, 95), new Dimension(75, 25), "选择院系");
 		department = new MComboBox<>(departmentItems, new Point(95, 95),
 				new Dimension(150, 25));
-		table = new MScrollTable(new Point(20, 130), new Dimension(800,
+		table = new MScrollTable(new Point(20, 130), new Dimension(810,
 				430));
 		String[] c = { "课程模块", "建议学分", "开设学期" };
 		table.setColumnIdentifiers(c);

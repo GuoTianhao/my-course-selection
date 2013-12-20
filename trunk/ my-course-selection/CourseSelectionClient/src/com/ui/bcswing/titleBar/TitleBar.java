@@ -48,18 +48,19 @@ public class TitleBar extends MPanel {
 		passwordChange = new MButton(null, null, null, new Point(720, 40),
 				new Dimension(100, 25));
 		passwordChange.setText("修改密码");
-		message = new MLabel(new Point(120, 10), new Dimension(300, 50));
+		message = new MLabel(new Point(120, 18), new Dimension(300, 50));
 		// message.setText("Welcome, 韩旭！");
 		message.setFont(MFont.titleFont);
 
-		menu = new MButton(new ImageIcon("resource//home.png"), null,null, new Point(15, 20),
-				new Dimension(80, 45));
-		menu.setText("主菜单");
-		menu.setHorizontalTextPosition(SwingConstants.CENTER);
-		menu.setVerticalTextPosition(SwingConstants.BOTTOM);
-
+		menu = new MButton(new ImageIcon("resource//back.png"), null,
+				new ImageIcon("resource//back3.png"), new Point(15, 20),
+				new Dimension(80, 50));
+		menu.setText("返回");
+		menu.setHorizontalTextPosition(SwingConstants.RIGHT);
+		menu.setFont(new Font("微软雅黑", Font.PLAIN, 16));
+		
 		line = new MLabel(new ImageIcon("resource//line.png"));
-		line.setBounds(20, 80, 803, 14);
+		line.setBounds(22, 80, 803, 14);
 		this.add(line);
 		this.add(logout);
 		this.add(passwordChange);
@@ -71,9 +72,7 @@ public class TitleBar extends MPanel {
 	}
 
 	private void addListener() {
-		
-		
-		
+
 	}
 
 	public void addReturnMenu(ActionListener al) {

@@ -52,7 +52,7 @@ public class ScoreCheckPanel extends MPanel {
 		choose = new MLabel(new Point(25, 95), new Dimension(75, 25), "选择学期");
 		term = new MComboBox<>(TermKind.getAllTerm(), new Point(100, 95),
 				new Dimension(150, 25));
-		table = new MScrollTable(new Point(20, 130), new Dimension(800, 480));
+		table = new MScrollTable(new Point(20, 130), new Dimension(810, 480));
 		String[] c = { "课程编号","课程名称","课程类型","学分","成绩" };
 		table.setColumnIdentifiers(c);
 		this.add(title);

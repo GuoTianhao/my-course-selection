@@ -143,7 +143,7 @@ public class DeanMainPanel extends MPanel {
 	}
 
 	public static void main(String[] args) {
-		DeanMethod method=DeanMethodController.getMethod();
+		DeanMethod method = DeanMethodController.getMethod();
 		try {
 			Identity.setIdentity(method.getSelf("121250041"));
 		} catch (RemoteException e1) {

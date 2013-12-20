@@ -45,7 +45,7 @@ public class StudentMainPanel extends MPanel {
 
 	private void createComponent() {
 		title = new StudentTitleBar(new Point(0, 0), new Dimension(
-				this.getWidth(), 75));
+				this.getWidth(), 95));
 
 		btn1 = new MButton(new ImageIcon("resource//mycourse.png"), null,
 				new ImageIcon("resource//mycourse3.png"), new Point(60, 134),
@@ -68,7 +68,7 @@ public class StudentMainPanel extends MPanel {
 		btn3.setHorizontalTextPosition(SwingConstants.CENTER);
 		btn3.setVerticalTextPosition(SwingConstants.BOTTOM);
 
-		btn4 = new MButton(new ImageIcon("resource//grade.png"), null, null, new Point(
+		btn4 = new MButton(new ImageIcon("resource//grade.png"), null, new ImageIcon("resource//grade3.png"), new Point(
 				436, 134), new Dimension(128, 145));
 		btn4.setText("我的成绩");
 		btn4.setHorizontalTextPosition(SwingConstants.CENTER);

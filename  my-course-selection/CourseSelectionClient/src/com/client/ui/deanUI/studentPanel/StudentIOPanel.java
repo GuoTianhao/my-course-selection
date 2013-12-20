@@ -14,6 +14,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Vector;
 
+import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.UIManager;
@@ -59,8 +60,10 @@ public class StudentIOPanel extends MPanel {
 		importFromFile = new MButton(null, null, null, new Point(255, 95),
 				new Dimension(100, 25));
 		importFromFile.setText("从文件导入...");
-		search = new MTextField("搜索");
+		search = new MTextField();
 		search.setBounds(700, 95, 120, 25);
+		MLabel searchLb = new MLabel(new ImageIcon("resource//search.png"));
+		searchLb.setBounds(672, 95, 24, 24);
 		table = new MScrollTable(new Point(20, 130), new Dimension(810, 480));
 		String[] c = { "学号", "姓名", "院系","入学年份" };
 		table.setColumnIdentifiers(c);
@@ -70,6 +73,7 @@ public class StudentIOPanel extends MPanel {
 		this.add(importFromFile);
 		this.add(search);
 		this.add(table);
+		this.add(searchLb);
 	}
 
 	private void addListener() {

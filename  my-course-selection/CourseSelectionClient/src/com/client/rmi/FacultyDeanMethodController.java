@@ -18,7 +18,7 @@ public class FacultyDeanMethodController {
 				ex.printStackTrace();
 			}
 		}
-	//	facultyMethod=new FacultyDeanMethod_Stub();
+//		facultyMethod=new FacultyDeanMethod_Stub();
 		return facultyMethod;
 	}
 	public static void setMethod(FacultyDeanMethod method){

@@ -18,7 +18,7 @@ public class DeanMethodController {
 				ex.printStackTrace();
 			}
 		}
-	//deanMethod=new DeanMethod_Stub();
+//	deanMethod=new DeanMethod_Stub();
 		return deanMethod;
 	}
 	public static void setMethod(DeanMethod method){

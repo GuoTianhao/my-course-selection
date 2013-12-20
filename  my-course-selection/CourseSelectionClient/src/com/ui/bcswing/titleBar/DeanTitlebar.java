@@ -18,7 +18,7 @@ public class DeanTitlebar extends TitleBar{
 	private Dean identity = (Dean) Identity.getIdentity();
 	public DeanTitlebar(Point loc, Dimension size) {
 		super(loc, size);
-//		super.setMessage(identity.getName());
+		super.setMessage(identity.getName());
 		addListener();
 	}
 

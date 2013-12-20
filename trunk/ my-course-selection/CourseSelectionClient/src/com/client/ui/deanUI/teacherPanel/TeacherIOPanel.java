@@ -67,8 +67,10 @@ public class TeacherIOPanel extends MPanel {
 		importFromFile = new MButton(null, null, null, new Point(255, 95),
 				new Dimension(100, 25));
 		importFromFile.setText("从文件导入...");
-		search = new MTextField("搜索");
+		search = new MTextField();
 		search.setBounds(700, 95, 120, 25);
+		MLabel searchLb = new MLabel(new ImageIcon("resource//search.png"));
+		searchLb.setBounds(672, 95, 24, 24);
 		table = new MScrollTable(new Point(20, 130), new Dimension(810, 480));
 		String[] c = { "工号", "姓名", "院系" };
 		table.setColumnIdentifiers(c);
@@ -78,6 +80,7 @@ public class TeacherIOPanel extends MPanel {
 		this.add(importFromFile);
 		this.add(search);
 		this.add(table);
+		this.add(searchLb);
 	}
 
 	private void addListener() {

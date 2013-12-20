@@ -37,26 +37,26 @@ public class CourseSelectPanel extends MPanel{
 	private void createComponent(){
 		title = new StudentTitleBar(new Point(0, 0), new Dimension(
 				this.getWidth(), 95));
-		btn1 = new MButton(new ImageIcon("blank.png"), null, null, new Point(
-				85, 134), new Dimension(180, 150));
+		btn1 = new MButton(new ImageIcon("resource//liberal.png"), null, new ImageIcon("resource//liberal3.png"), new Point(
+				60, 134), new Dimension(128, 145));
 		btn1.setText("通识课选课");
 		btn1.setHorizontalTextPosition(SwingConstants.CENTER);
 		btn1.setVerticalTextPosition(SwingConstants.BOTTOM);
 
-		btn2 = new MButton(new ImageIcon("blank.png"), null, null, new Point(
-				323, 134), new Dimension(180, 150));
+		btn2 = new MButton(new ImageIcon("resource//elective.png"), null, new ImageIcon("resource//elective3.png"), new Point(
+				248, 134), new Dimension(128, 145));
 		btn2.setText("专业选修课选课");
 		btn2.setHorizontalTextPosition(SwingConstants.CENTER);
 		btn2.setVerticalTextPosition(SwingConstants.BOTTOM);
 
-		btn3 = new MButton(new ImageIcon("blank.png"), null, null, new Point(
-				535, 134), new Dimension(180, 150));
+		btn3 = new MButton(new ImageIcon("resource//pe.png"), null, new ImageIcon("resource//pe3.png"), new Point(
+				436, 134), new Dimension(128, 145));
 		btn3.setText("体育课选课");
 		btn3.setHorizontalTextPosition(SwingConstants.CENTER);
 		btn3.setVerticalTextPosition(SwingConstants.BOTTOM);
 
-		btn4 = new MButton(new ImageIcon("blank.png"), null, null, new Point(
-				85, 344), new Dimension(180, 150));
+		btn4 = new MButton(new ImageIcon("resource//other.png"), null, new ImageIcon("resource//other3.png"), new Point(
+				624, 134), new Dimension(128, 145));
 		btn4.setText("跨院系选课");
 		btn4.setHorizontalTextPosition(SwingConstants.CENTER);
 		btn4.setVerticalTextPosition(SwingConstants.BOTTOM);

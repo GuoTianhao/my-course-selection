@@ -155,7 +155,7 @@ public class FacultyDeanMethod_Stub implements FacultyDeanMethod{
 	@Override
 	public boolean isTimeForPublishCourse() {
 		// TODO Auto-generated method stub
-		return false;
+		return true;
 	}
 
 	@Override

@@ -51,7 +51,7 @@ public class BySelectionCoursePanel extends MPanel {
 				new Dimension(80, 25));
 		bSelect.setText("补选");
 
-		table = new MScrollTable(new Point(20, 130), new Dimension(800,
+		table = new MScrollTable(new Point(20, 130), new Dimension(810,
 				480));
 		String[] c = { "课程编号","课程名称","上课地点","上课时间", "学分","剩余人数" };
 		table.setColumnIdentifiers(c);

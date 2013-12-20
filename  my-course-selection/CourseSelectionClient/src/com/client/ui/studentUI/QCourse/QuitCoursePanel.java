@@ -55,7 +55,7 @@ public class QuitCoursePanel extends MPanel {
 				new Dimension(100, 25));
 		quitB.setText("退选");
 
-		table = new MScrollTable(new Point(20, 130), new Dimension(800,
+		table = new MScrollTable(new Point(20, 130), new Dimension(810,
 				480));
 		String[] c = { "课程编号", "课程模块", "课程名称", "学分", "开设学期" };
 		table.setColumnIdentifiers(c);

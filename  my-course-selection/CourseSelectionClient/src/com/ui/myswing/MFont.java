@@ -7,7 +7,8 @@ public class MFont {
 	public static Font titleFont = new Font("微软雅黑", Font.PLAIN, 24);
 	public static Font btnFont = new Font("微软雅黑", Font.PLAIN, 12);
 	public static Font lbFont = new Font("微软雅黑", Font.PLAIN, 14);
-	public static Font textFont = new Font("宋体", Font.PLAIN, 13);
+	public static Font textFieldFont = new Font("宋体", Font.PLAIN, 13);
+	public static Font textAreaFont = new Font("微软雅黑", Font.PLAIN, 14);
 	public static String[] DEFAULT_FONT = new String[] { "Table.font",
 			"TableHeader.font", "CheckBox.font", "Tree.font", "Viewport.font",
 			"ProgressBar.font", "RadioButtonMenuItem.font", "ToolBar.font",

@@ -66,30 +66,30 @@ public class CourseEditPanel extends MPanel {
 	}
 
 	private void creatComponent() {
-		namel = new MLabel(new Point(30, 0), new Dimension(100, 25), "课程名称:");
-		locl = new MLabel(new Point(30, 180), new Dimension(100, 25), "上课地点:");
-		creditl = new MLabel(new Point(30, 60), new Dimension(100, 25), "学分:");
-		numl = new MLabel(new Point(30, 120), new Dimension(100, 25), "上课人数:");
-		typel = new MLabel(new Point(30, 30), new Dimension(100, 25), "课程类型:");
-		gradel = new MLabel(new Point(30, 90), new Dimension(100, 25), "年级:");
-		periodl = new MLabel(new Point(30, 150), new Dimension(100, 25), "上课周数:");
-		timel = new MLabel(new Point(30, 210), new Dimension(100, 25), "上课时间:");
+		namel = new MLabel(new Point(50, 30), new Dimension(60, 25), "课程名称");//1
+		locl = new MLabel(new Point(50, 240), new Dimension(60, 25), "上课地点");//7
+		creditl = new MLabel(new Point(50, 100), new Dimension(60, 25), "学分");//3
+		numl = new MLabel(new Point(50, 170), new Dimension(60, 25), "上课人数");//5
+		typel = new MLabel(new Point(50, 65), new Dimension(60, 25), "课程类型");//2
+		gradel = new MLabel(new Point(50, 135), new Dimension(60, 25), "年级");//4
+		periodl = new MLabel(new Point(50, 205), new Dimension(60, 25), "上课周数");//6
+		timel = new MLabel(new Point(50, 275), new Dimension(60, 25), "上课时间");//8
 
-		namet = new MTextField(new Point(150, 0), new Dimension(100, 20));
-		loct = new MTextField(new Point(150, 180), new Dimension(100, 20));
-		creditt = new MTextField(new Point(150, 60), new Dimension(100, 20));
-		numt = new MTextField(new Point(150, 120), new Dimension(100, 20));
-		typeSelect = new MComboBox(typeModel, new Point(150,30),
-				new Dimension(100, 20));
+		namet = new MTextField(new Point(230, 30), new Dimension(180, 25));
+		loct = new MTextField(new Point(230, 240), new Dimension(180, 25));
+		creditt = new MTextField(new Point(230, 100), new Dimension(180, 25));
+		numt = new MTextField(new Point(230, 170), new Dimension(180, 25));
+		typeSelect = new MComboBox(typeModel, new Point(230,65),
+				new Dimension(180, 25));
 
-		gradet = new MTextField(new Point(150, 90), new Dimension(100, 20));
-		periodt = new MTextField(new Point(150, 150), new Dimension(100, 20));
+		gradet = new MTextField(new Point(230, 135), new Dimension(180, 25));
+		periodt = new MTextField(new Point(230, 205), new Dimension(180, 25));
 
-		confirm = new MButton(null, null, null, new Point(80, 210),
-				new Dimension(100, 20));
+		confirm = new MButton(null, null, null, new Point(210, 300),
+				new Dimension(60, 25));
 		confirm.setText("确定");
 
-		time = new CourseTimePanel(new Point(80, 180));
+		time = new CourseTimePanel(new Point(150, 240));
 		timeList = new ArrayList<CourseTimePanel>();
 		
 

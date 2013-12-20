@@ -49,7 +49,7 @@ public class CourseManagementPanel extends MPanel {
 				new Dimension(80, 25));
 		recordB = new MButton(null, null, null, new Point(190, 95),
 				new Dimension(180, 25));
-		table = new MScrollTable(new Point(20, 130), new Dimension(800, 480));
+		table = new MScrollTable(new Point(20, 130), new Dimension(810, 480));
 		String[] c = { "课程编号", "课程模块", "课程名称", "学分", "开设学期" };
 		table.setColumnIdentifiers(c);
 		editB.setText("编辑");

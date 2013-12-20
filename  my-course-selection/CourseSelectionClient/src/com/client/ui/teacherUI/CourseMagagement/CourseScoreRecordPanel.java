@@ -42,7 +42,7 @@ public class CourseScoreRecordPanel extends MPanel {
 		title = new TeacherTitleBar(new Point(0, 0), new Dimension(
 				this.getWidth(), 95));
 		table = new MScrollTable(new Point(20, 130),
-				new Dimension(800, 480));
+				new Dimension(810, 480));
 		String[] c = { "学号","姓名","院系","年级","成绩" };
 		table.setColumnIdentifiers(c);
 		backB = new MButton(null, null, null, new Point(30, 95), new Dimension(

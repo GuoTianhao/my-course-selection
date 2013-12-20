@@ -2,6 +2,7 @@ package com.ui.bcswing;
 
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.Point;
 import java.util.ArrayList;
 import java.util.List;
@@ -13,13 +14,14 @@ import org.jb2011.lnf.beautyeye.BeautyEyeLNFHelper;
 
 import com.basicdata.CourseTypeKind;
 import com.data.po.Course;
+import com.ui.myswing.MFont;
 import com.ui.myswing.MFrame;
 import com.ui.myswing.MLabel;
 import com.ui.myswing.MTextField;
 
 //显示具体的课程信息
 public class CourseInforPane extends MFrame {
-	private static Dimension default_size = new Dimension(300, 400);
+	private static Dimension default_size = new Dimension(260, 400);
 	private Course course;
 
 	// private MLabel namel;
@@ -126,10 +128,12 @@ public class CourseInforPane extends MFrame {
 		// this.add(timet);
 
 		infor = new JTextArea();
-		infor.setLocation(new Point(10, 0));
+//		infor.setLocation(new Point(80, 50));
 		infor.setSize(this.getSize().width - 20, this.getSize().height);
 		infor.setEditable(false);
-		infor.setBackground(Color.YELLOW);
+		infor.setLineWrap(true);
+		infor.setBackground(new Color(230,230,230));
+		infor.setFont(new Font("微软雅黑", Font.PLAIN, 16));
 		this.add(infor);
 		this.setVisible(true);
 		this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
@@ -137,10 +141,15 @@ public class CourseInforPane extends MFrame {
 	}
 
 	private void init() {
-		infor.append("     课程编号:" + course.getID() + "\n");
-		infor.append("     课程名称:" + course.getName() + "\n");
-		infor.append("     课程类型:"+CourseTypeKind.getName(course.getType())+"\n");
-		infor.append("     上课地点:"+course.getLoc()+"\n");
+		infor.append("\n");
+
+		infor.append("      课程编号：" + course.getID() + "\n");
+		infor.append("\n");
+		infor.append("      课程名称：" + course.getName() + "\n");
+		infor.append("\n");
+		infor.append("      课程类型："+CourseTypeKind.getName(course.getType())+"\n");
+		infor.append("\n");
+		infor.append("      上课地点："+course.getLoc()+"\n");
 	}
 
 	public void setCourse(Course c) {

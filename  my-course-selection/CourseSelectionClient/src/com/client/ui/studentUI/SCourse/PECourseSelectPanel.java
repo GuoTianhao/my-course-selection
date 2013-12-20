@@ -40,7 +40,7 @@ public class PECourseSelectPanel extends MPanel {
 		select = new MButton(null, null, null, new Point(720, 95),
 				new Dimension(100, 25));
 		select.setText("选择");
-		table = new MScrollTable(new Point(20, 130), new Dimension(800, 480));
+		table = new MScrollTable(new Point(20, 130), new Dimension(810, 480));
 		String[] c = { "课程编号", "课程名称", "上课地点", "上课时间", "剩余人数" };
 		table.setColumnIdentifiers(c);
 

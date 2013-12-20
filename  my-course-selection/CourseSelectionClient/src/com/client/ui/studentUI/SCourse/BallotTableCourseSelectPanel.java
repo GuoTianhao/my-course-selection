@@ -49,7 +49,7 @@ public class BallotTableCourseSelectPanel extends MPanel {
 		confirm = new MButton(null, null, null, new Point(720, 95),
 				new Dimension(100, 25));
 		confirm.setText("确定");
-		table = new MScrollTable(new Point(20, 130), new Dimension(800, 480));
+		table = new MScrollTable(new Point(20, 130), new Dimension(810, 480));
 		String[] c1 = { "课程编号", "课程名字", "学分", "上课地点", "上课时间", "限定人数", "已选人数" };
 		table.setColumnIdentifiers(c1);
 		this.add(title);

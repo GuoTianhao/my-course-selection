@@ -7,11 +7,13 @@ import java.awt.event.ActionListener;
 import javax.swing.JFrame;
 import javax.swing.UIManager;
 
+import org.jb2011.lnf.beautyeye.BeautyEyeLNFHelper;
+
 import com.data.po.Course;
 import com.ui.bcswing.MScrollForm;
 
 public class CourseEditPane extends MScrollForm {
-	Dimension default_size = new Dimension(480, 500);
+	Dimension default_size = new Dimension(530, 500);
 	protected CourseEditPanel courseEdit;
 
 	public CourseEditPane() {
@@ -50,6 +52,7 @@ public class CourseEditPane extends MScrollForm {
 
 	public static void main(String[] args) {
 		try {
+			BeautyEyeLNFHelper.frameBorderStyle = BeautyEyeLNFHelper.FrameBorderStyle.osLookAndFeelDecorated;
 			org.jb2011.lnf.beautyeye.BeautyEyeLNFHelper.launchBeautyEyeLNF();
 			UIManager.put("RootPane.setupButtonVisible", false);
 		} catch (Exception e) {

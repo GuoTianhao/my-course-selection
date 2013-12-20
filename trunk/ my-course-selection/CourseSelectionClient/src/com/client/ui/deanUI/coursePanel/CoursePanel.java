@@ -44,7 +44,7 @@ public class CoursePanel extends MPanel {
 	private CoursePublicOperateBar publishOperateBar;
 	private AllCourseOperateBar allCourseOperateBar;
 
-	private JTabbedPane tabbedPane;
+//	private JTabbedPane tabbedPane;
 	
 	private MScrollTable table;
 
@@ -78,9 +78,9 @@ public class CoursePanel extends MPanel {
 		popupMenu = new MPopupMenu();
 		table.add(popupMenu);
 		
-		tabbedPane=new JTabbedPane();
-		tabbedPane.setLocation(new Point(0,95));
-		tabbedPane.setSize(new Dimension(700,200));
+//		tabbedPane=new JTabbedPane();
+//		tabbedPane.setLocation(new Point(0,95));
+//		tabbedPane.setSize(new Dimension(700,200));
 
 		publishOperateBar = new CoursePublicOperateBar(new Point(0, 130),
 				new Dimension(size.width, 50));
@@ -95,7 +95,7 @@ public class CoursePanel extends MPanel {
 		this.add(title);
 		this.add(courseP);
 		this.add(courseA);
-		this.add(tabbedPane);
+//		this.add(tabbedPane);
 		this.add(table);
 
 		addCoursePublishOperateBar();

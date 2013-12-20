@@ -143,6 +143,13 @@ public class DeanMainPanel extends MPanel {
 	}
 
 	public static void main(String[] args) {
+		DeanMethod method=DeanMethodController.getMethod();
+		try {
+			Identity.setIdentity(method.getSelf("121250041"));
+		} catch (RemoteException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
 		try {
 			BeautyEyeLNFHelper.frameBorderStyle = BeautyEyeLNFHelper.FrameBorderStyle.osLookAndFeelDecorated;
 			org.jb2011.lnf.beautyeye.BeautyEyeLNFHelper.launchBeautyEyeLNF();

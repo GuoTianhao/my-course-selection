@@ -7,7 +7,7 @@ import com.logicService.TeacherMethod;
 
 public class TeacherMethodController {
 	private static TeacherMethod teacherMethod = null;
-	private static String look="rmi://127.0.0.1:6602/teacherMethod";
+	private static String look="rmi://172.26.61.148:6602/teacherMethod";
 	public static TeacherMethod getMethod() {
 		if (teacherMethod == null) {
 			try {

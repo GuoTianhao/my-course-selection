@@ -39,22 +39,20 @@ import com.ui.bcswing.titleBar.TitleBar;
 import com.ui.myswing.MButton;
 import com.ui.myswing.MPanel;
 
-public class CoursePanel extends MPanel implements MObserver{
+public class CoursePanel extends MPanel implements MObserver {
 	private TitleBar title;
 	private MButton courseP;
 	private MButton courseA;
 	private CoursePublicOperateBar publishOperateBar;
 	private AllCourseOperateBar allCourseOperateBar;
 
-//	private JTabbedPane tabbedPane;
-	
+	// private JTabbedPane tabbedPane;
+
 	private MScrollTable table;
 
 	private int state;
 
 	private MPopupMenu popupMenu;
-	
-
 
 	public CoursePanel(Point loc, Dimension size) {
 		super(loc, size);
@@ -65,8 +63,7 @@ public class CoursePanel extends MPanel implements MObserver{
 
 	private void creatComponent() {
 		Dimension size = this.getSize();
-		title = new DeanTitlebar(new Point(0, 0),
-				new Dimension(size.width, 95));
+		title = new DeanTitlebar(new Point(0, 0), new Dimension(size.width, 95));
 		courseP = new MButton(null, null, null, new Point(30, 95),
 				new Dimension(100, 25));
 		courseA = new MButton(null, null, null, new Point(140, 95),
@@ -81,25 +78,24 @@ public class CoursePanel extends MPanel implements MObserver{
 		table.setColumnIdentifiers(c);
 		popupMenu = new MPopupMenu();
 		table.add(popupMenu);
-		
-//		tabbedPane=new JTabbedPane();
-//		tabbedPane.setLocation(new Point(0,95));
-//		tabbedPane.setSize(new Dimension(700,200));
+
+		// tabbedPane=new JTabbedPane();
+		// tabbedPane.setLocation(new Point(0,95));
+		// tabbedPane.setSize(new Dimension(700,200));
 
 		publishOperateBar = new CoursePublicOperateBar(new Point(0, 130),
 				new Dimension(size.width, 50));
-//原来130
+		// 原来130
 		allCourseOperateBar = new AllCourseOperateBar(new Point(0, 130),
 				new Dimension(size.width, 50));
 
-		
-//		tabbedPane.addTab("公共课程", publishOperateBar);
-//		tabbedPane.addTab("全校课程", allCourseOperateBar);
-//		tabbedPane.se
+		// tabbedPane.addTab("公共课程", publishOperateBar);
+		// tabbedPane.addTab("全校课程", allCourseOperateBar);
+		// tabbedPane.se
 		this.add(title);
 		this.add(courseP);
 		this.add(courseA);
-//		this.add(tabbedPane);
+		// this.add(tabbedPane);
 		this.add(table);
 
 		addCoursePublishOperateBar();
@@ -168,7 +164,6 @@ public class CoursePanel extends MPanel implements MObserver{
 		refreshTable();
 	}
 
-	
 	private void addCoursePublishOperateBar() {
 		this.remove(allCourseOperateBar);
 		this.add(publishOperateBar);
@@ -193,7 +188,6 @@ public class CoursePanel extends MPanel implements MObserver{
 		table.regrexFilter(content);
 	}
 
-	
 	class PublicCourseSwitchListener implements ActionListener {
 
 		public void actionPerformed(ActionEvent e) {
@@ -207,22 +201,22 @@ public class CoursePanel extends MPanel implements MObserver{
 	}
 
 	class PublishCourseListener implements ActionListener {
-		
+
 		DeanCoursePane pane;
 		DeanUISwitchController controller = DeanUISwitchController
 				.getUISwitchController();
-		
+
 		public void actionPerformed(ActionEvent e) {
 			// TODO Auto-generated method stub
 			TimeController time = DeanMethodController.getMethod();
 			try {
 				if (time.isTimeForPublishCourse()) {
-					
-					DeanCoursePane pane=new DeanCoursePane();
+
+					DeanCoursePane pane = new DeanCoursePane();
 					pane.addObserver(CoursePanel.this);
 				} else {
-					TipFrame t = new TipFrame(controller.getLoc(),CoursePanel.this.getSize(), 5,
-							"未到课程发布时间");
+					TipFrame t = new TipFrame(controller.getLoc(),
+							CoursePanel.this.getSize(), 5, "未到课程发布时间");
 					t.startEndClock();
 				}
 			} catch (RemoteException e1) {
@@ -255,7 +249,7 @@ public class CoursePanel extends MPanel implements MObserver{
 				String id = (String) table.getValueAt(index, 0);
 				try {
 					Course c = method.getCourse(id);
-					DeanCoursePane pane=new DeanCoursePane();
+					DeanCoursePane pane = new DeanCoursePane();
 					pane.addObserver(CoursePanel.this);
 					pane.setCourse(c);
 				} catch (RemoteException e1) {
@@ -326,7 +320,9 @@ public class CoursePanel extends MPanel implements MObserver{
 			int index = table.rowAtPoint(popupMenu.getLocation());
 			courseID = (String) table.getValueAt(index, 0);
 
-			new DeanCourseTeacherAssignmentDisplayPane(courseID);
+			DeanCourseTeacherAssignmentDisplayPane pane = new DeanCourseTeacherAssignmentDisplayPane(
+					courseID);
+
 		}
 
 	}

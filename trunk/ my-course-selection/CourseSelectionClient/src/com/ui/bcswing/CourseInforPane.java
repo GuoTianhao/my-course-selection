@@ -5,6 +5,7 @@ import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Point;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 import javax.swing.JTextArea;
@@ -14,6 +15,7 @@ import org.jb2011.lnf.beautyeye.BeautyEyeLNFHelper;
 
 import com.basicdata.CourseTypeKind;
 import com.data.po.Course;
+import com.data.po.Teacher;
 import com.ui.myswing.MFont;
 import com.ui.myswing.MFrame;
 import com.ui.myswing.MLabel;
@@ -21,7 +23,7 @@ import com.ui.myswing.MTextField;
 
 //显示具体的课程信息
 public class CourseInforPane extends MFrame {
-	private static Dimension default_size = new Dimension(260, 400);
+	private static Dimension default_size = new Dimension(260, 600);
 	private Course course;
 
 	// private MLabel namel;
@@ -133,7 +135,7 @@ public class CourseInforPane extends MFrame {
 		infor.setEditable(false);
 		infor.setLineWrap(true);
 		infor.setBackground(new Color(230,230,230));
-		infor.setFont(new Font("微软雅黑", Font.PLAIN, 16));
+		infor.setFont(new Font("微软雅黑", Font.PLAIN, 13));
 		this.add(infor);
 		this.setVisible(true);
 		this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
@@ -150,6 +152,40 @@ public class CourseInforPane extends MFrame {
 		infor.append("      课程类型："+CourseTypeKind.getName(course.getType())+"\n");
 		infor.append("\n");
 		infor.append("      上课地点："+course.getLoc()+"\n");
+		infor.append("\n");
+		infor.append("      课程种类："+course.getType()+"\n");
+		infor.append("\n");
+		infor.append("      课程年级："+course.getGrade()+"\n");
+		infor.append("\n");
+		infor.append("      上课描述："+course.getScript()+"\n");
+		infor.append("\n");
+		infor.append("      上课院系："+course.getFaculty()+"\n");
+		infor.append("\n");
+		infor.append("      上课周数："+course.getPeriod()+"\n");
+		infor.append("\n");
+		infor.append("      课程学分："+course.getCredit()+"\n");
+		infor.append("\n");
+		infor.append("      上课人数："+course.getNum()+"\n");
+		infor.append("\n");
+		infor.append("      课程老师：");
+		Iterator<Teacher> it1=course.getTeacher().iterator();
+		while(it1.hasNext()){
+			Teacher tea=it1.next();
+			infor.append(tea.getName()+" ");
+		}
+		infor.append("\n"+"\n");
+		infor.append("      课程时间：");
+		int cmd=1;
+		Iterator<String> it2=course.getTime().iterator();
+		while(it2.hasNext()){
+			String tea=it2.next();
+			String[] getinfo=tea.split("_");
+			if(cmd==1)
+			infor.append("周"+getinfo[0]+" 第"+getinfo[1]+"节"+"到"+" 第"+getinfo[2]+"节"+"\n");
+			else
+				infor.append("                      "+"周"+getinfo[0]+" 第"+getinfo[1]+"节"+"到"+" 第"+getinfo[2]+"节"+"\n");
+			cmd++;
+		}
 	}
 
 	public void setCourse(Course c) {
@@ -167,7 +203,10 @@ public class CourseInforPane extends MFrame {
 		List<String> time = new ArrayList<String>();
 		time.add("2_5_7");
 		time.add("1_1_4");
+		List<Teacher> teacher = new ArrayList<Teacher>();
+		teacher.add(new Teacher("123", "daibi", "软件"));
+		teacher.add(new Teacher("234", "daibi", "软件"));
 		new CourseInforPane(new Course("0001", "软件工程与计算", "仙2_303", "F", 3,
-				"1_17", "1250", "打造全院最好软件教育", 0, 3, time, null));
+				"1_17", "1250", "打造全院最好软件教育", 60, 3, time,teacher ));
 	}
 }

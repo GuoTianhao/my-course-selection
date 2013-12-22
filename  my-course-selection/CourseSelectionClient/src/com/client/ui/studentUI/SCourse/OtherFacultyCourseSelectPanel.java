@@ -21,6 +21,7 @@ import com.client.ui.studentUI.StudentUISwitchController;
 import com.data.po.Course;
 import com.data.po.Student;
 import com.logicService.StudentMethod;
+import com.ui.bcswing.TipFrame;
 
 public class OtherFacultyCourseSelectPanel extends BallotTableCourseSelectPanel {
 	public OtherFacultyCourseSelectPanel(Point loc, Dimension size) {
@@ -74,16 +75,19 @@ public class OtherFacultyCourseSelectPanel extends BallotTableCourseSelectPanel 
 	}
 
 	class CourseSelectListener implements ActionListener {
-
+		StudentUISwitchController controller=StudentUISwitchController.getUISwitchController();
+		TipFrame t;
 		public void actionPerformed(ActionEvent e) {
 			List<Course> wait = getWaitCourse();
 			if (quitCourse(wait.iterator()) && selectCourse()) {
-				System.out.println("选课成功");
-				refreshTable();
+				t = new TipFrame(controller.getLoc(),
+						controller.getSize(), 5, "选课成功");
 			} else {
-				System.out.println("选课失败");
-				refreshTable();
+				t = new TipFrame(controller.getLoc(),
+						controller.getSize(), 5, "选课失败");
 			}
+			t.startEndClock();
+			refreshTable();
 		}
 
 	}

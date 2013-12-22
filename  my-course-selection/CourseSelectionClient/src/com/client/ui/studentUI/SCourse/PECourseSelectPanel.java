@@ -17,6 +17,7 @@ import com.data.po.Course;
 import com.data.po.Student;
 import com.logicService.StudentMethod;
 import com.ui.bcswing.MScrollTable;
+import com.ui.bcswing.TipFrame;
 import com.ui.bcswing.titleBar.StudentTitleBar;
 import com.ui.bcswing.titleBar.TitleBar;
 import com.ui.myswing.MButton;
@@ -62,8 +63,8 @@ public class PECourseSelectPanel extends MPanel {
 		select.addActionListener(new SelectListener());
 
 	}
-
-	private void init() {
+	
+	private void refreshTable(){
 		StudentMethod method = StudentMethodController.getMethod();
 		try {
 			List<Course> list=method.getTypeCourse("G");
@@ -73,7 +74,14 @@ public class PECourseSelectPanel extends MPanel {
 		}
 	}
 
+	private void init() {
+		refreshTable();
+	}
+
 	class SelectListener implements ActionListener {
+		StudentUISwitchController controller=StudentUISwitchController.getUISwitchController();
+		TipFrame t;
+
 		public void actionPerformed(ActionEvent e) {
 			Student student = (Student) (Identity.getIdentity());
 			int index = table.getSelectedRow();
@@ -83,10 +91,15 @@ public class PECourseSelectPanel extends MPanel {
 				try {
 					boolean admit = method.selectCourse(student.getID(), cID);
 					if (admit) {
-						System.out.println("选课成功");
+						t = new TipFrame(controller.getLoc(),
+								controller.getSize(), 5, "选课成功");
+
 					} else {
-						System.out.println("选课失败");
+						t = new TipFrame(controller.getLoc(),
+								controller.getSize(), 5, "选课失败");
 					}
+					t.startEndClock();
+					refreshTable();
 				} catch (RemoteException e1) {
 					e1.printStackTrace();
 				}

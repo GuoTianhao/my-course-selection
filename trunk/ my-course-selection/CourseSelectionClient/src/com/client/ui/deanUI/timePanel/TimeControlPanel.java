@@ -80,7 +80,7 @@ public class TimeControlPanel extends MPanel {
 	private void createComponent() {
 
 		title = new DeanTitlebar(new Point(0, 0), new Dimension(
-				this.getWidth(), 75));
+				this.getWidth(), 95));
 
 		publishLb = new MLabel(new Point(120, 95), new Dimension(80, 40), "发布课程");
 		publish = new MButton(off, null, null, new Point(220, 100),

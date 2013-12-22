@@ -18,7 +18,7 @@ public class StudentMethodController {
 				ex.printStackTrace();
 			}
 		}
-	//	studentMethod=new StudentMethod_Stub();
+//		studentMethod=new StudentMethod_Stub();
 		return studentMethod;
 	}
 	public static void setMethod(StudentMethod method){

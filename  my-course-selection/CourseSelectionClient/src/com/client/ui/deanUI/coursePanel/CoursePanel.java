@@ -22,10 +22,12 @@ import com.basicdata.FacultyKind;
 import com.basicdata.Identity;
 import com.basicdata.TermKind;
 import com.client.rmi.DeanMethodController;
+import com.client.rmi.FacultyDeanMethodController;
 import com.client.ui.dataAdapter.CourseListToVectorAdapter;
 import com.client.ui.deanUI.DeanUISwitchController;
 import com.data.po.Course;
 import com.logicService.DeanMethod;
+import com.logicService.FacultyDeanMethod;
 import com.timeControllerService.TimeController;
 import com.ui.bcswing.CourseInforPane;
 import com.ui.bcswing.MPopupMenu;
@@ -64,9 +66,9 @@ public class CoursePanel extends MPanel implements MObserver {
 	private void creatComponent() {
 		Dimension size = this.getSize();
 		title = new DeanTitlebar(new Point(0, 0), new Dimension(size.width, 95));
-		courseP = new MButton(null, null, null, new Point(30, 95),
+		courseP = new MButton(null, null, null, new Point(325, 95),
 				new Dimension(100, 25));
-		courseA = new MButton(null, null, null, new Point(140, 95),
+		courseA = new MButton(null, null, null, new Point(435, 95),
 				new Dimension(100, 25));
 
 		courseP.setText("公共课程");
@@ -120,7 +122,7 @@ public class CoursePanel extends MPanel implements MObserver {
 
 		publishOperateBar.addcourseMListener(new CourseModifyListener());
 
-		publishOperateBar.addcourseInforListener(new CourseInfroListener());
+//		publishOperateBar.addcourseInforListener(new CourseInfroListener());
 
 		publishOperateBar.addSearchKeyListener(new KeyAdapter() {
 			public void keyReleased(KeyEvent e) {
@@ -139,6 +141,26 @@ public class CoursePanel extends MPanel implements MObserver {
 		allCourseOperateBar.addFacultyItemListenr(new Term_FacultyListener());
 
 		table.addMouseListener(new TableClickListener());
+
+		table.addMouseListener(new MouseAdapter() {
+			public void mouseClicked(MouseEvent e) {
+				DeanMethod method = DeanMethodController.getMethod();
+				if (e.getClickCount() == 2) {
+					// JOptionPane.showMessageDialog(null, "doubleClicked!");
+					int index = table.getSelectedRow();
+					if (index >= 0) {
+						String id = (String) table.getValueAt(index, 0);
+						try {
+							Course c = method.getCourse(id);
+							CourseInforPane pane = new CourseInforPane(c);
+						} catch (RemoteException e1) {
+							e1.printStackTrace();
+						}
+
+					}
+				}
+			}
+		});
 
 		popupMenu.addTeacherAssignmentListener(new TeacherAssignmentListener());
 

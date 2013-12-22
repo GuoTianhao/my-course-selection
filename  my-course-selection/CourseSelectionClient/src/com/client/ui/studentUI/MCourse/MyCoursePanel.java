@@ -6,6 +6,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.rmi.RemoteException;
 import java.util.List;
 
@@ -23,6 +25,7 @@ import com.client.ui.studentUI.StudentUISwitchController;
 import com.data.po.Course;
 import com.data.po.Student;
 import com.logicService.StudentMethod;
+import com.ui.bcswing.CourseInforPane;
 import com.ui.bcswing.MScrollTable;
 import com.ui.bcswing.titleBar.StudentTitleBar;
 import com.ui.bcswing.titleBar.TitleBar;
@@ -71,6 +74,26 @@ public class MyCoursePanel extends MPanel {
 		});
 
 		term.addItemListener(new TermItemListener());
+		
+		table.addMouseListener(new MouseAdapter() {
+			public void mouseClicked(MouseEvent e) {
+				StudentMethod method = StudentMethodController.getMethod();
+				if (e.getClickCount() == 2) {
+					// JOptionPane.showMessageDialog(null, "doubleClicked!");
+					int index = table.getSelectedRow();
+					if (index >= 0) {
+						String id = (String) table.getValueAt(index, 0);
+						try {
+							Course c = method.getCourse(id);
+							CourseInforPane pane = new CourseInforPane(c);
+						} catch (RemoteException e1) {
+							e1.printStackTrace();
+						}
+
+					}
+				}
+			}
+		});
 
 	}
 

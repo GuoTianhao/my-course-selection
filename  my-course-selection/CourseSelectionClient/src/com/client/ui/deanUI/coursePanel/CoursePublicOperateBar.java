@@ -31,19 +31,19 @@ public class CoursePublicOperateBar extends MPanel {
 				new Dimension(80, 25));
 		courseM = new MButton(null, null, null, new Point(120, 0),
 				new Dimension(80, 25));
-		courseInfor = new MButton(null, null, null, new Point(210, 0),
-				new Dimension(100, 25));
+//		courseInfor = new MButton(null, null, null, new Point(210, 0),
+//				new Dimension(100, 25));
 
 		courseP.setText("发布新课程");
 		courseM.setText("修改课程");
-		courseInfor.setText("课程详细信息");
+//		courseInfor.setText("课程详细信息");
 
 		search = new MTextField(new Point(700, 0), new Dimension(120, 25));
 		MLabel searchLb = new MLabel(new ImageIcon("resource//search.png"));
 		searchLb.setBounds(672, 0, 24, 24);
 		this.add(courseP);
 		this.add(courseM);
-		this.add(courseInfor);
+//		this.add(courseInfor);
 
 		this.add(search);
 		this.add(searchLb);
@@ -57,9 +57,9 @@ public class CoursePublicOperateBar extends MPanel {
 		courseM.addActionListener(al);
 	}
 
-	public void addcourseInforListener(ActionListener al) {
-		courseInfor.addActionListener(al);
-	}
+//	public void addcourseInforListener(ActionListener al) {
+//		courseInfor.addActionListener(al);
+//	}
 
 	public void addSearchKeyListener(KeyListener kl) {
 		search.addKeyListener(kl);

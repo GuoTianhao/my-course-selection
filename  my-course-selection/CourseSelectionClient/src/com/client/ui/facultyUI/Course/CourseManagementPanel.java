@@ -16,6 +16,7 @@ import org.jb2011.lnf.beautyeye.BeautyEyeLNFHelper;
 
 import com.basicdata.Identity;
 import com.client.rmi.FacultyDeanMethodController;
+import com.client.rmi.StudentMethodController;
 import com.client.ui.dataAdapter.CourseListToVectorAdapter;
 import com.client.ui.deanUI.DeanUISwitchController;
 import com.client.ui.deanUI.coursePanel.CoursePanel;
@@ -23,6 +24,8 @@ import com.client.ui.facultyUI.FacultyUISwitchController;
 import com.data.po.Course;
 import com.data.po.FacultyDean;
 import com.logicService.FacultyDeanMethod;
+import com.logicService.StudentMethod;
+import com.ui.bcswing.CourseInforPane;
 import com.ui.bcswing.MPopupMenu;
 import com.ui.bcswing.MScrollTable;
 import com.ui.bcswing.TipFrame;
@@ -33,7 +36,7 @@ import com.ui.bcswing.titleBar.TitleBar;
 import com.ui.myswing.MButton;
 import com.ui.myswing.MPanel;
 
-public class CourseManagementPanel extends MPanel implements MObserver{
+public class CourseManagementPanel extends MPanel implements MObserver {
 
 	private TitleBar title;
 	private MButton button1;
@@ -42,7 +45,7 @@ public class CourseManagementPanel extends MPanel implements MObserver{
 	private MPopupMenu popupMenu;
 
 	private FacultyCoursePane pane;
-	
+
 	public CourseManagementPanel(Point loc, Dimension size) {
 		super(loc, size);
 		createComponent();
@@ -59,8 +62,7 @@ public class CourseManagementPanel extends MPanel implements MObserver{
 		button2 = new MButton(null, null, null, new Point(140, 95),
 				new Dimension(50, 25));
 		button2.setText("编辑");
-		table = new MScrollTable(new Point(20, 130), new Dimension(810,
-				480));
+		table = new MScrollTable(new Point(20, 130), new Dimension(810, 480));
 		String[] c = { "课程编号", "课程模块", "课程名称", "学分", "开设周数" };
 		table.setColumnIdentifiers(c);
 		popupMenu = new MPopupMenu();
@@ -70,12 +72,12 @@ public class CourseManagementPanel extends MPanel implements MObserver{
 		this.add(button2);
 		this.add(table);
 	}
+
 	@Override
 	public void update() {
 		// TODO Auto-generated method stub
 		refreshTable();
 	}
-
 
 	private void addListener() {
 
@@ -89,15 +91,17 @@ public class CourseManagementPanel extends MPanel implements MObserver{
 
 		button1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				FacultyDeanMethod method=FacultyDeanMethodController.getMethod();
+				FacultyDeanMethod method = FacultyDeanMethodController
+						.getMethod();
 				try {
-					if(method.isTimeForPublishCourse()){
-						pane=new FacultyCoursePane();
+					if (method.isTimeForPublishCourse()) {
+						pane = new FacultyCoursePane();
 						pane.addObserver(CourseManagementPanel.this);
-					}else{
+					} else {
 						FacultyUISwitchController controller = FacultyUISwitchController
 								.getUISwitchController();
-						TipFrame t = new TipFrame(controller.getLoc(),CourseManagementPanel.this.getSize(), 5,
+						TipFrame t = new TipFrame(controller.getLoc(),
+								CourseManagementPanel.this.getSize(), 5,
 								"未到课程发布时间");
 						t.startEndClock();
 
@@ -112,11 +116,31 @@ public class CourseManagementPanel extends MPanel implements MObserver{
 		button2.addActionListener(new CourseModifyListener());
 
 		table.addMouseListener(new TableClickListener());
+		table.addMouseListener(new MouseAdapter() {
+			public void mouseClicked(MouseEvent e) {
+				FacultyDeanMethod method = FacultyDeanMethodController
+						.getMethod();
+				if (e.getClickCount() == 2) {
+					// JOptionPane.showMessageDialog(null, "doubleClicked!");
+					int index = table.getSelectedRow();
+					if (index >= 0) {
+						String id = (String) table.getValueAt(index, 0);
+						try {
+							Course c = method.getCourse(id);
+							CourseInforPane pane = new CourseInforPane(c);
+						} catch (RemoteException e1) {
+							e1.printStackTrace();
+						}
+
+					}
+				}
+			}
+		});
 
 		popupMenu.addTeacherAssignmentListener(new TeacherAssignmentListener());
 	}
 
-	private void refreshTable(){
+	private void refreshTable() {
 		FacultyDean self = (FacultyDean) (Identity.getIdentity());
 		FacultyDeanMethod method = FacultyDeanMethodController.getMethod();
 		try {
@@ -127,7 +151,7 @@ public class CourseManagementPanel extends MPanel implements MObserver{
 		}
 
 	}
-	
+
 	private void init() {
 		refreshTable();
 	}
@@ -181,7 +205,7 @@ public class CourseManagementPanel extends MPanel implements MObserver{
 		}
 
 	}
-	
+
 	public static void main(String[] args) {
 		FacultyDeanMethod method = FacultyDeanMethodController.getMethod();
 		try {

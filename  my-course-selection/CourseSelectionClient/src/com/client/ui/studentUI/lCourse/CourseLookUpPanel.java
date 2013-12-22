@@ -6,8 +6,11 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.rmi.RemoteException;
 
+import javax.swing.JOptionPane;
 import javax.swing.UIManager;
 
 import org.jb2011.lnf.beautyeye.BeautyEyeLNFHelper;
@@ -19,8 +22,10 @@ import com.client.rmi.StudentMethodController;
 import com.client.ui.dataAdapter.CourseListToVectorAdapter;
 import com.client.ui.main.MainFrame;
 import com.client.ui.studentUI.StudentUISwitchController;
+import com.data.po.Course;
 import com.logicService.DeanMethod;
 import com.logicService.StudentMethod;
+import com.ui.bcswing.CourseInforPane;
 import com.ui.bcswing.MScrollTable;
 import com.ui.bcswing.titleBar.StudentTitleBar;
 import com.ui.bcswing.titleBar.TitleBar;
@@ -54,8 +59,7 @@ public class CourseLookUpPanel extends MPanel {
 		choose2 = new MLabel(new Point(280, 95), new Dimension(75, 25), "选择院系");
 		department = new MComboBox<>(departmentItems, new Point(350, 95),
 				new Dimension(150, 25));
-		table = new MScrollTable(new Point(20, 130), new Dimension(810,
-				480));
+		table = new MScrollTable(new Point(20, 130), new Dimension(810, 480));
 		String[] c = { "课程编号", "课程模块", "课程名称", "学分", "开设学期" };
 		table.setColumnIdentifiers(c);
 		this.add(title);
@@ -79,6 +83,26 @@ public class CourseLookUpPanel extends MPanel {
 		term.addItemListener(new Term_FacultyListener());
 
 		department.addItemListener(new Term_FacultyListener());
+
+		table.addMouseListener(new MouseAdapter() {
+			public void mouseClicked(MouseEvent e) {
+				StudentMethod method = StudentMethodController.getMethod();
+				if (e.getClickCount() == 2) {
+					// JOptionPane.showMessageDialog(null, "doubleClicked!");
+					int index = table.getSelectedRow();
+					if (index >= 0) {
+						String id = (String) table.getValueAt(index, 0);
+						try {
+							Course c = method.getCourse(id);
+							CourseInforPane pane = new CourseInforPane(c);
+						} catch (RemoteException e1) {
+							e1.printStackTrace();
+						}
+
+					}
+				}
+			}
+		});
 
 	}
 

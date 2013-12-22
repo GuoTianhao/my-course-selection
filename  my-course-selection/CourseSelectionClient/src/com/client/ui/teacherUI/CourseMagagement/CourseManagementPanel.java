@@ -4,6 +4,8 @@ import java.awt.Dimension;
 import java.awt.Point;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.rmi.RemoteException;
 import java.util.List;
 
@@ -12,11 +14,13 @@ import javax.swing.UIManager;
 import org.jb2011.lnf.beautyeye.BeautyEyeLNFHelper;
 
 import com.basicdata.Identity;
+import com.client.rmi.StudentMethodController;
 import com.client.rmi.TeacherMethodController;
 import com.client.ui.dataAdapter.CourseListToVectorAdapter;
 import com.client.ui.teacherUI.TeacherUISwitchController;
 import com.data.po.Course;
 import com.data.po.Teacher;
+import com.logicService.StudentMethod;
 import com.logicService.TeacherMethod;
 import com.ui.bcswing.CourseInforPane;
 import com.ui.bcswing.CourseScriptPane;
@@ -78,6 +82,26 @@ public class CourseManagementPanel extends MPanel {
 		editB.addActionListener(new EditListener());
 
 		inforB.addActionListener(new CourseInforListener());
+		
+		table.addMouseListener(new MouseAdapter() {
+			public void mouseClicked(MouseEvent e) {
+				TeacherMethod method = TeacherMethodController.getMethod();
+				if (e.getClickCount() == 2) {
+					// JOptionPane.showMessageDialog(null, "doubleClicked!");
+					int index = table.getSelectedRow();
+					if (index >= 0) {
+						String id = (String) table.getValueAt(index, 0);
+						try {
+							Course c = method.getCourse(id);
+							CourseInforPane pane = new CourseInforPane(c);
+						} catch (RemoteException e1) {
+							e1.printStackTrace();
+						}
+
+					}
+				}
+			}
+		});
 
 	}
 

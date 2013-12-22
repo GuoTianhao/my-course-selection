@@ -2,6 +2,11 @@ package com.logic.timeControllerImpl;
 
 import java.rmi.RemoteException;
 
+import com.system.courseSelectStrategy.ElectiveCourseSelectStategy;
+import com.system.courseSelectStrategy.LiberalCourseSelectStrategy;
+import com.system.courseSelectStrategy.OtherFacultyCourseSelectStrategy;
+import com.system.courseSelectStrategy.PECourseSelectStrategy;
+import com.system.courseSelectStrategy.SystemCourseSelect;
 import com.timeControllerService.TimeController;
 
 public class TimeControllerImpl implements TimeController {
@@ -83,6 +88,9 @@ public class TimeControllerImpl implements TimeController {
 	public void setIsTimeForSystemSelect(boolean admit) throws RemoteException {
 		// TODO Auto-generated method stub
 		isTimeForSystemSelect = admit;
+		if(admit){
+			SystemCourseSelect.startSelect();
+		}
 	}
 
 }

@@ -27,7 +27,9 @@ public class StudentCourseListGetter {
 		String faculty = list.get(0);
 
 		courseList.addAll(CourseGetter.getFacultyTypeCourse(faculty, "E"));
-
+		courseList.addAll(CourseGetter.getFacultyTypeCourse(faculty, "B"));
+		courseList.addAll(CourseGetter.getFacultyTypeCourse(faculty, "C"));
+		courseList.addAll(CourseGetter.getFacultyTypeCourse(faculty, "D"));
 		return courseList;
 	}
 

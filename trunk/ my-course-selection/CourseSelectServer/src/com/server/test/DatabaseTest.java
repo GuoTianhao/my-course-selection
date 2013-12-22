@@ -48,7 +48,7 @@ public class DatabaseTest extends TestCase {
 //	}
 
 	public void testDelete() {
-		// System.out.println(DatabaseController.getMethod().delete("course","type","A"));
+		// System.out.println(DatabaseController.getMet hod().delete("course","type","A"));
 		Connection conn;
 		Statement st;
 		try {
@@ -56,7 +56,8 @@ public class DatabaseTest extends TestCase {
 			st = conn.createStatement();
 			String sql;
 			// sql = "SELECT datepart(YYYY,time) FROM courseStudentWait";
-			sql = "DELETE FROM frame WHERE faculty='1025'";
+//			sql = "DELETE FROM course WHERE Name='线性代数'";
+			sql="DELETE FROM courseTime";
 			// sql="INSERT INTO courseTeacher  (ID,Teacher) VALUES('0001','100000003')";
 			st.execute(sql);
 

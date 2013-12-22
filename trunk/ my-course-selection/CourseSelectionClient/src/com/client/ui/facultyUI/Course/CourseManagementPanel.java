@@ -27,12 +27,13 @@ import com.ui.bcswing.MPopupMenu;
 import com.ui.bcswing.MScrollTable;
 import com.ui.bcswing.TipFrame;
 import com.ui.bcswing.courseEditPane.FacultyCoursePane;
+import com.ui.bcswing.courseEditPane.MObserver;
 import com.ui.bcswing.titleBar.FacultyTitleBar;
 import com.ui.bcswing.titleBar.TitleBar;
 import com.ui.myswing.MButton;
 import com.ui.myswing.MPanel;
 
-public class CourseManagementPanel extends MPanel {
+public class CourseManagementPanel extends MPanel implements MObserver{
 
 	private TitleBar title;
 	private MButton button1;
@@ -60,7 +61,7 @@ public class CourseManagementPanel extends MPanel {
 		button2.setText("编辑");
 		table = new MScrollTable(new Point(20, 130), new Dimension(810,
 				480));
-		String[] c = { "课程编号", "课程模块", "课程名称", "学分", "开设学期" };
+		String[] c = { "课程编号", "课程模块", "课程名称", "学分", "开设周数" };
 		table.setColumnIdentifiers(c);
 		popupMenu = new MPopupMenu();
 		table.add(popupMenu);
@@ -69,6 +70,12 @@ public class CourseManagementPanel extends MPanel {
 		this.add(button2);
 		this.add(table);
 	}
+	@Override
+	public void update() {
+		// TODO Auto-generated method stub
+		refreshTable();
+	}
+
 
 	private void addListener() {
 
@@ -86,22 +93,7 @@ public class CourseManagementPanel extends MPanel {
 				try {
 					if(method.isTimeForPublishCourse()){
 						pane=new FacultyCoursePane();
-						
-						pane.addListener(new ActionListener(){
-							
-							public void actionPerformed(ActionEvent e) {
-								FacultyDean facultyDean=(FacultyDean) Identity.getIdentity();
-								String faculty=facultyDean.getFaculty();
-								Course c=pane.getCourse();
-								FacultyDeanMethod method=FacultyDeanMethodController.getMethod();
-								try {
-									method.publishCourse(faculty,c);
-								} catch (RemoteException e1) {
-									e1.printStackTrace();
-								}
-							}
-							
-						});
+						pane.addObserver(CourseManagementPanel.this);
 					}else{
 						FacultyUISwitchController controller = FacultyUISwitchController
 								.getUISwitchController();
@@ -124,7 +116,7 @@ public class CourseManagementPanel extends MPanel {
 		popupMenu.addTeacherAssignmentListener(new TeacherAssignmentListener());
 	}
 
-	private void init() {
+	private void refreshTable(){
 		FacultyDean self = (FacultyDean) (Identity.getIdentity());
 		FacultyDeanMethod method = FacultyDeanMethodController.getMethod();
 		try {
@@ -133,6 +125,11 @@ public class CourseManagementPanel extends MPanel {
 		} catch (RemoteException e) {
 			e.printStackTrace();
 		}
+
+	}
+	
+	private void init() {
+		refreshTable();
 	}
 
 	class CourseModifyListener implements ActionListener {
@@ -146,6 +143,7 @@ public class CourseManagementPanel extends MPanel {
 					Course c = method.getCourse(id);
 					FacultyCoursePane pane = new FacultyCoursePane();
 					pane.setCourse(c);
+					pane.addObserver(CourseManagementPanel.this);
 				} catch (RemoteException e1) {
 					e1.printStackTrace();
 				}
@@ -203,4 +201,5 @@ public class CourseManagementPanel extends MPanel {
 				.getUISwitchController();
 		controller.switchToCourseManagementPanel();
 	}
+
 }

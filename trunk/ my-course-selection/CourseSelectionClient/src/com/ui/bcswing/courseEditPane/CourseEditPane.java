@@ -3,6 +3,9 @@ package com.ui.bcswing.courseEditPane;
 import java.awt.Dimension;
 import java.awt.Point;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
 
 import javax.swing.JFrame;
 import javax.swing.UIManager;
@@ -15,12 +18,13 @@ import com.ui.bcswing.MScrollForm;
 public class CourseEditPane extends MScrollForm {
 	Dimension default_size = new Dimension(530, 500);
 	protected CourseEditPanel courseEdit;
-
+	protected List<MObserver> list;
 	public CourseEditPane() {
 		super();
 		this.setLocationRelativeTo(null);
 		this.setSize(default_size);
 		this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		list=new ArrayList<MObserver>();
 		addComponent();
 	}
 
@@ -29,6 +33,18 @@ public class CourseEditPane extends MScrollForm {
 		addComponent();
 	}
 
+	public void addObserver(MObserver o){
+		list.add(o);
+	}
+	
+	public void notifyMObserver(){
+		Iterator<MObserver> it=list.iterator();
+		while(it.hasNext()){
+			it.next().update();
+		}
+	}
+
+	
 	private void addComponent() {
 		courseEdit = new CourseEditPanel(new Point(0, 0), this.getSize());
 		courseEdit.addObserver(this);

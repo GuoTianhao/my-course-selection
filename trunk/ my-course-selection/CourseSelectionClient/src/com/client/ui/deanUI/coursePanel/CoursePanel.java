@@ -31,13 +31,15 @@ import com.ui.bcswing.CourseInforPane;
 import com.ui.bcswing.MPopupMenu;
 import com.ui.bcswing.MScrollTable;
 import com.ui.bcswing.TipFrame;
+import com.ui.bcswing.basicFrameEditPane.BasicFrameEditPane;
 import com.ui.bcswing.courseEditPane.DeanCoursePane;
+import com.ui.bcswing.courseEditPane.MObserver;
 import com.ui.bcswing.titleBar.DeanTitlebar;
 import com.ui.bcswing.titleBar.TitleBar;
 import com.ui.myswing.MButton;
 import com.ui.myswing.MPanel;
 
-public class CoursePanel extends MPanel {
+public class CoursePanel extends MPanel implements MObserver{
 	private TitleBar title;
 	private MButton courseP;
 	private MButton courseA;
@@ -51,6 +53,8 @@ public class CoursePanel extends MPanel {
 	private int state;
 
 	private MPopupMenu popupMenu;
+	
+
 
 	public CoursePanel(Point loc, Dimension size) {
 		super(loc, size);
@@ -159,6 +163,12 @@ public class CoursePanel extends MPanel {
 		}
 	}
 
+	public void update() {
+		// TODO Auto-generated method stub
+		refreshTable();
+	}
+
+	
 	private void addCoursePublishOperateBar() {
 		this.remove(allCourseOperateBar);
 		this.add(publishOperateBar);
@@ -183,6 +193,7 @@ public class CoursePanel extends MPanel {
 		table.regrexFilter(content);
 	}
 
+	
 	class PublicCourseSwitchListener implements ActionListener {
 
 		public void actionPerformed(ActionEvent e) {
@@ -196,17 +207,20 @@ public class CoursePanel extends MPanel {
 	}
 
 	class PublishCourseListener implements ActionListener {
-
-		@Override
+		
+		DeanCoursePane pane;
+		DeanUISwitchController controller = DeanUISwitchController
+				.getUISwitchController();
+		
 		public void actionPerformed(ActionEvent e) {
 			// TODO Auto-generated method stub
 			TimeController time = DeanMethodController.getMethod();
 			try {
 				if (time.isTimeForPublishCourse()) {
-					new DeanCoursePane();
+					
+					DeanCoursePane pane=new DeanCoursePane();
+					pane.addObserver(CoursePanel.this);
 				} else {
-					DeanUISwitchController controller = DeanUISwitchController
-							.getUISwitchController();
 					TipFrame t = new TipFrame(controller.getLoc(),CoursePanel.this.getSize(), 5,
 							"未到课程发布时间");
 					t.startEndClock();
@@ -241,7 +255,8 @@ public class CoursePanel extends MPanel {
 				String id = (String) table.getValueAt(index, 0);
 				try {
 					Course c = method.getCourse(id);
-					DeanCoursePane pane = new DeanCoursePane();
+					DeanCoursePane pane=new DeanCoursePane();
+					pane.addObserver(CoursePanel.this);
 					pane.setCourse(c);
 				} catch (RemoteException e1) {
 					e1.printStackTrace();
@@ -335,5 +350,4 @@ public class CoursePanel extends MPanel {
 				.getUISwitchController();
 		controller.switchToCoursePanel();
 	}
-
 }

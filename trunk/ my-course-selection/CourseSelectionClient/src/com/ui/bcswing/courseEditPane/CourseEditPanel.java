@@ -52,7 +52,7 @@ public class CourseEditPanel extends MPanel {
 
 	private MButton confirm;
 
-	private String courseID="";
+	private String courseID = "";
 	private String[] typeModel = { "NONE" };
 
 	CourseTimePanel time;
@@ -66,20 +66,20 @@ public class CourseEditPanel extends MPanel {
 	}
 
 	private void creatComponent() {
-		namel = new MLabel(new Point(50, 30), new Dimension(60, 25), "课程名称");//1
-		locl = new MLabel(new Point(50, 240), new Dimension(60, 25), "上课地点");//7
-		creditl = new MLabel(new Point(50, 100), new Dimension(60, 25), "学分");//3
-		numl = new MLabel(new Point(50, 170), new Dimension(60, 25), "上课人数");//5
-		typel = new MLabel(new Point(50, 65), new Dimension(60, 25), "课程类型");//2
-		gradel = new MLabel(new Point(50, 135), new Dimension(60, 25), "年级");//4
-		periodl = new MLabel(new Point(50, 205), new Dimension(60, 25), "上课周数");//6
-		timel = new MLabel(new Point(50, 275), new Dimension(60, 25), "上课时间");//8
+		namel = new MLabel(new Point(50, 30), new Dimension(60, 25), "课程名称");// 1
+		locl = new MLabel(new Point(50, 240), new Dimension(60, 25), "上课地点");// 7
+		creditl = new MLabel(new Point(50, 100), new Dimension(60, 25), "学分");// 3
+		numl = new MLabel(new Point(50, 170), new Dimension(60, 25), "上课人数");// 5
+		typel = new MLabel(new Point(50, 65), new Dimension(60, 25), "课程类型");// 2
+		gradel = new MLabel(new Point(50, 135), new Dimension(60, 25), "年级");// 4
+		periodl = new MLabel(new Point(50, 205), new Dimension(60, 25), "上课周数");// 6
+		timel = new MLabel(new Point(50, 275), new Dimension(60, 25), "上课时间");// 8
 
 		namet = new MTextField(new Point(230, 30), new Dimension(180, 25));
 		loct = new MTextField(new Point(230, 240), new Dimension(180, 25));
 		creditt = new MTextField(new Point(230, 100), new Dimension(180, 25));
 		numt = new MTextField(new Point(230, 170), new Dimension(180, 25));
-		typeSelect = new MComboBox(typeModel, new Point(230,65),
+		typeSelect = new MComboBox(typeModel, new Point(230, 65),
 				new Dimension(180, 25));
 
 		gradet = new MTextField(new Point(230, 135), new Dimension(180, 25));
@@ -91,7 +91,6 @@ public class CourseEditPanel extends MPanel {
 
 		time = new CourseTimePanel(new Point(150, 240));
 		timeList = new ArrayList<CourseTimePanel>();
-		
 
 		this.add(namel);
 		this.add(locl);
@@ -111,7 +110,6 @@ public class CourseEditPanel extends MPanel {
 		this.add(confirm);
 		this.add(gradet);
 
-
 		this.validate();
 		this.repaint();
 	}
@@ -123,7 +121,7 @@ public class CourseEditPanel extends MPanel {
 		typeSelect.addItemListener(new TypeItemListener());
 
 		new TimeButtonListener().actionPerformed(null);
-		
+
 		NumLimitInput limit = new NumLimitInput();
 		creditt.addKeyListener(limit);
 		numt.addKeyListener(limit);
@@ -152,7 +150,7 @@ public class CourseEditPanel extends MPanel {
 		gradet.setText(c.getGrade() + "");
 		periodt.setText(c.getPeriod());
 		typeSelect.setSelectedItem(CourseTypeKind.getName(c.getType()));
-		courseID=c.getID();
+		courseID = c.getID();
 		List<String> courseTime = c.getTime();
 		Iterator<String> it = courseTime.iterator();
 		Iterator<String> timeIt;
@@ -169,15 +167,18 @@ public class CourseEditPanel extends MPanel {
 
 	public Course getCourse() {
 		Course c;
+		
+		String selected = (String) typeSelect.getSelectedItem();
+		
 		String name = namet.getText();
 		String loc = loct.getText();
 		int credit = Integer.parseInt(creditt.getText());
-		int num=-1;
-		if(!numt.getText().equals("")){
-			num = Integer.parseInt(numt.getText());	
+		int num = -1;
+		if (!numt.getText().equals("")) {
+			num = Integer.parseInt(numt.getText());
 		}
-		int grade=-1;
-		if(!gradet.getText().equals("")){
+		int grade = -1;
+		if (!gradet.getText().equals("")) {
 			grade = Integer.parseInt(gradet.getText());
 		}
 		String period = periodt.getText();
@@ -195,8 +196,25 @@ public class CourseEditPanel extends MPanel {
 			seperateTime.add(timePanel.getEnd());
 			time.add(CourseTimeKind.getTime(seperateTime.iterator()));
 		}
-		c = new Course(courseID, name, loc, type, grade, period, null, null, num,
-				credit, time, null);
+
+		
+		switch (selected) {
+		case "通识教育课程":
+			c = new Course(courseID, name, loc, type, grade, period, null, null,
+					num, credit, time, null);
+		case "体育课":
+			c = new Course(courseID, name, loc, type,-1, period, null, null,
+					num, credit, time, null);
+			break;
+		case "专业选修课":
+		case "专业必修课":
+			c = new Course(courseID, name, loc, type, grade, period, null, null,
+					num, credit, time, null);
+			break;
+		default:
+			c = new Course(courseID, name,null, type, 0, period, null, null,
+					0, credit, null, null);
+		}
 		return c;
 	}
 
@@ -312,30 +330,34 @@ public class CourseEditPanel extends MPanel {
 			if (time % 2 == 0) {
 				String selected = (String) typeSelect.getSelectedItem();
 				switch (selected) {
-				case "通识教育课程":case "体育课":
+				case "通识教育课程":
+				case "体育课":
 					gradet.setText("");
 					gradet.disable();
 					numt.enable();
 					loct.enable();
 					CourseEditPanel.this.time.setEnabled(true);
 					break;
-				case "专业选修课":case "专业必修课":
+				case "专业选修课":
+				case "专业必修课":
 					break;
 				default:
 					numt.setText("");
 					loct.setText("");
+					gradet.setText("");
 					numt.disable();
+					gradet.disable();
 					loct.disable();
-					gradet.enable();
-					
+
 					Iterator<CourseTimePanel> it = timeList.iterator();
 					while (it.hasNext()) {
-						CourseEditPanel.this.remove(it.next());
+						CourseTimePanel p = it.next();
+						CourseEditPanel.this.remove(p);
 						it.remove();
 					}
-					
+
 					CourseEditPanel.this.time = new CourseTimePanel(new Point(
-							80, 210));
+							150, 280));
 					CourseEditPanel.this.time
 							.addActionListener(new TimeButtonListener());
 					CourseEditPanel.this.time
@@ -343,8 +365,8 @@ public class CourseEditPanel extends MPanel {
 					timeList.add(CourseEditPanel.this.time);
 					CourseEditPanel.this.add(CourseEditPanel.this.time);
 					CourseEditPanel.this.time.setEnabled(false);
-					
-					confirm.setLocation(new Point(80, 240));
+
+					confirm.setLocation(new Point(210, 340));
 				}
 				System.out.println(selected);
 				CourseEditPanel.this.refresh();

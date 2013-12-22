@@ -19,12 +19,14 @@ import com.client.ui.dataAdapter.CourseListToCourseTypeListAdapter;
 import com.client.ui.dataAdapter.CourseListToFacultyAdapter;
 import com.client.ui.dataAdapter.PECourseSelectListToVectorAdapter;
 import com.client.ui.main.MainFrame;
+import com.client.ui.studentUI.StudentMainPanel;
 import com.client.ui.studentUI.StudentUISwitchController;
 import com.data.po.Course;
 import com.data.po.Student;
 import com.data.po.Teacher;
 import com.logicService.DeanMethod;
 import com.logicService.StudentMethod;
+import com.ui.bcswing.TipFrame;
 
 public class LiberalCourseSelectPanel extends BallotTableCourseSelectPanel {
 	public LiberalCourseSelectPanel(Point loc, Dimension size) {
@@ -73,14 +75,18 @@ public class LiberalCourseSelectPanel extends BallotTableCourseSelectPanel {
 	}
 
 	class CourseSelectListener implements ActionListener {
-
+		StudentUISwitchController controller=StudentUISwitchController.getUISwitchController();
+		TipFrame t;
 		public void actionPerformed(ActionEvent e) {
 			List<Course> wait = getWaitCourse();
 			if (quitCourse(wait.iterator()) && selectCourse()) {
-				System.out.println("选课成功");
+				t = new TipFrame(controller.getLoc(),
+						controller.getSize(), 5, "选课成功");
 			} else {
-				System.out.println("选课失败");
+				t = new TipFrame(controller.getLoc(),
+						controller.getSize(), 5, "选课失败");
 			}
+			t.startEndClock();
 			refreshTable();
 		}
 

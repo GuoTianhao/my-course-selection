@@ -7,6 +7,8 @@ import java.awt.Font;
 import java.awt.Point;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.ImageIcon;
@@ -27,6 +29,7 @@ public class Login extends JFrame {
 	private MPasswordField tPassword;
 	private JComboBox select;
 	private MLabel icon;
+	private MPanel pLogin;
 
 	public Login() {
 		super();
@@ -46,18 +49,19 @@ public class Login extends JFrame {
 
 		// textfiled
 		tID = new MTextField(new Point(90, 140), new Dimension(120, 25));
-		tPassword = new MPasswordField(new Point(90, 180),
-				new Dimension(120, 25));
+		tPassword = new MPasswordField(new Point(90, 180), new Dimension(120,
+				25));
 
 		// label
 		MLabel lID = new MLabel(new Point(55, 140), new Dimension(35, 25));
 		lID.setText("ID");
 		MLabel lPassword = new MLabel(new Point(55, 180), new Dimension(35, 25));
 		lPassword.setText("密码");
-		icon = new MLabel("南京大学教务系统", new ImageIcon("resource//icon.png"), SwingConstants.CENTER);
+		icon = new MLabel("南京大学教务系统", new ImageIcon("resource//icon.png"),
+				SwingConstants.CENTER);
 		icon.setBounds(5, 10, 250, 120);
 		icon.setFont(new Font("微软雅黑", Font.ITALIC, 18));
-		
+
 		// ComboBox
 		DefaultComboBoxModel model = new DefaultComboBoxModel();
 		select = new JComboBox(model);
@@ -68,7 +72,8 @@ public class Login extends JFrame {
 		model.addElement("老师");
 		model.addElement("学生");
 
-		MPanel pLogin = new MPanel(new Dimension(fLength, fHeight));
+		pLogin = new MPanel(new Dimension(fLength, fHeight));
+
 		pLogin.add(lID);
 		pLogin.add(lPassword);
 		pLogin.add(tID);
@@ -88,48 +93,66 @@ public class Login extends JFrame {
 	}
 
 	private void addListener() {
-		
+		tPassword.addKeyListener(new KeyAdapter() {
+			public void keyPressed(KeyEvent e) {
+				if (e.getKeyCode() == KeyEvent.VK_ENTER) {
+					loginStart();
+				}
+			};
+		});
+
+		select.addKeyListener(new KeyAdapter() {
+			public void keyPressed(KeyEvent e) {
+				if (e.getKeyCode() == KeyEvent.VK_ENTER) {
+					loginStart();
+				}
+			};
+		});
+
 		bLogin.addActionListener(new LoginListener());
-		
+
 	}
-	
-	private void init(){
+
+	private void init() {
 
 	}
 
 	class LoginListener implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
-			int index = select.getSelectedIndex();
-			if (tID.isValidInput() && tPassword.isValidInput()) {
-				if (LoginHandle
-						.login(tID.getText(), tPassword.getText(), index)) {
-					MainUISwitchController controller = MainUISwitchController
-							.getUISwitchController();
-					switch (index) {
-					case 0:
-						controller.switchToDeanMainPanel();
-						break;
-					case 1:
-						controller.switchToFacultyDeanMainPanel();
-						break;
-					case 2:
-						controller.switchToTeacherMainPanel();
-						break;
-					case 3:
-						controller.switchToStudentMainPanel();
-						break;
-					}
-					Login.this.dispose();
-				} else {
-					TipFrame t = new TipFrame(getLocation(),getSize(), 5, "帐号或密码错误");
-					t.startEndClock();
-
-				}
-			} else {
-				System.out.println("输入错误");
-			}
-
+			loginStart();
 		}
 
+	}
+
+	private void loginStart() {
+		int index = select.getSelectedIndex();
+		if (tID.isValidInput() && tPassword.isValidInput()) {
+			if (LoginHandle.login(tID.getText(), tPassword.getText(), index)) {
+				MainUISwitchController controller = MainUISwitchController
+						.getUISwitchController();
+				switch (index) {
+				case 0:
+					controller.switchToDeanMainPanel();
+					break;
+				case 1:
+					controller.switchToFacultyDeanMainPanel();
+					break;
+				case 2:
+					controller.switchToTeacherMainPanel();
+					break;
+				case 3:
+					controller.switchToStudentMainPanel();
+					break;
+				}
+				Login.this.dispose();
+			} else {
+				TipFrame t = new TipFrame(getLocation(), getSize(), 5,
+						"帐号或密码错误");
+				t.startEndClock();
+
+			}
+		} else {
+			System.out.println("输入错误");
+		}
 	}
 }

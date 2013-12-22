@@ -7,7 +7,7 @@ import com.logicService.StudentMethod;
 
 public class StudentMethodController {
 	private static StudentMethod studentMethod = null;
-	private static String look="rmi://127.0.0.1:6603/studentMethod";
+	private static String look="rmi://172.26.61.148:6603/studentMethod";
 	public static StudentMethod getMethod() {
 		if (studentMethod == null) {
 			try {

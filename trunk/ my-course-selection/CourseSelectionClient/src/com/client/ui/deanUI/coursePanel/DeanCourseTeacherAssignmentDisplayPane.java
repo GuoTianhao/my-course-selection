@@ -13,9 +13,11 @@ import javax.swing.UIManager;
 
 import com.client.rmi.DeanMethodController;
 import com.client.ui.dataAdapter.TeacherListToVectorAdapter;
+import com.client.ui.deanUI.DeanUISwitchController;
 import com.data.po.Course;
 import com.data.po.Teacher;
 import com.logicService.DeanMethod;
+import com.ui.bcswing.TipFrame;
 import com.ui.bcswing.teacherDisplayPane.TeacherAssignmentDisplayPane;
 
 public class DeanCourseTeacherAssignmentDisplayPane extends
@@ -50,8 +52,8 @@ public class DeanCourseTeacherAssignmentDisplayPane extends
 			e.printStackTrace();
 		}
 	}
-	
-	protected void addListener(){
+
+	protected void addListener() {
 		confirm.addActionListener(new ConfirmListener());
 	}
 
@@ -67,12 +69,21 @@ public class DeanCourseTeacherAssignmentDisplayPane extends
 					String teacherID = (String) table.getValueAt(rows[i], 0);
 					list.add(method.getTeacher(teacherID));
 				}
-				
+
 				Course c = method.getCourse(courseID);
 				c.setTeacher(list);
-
-				if(method.modifyCourse(c)){
-					System.out.println("成功");
+				DeanUISwitchController controller = DeanUISwitchController
+						.getUISwitchController();
+				TipFrame t;
+				if (method.modifyCourse(c)) {
+					t = new TipFrame(controller.getLoc(), controller.getSize(),
+							5, "指定老师成功");
+					t.startEndClock();
+					dispose();
+				} else {
+					t = new TipFrame(controller.getLoc(), controller.getSize(),
+							5, "指定老师失败");
+					t.startEndClock();
 				}
 			} catch (RemoteException e1) {
 				e1.printStackTrace();

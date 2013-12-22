@@ -12,9 +12,12 @@ import javax.swing.UIManager;
 
 import com.client.rmi.FacultyDeanMethodController;
 import com.client.ui.dataAdapter.TeacherListToVectorAdapter;
+import com.client.ui.deanUI.DeanUISwitchController;
+import com.client.ui.facultyUI.FacultyUISwitchController;
 import com.data.po.Course;
 import com.data.po.Teacher;
 import com.logicService.FacultyDeanMethod;
+import com.ui.bcswing.TipFrame;
 import com.ui.bcswing.teacherDisplayPane.TeacherAssignmentDisplayPane;
 
 public class FacultyDeanCourseTeacherAssignmentDislayPane extends
@@ -72,9 +75,19 @@ public class FacultyDeanCourseTeacherAssignmentDislayPane extends
 
 				Course c = method.getCourse(courseID);
 				c.setTeacher(list);
-
+				FacultyUISwitchController controller = FacultyUISwitchController
+						.getUISwitchController();
+				TipFrame t;
 				if (method.modifyCourse(c)) {
-					System.out.println("成功");
+					t = new TipFrame(controller.getLoc(), controller.getSize(),
+							5, "指定老师成功");
+					t.startEndClock();
+					dispose();
+
+				}else{
+					t = new TipFrame(controller.getLoc(), controller.getSize(),
+							5, "指定老师失败");
+					t.startEndClock();
 				}
 			} catch (RemoteException e1) {
 				e1.printStackTrace();

@@ -24,6 +24,7 @@ import com.data.po.Course;
 import com.data.po.Student;
 import com.logicService.StudentMethod;
 import com.ui.bcswing.MScrollTable;
+import com.ui.bcswing.TipFrame;
 import com.ui.bcswing.titleBar.StudentTitleBar;
 import com.ui.bcswing.titleBar.TitleBar;
 import com.ui.myswing.MButton;
@@ -128,16 +129,19 @@ public class QuitCoursePanel extends MPanel {
 			if (index >= 0) {
 				String cID = (String) table.getValueAt(index, 0);
 				StudentMethod method = StudentMethodController.getMethod();
-
+				StudentUISwitchController controller=StudentUISwitchController.getUISwitchController();
+				TipFrame t;
 				try {
 					boolean admit = method.quitCourse(student.getID(),
 							cID);
 					if (admit) {
-						System.out.println("退选成功");
+						t = new TipFrame(controller.getLoc(),
+								controller.getSize(), 5, "退选成功");
 					} else {
-						System.out.println("退选失败");
+						t = new TipFrame(controller.getLoc(),
+								controller.getSize(), 5, "退选失败");
 					}
-
+					t.startEndClock();
 				} catch (RemoteException e1) {
 					e1.printStackTrace();
 				}

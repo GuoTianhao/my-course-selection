@@ -355,19 +355,19 @@ public class BasicFrameEditPane extends MFrame {
 
 	private void addListener() {
 
-		yesBtn.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
-				try {
-					method.modifyFrame(getBasicFrame());
-					BasicFrameEditPane.this.dispose();
-				} catch (RemoteException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
-			}
-		});
+//		yesBtn.addActionListener(new ActionListener() {
+//			@Override
+//			public void actionPerformed(ActionEvent e) {
+//				// TODO Auto-generated method stub
+//				try {
+//					method.modifyFrame(getBasicFrame());
+//					BasicFrameEditPane.this.dispose();
+//				} catch (RemoteException e1) {
+//					// TODO Auto-generated catch block
+//					e1.printStackTrace();
+//				}
+//			}
+//		});
 
 		noBtn.addActionListener(new ActionListener() {
 
@@ -386,12 +386,14 @@ public class BasicFrameEditPane extends MFrame {
 						"提醒", JOptionPane.YES_NO_OPTION);
 				switch (val) {
 				case JOptionPane.YES_OPTION:
-					try {
-						method.modifyFrame(getBasicFrame());
-					} catch (RemoteException e1) {
-						// TODO Auto-generated catch block
-						e1.printStackTrace();
-					}
+//					try {
+//						//method.modifyFrame(getBasicFrame());
+//						
+//					} catch (RemoteException e1) {
+//						// TODO Auto-generated catch block
+//						e1.printStackTrace();
+//					}
+					yesBtn.doClick();
 					break;
 				case JOptionPane.NO_OPTION:
 					break;
@@ -529,6 +531,10 @@ public class BasicFrameEditPane extends MFrame {
 		return frame;
 	}
 
+	public void addYesListener(ActionListener al){
+		yesBtn.addActionListener(al);
+	}
+	
 	public static void main(String[] args) {
 		try {
 			BeautyEyeLNFHelper.frameBorderStyle = BeautyEyeLNFHelper.FrameBorderStyle.osLookAndFeelDecorated;

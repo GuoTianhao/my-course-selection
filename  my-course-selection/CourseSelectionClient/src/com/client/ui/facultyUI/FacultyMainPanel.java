@@ -66,6 +66,7 @@ public class FacultyMainPanel extends MPanel {
 	}
 
 	private void addListener() {
+		
 		controller = FacultyUISwitchController.getUISwitchController();
 		btn1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -91,7 +92,7 @@ public class FacultyMainPanel extends MPanel {
 	public static void main(String[] args) {
 		FacultyDeanMethod method = FacultyDeanMethodController.getMethod();
 		try {
-			Identity.setIdentity(method.getSelf("100000001"));
+			Identity.setIdentity(method.getSelf("100000000"));
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

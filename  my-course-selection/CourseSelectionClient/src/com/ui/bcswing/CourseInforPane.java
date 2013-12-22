@@ -181,10 +181,11 @@ public class CourseInforPane extends MFrame {
 			String tea=it2.next();
 			String[] getinfo=tea.split("_");
 			if(cmd==1)
-			infor.append("周"+getinfo[0]+" 第"+getinfo[1]+"节"+"到"+" 第"+getinfo[2]+"节"+"\n");
+			infor.append(getinfo[0]+" "+getinfo[1]+""+" 到"+" "+getinfo[2]+"\n");
 			else
-				infor.append("                      "+"周"+getinfo[0]+" 第"+getinfo[1]+"节"+"到"+" 第"+getinfo[2]+"节"+"\n");
+				infor.append("                      "+getinfo[0]+" "+getinfo[1]+""+" 到"+" "+getinfo[2]+"\n");
 			cmd++;
+
 		}
 	}
 
@@ -201,8 +202,8 @@ public class CourseInforPane extends MFrame {
 			e.printStackTrace();
 		}
 		List<String> time = new ArrayList<String>();
-		time.add("2_5_7");
-		time.add("1_1_4");
+		time.add("星期二_第五节_第六节");
+		time.add("星期三_第五节_第六节");
 		List<Teacher> teacher = new ArrayList<Teacher>();
 		teacher.add(new Teacher("123", "daibi", "软件"));
 		teacher.add(new Teacher("234", "daibi", "软件"));

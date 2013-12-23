@@ -13,12 +13,14 @@ import javax.swing.UIManager;
 
 import org.jb2011.lnf.beautyeye.BeautyEyeLNFHelper;
 
+import com.basicdata.Identity;
 import com.client.rmi.DeanMethodController;
 import com.client.ui.deanUI.DeanUISwitchController;
 import com.client.ui.studentUI.StudentMainPanel;
 import com.client.ui.studentUI.StudentUISwitchController;
 import com.logicService.DeanMethod;
 import com.timeControllerService.TimeController;
+import com.ui.bcswing.DateChooser;
 import com.ui.bcswing.TipFrame;
 import com.ui.bcswing.titleBar.DeanTitlebar;
 import com.ui.bcswing.titleBar.TitleBar;
@@ -41,9 +43,7 @@ public class TimeControlPanel extends MPanel {
 	private MButton bySelect;
 	private MLabel systemSelectLb;
 	private MButton systemSelect;
-	
-	
-	
+
 	private MLabel termOneStartDayLb;
 	private MLabel termOneEndDayLb;
 	private MLabel winterStartDayLb;
@@ -52,18 +52,18 @@ public class TimeControlPanel extends MPanel {
 	private MLabel termTwoEndDayLb;
 	private MLabel summerStartDayLb;
 	private MLabel summerEndDayLb;
-	
-	private MTextField termOneStartDay;
-	private MTextField termOneEndDay;
-	private MTextField winterStartDay;
-	private MTextField winterEndDay;
-	private MTextField termTwoStartDay;
-	private MTextField termTwoEndDay;
-	private MTextField summerStartDay;
-	private MTextField summerEndDay;
-	
+
+	private DateChooser termOneStartDay;
+	private DateChooser termOneEndDay;
+	private DateChooser winterStartDay;
+	private DateChooser winterEndDay;
+	private DateChooser termTwoStartDay;
+	private DateChooser termTwoEndDay;
+	private DateChooser summerStartDay;
+	private DateChooser summerEndDay;
+
 	private MButton confirm;
-	
+
 	private ImageIcon on = new ImageIcon("resource//on.png");
 	private ImageIcon off = new ImageIcon("resource//off.png");
 
@@ -82,17 +82,18 @@ public class TimeControlPanel extends MPanel {
 		title = new DeanTitlebar(new Point(0, 0), new Dimension(
 				this.getWidth(), 95));
 
-		publishLb = new MLabel(new Point(120, 95), new Dimension(80, 40), "发布课程");
+		publishLb = new MLabel(new Point(120, 95), new Dimension(80, 40),
+				"发布课程");
 		publish = new MButton(off, null, null, new Point(220, 100),
 				new Dimension(80, 40));
 
-		studentSelectLb = new MLabel(new Point(120, 145), new Dimension(80, 40),
-				"学生选课");
+		studentSelectLb = new MLabel(new Point(120, 145),
+				new Dimension(80, 40), "学生选课");
 		studentSelect = new MButton(off, null, null, new Point(220, 150),
 				new Dimension(80, 40));
 
-		gradeOneSelectLb = new MLabel(new Point(120, 195),
-				new Dimension(100, 40), "大一新生选课");
+		gradeOneSelectLb = new MLabel(new Point(120, 195), new Dimension(100,
+				40), "大一新生选课");
 		gradeOneSelect = new MButton(off, null, null, new Point(220, 200),
 				new Dimension(80, 40));
 
@@ -101,7 +102,8 @@ public class TimeControlPanel extends MPanel {
 		quitCourse = new MButton(off, null, null, new Point(220, 250),
 				new Dimension(80, 40));
 
-		bySelectLb = new MLabel(new Point(120, 295), new Dimension(80, 40), "补选");
+		bySelectLb = new MLabel(new Point(120, 295), new Dimension(80, 40),
+				"补选");
 		bySelect = new MButton(off, null, null, new Point(220, 300),
 				new Dimension(80, 40));
 
@@ -109,45 +111,51 @@ public class TimeControlPanel extends MPanel {
 				"系统选课");
 		systemSelect = new MButton(off, null, null, new Point(220, 350),
 				new Dimension(80, 40));
-		
-		
 
-		termOneStartDayLb=new MLabel(new Point(485, 95), new Dimension(100, 40),
-				"第一学期开始");
-		termOneStartDay=new MTextField(new Point(585,100),new Dimension(80,25));
+		termOneStartDayLb = new MLabel(new Point(485, 95), new Dimension(100,
+				40), "第一学期开始");
+		termOneStartDay  = new DateChooser(this, 80);
+		termOneStartDay.setBounds(580, 100, 120, 25);
+
+		termOneEndDayLb = new MLabel(new Point(485, 145),
+				new Dimension(100, 40), "第一学期结束");
+		termOneEndDay = new DateChooser(this, 80);
+		termOneEndDay.setBounds(580, 150, 120, 25);
+
+		winterStartDayLb = new MLabel(new Point(485, 195), new Dimension(100,
+				40), "寒假开始");
+		winterStartDay = new DateChooser(this, 80);
+		winterStartDay.setBounds(580, 200, 120, 25);
+
+		winterEndDayLb = new MLabel(new Point(485, 245),
+				new Dimension(100, 40), "寒假结束");
+		winterEndDay = new DateChooser(this, 80);
+		winterEndDay.setBounds(580, 250, 120, 25);
 		
-		termOneEndDayLb=new MLabel(new Point(485, 145), new Dimension(100, 40),
-				"第一学期结束");
-		termOneEndDay=new MTextField(new Point(585,150),new Dimension(80,25));
-		
-		winterStartDayLb=new MLabel(new Point(485, 195), new Dimension(100, 40),
-				"寒假开始");
-		winterStartDay=new MTextField(new Point(585,200),new Dimension(80,25));
-		
-		winterEndDayLb=new MLabel(new Point(485, 245), new Dimension(100, 40),
-				"寒假结束");
-		winterEndDay=new MTextField(new Point(585,250),new Dimension(80,25));
-		
-		termTwoStartDayLb=new MLabel(new Point(485, 295), new Dimension(100, 40),
-				"第二学期开始");
-		termTwoStartDay=new MTextField(new Point(585,300),new Dimension(80,25));
-		
-		termTwoEndDayLb=new MLabel(new Point(485, 345), new Dimension(100, 40),
-				"第二学期结束");
-		termTwoEndDay=new MTextField(new Point(585,350),new Dimension(80,25));
-		
-		summerStartDayLb=new MLabel(new Point(485, 395), new Dimension(100, 40),
-				"暑假开始");
-		summerStartDay=new MTextField(new Point(585,400),new Dimension(80,25));
-		
-		summerEndDayLb=new MLabel(new Point(485, 445), new Dimension(100, 40),
-				"暑假结束");
-		summerEndDay=new MTextField(new Point(585,450),new Dimension(80,25));
-		
-		confirm=new MButton(null, null, null, new Point(535, 500),
+		termTwoStartDayLb = new MLabel(new Point(485, 295), new Dimension(100,
+				40), "第二学期开始");
+		termTwoStartDay = new DateChooser(this, 80);
+		termTwoStartDay.setBounds(580, 300, 120, 25);
+
+		termTwoEndDayLb = new MLabel(new Point(485, 345),
+				new Dimension(100, 40), "第二学期结束");
+		termTwoEndDay  = new DateChooser(this, 80);
+		termTwoEndDay.setBounds(580, 350, 120, 25);
+
+		summerStartDayLb = new MLabel(new Point(485, 395), new Dimension(100,
+				40), "暑假开始");
+		summerStartDay = new DateChooser(this, 80);
+		summerStartDay.setBounds(580, 400, 120, 25);
+
+		summerEndDayLb = new MLabel(new Point(485, 445),
+				new Dimension(100, 40), "暑假结束");
+
+		summerEndDay = new DateChooser(this, 80);
+		summerEndDay.setBounds(580, 450, 120, 25);
+		confirm = new MButton(null, null, null, new Point(535, 500),
 				new Dimension(80, 25));
 		confirm.setText("确定");
-		
+
 		this.add(publishLb);
 		this.add(publish);
 		this.add(studentSelectLb);
@@ -160,7 +168,7 @@ public class TimeControlPanel extends MPanel {
 		this.add(bySelect);
 		this.add(systemSelectLb);
 		this.add(systemSelect);
-		
+
 		this.add(termOneStartDayLb);
 		this.add(termOneStartDay);
 		this.add(termOneEndDayLb);
@@ -177,16 +185,16 @@ public class TimeControlPanel extends MPanel {
 		this.add(summerStartDay);
 		this.add(summerEndDayLb);
 		this.add(summerEndDay);
-		
+
 		this.add(confirm);
-		
+
 		this.add(title);
 
 	}
 
-	private void init(){
-		DeanMethod method=DeanMethodController.getMethod();
-		DateFormat format=DateFormat.getDateInstance();
+	private void init() {
+		DeanMethod method = DeanMethodController.getMethod();
+		DateFormat format = DateFormat.getDateInstance();
 		try {
 			termOneStartDay.setText(format.format(method.getPeriodTime("1")));
 			termOneEndDay.setText(format.format(method.getPeriodTime("2")));
@@ -200,9 +208,9 @@ public class TimeControlPanel extends MPanel {
 			e.printStackTrace();
 		}
 	}
-	
+
 	private void addListener() {
-		
+
 		title.addReturnMenu(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				DeanUISwitchController controller = DeanUISwitchController
@@ -210,8 +218,6 @@ public class TimeControlPanel extends MPanel {
 				controller.swicthToMainFrame();
 			}
 		});
-		
-		
 
 		publish.addActionListener(new ActionListener() {
 
@@ -305,9 +311,8 @@ public class TimeControlPanel extends MPanel {
 		});
 
 		confirm.addActionListener(new ConfirmListener());
-		
+
 	}
-	
 
 	private void refreshButton() {
 		try {
@@ -352,25 +357,29 @@ public class TimeControlPanel extends MPanel {
 
 	}
 
-	class ConfirmListener implements ActionListener{
+	class ConfirmListener implements ActionListener {
 
 		public void actionPerformed(ActionEvent e) {
 			// TODO Auto-generated method stub
-			DeanMethod method=DeanMethodController.getMethod();
-			DateFormat format=DateFormat.getDateInstance();
+			DeanMethod method = DeanMethodController.getMethod();
+			DateFormat format = DateFormat.getDateInstance();
 			try {
-				method.setPeriodTime("1",format.parse(termOneStartDay.getText()) );
-				method.setPeriodTime("2",format.parse(termOneEndDay.getText()) );
-				method.setPeriodTime("3",format.parse(winterStartDay.getText()) );
-				method.setPeriodTime("4",format.parse(winterEndDay.getText()) );
-				method.setPeriodTime("5",format.parse(termTwoStartDay.getText()) );
-				method.setPeriodTime("6",format.parse(termTwoEndDay.getText()) );
-				method.setPeriodTime("7",format.parse(summerStartDay.getText()) );
-				method.setPeriodTime("8",format.parse(summerEndDay.getText()) );
+				method.setPeriodTime("1",
+						format.parse(termOneStartDay.getText()));
+				method.setPeriodTime("2", format.parse(termOneEndDay.getText()));
+				method.setPeriodTime("3",
+						format.parse(winterStartDay.getText()));
+				method.setPeriodTime("4", format.parse(winterEndDay.getText()));
+				method.setPeriodTime("5",
+						format.parse(termTwoStartDay.getText()));
+				method.setPeriodTime("6", format.parse(termTwoEndDay.getText()));
+				method.setPeriodTime("7",
+						format.parse(summerStartDay.getText()));
+				method.setPeriodTime("8", format.parse(summerEndDay.getText()));
 				DeanUISwitchController controller = DeanUISwitchController
 						.getUISwitchController();
-				TipFrame t = new TipFrame(controller.getLoc(),TimeControlPanel.this.getSize(), 5,
-						"时间设置成功");
+				TipFrame t = new TipFrame(controller.getLoc(),
+						TimeControlPanel.this.getSize(), 5, "时间设置成功");
 				t.startEndClock();
 			} catch (RemoteException e1) {
 				e1.printStackTrace();
@@ -378,10 +387,17 @@ public class TimeControlPanel extends MPanel {
 				e1.printStackTrace();
 			}
 		}
-		
+
 	}
-	
+
 	public static void main(String[] args) {
+		DeanMethod method = DeanMethodController.getMethod();
+		try {
+			Identity.setIdentity(method.getSelf("admin"));
+		} catch (RemoteException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
 
 		try {
 			BeautyEyeLNFHelper.frameBorderStyle = BeautyEyeLNFHelper.FrameBorderStyle.osLookAndFeelDecorated;

@@ -19,6 +19,7 @@ import com.client.ui.teacherUI.TeacherUISwitchController;
 import com.data.po.Student;
 import com.logicService.TeacherMethod;
 import com.ui.bcswing.MScrollTable;
+import com.ui.bcswing.TipFrame;
 import com.ui.bcswing.titleBar.TeacherTitleBar;
 import com.ui.bcswing.titleBar.TitleBar;
 import com.ui.myswing.MButton;
@@ -30,7 +31,8 @@ public class CourseScoreRecordPanel extends MPanel {
 	private MButton backB;
 	private MButton editB;
 	private String courseID;
-	
+	private boolean isEdit = false;
+
 	public CourseScoreRecordPanel(Point loc, Dimension size, String courseID) {
 		super(loc, size);
 		createComponent();
@@ -41,9 +43,8 @@ public class CourseScoreRecordPanel extends MPanel {
 	private void createComponent() {
 		title = new TeacherTitleBar(new Point(0, 0), new Dimension(
 				this.getWidth(), 95));
-		table = new MScrollTable(new Point(20, 130),
-				new Dimension(810, 480));
-		String[] c = { "学号","姓名","院系","年级","成绩" };
+		table = new MScrollTable(new Point(20, 130), new Dimension(810, 480));
+		String[] c = { "学号", "姓名", "院系", "年级", "成绩" };
 		table.setColumnIdentifiers(c);
 		backB = new MButton(null, null, null, new Point(30, 95), new Dimension(
 				60, 25));
@@ -68,10 +69,10 @@ public class CourseScoreRecordPanel extends MPanel {
 	}
 
 	private void init(String courseID) {
-		this.courseID=courseID;
-		
-		Map<Student,Integer> map;	
-		TeacherMethod method = TeacherMethodController.getMethod();	
+		this.courseID = courseID;
+
+		Map<Student, Integer> map;
+		TeacherMethod method = TeacherMethodController.getMethod();
 		try {
 			map = method.getScore(courseID);
 			table.setDataVector(StudentAndScoreToVectorAdapter.adapter(map));
@@ -79,10 +80,10 @@ public class CourseScoreRecordPanel extends MPanel {
 			e.printStackTrace();
 		}
 	}
-	
-	private boolean recordScore(){
+
+	private boolean recordScore() {
 		TeacherMethod method = TeacherMethodController.getMethod();
-		Map map=VectorToScoreAdapter.adapter(table.getDataVector());
+		Map map = VectorToScoreAdapter.adapter(table.getDataVector());
 		try {
 			return method.recordScore(courseID, map);
 		} catch (RemoteException e) {
@@ -96,31 +97,44 @@ public class CourseScoreRecordPanel extends MPanel {
 
 		public void actionPerformed(ActionEvent e) {
 			time++;
+			System.out.println(time);
 			if (time % 2 == 0) {
 				table.setEditable(new EditScorePermission());
+				isEdit = true;
 			}
 		}
 
 	}
-	
-	class BackButtonListener implements ActionListener{
+
+	class BackButtonListener implements ActionListener {
+		TeacherUISwitchController controller = TeacherUISwitchController
+				.getUISwitchController();
 
 		public void actionPerformed(ActionEvent e) {
-			if(recordScore()){
-				backAction();
-				System.out.println("成绩登记成功");
+			if (isEdit) {
+				table.getCellEditor().stopCellEditing();
+				TipFrame t;
+				if (recordScore()) {
+					t = new TipFrame(controller.getLoc(), controller.getSize(),
+							5, "成绩录入成功");
+					backAction();
+				} else {
+					t = new TipFrame(controller.getLoc(), controller.getSize(),
+							5, "成绩录入失败");
+				}
+				t.startEndClock();
 			}else{
-				System.out.println("成绩登记失败");
+				backAction();
 			}
 		}
-		
-		public void backAction(){
+
+		public void backAction() {
 			TeacherUISwitchController controller = TeacherUISwitchController
 					.getUISwitchController();
 			controller.switchToCourseManagement();
 		}
-		
-		public boolean recordScoreAction(){
+
+		public boolean recordScoreAction() {
 			return recordScore();
 		}
 	}

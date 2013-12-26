@@ -11,6 +11,7 @@ import javax.swing.JScrollPane;
 import javax.swing.ListSelectionModel;
 import javax.swing.RowFilter;
 import javax.swing.event.TableModelListener;
+import javax.swing.table.TableCellEditor;
 import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
 
@@ -207,5 +208,9 @@ public class MScrollTable extends JScrollPane {
 				table.removeRowSelectionInterval(i, i);
 			}
 		}
+	}
+	
+	public TableCellEditor getCellEditor(){
+		return table.getCellEditor();
 	}
 }

@@ -304,12 +304,13 @@ public class FrameEditPane extends MFrame {
 						"提醒", JOptionPane.YES_NO_OPTION);
 				switch (val) {
 				case JOptionPane.YES_OPTION:
-					try {
-						method.modifyFrame(getFrame());
-					} catch (RemoteException e1) {
-						// TODO Auto-generated catch block
-						e1.printStackTrace();
-					}
+//					try {
+//						method.modifyFrame(getFrame());
+//					} catch (RemoteException e1) {
+//						// TODO Auto-generated catch block
+//						e1.printStackTrace();
+//					}
+					button.doClick();
 					break;
 				case JOptionPane.NO_OPTION:
 					break;
@@ -428,6 +429,10 @@ public class FrameEditPane extends MFrame {
 
 	public void addConfirmListener(ActionListener al) {
 		button.addActionListener(al);
+	}
+	
+	public boolean isValidInput(){
+		return true;
 	}
 
 	public static void main(String[] args) {

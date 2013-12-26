@@ -89,14 +89,19 @@ public class BasicFramePanel extends MPanel {
 							DeanUISwitchController controller = DeanUISwitchController
 									.getUISwitchController();
 							TipFrame t;
-							if(method.formulateFrame(pane.getBasicFrame())){
-								t = new TipFrame(controller.getLoc(),controller.getSize(), 5,
-										"整体框架策略发布成功");
-								pane.dispose();
-								refreshTable();
+							if(pane.isValidInput()){
+								if(method.formulateFrame(pane.getBasicFrame())){
+									t = new TipFrame(controller.getLoc(),controller.getSize(), 5,
+											"整体框架策略发布成功");
+									pane.dispose();
+									refreshTable();
+								}else{
+									t = new TipFrame(pane.getLocation(),pane.getSize(), 5,
+											"整体框架策略发布失败");
+								}	
 							}else{
-								t = new TipFrame(controller.getLoc(),controller.getSize(), 5,
-										"整体框架策略发布失败");
+								t = new TipFrame(pane.getLocation(),pane.getSize(), 5,
+										"填写错误");
 							}
 							t.startEndClock();
 						} catch (RemoteException e1) {
@@ -132,14 +137,19 @@ public class BasicFramePanel extends MPanel {
 								DeanUISwitchController controller = DeanUISwitchController
 										.getUISwitchController();
 								TipFrame t;
-								if(method.modifyFrame(pane.getBasicFrame())){
-									t = new TipFrame(controller.getLoc(),controller.getSize(), 5,
-											"整体框架策略修改成功");
-									refreshTable();
-									pane.dispose();
+								if(pane.isValidInput()){
+									if(method.modifyFrame(pane.getBasicFrame())){
+										t = new TipFrame(controller.getLoc(),controller.getSize(), 5,
+												"整体框架策略修改成功");
+										refreshTable();
+										pane.dispose();
+									}else{
+										t = new TipFrame(pane.getLocation(),pane.getSize(), 5,
+												"整体框架策略修改失败");
+									}
 								}else{
-									t = new TipFrame(controller.getLoc(),controller.getSize(), 5,
-											"整体框架策略修改失败");
+									t = new TipFrame(pane.getLocation(),pane.getSize(), 5,
+											"填写错误");
 								}
 								t.startEndClock();
 							} catch (RemoteException e1) {

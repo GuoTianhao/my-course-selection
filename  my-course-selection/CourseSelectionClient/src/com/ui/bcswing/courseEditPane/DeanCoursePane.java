@@ -9,6 +9,8 @@ import java.util.List;
 
 import javax.swing.UIManager;
 
+import org.jb2011.lnf.beautyeye.BeautyEyeLNFHelper;
+
 import com.client.rmi.DeanMethodController;
 import com.client.ui.deanUI.DeanUISwitchController;
 import com.data.po.Course;
@@ -86,18 +88,20 @@ public class DeanCoursePane extends CourseEditPane{
 	}
 	public static void main(String[] args) {
 		try {
+			BeautyEyeLNFHelper.frameBorderStyle = BeautyEyeLNFHelper.FrameBorderStyle.osLookAndFeelDecorated;
 			org.jb2011.lnf.beautyeye.BeautyEyeLNFHelper.launchBeautyEyeLNF();
 			UIManager.put("RootPane.setupButtonVisible", false);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		DeanMethod method=DeanMethodController.getMethod();
-		try {
-			DeanCoursePane pane=new DeanCoursePane();
-			pane.setCourse(method.getCourse("0001"));
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		new DeanCoursePane();
+//		DeanMethod method=DeanMethodController.getMethod();
+//		try {
+//			DeanCoursePane pane=new DeanCoursePane();
+//			pane.setCourse(method.getCourse("0001"));
+//		} catch (Exception e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
 	}
 }

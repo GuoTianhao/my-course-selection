@@ -535,6 +535,10 @@ public class BasicFrameEditPane extends MFrame {
 		yesBtn.addActionListener(al);
 	}
 	
+	public boolean isValidInput(){
+		return true;
+	}
+	
 	public static void main(String[] args) {
 		try {
 			BeautyEyeLNFHelper.frameBorderStyle = BeautyEyeLNFHelper.FrameBorderStyle.osLookAndFeelDecorated;

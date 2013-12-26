@@ -16,6 +16,7 @@ import com.basicdata.Identity;
 import com.client.rmi.FacultyDeanMethodController;
 import com.client.ui.dataAdapter.FrameToVectorAdapter;
 import com.client.ui.facultyUI.FacultyUISwitchController;
+import com.client.ui.teacherUI.TeacherUISwitchController;
 import com.data.po.FacultyDean;
 import com.data.po.Frame;
 import com.data.po.FrameElement;
@@ -23,13 +24,14 @@ import com.logicService.FacultyDeanMethod;
 import com.ui.myswing.MPanel;
 import com.ui.myswing.MButton;
 import com.ui.bcswing.MScrollTable;
+import com.ui.bcswing.TipFrame;
 import com.ui.bcswing.frameEditPane.FrameEditPane;
 import com.ui.bcswing.titleBar.FacultyTitleBar;
 import com.ui.bcswing.titleBar.TitleBar;
 
 public class TeachingPlanPanel extends MPanel {
 	private TitleBar title;
-//	private MButton add;
+	// private MButton add;
 	private MButton change;
 	private MButton publish;
 	private MScrollTable table;
@@ -47,19 +49,19 @@ public class TeachingPlanPanel extends MPanel {
 		table = new MScrollTable(new Point(20, 130), new Dimension(800, 480));
 		String[] c = { "课程模块", "建议学分", "开设学期" };
 		table.setColumnIdentifiers(c);
-//		add = new MButton(null, null, null, new Point(30, 95), new Dimension(
-//				80, 25));
+		// add = new MButton(null, null, null, new Point(30, 95), new Dimension(
+		// 80, 25));
 		change = new MButton(null, null, null, new Point(120, 95),
 				new Dimension(80, 25));
 		publish = new MButton(null, null, null, new Point(30, 95),
 				new Dimension(80, 25));
 
-//		add.setText("添加");
+		// add.setText("添加");
 		change.setText("更改");
 		publish.setText("发布");
 
 		this.add(title);
-//		this.add(add);
+		// this.add(add);
 		this.add(change);
 		this.add(publish);
 		this.add(table);
@@ -78,6 +80,8 @@ public class TeachingPlanPanel extends MPanel {
 		publish.addActionListener(new ActionListener() {
 			FrameEditPane pane;
 			FacultyDeanMethod method = FacultyDeanMethodController.getMethod();
+			FacultyUISwitchController controller = FacultyUISwitchController
+					.getUISwitchController();
 
 			public void actionPerformed(ActionEvent e) {
 				pane = new FrameEditPane();
@@ -91,12 +95,22 @@ public class TeachingPlanPanel extends MPanel {
 
 			public void publish() {
 				try {
-					if (method.modifyFrame(pane.getFrame())) {
-						change.setEnabled(true);
-						publish.setEnabled(false);
+					TipFrame t;
+					if (pane.isValidInput()) {
+						if (method.formulateFrame(pane.getFrame())) {
+							t = new TipFrame(controller.getLoc(), controller
+									.getSize(), 5, "教学计划发布成功");
+							refreshTable();
+							pane.dispose();
+						} else {
+							t = new TipFrame(pane.getLocation(),
+									pane.getSize(), 5, "教学计划发布失败");
+						}
+					} else {
+						t = new TipFrame(pane.getLocation(), pane.getSize(), 5,
+								"填写错误");
 					}
-					pane.dispose();
-					refreshTable();
+					t.startEndClock();
 				} catch (RemoteException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
@@ -106,15 +120,39 @@ public class TeachingPlanPanel extends MPanel {
 		});
 
 		change.addActionListener(new ActionListener() {
+			FacultyUISwitchController controller = FacultyUISwitchController
+					.getUISwitchController();
+			FacultyDeanMethod method = FacultyDeanMethodController.getMethod();
+			FrameEditPane pane;
 
 			public void actionPerformed(ActionEvent e) {
-				FacultyDean self = (FacultyDean) Identity.getIdentity();
-				String id = self.getFaculty();
-				FacultyDeanMethod method = FacultyDeanMethodController
-						.getMethod();
-				FrameEditPane pane = new FrameEditPane();
+				pane = new FrameEditPane();
+				pane.addConfirmListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						modify();
+					}
+
+				});
+			}
+
+			public void modify() {
 				try {
-					pane.setFrame(method.lookFrame(id));
+					TipFrame t;
+					if (pane.isValidInput()) {
+						if (method.modifyFrame(pane.getFrame())) {
+							t = new TipFrame(controller.getLoc(), controller
+									.getSize(), 5, "教学计划修改成功");
+							refreshTable();
+							pane.dispose();
+						} else {
+							t = new TipFrame(pane.getLocation(),
+									pane.getSize(), 5, "教学计划修改失败");
+						}
+					} else {
+						t = new TipFrame(pane.getLocation(), pane.getSize(), 5,
+								"填写错误");
+					}
+					t.startEndClock();
 				} catch (RemoteException e1) {
 					e1.printStackTrace();
 				}

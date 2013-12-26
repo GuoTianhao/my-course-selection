@@ -445,12 +445,13 @@ public class BasicFrameEditPane extends MFrame {
 		for (int i = 0; i < textFields.length; i++) {
 			for (int j = 1; j < textFields[i].length; j++) {
 				textFields[i][j].addKeyListener(limit);
-//				textFields[i][j].addFocusListener(new FocusAdapter() {
-//					public void focusGained(FocusEvent e) {
-//						setBackground(Color.WHITE);
-//						refresh();
-//					}
-//				});
+				textFields[i][j].addFocusListener(new FocusAdapter() {
+					public void focusGained(FocusEvent e) {
+						setBackground(Color.WHITE);
+						refresh();
+						editPanel.refresh();
+					}
+				});
 			}
 		}
 		
@@ -532,7 +533,7 @@ public class BasicFrameEditPane extends MFrame {
 	}
 
 	public boolean isValidInput() {
-		for (int i = 0; i < elementStr.length; i++) {
+		for (int i = 0; i < textFields.length; i++) {
 			if (Integer.parseInt(textFields[i][1].getText()) > Integer
 					.parseInt(textFields[i][2].getText())) {
 				textFields[i][1].setBackground(Color.RED);

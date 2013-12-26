@@ -432,6 +432,7 @@ public class FrameEditPane extends MFrame {
 	}
 	
 	public boolean isValidInput(){
+		
 		return true;
 	}
 

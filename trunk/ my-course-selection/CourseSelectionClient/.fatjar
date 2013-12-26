@@ -1,0 +1,14 @@
+#Fat Jar Configuration File
+#Thu Dec 26 13:22:07 CST 2013
+onejar.license.required=true
+manifest.classpath=
+manifest.removesigners=true
+onejar.checkbox=false
+jarname=CourseSelectionClient_fat.jar
+manifest.mergeall=true
+manifest.mainclass=com.client.start.start
+manifest.file=<createnew>
+jarname.isextern=false
+onejar.expand=
+excludes=
+includes=<inc|CourseSelectionClient/resource>

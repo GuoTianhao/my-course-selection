@@ -349,54 +349,54 @@ public class BasicFrameEditPane extends MFrame {
 		textField_34 = new MTextField();
 		textField_34.setBounds(400, 360, 25, 25);
 		editPanel.add(textField_34);
-		
+
 		textFields[0][0] = moduleField;
-		 textFields[0][1] = creditField1;
-		 textFields[0][2] = creditField2;
-		 textFields[0][3] = periodField1;
-		 textFields[0][4] = periodField2;
-		 
-		 textFields[1][0] = textField;
-		 textFields[1][1] = textField_6;
-		 textFields[1][2] = textField_7;
-		 textFields[1][3] = textField_18;
-		 textFields[1][4] = textField_19;
-		 
-		 textFields[2][0] = textField_1;
-		 textFields[2][1] = textField_9;
-		 textFields[2][2] = textField_8;
-		 textFields[2][3] = textField_20;
-		 textFields[2][4] = textField_21;
-		 
-		 textFields[3][0] = textField_2;
-		 textFields[3][1] = textField_11;
-		 textFields[3][2] = textField_10;
-		 textFields[3][3] = textField_22;
-		 textFields[3][4] = textField_23;
-		 
-		 textFields[4][0] = textField_3;
-		 textFields[4][1] = textField_13;
-		 textFields[4][2] = textField_12;
-		 textFields[4][3] = textField_24;
-		 textFields[4][4] = textField_25;
-		 
-		 textFields[5][0] = textField_4;
-		 textFields[5][1] = textField_15;
-		 textFields[5][2] = textField_14;
-		 textFields[5][3] = textField_26;
-		 textFields[5][4] = textField_27;
-		 
-		 textFields[6][0] = textField_5;
-		 textFields[6][1] = textField_17;
-		 textFields[6][2] = textField_16;
-		 textFields[6][3] = textField_28;
-		 textFields[6][4] = textField_29;
-		 
-		 textFields[7][0] = textField_30;
-		 textFields[7][1] = textField_31;
-		 textFields[7][2] = textField_32;
-		 textFields[7][3] = textField_33;
-		 textFields[7][4] = textField_34;
+		textFields[0][1] = creditField1;
+		textFields[0][2] = creditField2;
+		textFields[0][3] = periodField1;
+		textFields[0][4] = periodField2;
+
+		textFields[1][0] = textField;
+		textFields[1][1] = textField_6;
+		textFields[1][2] = textField_7;
+		textFields[1][3] = textField_18;
+		textFields[1][4] = textField_19;
+
+		textFields[2][0] = textField_1;
+		textFields[2][1] = textField_9;
+		textFields[2][2] = textField_8;
+		textFields[2][3] = textField_20;
+		textFields[2][4] = textField_21;
+
+		textFields[3][0] = textField_2;
+		textFields[3][1] = textField_11;
+		textFields[3][2] = textField_10;
+		textFields[3][3] = textField_22;
+		textFields[3][4] = textField_23;
+
+		textFields[4][0] = textField_3;
+		textFields[4][1] = textField_13;
+		textFields[4][2] = textField_12;
+		textFields[4][3] = textField_24;
+		textFields[4][4] = textField_25;
+
+		textFields[5][0] = textField_4;
+		textFields[5][1] = textField_15;
+		textFields[5][2] = textField_14;
+		textFields[5][3] = textField_26;
+		textFields[5][4] = textField_27;
+
+		textFields[6][0] = textField_5;
+		textFields[6][1] = textField_17;
+		textFields[6][2] = textField_16;
+		textFields[6][3] = textField_28;
+		textFields[6][4] = textField_29;
+
+		textFields[7][0] = textField_30;
+		textFields[7][1] = textField_31;
+		textFields[7][2] = textField_32;
+		textFields[7][3] = textField_33;
+		textFields[7][4] = textField_34;
 
 		setLocationRelativeTo(null);
 		getContentPane().add(editPanel);
@@ -447,23 +447,17 @@ public class BasicFrameEditPane extends MFrame {
 				textFields[i][j].addKeyListener(limit);
 				textFields[i][j].addFocusListener(new FocusAdapter() {
 					public void focusGained(FocusEvent e) {
-						setBackground(Color.WHITE);
-						refresh();
-						editPanel.refresh();
+						e.getComponent().setForeground(Color.BLACK);
 					}
 				});
 			}
 		}
-		
-		
 
 	}
 
 	public void setBasicFrame(BasicFrame frame) {
 		Iterator<FrameElement> it = frame.iterator();
-		
-		 
-		 
+
 		int i = 0;
 		while (it.hasNext()) {
 			FrameElement e = (FrameElement) it.next();
@@ -533,23 +527,30 @@ public class BasicFrameEditPane extends MFrame {
 	}
 
 	public boolean isValidInput() {
+		boolean val = true;
 		for (int i = 0; i < textFields.length; i++) {
 			if (Integer.parseInt(textFields[i][1].getText()) > Integer
 					.parseInt(textFields[i][2].getText())) {
-				textFields[i][1].setBackground(Color.RED);
-				return false;
+				textFields[i][1].setForeground(Color.RED);
+				textFields[i][2].setForeground(Color.RED);
+				val = false;
 			}
 			if (Integer.parseInt(textFields[i][3].getText()) > Integer
 					.parseInt(textFields[i][4].getText())) {
-				textFields[i][3].setBackground(Color.RED);
-				return false;
+				textFields[i][3].setForeground(Color.RED);
+				textFields[i][4].setForeground(Color.RED);
+				val = false;
 			}
-			if (Integer.parseInt(textFields[i][3].getText()) > 10) {
-				return false;
+			if (Integer.parseInt(textFields[i][3].getText()) > 8) {
+				textFields[i][3].setForeground(Color.RED);
+				val = false;
 			}
-
+			if (Integer.parseInt(textFields[i][4].getText()) > 8) {
+				textFields[i][4].setForeground(Color.RED);
+				val = false;
+			}
 		}
-		return true;
+		return val;
 	}
 
 	public static void main(String[] args) {

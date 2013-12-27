@@ -127,6 +127,13 @@ public class TeachingPlanPanel extends MPanel {
 
 			public void actionPerformed(ActionEvent e) {
 				pane = new FrameEditPane();
+				try {
+					pane.setFrame(method.lookFrame(((FacultyDean) Identity
+							.getIdentity()).getFaculty()));
+				} catch (RemoteException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 				pane.addConfirmListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
 						modify();

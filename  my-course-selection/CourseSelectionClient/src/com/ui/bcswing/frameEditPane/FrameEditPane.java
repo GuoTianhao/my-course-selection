@@ -1,9 +1,12 @@
 package com.ui.bcswing.frameEditPane;
 
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Point;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.FocusAdapter;
+import java.awt.event.FocusEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.rmi.RemoteException;
@@ -69,6 +72,7 @@ public class FrameEditPane extends MFrame {
 	private MTextField textField_29;
 	private MTextField textField_30;
 	private MTextField textField_31;
+	private MTextField[][] textFields = new MTextField[8][4];
 
 	public FrameEditPane() {
 		super(default_size);
@@ -279,6 +283,46 @@ public class FrameEditPane extends MFrame {
 		textField_31.setBounds(400, 362, 25, 25);
 		panel.add(textField_31);
 
+		textFields[0][0] = textField;
+		textFields[0][1] = textField_7;
+		textFields[0][2] = textField_20;
+		textFields[0][3] = textField_21;
+
+		textFields[1][0] = textField_1;
+		textFields[1][1] = textField_8;
+		textFields[1][2] = textField_19;
+		textFields[1][3] = textField_22;
+
+		textFields[2][0] = textField_2;
+		textFields[2][1] = textField_9;
+		textFields[2][2] = textField_17;
+		textFields[2][3] = textField_23;
+
+		textFields[3][0] = textField_3;
+		textFields[3][1] = textField_10;
+		textFields[3][2] = textField_18;
+		textFields[3][3] = textField_24;
+
+		textFields[4][0] = textField_4;
+		textFields[4][1] = textField_11;
+		textFields[4][2] = textField_16;
+		textFields[4][3] = textField_25;
+
+		textFields[5][0] = textField_5;
+		textFields[5][1] = textField_12;
+		textFields[5][2] = textField_15;
+		textFields[5][3] = textField_26;
+
+		textFields[6][0] = textField_6;
+		textFields[6][1] = textField_13;
+		textFields[6][2] = textField_14;
+		textFields[6][3] = textField_27;
+
+		textFields[7][0] = textField_28;
+		textFields[7][1] = textField_29;
+		textFields[7][2] = textField_30;
+		textFields[7][3] = textField_31;
+
 		this.setLocationRelativeTo(null);
 		getContentPane().add(panel);
 		this.setVisible(true);
@@ -304,12 +348,12 @@ public class FrameEditPane extends MFrame {
 						"提醒", JOptionPane.YES_NO_OPTION);
 				switch (val) {
 				case JOptionPane.YES_OPTION:
-//					try {
-//						method.modifyFrame(getFrame());
-//					} catch (RemoteException e1) {
-//						// TODO Auto-generated catch block
-//						e1.printStackTrace();
-//					}
+					// try {
+					// method.modifyFrame(getFrame());
+					// } catch (RemoteException e1) {
+					// // TODO Auto-generated catch block
+					// e1.printStackTrace();
+					// }
 					button.doClick();
 					break;
 				case JOptionPane.NO_OPTION:
@@ -319,44 +363,20 @@ public class FrameEditPane extends MFrame {
 				}
 			}
 		});
-		
-		
-		NumLimitInput limit = new NumLimitInput();
-		textField.addKeyListener(limit);
-		textField_7.addKeyListener(limit);
-		textField_20.addKeyListener(limit);
-		textField_21.addKeyListener(limit);
-		textField_1.addKeyListener(limit);
-		textField_8.addKeyListener(limit);
-		textField_19.addKeyListener(limit);
-		textField_22.addKeyListener(limit);
-		textField_2.addKeyListener(limit);
-		textField_9.addKeyListener(limit);
-		textField_18.addKeyListener(limit);
-		textField_23.addKeyListener(limit);
-		textField_3.addKeyListener(limit);
-		textField_10.addKeyListener(limit);
-		textField_17.addKeyListener(limit);
-		textField_24.addKeyListener(limit);
-		textField_4.addKeyListener(limit);
-		textField_11.addKeyListener(limit);
-		textField_16.addKeyListener(limit);
-		textField_25.addKeyListener(limit);
-		textField_5.addKeyListener(limit);
-		textField_12.addKeyListener(limit);
-		textField_15.addKeyListener(limit);
-		textField_26.addKeyListener(limit);
-		textField_6.addKeyListener(limit);
-		textField_13.addKeyListener(limit);
-		textField_14.addKeyListener(limit);
-		textField_27.addKeyListener(limit);
-		textField_28.addKeyListener(limit);
-		textField_29.addKeyListener(limit);
-		textField_30.addKeyListener(limit);
-		textField_31.addKeyListener(limit);
 
-		
-		
+		NumLimitInput limit = new NumLimitInput();
+
+		for (int i = 0; i < textFields.length; i++) {
+			for (int j = 1; j < textFields[i].length; j++) {
+				textFields[i][j].addKeyListener(limit);
+				textFields[i][j].addFocusListener(new FocusAdapter() {
+					public void focusGained(FocusEvent e) {
+						e.getComponent().setForeground(Color.BLACK);
+					}
+				});
+			}
+		}
+
 	}
 
 	public Frame getFrame() {
@@ -372,11 +392,11 @@ public class FrameEditPane extends MFrame {
 				+ textField_22.getText();
 		elementsStr[2][0] = CourseTypeKind.getType(textField_2.getText());
 		elementsStr[2][1] = textField_9.getText();
-		elementsStr[2][2] = textField_18.getText() + "_"
+		elementsStr[2][2] = textField_17.getText() + "_"
 				+ textField_23.getText();
 		elementsStr[3][0] = CourseTypeKind.getType(textField_3.getText());
 		elementsStr[3][1] = textField_10.getText();
-		elementsStr[3][2] = textField_17.getText() + "_"
+		elementsStr[3][2] = textField_18.getText() + "_"
 				+ textField_24.getText();
 		elementsStr[4][0] = CourseTypeKind.getType(textField_4.getText());
 		elementsStr[4][1] = textField_11.getText();
@@ -403,15 +423,6 @@ public class FrameEditPane extends MFrame {
 
 	public void setFrame(Frame f) {
 		Iterator<FrameElement> it = f.iterator();
-		MTextField textFields[][] = {
-				{ textField, textField_7, textField_20, textField_21 },
-				{ textField_1, textField_8, textField_19, textField_22 },
-				{ textField_2, textField_9, textField_18, textField_23 },
-				{ textField_3, textField_10, textField_17, textField_24 },
-				{ textField_4, textField_11, textField_16, textField_25 },
-				{ textField_5, textField_12, textField_15, textField_26 },
-				{ textField_6, textField_13, textField_14, textField_27 },
-				{ textField_28, textField_29, textField_30, textField_31 } };
 		int i = 0;
 		while (it.hasNext()) {
 			FrameElement e = (FrameElement) it.next();
@@ -430,10 +441,27 @@ public class FrameEditPane extends MFrame {
 	public void addConfirmListener(ActionListener al) {
 		button.addActionListener(al);
 	}
-	
-	public boolean isValidInput(){
-		
-		return true;
+
+	public boolean isValidInput() {
+		boolean val = true;
+		for (int i = 0; i < textFields.length; i++) {
+
+			if (Integer.parseInt(textFields[i][2].getText()) > Integer
+					.parseInt(textFields[i][3].getText())) {
+				textFields[i][2].setForeground(Color.RED);
+				textFields[i][3].setForeground(Color.RED);
+				val = false;
+			}
+			if (Integer.parseInt(textFields[i][2].getText()) > 8) {
+				textFields[i][2].setForeground(Color.RED);
+				val = false;
+			}
+			if (Integer.parseInt(textFields[i][3].getText()) > 8) {
+				textFields[i][3].setForeground(Color.RED);
+				val = false;
+			}
+		}
+		return val;
 	}
 
 	public static void main(String[] args) {

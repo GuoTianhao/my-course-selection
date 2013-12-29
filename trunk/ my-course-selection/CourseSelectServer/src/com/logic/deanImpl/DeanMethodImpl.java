@@ -25,6 +25,7 @@ import com.logic.method.deanRelative.DeanGetter;
 import com.logic.method.deanRelative.DeanPublishCourse;
 import com.logic.method.deanRelative.MCourseGetter;
 import com.logic.method.deanRelative.StudentImport;
+import com.logic.method.deanRelative.TeacherImport;
 import com.logic.method.studentRelative.CourseBySelect;
 import com.logic.method.studentRelative.StudentGetter;
 import com.logic.method.userRelative.Login;
@@ -171,7 +172,7 @@ public class DeanMethodImpl extends UnicastRemoteObject implements DeanMethod{
 	@Override
 	public boolean importTeacher(List<Teacher> list) throws RemoteException {
 		// TODO Auto-generated method stub
-		return false;
+		return TeacherImport.importTeacher(list);
 	}
 	
 	@Override

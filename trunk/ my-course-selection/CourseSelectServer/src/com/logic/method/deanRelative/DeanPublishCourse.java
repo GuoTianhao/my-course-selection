@@ -1,6 +1,5 @@
 package com.logic.method.deanRelative;
 
-import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
@@ -13,10 +12,6 @@ import com.logic.method.courseRelative.CoursePublish;
 
 public class DeanPublishCourse {
 	public static boolean publishCourse(Course c) {
-//		DeanDatabaseMethod method = DeanDataController.getMethod();
-//		String ID = method.getMax("course", "ID");
-//		int max;
-//		max = Integer.parseInt(ID);
 		switch(c.getType()){
 		case "A":case "G":
 			return publishAllShareCourse(c);

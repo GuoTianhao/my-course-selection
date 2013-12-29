@@ -7,10 +7,11 @@ import java.util.List;
 
 import com.data.dataImpl.method.DatabaseConnection;
 import com.data.po.Student;
+import com.data.po.Teacher;
 
-public class StudentImport {
-	public static boolean importStudent(List<Student> list) {
-		Iterator<Student> it = list.iterator();
+public class TeacherImport {
+	public static boolean importTeacher(List<Teacher> list) {
+		Iterator<Teacher> it = list.iterator();
 		Connection conn;
 		conn = DatabaseConnection.getConnection();
 		Statement st;
@@ -18,14 +19,13 @@ public class StudentImport {
 			st = conn.createStatement();
 			String sql;
 			while (it.hasNext()) {
-				Student s = it.next();
+				Teacher s = it.next();
 
-				sql = "INSERT INTO student (ID,Name,Faculty,Grade) VALUES("
+				sql = "INSERT INTO teacher (ID,Name,Faculty) VALUES("
 						+ "'" + s.getID() + "'," + "'" + s.getName() + "',"
-						+ "'" + s.getFaculty() + "'," + "'" + s.getGrade()
-						+ "')";
+						+ "'" + s.getFaculty()+ "')";
 				st.execute(sql);
-				sql = "INSERT INTO studentPassword (ID,Password) VALUES(" + "'"
+				sql = "INSERT INTO teacherPassword (ID,Password) VALUES(" + "'"
 						+ s.getID() + "'," + "'" + s.getID() + "')";
 				st.execute(sql);
 			}

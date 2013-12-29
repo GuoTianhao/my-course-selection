@@ -21,6 +21,10 @@ public class BasicFrameManagement {
 		return clueName;
 	}
 	public static boolean publishBasicFrame(BasicFrame f){
+		Iterator itL=getBasicFrame().iterator();
+		while(itL.hasNext()){
+			return false;
+		}
 		DeanDatabaseMethod method=DeanDataController.getMethod();
 		List<String> clueName=getClueName();
 		List<String> clue=new ArrayList<String>();
@@ -37,6 +41,10 @@ public class BasicFrameManagement {
 		return true;
 	}
 	public static boolean modifyBasicFrame(BasicFrame f){
+		Iterator itL=getBasicFrame().iterator();
+		while(!itL.hasNext()){
+			return false;
+		}
 		DeanDatabaseMethod method=DeanDataController.getMethod();
 		method.delete("basicFrame",(List)null,(List)null);
 		return publishBasicFrame(f);	

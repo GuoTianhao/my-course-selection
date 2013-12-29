@@ -15,7 +15,6 @@ import com.logic.method.TeacherRelative.TeacherGetter;
 import com.logic.method.courseRelative.CourseGetter;
 import com.logic.method.courseRelative.CourseInforFiln;
 import com.logic.method.courseRelative.CourseStudentGetter;
-import com.logic.method.studentRelative.CourseBySelect;
 import com.logic.method.userRelative.Login;
 import com.logic.method.userRelative.PasswordChange;
 import com.logicService.TeacherMethod;

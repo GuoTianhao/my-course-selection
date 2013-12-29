@@ -69,6 +69,14 @@ public class Course implements Serializable {
 		return name;
 	}
 
+	public boolean setName(String name){
+		if(name==null){
+			return false;
+		}else{
+			return true;
+		}
+	}
+	
 	public List<Teacher> getTeacher() {
 		return teacher;
 	}

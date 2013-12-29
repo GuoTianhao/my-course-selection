@@ -19,8 +19,7 @@ public class CourseStudentNumGetter {
 		case "L":
 			return getFacultyRelativeCourseStudentNum(cID, yearTerm);
 		case "E":
-			return getFacultyRelativeCourseStudentNum(cID, yearTerm)
-					+ getImcompulsoryCourseStudentNum(cID, yearTerm);
+			return getFacultyRelativeCourseStudentNum(cID, yearTerm);
 		default:
 			return getImcompulsoryCourseStudentNum(cID, yearTerm);
 		}

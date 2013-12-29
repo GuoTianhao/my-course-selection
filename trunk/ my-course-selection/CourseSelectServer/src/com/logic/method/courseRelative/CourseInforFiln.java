@@ -1,6 +1,5 @@
 package com.logic.method.courseRelative;
 
-import java.rmi.RemoteException;
 
 import com.data.po.Course;
 

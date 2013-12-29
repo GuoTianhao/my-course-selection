@@ -61,6 +61,19 @@ public class CourseEditPane extends MScrollForm {
 	public Course getCourse() {
 		return courseEdit.getCourse();
 	}
+	
+	protected boolean isCourseValid(Course c){
+		if(c.getCredit()>10||c.getCredit()<0){
+			return false;
+		}
+		if(c.getGrade()<0||c.getGrade()>8){
+			return false;
+		}
+		if(c.getNum()<0){
+			return false;
+		}
+		return true;
+	}
 
 	public void addConfirmListener(ActionListener al) {
 		courseEdit.addConfirmListener(al);

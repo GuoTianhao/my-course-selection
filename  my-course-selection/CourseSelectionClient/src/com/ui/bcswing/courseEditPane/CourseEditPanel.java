@@ -173,11 +173,11 @@ public class CourseEditPanel extends MPanel {
 		String name = namet.getText();
 		String loc = loct.getText();
 		int credit = Integer.parseInt(creditt.getText());
-		int num = -1;
+		int num = 0;
 		if (!numt.getText().equals("")) {
 			num = Integer.parseInt(numt.getText());
 		}
-		int grade = -1;
+		int grade = 0;
 		if (!gradet.getText().equals("")) {
 			grade = Integer.parseInt(gradet.getText());
 		}
@@ -203,7 +203,7 @@ public class CourseEditPanel extends MPanel {
 			c = new Course(courseID, name, loc, type, grade, period, null, null,
 					num, credit, time, null);
 		case "体育课":
-			c = new Course(courseID, name, loc, type,-1, period, null, null,
+			c = new Course(courseID, name, loc, type,0, period, null, null,
 					num, credit, time, null);
 			break;
 		case "专业选修课":

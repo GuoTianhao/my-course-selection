@@ -1,5 +1,6 @@
 package com.client.ui.teacherUI.CourseMagagement;
 
+import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Point;
 import java.awt.event.ActionEvent;
@@ -7,6 +8,10 @@ import java.awt.event.ActionListener;
 import java.rmi.RemoteException;
 import java.util.Map;
 
+import javax.swing.DefaultCellEditor;
+import javax.swing.JOptionPane;
+import javax.swing.JTable;
+import javax.swing.JTextField;
 import javax.swing.UIManager;
 
 import org.jb2011.lnf.beautyeye.BeautyEyeLNFHelper;
@@ -22,8 +27,10 @@ import com.ui.bcswing.MScrollTable;
 import com.ui.bcswing.TipFrame;
 import com.ui.bcswing.titleBar.TeacherTitleBar;
 import com.ui.bcswing.titleBar.TitleBar;
+import com.ui.input.NumLimitInput;
 import com.ui.myswing.MButton;
 import com.ui.myswing.MPanel;
+import com.ui.myswing.MTextField;
 
 public class CourseScoreRecordPanel extends MPanel {
 	private TitleBar title;
@@ -123,7 +130,7 @@ public class CourseScoreRecordPanel extends MPanel {
 							5, "成绩录入失败");
 				}
 				t.startEndClock();
-			}else{
+			} else {
 				backAction();
 			}
 		}
@@ -138,12 +145,12 @@ public class CourseScoreRecordPanel extends MPanel {
 			return recordScore();
 		}
 	}
-
+	
 	public static void main(String[] args) {
 		TeacherMethod method = TeacherMethodController.getMethod();
 
 		try {
-			Identity.setIdentity(method.getSelf("100000000"));
+			Identity.setIdentity(method.getSelf("100000010"));
 		} catch (RemoteException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();

@@ -38,7 +38,7 @@ public class DatabaseInsertTest extends TestCase {
 		clue.add("300000000");
 		clue.add("1025");
 		clue.add("2010");
-		clue.add("测试学生1");
+		clue.add("测试名字");
 		DatabaseInsert.insert("student", clueName, clue);
 		
 		List<String> res=DatabaseSearch.search("student", "ID", "300000000", "Name");

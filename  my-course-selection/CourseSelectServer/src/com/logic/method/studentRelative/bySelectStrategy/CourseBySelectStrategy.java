@@ -10,10 +10,12 @@ import com.logic.method.studentRelative.CourseSelect;
 public class CourseBySelectStrategy {
 	public static boolean selectCourse(String ID, String cID) {
 		Course c = CourseGetter.getConcreteCourse(cID);
-		if (CourseStudentNumGetter.getCourseStudentNum(cID,
-				YearTerm.getNowYearTerm()) < c.getNum()) {
-			return CourseSelect.selectCourseToReal(ID, cID,
-					YearTerm.getNowYearTerm());
+		if(c!=null){
+			if (CourseStudentNumGetter.getCourseStudentNum(cID,
+					YearTerm.getNowYearTerm()) < c.getNum()) {
+				return CourseSelect.selectCourseToReal(ID, cID,
+						YearTerm.getNowYearTerm());
+			}	
 		}
 		return false;
 	}

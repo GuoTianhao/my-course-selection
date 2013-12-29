@@ -30,6 +30,7 @@ public class StudentCourseListGetter {
 		courseList.addAll(CourseGetter.getFacultyTypeCourse(faculty, "B"));
 		courseList.addAll(CourseGetter.getFacultyTypeCourse(faculty, "C"));
 		courseList.addAll(CourseGetter.getFacultyTypeCourse(faculty, "D"));
+		courseList.addAll(CourseGetter.getFacultyTypeCourse(faculty, "L"));
 		return courseList;
 	}
 

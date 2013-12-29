@@ -19,6 +19,10 @@ public class CourseStudentGetter {
 	public static List<Student> getCourseStudent(String cID, String yearTerm) {
 		DatabaseMethod method = DatabaseController.getMethod();
 		List<Student> sList = new ArrayList<Student>();
+		List<String> typeL=method.search("course", "ID", cID, "type");
+		if(typeL.size()==0){
+			return sList;
+		}
 		String type = method.search("course", "ID", cID, "type").get(0);
 		switch (type) {
 		case "B":

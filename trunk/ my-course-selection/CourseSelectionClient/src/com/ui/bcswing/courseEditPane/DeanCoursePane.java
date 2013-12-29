@@ -39,7 +39,7 @@ public class DeanCoursePane extends CourseEditPane{
 					TipFrame t;
 					Course oCourse=method.getCourse(nCourse.getID());
 					if(oCourse==null){
-						if(method.publishCourse(nCourse)){
+						if(isCourseValid(nCourse)&&method.publishCourse(nCourse)){
 							t = new TipFrame(controller.getLoc(),controller.getSize(), 5,
 									"发布课程成功");
 							notifyMObserver();
@@ -52,7 +52,7 @@ public class DeanCoursePane extends CourseEditPane{
 						nCourse.setScript(oCourse.getScript());
 						nCourse.setTeacher(oCourse.getTeacher());
 						nCourse.setFaculty(oCourse.getFaculty());
-						if(method.modifyCourse(nCourse)){
+						if(isCourseValid(nCourse)&&method.modifyCourse(nCourse)){
 							t = new TipFrame(controller.getLoc(),controller.getSize(), 5,
 									"课程修改成功");
 							notifyMObserver();
@@ -72,6 +72,8 @@ public class DeanCoursePane extends CourseEditPane{
 		});
 		
 	}
+	
+
 	
 	public void addConfirmListener(ActionListener al){
 		courseEdit.addConfirmListener(al);

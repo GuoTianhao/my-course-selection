@@ -23,6 +23,10 @@ public class FrameManagement {
 		return clueName;
 	}
 	public static boolean publishFrame(Frame f){
+		Iterator itL=getFrame(f.getFaculty()).iterator();
+		while(itL.hasNext()){
+			return false;
+		}
 		FacultyDeanDatabaseMethod method=FacultyDeanDataController.getMethod();
 		List<String> clueName=getClueName();
 		List<String> clue=new ArrayList<String>();
@@ -39,6 +43,10 @@ public class FrameManagement {
 		return true;
 	}
 	public static boolean modifyFrame(Frame f){
+		Iterator itL=getFrame(f.getFaculty()).iterator();
+		while(!itL.hasNext()){
+			return false;
+		}
 		FacultyDeanDatabaseMethod method=FacultyDeanDataController.getMethod();
 		method.delete("frame","faculty",f.getFaculty());
 		return publishFrame(f);	

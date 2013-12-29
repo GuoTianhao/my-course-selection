@@ -22,6 +22,8 @@ public class DatabaseInsertTest extends TestCase {
 			String sql;
 			sql = "DELETE FROM student WHERE ID='300000000'";
 			st.execute(sql);
+//			sql="DELETE FROM courseTeacher";
+//			st.execute(sql);
 			conn.close();
 		} catch (Exception ex) {
 			System.out.println("删除数据失败：" + ex.getMessage());
@@ -51,4 +53,5 @@ public class DatabaseInsertTest extends TestCase {
 		assertEquals(res.get(0),"2010");
 		
 	}
+
 }

@@ -8,10 +8,12 @@ import junit.framework.TestCase;
 
 import com.data.dataImpl.method.DatabaseConnection;
 import com.data.dataImpl.method.DatabaseUpdate;
+import com.server.start.DatabaseInit;
 
 public class DatabaseUpdateTest extends TestCase{
 	
 	protected void setUp() {
+		DatabaseInit.init();
 		Connection conn;
 		conn = DatabaseConnection.getConnection();
 		Statement st;

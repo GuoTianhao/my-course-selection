@@ -6,13 +6,14 @@ import java.sql.Statement;
 import com.data.dataImpl.method.DatabaseConnection;
 import com.logic.method.studentRelative.CourseBySelect;
 import com.logic.method.studentRelative.CourseSelect;
+import com.server.start.DatabaseInit;
 
 import junit.framework.TestCase;
 
 public class CourseSelectTest extends TestCase {
 
 	protected void setUp() {
-
+		DatabaseInit.init();
 		Connection conn;
 		conn = DatabaseConnection.getConnection();
 		Statement st;

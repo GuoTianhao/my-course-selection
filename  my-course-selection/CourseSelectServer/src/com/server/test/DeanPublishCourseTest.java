@@ -10,13 +10,14 @@ import com.data.dataImpl.method.DatabaseConnection;
 import com.data.po.Course;
 import com.data.po.Teacher;
 import com.logic.method.deanRelative.DeanPublishCourse;
+import com.server.start.DatabaseInit;
 
 import junit.framework.TestCase;
 
 public class DeanPublishCourseTest extends TestCase{
 
 	protected void setUp(){
-		
+		DatabaseInit.init();
 	}
 	
 	protected void tearDown(){

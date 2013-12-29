@@ -13,6 +13,7 @@ import com.data.dataImpl.method.DatabaseSearch;
 import com.data.po.Course;
 import com.logic.method.courseRelative.CourseGetter;
 import com.logic.method.courseRelative.CourseUpdate;
+import com.server.start.DatabaseInit;
 
 import junit.framework.TestCase;
 
@@ -20,7 +21,7 @@ import junit.framework.TestCase;
 class CourseUpateTest extends TestCase {
 
 	protected void setUp() {
-
+		DatabaseInit.init();
 	}
 
 	protected void tearDown() {

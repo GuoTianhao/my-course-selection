@@ -11,9 +11,11 @@ import com.data.dataImpl.method.DatabaseConnection;
 import com.data.dataImpl.method.DatabaseDelete;
 import com.data.dataImpl.method.DatabaseInsert;
 import com.data.dataImpl.method.DatabaseSearch;
+import com.server.start.DatabaseInit;
 
 public class DatabaseInsertTest extends TestCase {
 	protected void tearDown(){
+		DatabaseInit.init();
 		Connection conn;
 		conn = DatabaseConnection.getConnection();
 		Statement st;

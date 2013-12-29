@@ -11,12 +11,13 @@ import com.data.po.Student;
 import com.data.po.Teacher;
 import com.logic.method.deanRelative.StudentImport;
 import com.logic.method.deanRelative.TeacherImport;
+import com.server.start.DatabaseInit;
 
 import junit.framework.TestCase;
 
 public class TeacherImportTest extends TestCase{
 	protected void setUp() {
-
+		DatabaseInit.init();
 	}
 
 	protected void tearDown() {

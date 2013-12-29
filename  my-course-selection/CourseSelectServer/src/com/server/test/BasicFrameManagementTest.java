@@ -8,13 +8,14 @@ import com.data.dataImpl.method.DatabaseConnection;
 import com.data.po.BasicFrame;
 import com.data.po.FrameElement;
 import com.logic.method.deanRelative.BasicFrameManagement;
+import com.server.start.DatabaseInit;
 
 import junit.framework.TestCase;
 
 public class BasicFrameManagementTest extends TestCase {
 	
 	protected void setUp() {
-
+		DatabaseInit.init();
 	}
 
 	protected void tearDown() {

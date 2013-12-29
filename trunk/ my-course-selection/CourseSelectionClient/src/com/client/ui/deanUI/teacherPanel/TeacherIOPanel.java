@@ -26,12 +26,14 @@ import com.client.rmi.DeanMethodController;
 import com.client.ui.dataAdapter.FrameToVectorAdapter;
 import com.client.ui.dataAdapter.TeacherListToVectorAdapter;
 import com.client.ui.deanUI.DeanUISwitchController;
+import com.client.ui.deanUI.studentPanel.StudentIOPanel;
 import com.data.excellIO.TeacherListExcelIn;
 import com.data.po.Frame;
 import com.data.po.Student;
 import com.data.po.Teacher;
 import com.logicService.DeanMethod;
 import com.ui.bcswing.MScrollTable;
+import com.ui.bcswing.TipFrame;
 import com.ui.bcswing.titleBar.DeanTitlebar;
 import com.ui.bcswing.titleBar.TitleBar;
 import com.ui.myswing.MButton;
@@ -92,24 +94,29 @@ public class TeacherIOPanel extends MPanel {
 				controller.swicthToMainFrame();
 			}
 		});
-		
+
 		importFromFile.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				int n = j1.showOpenDialog(null);
-//				String filename = j1.getSelectedFile().toString();
+				// String filename = j1.getSelectedFile().toString();
 				if (n == JFileChooser.APPROVE_OPTION) {
 					String filename = j1.getSelectedFile().toString();
 					if (TeacherListExcelIn.testFile(filename))
-						importTeacher(TeacherListExcelIn.read(filename));
-					else
-						JOptionPane.showConfirmDialog(null, "Fail!", "提示",
-								JOptionPane.YES_OPTION);
+						if (importTeacher(TeacherListExcelIn.read(filename))) {
+							DeanUISwitchController controller = DeanUISwitchController
+									.getUISwitchController();
+							TipFrame t = new TipFrame(controller.getLoc(),
+									TeacherIOPanel.this.getSize(), 5, "导入成功");
+							t.startEndClock();
+						} else
+							JOptionPane.showConfirmDialog(null, "Fail!", "提示",
+									JOptionPane.YES_OPTION);
 
 				}
 			}
 
-			public void importTeacher(Vector<Vector> vector) {
-
+			public boolean importTeacher(Vector<Vector> vector) {
+				boolean val = false;
 				DeanMethod method = DeanMethodController.getMethod();
 				List<Teacher> teacherList = new LinkedList<Teacher>();
 
@@ -120,13 +127,14 @@ public class TeacherIOPanel extends MPanel {
 							FacultyKind.getID(row.get(2))));
 				}
 				try {
-					method.importTeacher(teacherList);
+					val = method.importTeacher(teacherList);
 					refreshTable();
 				} catch (RemoteException e1) {
 					e1.printStackTrace();
 				}
+				return val;
 			}
-			
+
 		});
 
 		search.addKeyListener(new KeyAdapter() {
@@ -144,21 +152,21 @@ public class TeacherIOPanel extends MPanel {
 		department.setSelectedIndex(0);
 	}
 
-	private void refreshTable(){
-		
+	private void refreshTable() {
+
 		String faculty = (String) department.getSelectedItem();
 		faculty = FacultyKind.getID(faculty);
 		DeanMethod method = DeanMethodController.getMethod();
 		try {
-			List<Teacher> teacher=method.getFacultyTeacher(faculty);
+			List<Teacher> teacher = method.getFacultyTeacher(faculty);
 			table.setDataVector(TeacherListToVectorAdapter.adapter(teacher));
 		} catch (RemoteException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
-		
+
 	}
-	
+
 	class FacultyListener implements ItemListener {
 		int time = 0;
 

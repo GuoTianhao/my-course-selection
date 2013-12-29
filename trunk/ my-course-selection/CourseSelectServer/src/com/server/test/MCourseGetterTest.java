@@ -8,12 +8,14 @@ import java.util.List;
 import com.data.dataImpl.method.DatabaseConnection;
 import com.data.po.Course;
 import com.logic.method.deanRelative.MCourseGetter;
+import com.server.start.DatabaseInit;
 
 import junit.framework.TestCase;
 
 public class MCourseGetterTest extends TestCase {
 
 	protected void setUp() {
+		DatabaseInit.init();
 		Connection conn;
 		conn = DatabaseConnection.getConnection();
 		Statement st;

@@ -5,12 +5,13 @@ import java.sql.Statement;
 
 import com.data.dataImpl.method.DatabaseConnection;
 import com.logic.method.courseRelative.CourseStudentNumGetter;
+import com.server.start.DatabaseInit;
 
 import junit.framework.TestCase;
 
 public class CourseStudentNumGetterTest extends TestCase{
 	protected void setUp() {
-
+		DatabaseInit.init();
 		Connection conn;
 		conn = DatabaseConnection.getConnection();
 		Statement st;

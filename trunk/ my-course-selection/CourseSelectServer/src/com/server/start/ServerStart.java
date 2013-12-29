@@ -8,9 +8,9 @@ import javax.swing.JLabel;
 
 public class ServerStart {
 	public static void main(String[] args) {
+		DatabaseInit.init();
 		TimeInit.init();
 		RmiInit.init();
-
 		UI();
 	}
 

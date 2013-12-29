@@ -8,12 +8,14 @@ import com.data.po.Dean;
 import com.data.po.FacultyDean;
 import com.logic.method.FaucltyDeanRelative.FacultyDeanGetter;
 import com.logic.method.deanRelative.DeanGetter;
+import com.server.start.DatabaseInit;
 
 import junit.framework.TestCase;
 
 public class FacultyDeanGetterTest extends TestCase{
 
 	protected void setUp(){
+		DatabaseInit.init();
 		Connection conn;
 		conn = DatabaseConnection.getConnection();
 		Statement st;

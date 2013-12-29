@@ -6,12 +6,14 @@ import java.sql.Statement;
 import com.data.dataImpl.method.DatabaseConnection;
 import com.data.po.Dean;
 import com.logic.method.deanRelative.DeanGetter;
+import com.server.start.DatabaseInit;
 
 import junit.framework.TestCase;
 
 public class DeanGetterTest extends TestCase{
 
 	public void setUp(){
+		DatabaseInit.init();
 		Connection conn;
 		conn = DatabaseConnection.getConnection();
 		Statement st;

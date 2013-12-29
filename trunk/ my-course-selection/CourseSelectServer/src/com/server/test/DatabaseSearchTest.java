@@ -10,11 +10,13 @@ import com.data.dataImpl.method.DatabaseConnection;
 import com.data.dataImpl.method.DatabaseDelete;
 import com.data.dataImpl.method.DatabaseInsert;
 import com.data.dataImpl.method.DatabaseSearch;
+import com.server.start.DatabaseInit;
 
 import junit.framework.TestCase;
 
 public class DatabaseSearchTest extends TestCase {
 	protected void setUp() {
+		DatabaseInit.init();
 		Connection conn;
 		conn = DatabaseConnection.getConnection();
 		Statement st;

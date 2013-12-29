@@ -9,13 +9,14 @@ import java.util.Set;
 import com.data.dataImpl.method.DatabaseConnection;
 import com.data.po.Student;
 import com.logic.method.TeacherRelative.CourseStudentScoreGetter;
+import com.server.start.DatabaseInit;
 
 import junit.framework.TestCase;
 
 public class CourseStudentScoreGetterTest extends TestCase {
 
 	protected void setUp() {
-
+		DatabaseInit.init();
 		Connection conn;
 		conn = DatabaseConnection.getConnection();
 		Statement st;

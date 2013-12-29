@@ -9,13 +9,14 @@ import java.util.List;
 import com.data.dataImpl.method.DatabaseConnection;
 import com.data.po.Student;
 import com.logic.method.deanRelative.StudentImport;
+import com.server.start.DatabaseInit;
 
 import junit.framework.TestCase;
 
 public class StudentImportTest extends TestCase {
 
 	protected void setUp() {
-
+		DatabaseInit.init();
 	}
 
 	protected void tearDown() {

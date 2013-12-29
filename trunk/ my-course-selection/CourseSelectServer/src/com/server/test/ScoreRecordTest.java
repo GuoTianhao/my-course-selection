@@ -8,13 +8,14 @@ import java.util.Map;
 
 import com.data.dataImpl.method.DatabaseConnection;
 import com.logic.method.TeacherRelative.ScoreRecord;
+import com.server.start.DatabaseInit;
 
 import junit.framework.TestCase;
 
 public class ScoreRecordTest extends TestCase {
 	String ID;
 	protected void setUp() {
-
+		DatabaseInit.init();
 	}
 
 	protected void tearDown() {

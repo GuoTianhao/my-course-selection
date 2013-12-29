@@ -7,12 +7,12 @@ public class FacultyDeanDataController {
 	private static FacultyDeanDatabaseMethod method = null;
 
 	public static FacultyDeanDatabaseMethod getMethod() {
-		if (method == null) {
-			method = new FacultyDeanDatabaseImpl();
-		}
+//		if (method == null) {
+//			method = new FacultyDeanDatabaseImpl();
+//		}
 		return method;
 	}
-	public void setMethod(FacultyDeanDatabaseMethod method){
-		this.method=method;
+	public static void setMethod(FacultyDeanDatabaseMethod method){
+		FacultyDeanDataController.method=method;
 	}
 }

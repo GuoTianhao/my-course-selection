@@ -8,12 +8,13 @@ import java.util.List;
 import com.data.dataImpl.method.DatabaseConnection;
 import com.data.po.Teacher;
 import com.logic.method.TeacherRelative.TeacherGetter;
+import com.server.start.DatabaseInit;
 
 import junit.framework.TestCase;
 
 public class TeacherGetterTest extends TestCase{
 	protected void setUp() {
-
+		DatabaseInit.init();
 		Connection conn;
 		conn = DatabaseConnection.getConnection();
 		Statement st;

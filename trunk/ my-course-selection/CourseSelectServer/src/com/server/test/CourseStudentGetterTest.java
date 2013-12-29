@@ -7,13 +7,14 @@ import java.util.List;
 import com.data.dataImpl.method.DatabaseConnection;
 import com.data.po.Student;
 import com.logic.method.courseRelative.CourseStudentGetter;
+import com.server.start.DatabaseInit;
 
 import junit.framework.TestCase;
 
 public class CourseStudentGetterTest extends TestCase{
 	
 	protected void setUp() {
-
+		DatabaseInit.init();
 		Connection conn;
 		conn = DatabaseConnection.getConnection();
 		Statement st;

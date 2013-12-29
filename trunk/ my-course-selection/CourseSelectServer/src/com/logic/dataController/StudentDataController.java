@@ -8,12 +8,12 @@ public class StudentDataController {
 	private static StudentDatabaseMethod method = null;
 
 	public static StudentDatabaseMethod getMethod() {
-		if (method == null) {
-			method = new StudentDatabaseImpl();
-		}
+//		if (method == null) {
+//			method = new StudentDatabaseImpl();
+//		}
 		return method;
 	}
-	public void setMethod(StudentDatabaseMethod method){
-		this.method=method;
+	public static void setMethod(StudentDatabaseMethod method){
+		StudentDataController.method=method;
 	}
 }

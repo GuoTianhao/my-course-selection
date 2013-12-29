@@ -7,12 +7,12 @@ public class DatabaseController {
 	private static DatabaseMethod method = null;
 
 	public static DatabaseMethod getMethod() {
-		if (method == null) {
-			method = new DatabaseImpl();
-		}
+//		if (method == null) {
+//			method = new DatabaseImpl();
+//		}
 		return method;
 	}
-	public void setMethod(DatabaseMethod method){
-		this.method=method;
+	public static void setMethod(DatabaseMethod method){
+		DatabaseController.method=method;
 	}
 }

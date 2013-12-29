@@ -10,12 +10,13 @@ import com.data.po.Frame;
 import com.data.po.FrameElement;
 import com.logic.method.FaucltyDeanRelative.FrameManagement;
 import com.logic.method.deanRelative.BasicFrameManagement;
+import com.server.start.DatabaseInit;
 
 import junit.framework.TestCase;
 
 public class FrameManagementTest extends TestCase{
 	protected void setUp() {
-
+		DatabaseInit.init();
 	}
 
 	protected void tearDown() {

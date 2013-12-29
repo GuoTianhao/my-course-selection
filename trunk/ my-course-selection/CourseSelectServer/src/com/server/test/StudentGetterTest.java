@@ -10,10 +10,11 @@ import junit.framework.TestCase;
 import com.data.dataImpl.method.DatabaseConnection;
 import com.data.po.Student;
 import com.logic.method.studentRelative.StudentGetter;
+import com.server.start.DatabaseInit;
 
 public class StudentGetterTest extends TestCase{
 	protected void setUp() {
-
+		DatabaseInit.init();
 		Connection conn;
 		conn = DatabaseConnection.getConnection();
 		Statement st;

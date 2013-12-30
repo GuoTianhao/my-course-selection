@@ -7,21 +7,21 @@ import com.logicService.TeacherMethod;
 
 public class TeacherMethodController {
 	private static TeacherMethod teacherMethod = null;
-	private static String look="rmi://"+IPController.getIP()+":6602/teacherMethod";
+//	private static String look="rmi://"+IPController.getIP()+":6602/teacherMethod";
 	public static TeacherMethod getMethod() {
-		if (teacherMethod == null) {
-			try {
-				teacherMethod = (TeacherMethod) Naming
-						.lookup(look);
-			} catch (Exception ex) {
-				System.out.println("连接失败");
-				ex.printStackTrace();
-			}
-		}
+//		if (teacherMethod == null) {
+//			try {
+//				teacherMethod = (TeacherMethod) Naming
+//						.lookup(look);
+//			} catch (Exception ex) {
+//				System.out.println("连接失败");
+//				ex.printStackTrace();
+//			}
+//		}
 //		teacherMethod=new TeacherMethod_Stub();
 		return teacherMethod;
 	}
-	public void setMethod(TeacherMethod method){
+	public static void setMethod(TeacherMethod method){
 		teacherMethod=method;
 	}
 }

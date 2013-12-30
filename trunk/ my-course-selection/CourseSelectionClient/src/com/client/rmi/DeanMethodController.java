@@ -7,17 +7,17 @@ import com.logicService.DeanMethod;
 
 public class DeanMethodController {
 	private static DeanMethod deanMethod = null;
-	private static String look="rmi://"+IPController.getIP()+":6600/deanMethod";
+//	private static String look="rmi://"+IPController.getIP()+":6600/deanMethod";
 	public static DeanMethod getMethod() {
-		if (deanMethod == null) {
-			try {
-				deanMethod = (DeanMethod) Naming
-						.lookup(look);
-			} catch (Exception ex) {
-				System.out.println("连接失败");
-				ex.printStackTrace();
-			}
-		}
+//		if (deanMethod == null) {
+//			try {
+//				deanMethod = (DeanMethod) Naming
+//						.lookup(look);
+//			} catch (Exception ex) {
+//				System.out.println("连接失败");
+//				ex.printStackTrace();
+//			}
+//		}
 //	deanMethod=new DeanMethod_Stub();
 		return deanMethod;
 	}

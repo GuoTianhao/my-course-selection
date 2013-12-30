@@ -5,6 +5,8 @@ import java.awt.Dimension;
 import java.awt.Point;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.rmi.RemoteException;
 import java.util.Map;
 
@@ -71,7 +73,17 @@ public class CourseScoreRecordPanel extends MPanel {
 
 		backB.addActionListener(new BackButtonListener());
 
-		editB.addActionListener(new EditListener());
+		// editB.addActionListener(new EditListener());
+		editB.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				// TODO Auto-generated method stub
+				if (e.getClickCount() == 2) {
+					table.setEditable(new EditScorePermission());
+					isEdit = true;
+				}
+			}
+		});
 
 	}
 
@@ -99,19 +111,19 @@ public class CourseScoreRecordPanel extends MPanel {
 		return false;
 	}
 
-	class EditListener implements ActionListener {
-		int time = 0;
-
-		public void actionPerformed(ActionEvent e) {
-			time++;
-			System.out.println(time);
-			if (time % 2 == 0) {
-				table.setEditable(new EditScorePermission());
-				isEdit = true;
-			}
-		}
-
-	}
+	// class EditListener implements ActionListener {
+	// int time = 0;
+	//
+	// public void actionPerformed(ActionEvent e) {
+	// time++;
+	// System.out.println(time);
+	// if (time % 2 == 0) {
+	// table.setEditable(new EditScorePermission());
+	// isEdit = true;
+	// }
+	// }
+	//
+	// }
 
 	class BackButtonListener implements ActionListener {
 		TeacherUISwitchController controller = TeacherUISwitchController
@@ -145,7 +157,7 @@ public class CourseScoreRecordPanel extends MPanel {
 			return recordScore();
 		}
 	}
-	
+
 	public static void main(String[] args) {
 		TeacherMethod method = TeacherMethodController.getMethod();
 

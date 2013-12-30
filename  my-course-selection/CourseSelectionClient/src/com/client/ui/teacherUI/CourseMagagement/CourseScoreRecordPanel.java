@@ -10,6 +10,7 @@ import java.awt.event.MouseEvent;
 import java.rmi.RemoteException;
 import java.util.Map;
 
+import javax.swing.CellEditor;
 import javax.swing.DefaultCellEditor;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
@@ -131,7 +132,10 @@ public class CourseScoreRecordPanel extends MPanel {
 
 		public void actionPerformed(ActionEvent e) {
 			if (isEdit) {
-				table.getCellEditor().stopCellEditing();
+				CellEditor edit=table.getCellEditor();
+				if(edit!=null){
+					edit.stopCellEditing();	
+				}
 				TipFrame t;
 				if (recordScore()) {
 					t = new TipFrame(controller.getLoc(), controller.getSize(),

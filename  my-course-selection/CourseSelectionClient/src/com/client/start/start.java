@@ -15,8 +15,10 @@ public class start {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		RmiInit.init();
 		MainUISwitchController controller = MainUISwitchController
 				.getUISwitchController();
 		controller.switchToLoginPanel();
 	}
+	
 }
